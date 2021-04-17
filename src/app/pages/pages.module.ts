@@ -7,6 +7,7 @@ import { ProjectComponent } from './project/project.component';
 import { EducationComponent } from './education/education.component';
 import { ExperienceComponent } from './experience/experience.component';
 import { PageShellComponent } from './page-shell/page-shell.component';
+import { SharedModule } from '../helpers/shared.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { PageShellComponent } from './page-shell/page-shell.component';
   ],
   imports: [
     CommonModule,
-    PagesRoutingModule
+    PagesRoutingModule,
+    SharedModule
   ]
 })
 export class PagesModule { }

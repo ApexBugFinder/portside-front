@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './helpers/shared.module';
 import { HeaderComponent } from './header/header.component';
 import { PagesModule } from './pages/pages.module';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { PagesModule } from './pages/pages.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    PagesModule
+    PagesModule,
+    RouterModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

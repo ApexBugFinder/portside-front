@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -10,12 +12,15 @@ import { FlexLayoutModule } from '@angular/flex-layout'
   imports: [
     CommonModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    RouterModule
   ],
   exports : [
     CommonModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FontAwesomeModule,
+    RouterModule
   ]
 })
 export class SharedModule { }

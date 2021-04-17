@@ -1,1 +1,42 @@
-<p>header works!</p>
+<div class="headerContainer">
+  <div class="headerTitle">
+    <h1 class="title" routerLink="pages/home">
+
+        Portfolio
+
+    </h1>
+  </div>
+
+
+  <div class="spacer"></div>
+
+
+
+  <div class="headerNavBar">
+    <mat-list class="header-nav-list">
+      <mat-list-item
+      class="header-nav-list-item"
+      routerLink="pages/projects">
+
+          Projects
+
+      </mat-list-item>
+
+      <mat-list-item
+      class="header-nav-list-item"
+      routerLink="pages/experiences">
+        Experience
+      </mat-list-item>
+
+      <mat-list-item
+      class="header-nav-list-item"
+      routerLink="pages/education">
+        Education
+      </mat-list-item>
+
+      <mat-list-item class="header-nav-list-item">
+        <fa-icon [icon]="fakey"></fa-icon>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>
