@@ -1,6 +1,10 @@
- .pageShell {
-   height:1000px;
-   background-image: url('../../../assets/images/pngs/mainPageBkgrnd.png');
+
+.pageShell {
+  height:100vh;
+  width: 100vw;
+  background-image: url('../../../assets/images/mainBackground.webp');
+   background-size: cover;
+
+}
 
 
- }

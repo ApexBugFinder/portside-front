@@ -1,0 +1,26 @@
+.homeSection{
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  align-items: center;
+  justify-content: space-around;
+  margin: 20vh auto;
+
+  .quoteSection{
+    font-family: felt-tip-roman;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5vh;
+
+    .quote {
+      font-family: felt-tip-roman, sans-serif;
+      font-size: 30px;
+    }
+    .quoteAuthor {
+      margin:auto;
+      font-size: 18px;
+    }
+  }
+
+}
+

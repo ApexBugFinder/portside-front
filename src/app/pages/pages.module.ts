@@ -8,6 +8,7 @@ import { EducationComponent } from './education/education.component';
 import { ExperienceComponent } from './experience/experience.component';
 import { PageShellComponent } from './page-shell/page-shell.component';
 import { SharedModule } from '../helpers/shared.module';
+import { ProjectModule } from '../project/project.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { SharedModule } from '../helpers/shared.module';
   imports: [
     CommonModule,
     PagesRoutingModule,
-    SharedModule
+    SharedModule,
+    ProjectModule
   ]
 })
 export class PagesModule { }

@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; padding: 0;}
 :host {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 14px;
@@ -15,7 +15,33 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 h1 {
   font-family: surburban, sans-serif;
 }
+ h4 {
+  font-size: 20px;
+  font-family: futura-pt, sans-serif;
 
+}
+.custom-modalbox {
+
+.bannerTitle {
+  width: 100%;
+}
+.bannerImage {
+  width: 100%;
+}
+ mat-dialog-content {
+   padding: 0;
+   margin: 0;
+   width: 100%;
+   overflow-x:hidden;
+ }
+
+ mat-dialog-container {
+   padding: 0 0 3% 0;
+   margin: 0;
+   width: 100%;
+   overflow-x:hidden;
+ }
+}
 
 
 

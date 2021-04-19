@@ -1,1 +1,7 @@
-<p>project works!</p>
+
+<div class="displayProjectsSection" *ngIf="myProjects">
+  hello
+
+<app-project-card *ngFor="let projec of myProjects"  [project]="projec"></app-project-card>
+</div>
+

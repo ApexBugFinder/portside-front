@@ -7,6 +7,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSliderModule } from '@angular/material/slider'
 import { MatDividerModule } from '@angular/material/divider';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatChipsModule,
     MatSliderModule,
     MatDividerModule,
+    MatDialogModule
 
 
   ],
@@ -31,7 +33,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatListModule,
     MatChipsModule,
     MatSliderModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule
   ]
 })
 export class MaterialModule { }
