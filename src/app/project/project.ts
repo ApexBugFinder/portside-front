@@ -6,7 +6,7 @@ export interface Project {
   description: string;
   banner: string;
   published: boolean;
-  requirements: ProjectRequirement[];
+  projectRequirements: ProjectRequirement[];
   projectLinks: ProjectLink[];
 }
 export interface ProjectLink {
@@ -15,6 +15,7 @@ export interface ProjectLink {
 
 export interface ProjectRequirement {
   id: string;
+  requirement: string;
 }
 export const defaultProject: Project = {
   id: '',
@@ -24,6 +25,6 @@ export const defaultProject: Project = {
   description: 'Default Project',
   banner: '',
   published: false,
-  requirements: [],
+  projectRequirements: [],
   projectLinks: [],
 };

@@ -1,44 +1,182 @@
 mat-dialog-container {
   padding: 0;
   margin: 0;
+  width: 976px;
 }
 mat-dialog-content {
   padding: 0;
   margin:0;
-  width: auto;
+  width: 976px;
+overflow-x: hidden;
+}
+.mat-dialog-content {
+  width: 976px;
+  overflow-x: hidden;
 }
 .viewProjectContainer {
-  max-height: 1260px;
+  min-height: 1260px;
   padding: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   margin: auto;
+  row-gap: 20px;
+    font-family: futura-pt,
+    sans-serif;
 
 }
 
 .bannerContainer {
-height: 100%;
-  width: 100%;
+height: 330px;
+  width: 976px;
   display: flex;
   flex-direction:column;
-  align-self: flex-start;
-  justify-content: flex-start;
+  align-self: space-between;
+  justify-content: center;
+top: 0px;
+padding: 0;
+background-image: url('../../../assets/images/pngs/techDoc_banner_large.png');
+background-size: 976px 330px;
+
+}
+.bannerContent {
+  width: 95%;
+  height: 100%;
+  margin: auto auto;
+  display:flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+
+.projectStatusContainer {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-self: flex-end;
+  justify-content: flex-end;
+  margin-left: 20px;
+}
+
+.projectStatus {
+  display: flex;
+  flex-direction: row;
+  column-gap: 30px;
+  width: 70%;
+  justify-self: flex-end;
+}
+
+.statusData {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  column-gap: 30px;
+}
 
 
-.bannerImage {
-  width: 105%;
-  margin: auto;
+}
+.iconsContainer {
+  align-self: flex-end;
+width: 20%;
+.icons {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+margin-right: 20px;
+margin-top: 20px;
 }
 }
-
 .contentSection {
   width: 80%;
+
 }
  h4 {
    font-size: 20px;
    font-family: futura-pt, sans-serif;
+  font-weight: 500;
+ }
+
+ .titleContainer {
+   display: flex;
+   flex-direction: column; column-gap: 40px;
+
+}
+.titleHeading {
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  align-items: flex-end;
+  justify-content: flex-start;
+
+  h4 {
+    margin: 0;
+  }
+}
+.title {
+
+}
+  .titleData {
+
+    margin: 0 0 0 5vw;
+  }
+  mat-list {
+
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    margin: auto;
+    padding: auto;
+  }
+mat-list-item {
+  width: auto;
+  padding: auto;
+display: flex;
+flex-direction: row;
+margin: auto;
+justify-self: flex-start;
+.req {
+  font-family: futura-pt, sans-serif;
+  margin-left: 30px;
+}
+  .reqIcon {
+
+  }
+  .reqIconDelete {
+    float: right;
+    color: red;
+  }
+  .reqIconEdit {
+    color: var(--accent1Color);
+  }
+  p {
+    margin: 0;
+    font-size: 14px;
 
  }
+
+
+}
+.matListItemContent {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.reqContainer
+{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.projectPublished {
+color: yellow;
+}
+
+.projectNotPublished {
+ color: black;
+}

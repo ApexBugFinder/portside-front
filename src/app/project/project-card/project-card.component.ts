@@ -29,8 +29,8 @@ export class ProjectCardComponent implements OnInit, AfterViewInit {
   viewProject(id: string): void {
     console.log(id);
     const dialogRef = this.dialog.open(ViewProjectComponent, {
-      width: 'auto',
-      data: this.project,
+      width: '980px',
+      data: {project: this.project as Project},
       panelClass: 'custom-modalbox'
     });
     dialogRef.afterClosed().subscribe(result => {});

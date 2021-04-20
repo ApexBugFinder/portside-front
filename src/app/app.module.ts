@@ -8,26 +8,23 @@ import { SharedModule } from './helpers/shared.module';
 import { HeaderComponent } from './header/header.component';
 import { PagesModule } from './pages/pages.module';
 import { RouterModule } from '@angular/router';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent
-  ],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
     PagesModule,
-    RouterModule
-
+    RouterModule,
   ],
-  exports: [
-    HeaderComponent
+  exports: [HeaderComponent],
+  providers: [
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

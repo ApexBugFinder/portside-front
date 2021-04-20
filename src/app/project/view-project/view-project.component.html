@@ -1,42 +1,120 @@
 <div mat-dialog-container>
-<div mat-dialog-content>
-<div class="viewProjectContainer">
-  <div class="bannerContainer">
-    <img src="../../../assets/images/pngs/techDoc_banner_large.png" alt="" class="bannerImage">
-    <div class="Icons"></div>
-  </div>
-  <div class="contentSection">
-    <div class="descriptionTitleContainer">
-      <div class="descriptionTitle">
-        <h4>Project Description</h4>
+  <div mat-dialog-content>
+    <div class="viewProjectContainer">
+      <div class="bannerContainer">
+        <div class="bannerContent">
+          <div class="iconsContainer">
+            <div class="icons">
+              <fa-icon [icon]="faEdit"></fa-icon>
+              <i class="fab fa-github"></i>
+
+
+              <fa-icon [icon]="faEye"></fa-icon>
+            </div>
+          </div>
+          <div class="projectStatusContainer">
+            <div class="projectStatus">
+              <div class="statusData">
+                <p>Date Started:</p>
+                <p>01/2021</p>
+              </div>
+
+              <div class="statusData">
+                <p>Date Completed:</p>
+                <p>02/2021</p>
+              </div>
+
+              <div class="statusData">
+                <p>Published:</p>
+                 <!-- <fa-icon class="projectPublished" [icon]="faPublished"></fa-icon> -->
+                <i class="far fa-lightbulb projectPublished"></i>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="startedDtate"></div>
-      <div class="completedDate"></div>
-      <div class="published"></div>
-    </div>
-    <div class="descriptionContent"></div>
-  </div>
-  <div class="contentSection">
-    <div class="requirementsTitleContainer">
-<div class="requirementsTitle">
-      <h4>Project Requirements</h4>
-    </div>
-    </div>
+      <div class="contentSection">
+        <div class="titleContatiner">
+          <div class="titleHeading">
+            <h4 class="title">Title:</h4>
+            <p class="titleData">{{ data.project.projectName }}</p>
+          </div>
+          </div>
+        </div>
+        <div class="contentSection">
+          <div class="descriptionTitleContainer">
+            <div class="descriptionTitle">
+              <h4>Project Description</h4>
+            </div>
+          </div>
 
-    <mat-list>
-      <mat-list-item></mat-list-item>
-    </mat-list>
-  </div>
-  <div class="contentSection">
-    <div class="tagTitle">
-      <h4>Languages & Platforms</h4>
+          <div class="descriptionContent">
+            <p>
+              To develop a tribute page on a subject. I chose the popular SyFy
+              Tv series 'The Expanse'
+            </p>
+          </div>
+        </div>
+
+        <div class="contentSection">
+          <div class="requirementsTitleContainer">
+            <div class="requirementsTitle">
+              <h4>Project Requirements</h4>
+            </div>
+          </div>
+
+          <mat-list>
+            <mat-list-item *ngFor="let req of data.project.projectRequirements">
+              <div class="matListItemContent">
+                <div class="editAndReq">
+                  <div class="reqContainer">
+                    <fa-icon
+                      class="reqIcon reqIconEdit"
+                      [icon]="faEdit"
+                    ></fa-icon>
+                    <p class="req">
+                      {{ req.requirement }}
+                    </p>
+                  </div>
+                </div>
+
+                <fa-icon
+                  class="reqIcon reqIconDelete"
+                  [icon]="faDelete"
+                ></fa-icon>
+              </div>
+            </mat-list-item>
+
+                        <mat-list-item *ngFor="let req of data.project.projectRequirements">
+              <div class="matListItemContent">
+                <div class="editAndReq">
+                  <div class="reqContainer">
+                    <fa-icon
+                      class="reqIcon reqIconEdit"
+                      [icon]="faEdit"
+                    ></fa-icon>
+                    <p class="req">
+                      {{ req.requirement }}
+                    </p>
+                  </div>
+                </div>
+
+                <fa-icon
+                  class="reqIcon reqIconDelete"
+                  [icon]="faDelete"
+                ></fa-icon>
+              </div>
+            </mat-list-item>
+          </mat-list>
+        </div>
+
+        <div class="contentSection">
+          <div class="tagTitle">
+            <h4>Languages & Platforms</h4>
+          </div>
+          <button mat-button class="tag">html</button>
+        </div>
+
     </div>
-    <button mat-button class="tag">html</button>
   </div>
 </div>
-
-</div>
-
-</div>
-
-
