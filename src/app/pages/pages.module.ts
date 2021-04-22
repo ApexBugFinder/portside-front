@@ -9,6 +9,7 @@ import { ExperienceComponent } from './experience/experience.component';
 import { PageShellComponent } from './page-shell/page-shell.component';
 import { SharedModule } from '../helpers/shared.module';
 import { ProjectModule } from '../project/project.module';
+import { ProjectCardComponent } from '../project/project-card/project-card.component';
 
 
 @NgModule({
@@ -17,13 +18,15 @@ import { ProjectModule } from '../project/project.module';
     ProjectComponent,
     EducationComponent,
     ExperienceComponent,
-    PageShellComponent
+    PageShellComponent,
   ],
-  imports: [
-    CommonModule,
-    PagesRoutingModule,
-    SharedModule,
-    ProjectModule
-  ]
+  imports: [CommonModule, PagesRoutingModule, SharedModule, ProjectModule],
+  exports: [
+    HomeComponent,
+    ProjectComponent,
+    EducationComponent,
+    ExperienceComponent,
+    PageShellComponent,
+  ],
 })
-export class PagesModule { }
+export class PagesModule {}

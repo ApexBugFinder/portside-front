@@ -1,0 +1,305 @@
+mat-dialog-container {
+  padding: 0;
+  margin: 0;
+  width: 976px;
+}
+
+mat-dialog-content {
+  padding: 0;
+  margin: 0;
+  width: 976px;
+  overflow-x: hidden;
+}
+
+.mat-dialog-content {
+  width: 976px;
+  overflow-x: hidden;
+}
+
+.viewProjectContainer {
+  height: auto;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: auto;
+  row-gap: 30px;
+  font-family: futura-pt,
+    sans-serif;
+
+}
+
+.bannerContainer {
+  height: 330px;
+  width: 976px;
+  display: flex;
+  flex-direction: column;
+  align-self: space-between;
+  justify-content: center;
+  top: 0px;
+  padding: 0;
+  background-image: url('../../../assets/images/pngs/techDoc_banner_large.png');
+  background-size: 976px 330px;
+
+}
+
+.bannerContent {
+  width: 95%;
+  height: 100%;
+  margin: auto auto;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+
+.imgUploadContainer {
+display: flex;
+flex-direction: row;
+justify-content: center;
+column-gap: 30px;
+div.labelContainer{
+  margin-top: 10px;
+}
+.uploadLabel {
+  font-size: 16px;
+
+}
+.uploadSection {
+  display:flex;
+  flex-direction: column;
+  row-gap: 20px;
+.buttonSection {
+  display:flex;
+  flex-direction: row;
+  column-gap: 10px;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  p.fileName {
+    margin: auto;
+    padding: auto;
+  }
+  .browseButton {
+     border: 1px solid var(--accent2Color);
+    border-radius: 20px;
+// -webkit-box-shadow: 5px 5px 15px 8px rgba(149, 188, 211, 0.57);
+// box-shadow: 5px 5px 15px 8px rgba(149, 188, 211, 0.57);
+
+   }
+}
+
+    .dragDrop {
+      border: 2px solid black;
+      width: 275px;
+      height: 150px;
+      border-radius: 20px;
+.labelContainer {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+height: 100%;
+}
+      p.dragDropLabel {
+        font-size: 24px;
+        margin: auto;
+        padding: auto;
+          -webkit-text-stroke-width: 1px;
+          // -webkit-text-stroke-color: #95bcd3;
+          -webkit-text-stroke-color: var(--accent2Color);
+          ;
+          text-shadow: 2px 2px black;
+      }
+    }
+}
+}
+
+  .projectStatusContainer {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-self: flex-end;
+    justify-content: flex-end;
+    margin-left: 20px;
+
+
+  }
+
+  .projectStatus {
+    display: flex;
+    flex-direction: row;
+    column-gap: 30px;
+    width: auto;
+    justify-self: flex-end;
+  }
+
+  .statusData {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    column-gap: 30px;
+
+    .startDate {
+      background-color: transparent;
+      border: none;
+      margin-top: -10px;
+    }
+    .completeDate {
+      background-color: transparent;
+      border: none;
+      margin-top: -10px;
+
+    }
+  }
+
+
+}
+
+.iconsContainer {
+  align-self: flex-end;
+  width: 20%;
+
+  .icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 20px;
+    margin-top: 20px;
+  }
+}
+
+.contentSection {
+  width: 80%;
+
+}
+
+h4 {
+  font-size: 20px;
+  font-family: futura-pt, sans-serif;
+  font-weight: 500;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  column-gap: 40px;
+
+}
+
+.titleHeading {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  column-gap: 30px;
+  align-items:  center;
+  justify-content: flex-start;
+
+  h4.title {
+    margin: 0;
+  }
+.titleInputData {
+  width: 50%;
+  margin: 0 0 0 0px;
+}
+
+
+}
+
+
+
+.descriptionContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+.descriptionTextInput {
+ margin: auto;
+  width: 80%;
+}
+
+}
+
+.reqContent {
+      display: flex;
+      flex-direction: column;
+    mat-list {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      width: 80%;
+      margin: auto;
+      padding: auto;
+    }
+
+    mat-list-item {
+      width: 100%;
+      padding: auto;
+
+
+  // .req {
+  //   font-family: futura-pt, sans-serif;
+  //   margin-left: 30px;
+  // }
+
+
+
+
+.matListItemContent {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  .reqContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+}
+
+
+
+}.requirementsForm {
+  width: 100%;
+  border: none;
+  padding: none;
+  margin: 0 0 30px 0;
+
+}
+.addReqContainer {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+
+  align-items: center;
+  width: 100%;
+  .reqInput {
+    width: 80%;
+    .reqTextInput {
+      width: 100%;
+    }
+  }
+
+
+
+}
+}
+
+
+
+
+
+
+}
+
+
+.projectPublished {
+  color: yellow;
+}
+
+.projectNotPublished {
+  color: black;
+}

@@ -1,1 +1,174 @@
-<p>edit-project works!</p>
+<div mat-dialog-container>
+  <div mat-dialog-content>
+    <div class="viewProjectContainer">
+      <div
+        class="bannerContainer"
+        [ngStyle]="{ 'background-image': 'url(&quot;' + bkImg + '&quot; )' }"
+      >
+        <div class="bannerContent">
+          <div class="iconsContainer">
+            <div class="icons">
+              <fa-icon [icon]="faEdit"></fa-icon>
+              <i class="fab fa-github"></i>
+
+              <fa-icon [icon]="faEye"></fa-icon>
+              <span class="icon" (click)="onNoClick()">X</span>
+            </div>
+          </div>
+
+          <div class="imgUploadSection">
+            <div class="imgUploadContainer">
+              <div class="labelContainer">
+                <p class="uploadLabel">Upload Banner:</p>
+              </div>
+              <div class="uploadSection">
+                <div class="buttonSection">
+                  <button mat-raised-button class="browseButton">Browse</button>
+                  <p class="fileName">filename.jpg</p>
+                </div>
+                <div class="dragDropSection">
+                  <div class="dragDrop">
+                    <div class="labelContainer">
+                      <p class="dragDropLabel">Drag & Drop</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="projectStatusContainer">
+            <div class="projectStatus">
+              <div class="statusData">
+                <span>Date Started:</span>
+                <input type="date" class="startDate" />
+              </div>
+
+              <div class="statusData">
+                <span>Date Completed:</span>
+
+                <input type="date" class="completeDate" />
+              </div>
+
+              <div class="statusData">
+                <p>Published:</p>
+                <!-- <fa-icon class="projectPublished" [icon]="faPublished"></fa-icon> -->
+                <div class="publishedIconContainer">
+                  <i class="far fa-lightbulb projectPublished"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contentSection">
+        <div class="titleContatiner">
+          <div class="titleHeading">
+            <h4 class="title">Title:</h4>
+
+            <input type="text" class="titleInputData" />
+          </div>
+        </div>
+      </div>
+      <div class="contentSection">
+        <div class="descriptionTitleContainer">
+          <div class="descriptionTitle">
+            <h4>Project Description</h4>
+          </div>
+        </div>
+
+        <div class="descriptionContent">
+          <input type="textarea" class="descriptionTextInput" />
+        </div>
+      </div>
+
+      <div class="contentSection">
+        <div class="requirementsTitleContainer">
+          <div class="requirementsTitle">
+            <h4>Project Requirements</h4>
+          </div>
+        </div>
+        <div class="reqContent">
+          <mat-list>
+            <mat-list-item *ngFor="let req of data.project.projectRequirements">
+              <div class="matListItemContent">
+                <div class="editAndReq">
+                  <div class="reqContainer">
+                    <fa-icon [icon]="faEdit"></fa-icon>
+                    <p class="req">
+                      {{ req.requirement }}
+                    </p>
+                  </div>
+                </div>
+
+                <fa-icon
+                  class="reqIcon reqIconDelete"
+                  [icon]="faDelete"
+                ></fa-icon>
+              </div>
+            </mat-list-item>
+
+            <mat-list-item *ngFor="let req of data.project.projectRequirements">
+              <div class="matListItemContent">
+                <div class="editAndReq">
+                  <div class="reqContainer">
+                    <fa-icon
+                      class="reqIcon reqIconEdit"
+                      [icon]="faEdit"
+                    ></fa-icon>
+                    <p class="req">
+                      {{ req.requirement }}
+                    </p>
+                  </div>
+                </div>
+
+                <fa-icon
+                  class="reqIcon reqIconDelete"
+                  [icon]="faDelete"
+                ></fa-icon>
+              </div>
+            </mat-list-item>
+
+            <mat-list-item> <form
+                  [formGroup]="requirementsForm" ngForm #f="ngForm"
+                  (ngSubmit)="addRequirement(p.value)"
+                  class="requirementsForm">
+
+
+
+              <div class="addReqContainer">
+
+
+                    <div class="reqInput">
+                      <input type="text" #p class="reqTextInput" id="requirement" name="requirement" matInput formControlName="requirement"/>
+                    </div>
+                    <div class="reqAddButton">
+                      <button mat-raised-button (onSubmit)="addRequirement(p.value)">
+                        add
+                      </button>
+                    </div>
+
+
+              </div>
+
+            </form>
+            </mat-list-item>
+          </mat-list>
+        </div>
+
+        <!-- <div class="contentSection">
+          <div class="tagTitle">
+            <h4>Languages & Platforms</h4>
+          </div>
+          <button mat-button class="tag">html</button>
+        </div> -->
+
+
+        <div class="contentSection">
+          <div class="actionButtonsContainer">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,25 +6,26 @@ import { EditProjectComponent } from './edit-project/edit-project.component';
 import { AddProjectComponent } from './add-project/add-project.component';
 import { ProjectService } from './project.service';
 import { SharedModule } from '../helpers/shared.module';
-
-
+import { MaterialModule } from '../helpers/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     ProjectCardComponent,
     ViewProjectComponent,
     EditProjectComponent,
-    AddProjectComponent
+    AddProjectComponent,
   ],
-  imports: [
-    CommonModule,
-    SharedModule
-  ],
+  imports: [CommonModule, SharedModule, ReactiveFormsModule ],
+
   exports: [
-    ProjectCardComponent
+    ProjectCardComponent,
+    ViewProjectComponent,
+    EditProjectComponent,
+    AddProjectComponent,
   ],
   providers: [
-    {provide: ProjectService}
-  ]
+    { provide: 'PROJECT_SERVICE', useClass: ProjectService }
+  ],
 })
-export class ProjectModule { }
+export class ProjectModule {}

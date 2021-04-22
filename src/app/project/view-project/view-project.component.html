@@ -1,8 +1,10 @@
 <div mat-dialog-container>
   <div mat-dialog-content>
     <div class="viewProjectContainer">
-      <div class="bannerContainer">
+      <div class="bannerContainer" [ngStyle]="{ 'background-image':  'url(&quot;' + data.project.banner + '&quot; )'}" >
         <div class="bannerContent">
+
+
           <div class="iconsContainer">
             <div class="icons">
               <fa-icon [icon]="faEdit"></fa-icon>
@@ -10,24 +12,28 @@
 
 
               <fa-icon [icon]="faEye"></fa-icon>
+              <p  class="icon" (click)="onNoClick()">X</p>
             </div>
           </div>
           <div class="projectStatusContainer">
             <div class="projectStatus">
               <div class="statusData">
                 <p>Date Started:</p>
-                <p>01/2021</p>
+                <p>{{ data.project.started |  date: 'MM/yyyy' }}</p>
               </div>
 
               <div class="statusData">
                 <p>Date Completed:</p>
-                <p>02/2021</p>
+                <p>{{ data.project.completed | date: 'MM/yyyy' }}</p>
               </div>
 
               <div class="statusData">
                 <p>Published:</p>
                  <!-- <fa-icon class="projectPublished" [icon]="faPublished"></fa-icon> -->
-                <i class="far fa-lightbulb projectPublished"></i>
+               <div class="publishedIconContainer">
+                 <i class="far fa-lightbulb projectPublished"></i>
+               </div>
+
               </div>
             </div>
           </div>
@@ -68,8 +74,9 @@
               <div class="matListItemContent">
                 <div class="editAndReq">
                   <div class="reqContainer">
+
                     <fa-icon
-                      class="reqIcon reqIconEdit"
+
                       [icon]="faEdit"
                     ></fa-icon>
                     <p class="req">
@@ -112,7 +119,7 @@
           <div class="tagTitle">
             <h4>Languages & Platforms</h4>
           </div>
-          <button mat-button class="tag">html</button>
+          <button mat-button class="tag" >html</button>
         </div>
 
     </div>

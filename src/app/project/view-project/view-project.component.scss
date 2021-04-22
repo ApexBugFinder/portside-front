@@ -14,7 +14,7 @@ overflow-x: hidden;
   overflow-x: hidden;
 }
 .viewProjectContainer {
-  min-height: 1260px;
+height: auto;
   padding: 0;
   width: 100%;
   display: flex;
@@ -37,7 +37,7 @@ height: 330px;
   justify-content: center;
 top: 0px;
 padding: 0;
-background-image: url('../../../assets/images/pngs/techDoc_banner_large.png');
+
 background-size: 976px 330px;
 
 }
@@ -79,12 +79,23 @@ background-size: 976px 330px;
 .iconsContainer {
   align-self: flex-end;
 width: 20%;
+margin-top: 20px;
+margin-right: 10px;
 .icons {
 display: flex;
 flex-direction: row;
 justify-content: space-between;
-margin-right: 20px;
-margin-top: 20px;
+column-gap:  40px;
+align-items: flex-start;
+.fa-github{
+  margin: auto;
+}
+.ng-fa-icon {
+  margin: auto;
+}
+p.icon {
+  margin: auto;
+}
 }
 }
 .contentSection {
@@ -145,6 +156,9 @@ justify-self: flex-start;
 }
   .reqIcon {
 
+  }
+  .reqIconEdit {
+    color: red;
   }
   .reqIconDelete {
     float: right;

@@ -9,6 +9,8 @@ import { HeaderComponent } from './header/header.component';
 import { PagesModule } from './pages/pages.module';
 import { RouterModule } from '@angular/router';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { ProjectCardComponent } from './project/project-card/project-card.component';
+import { EditProjectComponent } from './project/edit-project/edit-project.component';
 
 
 @NgModule({
@@ -22,8 +24,9 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
     RouterModule,
   ],
   exports: [HeaderComponent],
+  entryComponents: [ProjectCardComponent, EditProjectComponent],
   providers: [
-    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
   ],
   bootstrap: [AppComponent],
 })
