@@ -10,6 +10,7 @@ import { PageShellComponent } from './page-shell/page-shell.component';
 import { SharedModule } from '../helpers/shared.module';
 import { ProjectModule } from '../project/project.module';
 import { ProjectCardComponent } from '../project/project-card/project-card.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,14 +20,17 @@ import { ProjectCardComponent } from '../project/project-card/project-card.compo
     EducationComponent,
     ExperienceComponent,
     PageShellComponent,
+
+
   ],
-  imports: [CommonModule, PagesRoutingModule, SharedModule, ProjectModule],
+  imports: [CommonModule, ReactiveFormsModule, PagesRoutingModule, SharedModule, ProjectModule,  ],
   exports: [
     HomeComponent,
     ProjectComponent,
     EducationComponent,
     ExperienceComponent,
     PageShellComponent,
+
   ],
 })
 export class PagesModule {}

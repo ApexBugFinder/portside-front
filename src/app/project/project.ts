@@ -15,6 +15,7 @@ export interface ProjectLink {
 
 export interface ProjectRequirement {
   id: string;
+  projectID: string;
   requirement: string;
 }
 export const defaultProject: Project = {

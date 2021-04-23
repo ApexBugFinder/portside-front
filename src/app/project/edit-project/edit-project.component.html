@@ -1,9 +1,14 @@
 <div mat-dialog-container>
-  <div mat-dialog-content>
+  <div mat-dialog-content><form
+                  [formGroup]="requirementsForm"
+
+
+                  class="requirementsFormClass">
     <div class="viewProjectContainer">
+
       <div
         class="bannerContainer"
-        [ngStyle]="{ 'background-image': 'url(&quot;' + bkImg + '&quot; )' }"
+        [ngStyle]="{ 'background-image': 'url(&quot;' + localProject.banner + '&quot; )' }"
       >
         <div class="bannerContent">
           <div class="iconsContainer">
@@ -40,20 +45,23 @@
             <div class="projectStatus">
               <div class="statusData">
                 <span>Date Started:</span>
-                <input type="date" class="startDate" />
+                <input matInput formControlName="started" id="startedId" type="date" class="startDate" />
               </div>
 
               <div class="statusData">
                 <span>Date Completed:</span>
 
-                <input type="date" class="completeDate" />
+                <input matInput formControlName="completed" id="completedId" type="date" class="completeDate" />
               </div>
 
               <div class="statusData">
                 <p>Published:</p>
                 <!-- <fa-icon class="projectPublished" [icon]="faPublished"></fa-icon> -->
                 <div class="publishedIconContainer">
-                  <i class="far fa-lightbulb projectPublished"></i>
+                <span>
+                      {{ localProject.published }}
+                </span>
+                <!-- <i class="far fa-lightbulb projectPublished"></i> -->
                 </div>
               </div>
             </div>
@@ -65,7 +73,7 @@
           <div class="titleHeading">
             <h4 class="title">Title:</h4>
 
-            <input type="text" class="titleInputData" />
+            <input type="text" formControlName="projectName" id="projectNameId" class="titleInputData" />
           </div>
         </div>
       </div>
@@ -77,7 +85,7 @@
         </div>
 
         <div class="descriptionContent">
-          <input type="textarea" class="descriptionTextInput" />
+          <input type="textarea" formControlName="description" id="descriptionId" class="descriptionTextInput" />
         </div>
       </div>
 
@@ -89,7 +97,7 @@
         </div>
         <div class="reqContent">
           <mat-list>
-            <mat-list-item *ngFor="let req of data.project.projectRequirements">
+            <mat-list-item *ngFor="let req of localProject.projectRequirements">
               <div class="matListItemContent">
                 <div class="editAndReq">
                   <div class="reqContainer">
@@ -107,32 +115,10 @@
               </div>
             </mat-list-item>
 
-            <mat-list-item *ngFor="let req of data.project.projectRequirements">
-              <div class="matListItemContent">
-                <div class="editAndReq">
-                  <div class="reqContainer">
-                    <fa-icon
-                      class="reqIcon reqIconEdit"
-                      [icon]="faEdit"
-                    ></fa-icon>
-                    <p class="req">
-                      {{ req.requirement }}
-                    </p>
-                  </div>
-                </div>
 
-                <fa-icon
-                  class="reqIcon reqIconDelete"
-                  [icon]="faDelete"
-                ></fa-icon>
-              </div>
-            </mat-list-item>
 
-            <mat-list-item> <form
-                  [formGroup]="requirementsForm" ngForm #f="ngForm"
-                  (ngSubmit)="addRequirement(p.value)"
-                  class="requirementsForm">
 
+            <mat-list-item>
 
 
               <div class="addReqContainer">
@@ -142,7 +128,7 @@
                       <input type="text" #p class="reqTextInput" id="requirement" name="requirement" matInput formControlName="requirement"/>
                     </div>
                     <div class="reqAddButton">
-                      <button mat-raised-button (onSubmit)="addRequirement(p.value)">
+                      <button mat-raised-button (click)="addRequirement(p.value)">
                         add
                       </button>
                     </div>
@@ -150,7 +136,7 @@
 
               </div>
 
-            </form>
+
             </mat-list-item>
           </mat-list>
         </div>
@@ -163,12 +149,15 @@
         </div> -->
 
 
-        <div class="contentSection">
-          <div class="actionButtonsContainer">
 
+      </div>
+    <div class="contentSection">
+          <div class="actionButtonsContainer">
+            <button mat-raised-button>Delete</button>
+            <button mat-raised-button>Save</button>
+            <button mat-raised-button>Publish</button>
           </div>
         </div>
-      </div>
-    </div>
+    </div> </form>
   </div>
 </div>

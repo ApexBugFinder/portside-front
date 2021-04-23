@@ -16,8 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     EditProjectComponent,
     AddProjectComponent,
   ],
-  imports: [CommonModule, SharedModule, ReactiveFormsModule ],
-
+  imports: [CommonModule, MaterialModule, SharedModule, ReactiveFormsModule ],
+ entryComponents: [ViewProjectComponent, EditProjectComponent],
   exports: [
     ProjectCardComponent,
     ViewProjectComponent,

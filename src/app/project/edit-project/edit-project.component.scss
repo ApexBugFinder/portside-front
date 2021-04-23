@@ -25,7 +25,7 @@ mat-dialog-content {
   align-items: center;
   justify-content: flex-start;
   margin: auto;
-  row-gap: 30px;
+  row-gap: 40px;
   font-family: futura-pt,
     sans-serif;
 
@@ -302,4 +302,15 @@ h4 {
 
 .projectNotPublished {
   color: black;
+}
+
+.actionButtonsContainer {
+  display: flex;
+  flex-direction: row;
+  column-gap: 40px;
+  width: 100%;
+  justify-content: flex-end;
+  margin-top: 40px;
+  margin-bottom: 40px;
+
 }

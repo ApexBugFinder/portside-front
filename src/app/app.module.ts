@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { ProjectCardComponent } from './project/project-card/project-card.component';
 import { EditProjectComponent } from './project/edit-project/edit-project.component';
+import { ProjectModule } from './project/project.module';
 
 
 @NgModule({
@@ -20,11 +21,13 @@ import { EditProjectComponent } from './project/edit-project/edit-project.compon
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
+    ProjectModule,
     PagesModule,
+
     RouterModule,
   ],
   exports: [HeaderComponent],
-  entryComponents: [ProjectCardComponent, EditProjectComponent],
+  // entryComponents: [ProjectCardComponent, EditProjectComponent],
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
   ],
