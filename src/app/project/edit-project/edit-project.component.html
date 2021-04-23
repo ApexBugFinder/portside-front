@@ -58,8 +58,10 @@
                 <p>Published:</p>
                 <!-- <fa-icon class="projectPublished" [icon]="faPublished"></fa-icon> -->
                 <div class="publishedIconContainer">
-                <span>
-                      {{ localProject.published }}
+                <span >
+                      <!-- {{ localProject.published }} -->
+                       <input type="button" formControlName="published" class="publishButton">
+                      <!-- <button matInput mat-raised-button formControlName="published"></button> -->
                 </span>
                 <!-- <i class="far fa-lightbulb projectPublished"></i> -->
                 </div>
@@ -153,9 +155,10 @@
       </div>
     <div class="contentSection">
           <div class="actionButtonsContainer">
-            <button mat-raised-button>Delete</button>
-            <button mat-raised-button>Save</button>
-            <button mat-raised-button>Publish</button>
+             <button mat-raised-button class="deleteButton" (click)="clearChanges()">Cancel Changes</button>
+            <button mat-raised-button class="deleteButton" (click)="deleteProject()">Delete</button>
+            <button mat-raised-button class="saveButton" (click)="saveProject()">Save</button>
+            <button mat-raised-button class="publishButton" (click)="publishToggleProject()">Publish</button>
           </div>
         </div>
     </div> </form>

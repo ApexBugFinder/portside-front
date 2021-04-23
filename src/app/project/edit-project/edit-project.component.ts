@@ -12,8 +12,10 @@ import {
   faEye,
   faLightbulb,
 } from '@fortawesome/free-solid-svg-icons';
+import { throwIfEmpty } from 'rxjs/operators';
 
 import { defaultProject, Project, ProjectRequirement } from '../project';
+import { ProjectCardComponent } from '../project-card/project-card.component';
 
 interface ViewProjectDialogData {
   project: Project;
@@ -32,8 +34,9 @@ export class EditProjectComponent implements OnInit {
   faDelete = faMinusCircle;
   faEdit = faPenSquare;
   faPublished = faLightbulb;
-  originalProject: Project;
+  private originalProject: Project;
   localProject: Project;
+  finalProject: Project;
   // FORM
   requirementsForm: FormGroup;
   // ABSTRACTCONTROLS
@@ -52,23 +55,23 @@ export class EditProjectComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: ViewProjectDialogData,
     private fb: FormBuilder
   ) {
-
     console.log('data in constructor: ', JSON.stringify(this.data.project));
-    this.originalProject = this.data.project;
-    this.localProject = this.data.project;
+    this.originalProject = JSON.parse(JSON.stringify(this.data.project));
+    this.localProject = JSON.parse(JSON.stringify(this.data.project));
 
     this.localProject.banner = this.bkImg;
     console.log('local copy of data: ', JSON.stringify(this.localProject));
+
     this.requirementsForm = this.fb.group({
-      id: [this.localProject.id, [Validators.required]],
-      projectName: [this.localProject.projectName],
-      started: [this.localProject.started],
-      completed: [this.localProject.completed],
-      description: [this.localProject.description],
-      banner: [this.localProject.banner],
-      published: [this.localProject.published],
+      id: ['new', [Validators.required]],
+      projectName: [''],
+      started: [''],
+      completed: [''],
+      description: [''],
+      banner: [''],
+      published: [''],
       requirement: ['', [Validators.required]],
-      projectLinks: [this.localProject.projectLinks],
+      projectLinks: [[]],
     });
   }
 
@@ -79,13 +82,110 @@ export class EditProjectComponent implements OnInit {
     );
 
     this.initControls();
+    this.resetControls();
+  }
 
-    this.setControls();
+  onNoClick(): void {
+    // this.dialogRef.close();
+  }
+
+  // FORM ACTIONS
+  addRequirement(a: string) {
+    let newReq: ProjectRequirement = this.createRequirement();
+
+    this.localProject.projectRequirements.push(newReq);
+    console.log(
+      'these the local project requirements: ',
+      JSON.stringify(this.localProject.projectRequirements)
+    );
+  }
+
+  saveProject() {
+    this.finalProject = this.buildFinalProject();
+this.finalProject.id = 'new';
+    // IF new proect Create Project if updating project Update Project
+    if (this.finalProject.id == 'new') {
+      console.log(
+        'this is the new project to be saved to DB: ',
+        JSON.stringify(this.finalProject)
+      );
+      this.createNewProject(this.finalProject);
+    } else {
+      console.log(
+        'this is the project to be updated in the DB: ',
+        JSON.stringify(this.finalProject)
+      );
+      this.updateProject(this.finalProject);
+    }
+  }
+
+  publishToggleProject() {
+    let publishToggle = this.buildFinalProject();
+console.log('publishedToggle Project pre toggle: ', publishToggle);
+ this.publishedAbstractControl?.setValue( this.publishedAbstractControl.value === true?  false:  true);
+ let postToggle= this.buildFinalProject();
+    console.log('publishedToggle Project to be pushed to DB: ', postToggle);
+    this.updateProject(postToggle);
+  }
+
+  clearChanges() {
+
+    console.log(
+      'the original project is now: ',
+      JSON.stringify(this.originalProject)
+    );
+    console.log('this local project: ', this.localProject);
+    this.resetControls();
+    console.log('my local copy is now: ', this.localProject);
+    this.dialogRef.close();
+  }
+
+  // DB ACTIONS
+  createNewProject(a: Project) {
+    a.id = '';
+    console.log('Sending this project to DB to create New:', JSON.stringify(a));
+  }
+
+  updateProject(a: Project) {
+   console.log('project to update: ', a);
+
 
   }
 
-  initControls(): void {
+  deleteProject() {
+    let projectToDeleteID = this.localProject.id;
+    console.log('Project to Delete ID: ', projectToDeleteID);
+  }
 
+  // HELPERS
+
+  createRequirement(): ProjectRequirement {
+    let thisRequirement: ProjectRequirement = {
+      id: 'new',
+      projectID: this.localProject.id,
+      requirement: this.requirementAbstractControl?.value,
+    };
+    return thisRequirement;
+  }
+  buildFinalProject(): Project {
+    let a: Project = {
+      id: this.idAbstractControl?.value,
+      projectName: this.projectNameAbstractControl?.value,
+      started: this.startedAbstractControl?.value,
+      completed: this.completedAbstractControl?.value,
+      description: this.descriptionAbstractControl?.value,
+      banner: this.bannerAbstractControl?.value,
+      published: this.publishedAbstractControl?.value,
+
+      projectRequirements: this.localProject.projectRequirements,
+      projectLinks: this.localProject.projectLinks,
+    };
+    return a;
+  }
+
+
+
+  initControls(): void {
     this.idAbstractControl = this.requirementsForm.get('id');
     this.projectNameAbstractControl = this.requirementsForm.get('projectName');
     this.startedAbstractControl = this.requirementsForm.get('started');
@@ -95,37 +195,16 @@ export class EditProjectComponent implements OnInit {
     this.publishedAbstractControl = this.requirementsForm.get('published');
     this.projectLinkAbstractControl = this.requirementsForm.get('projectLink');
     this.requirementAbstractControl = this.requirementsForm.get('requirement');
-
   }
 
-  setControls(): void{
-    // this.idAbstractControl?.setValue(this.localProject.id);
-    // this.projectNameAbstractControl?.setValue(this.localProject.projectName);
-    // this.startedAbstractControl?.setValue(this.localProject.started);
-    // this.completedAbstractControl?.setValue(this.localProject.completed);
-    // this.descriptionAbstractControl?.setValue(this.localProject.description);
-    // this.bannerAbstractControl?.setValue(this.localProject.banner);
-    // this.publishedAbstractControl?.setValue(this.localProject.published);
-
-  }
-
-  onNoClick(): void {
-    // this.dialogRef.close();
-  }
-
-  addRequirement(a: string) {
-
-
-
-    let newReq: ProjectRequirement = {
-      id: 'new',
-      projectID: this.localProject.id,
-      requirement: this.requirementAbstractControl?.value
-    };
-
-    this.localProject.projectRequirements.push(newReq);
-    console.log('these the local project requirements: ', JSON.stringify(this.localProject.projectRequirements));
-
+  resetControls(): void {
+    this.idAbstractControl?.setValue(this.originalProject.id);
+    this.projectNameAbstractControl?.setValue(this.originalProject.projectName);
+    this.startedAbstractControl?.setValue(this.originalProject.started);
+    this.completedAbstractControl?.setValue(this.originalProject.completed);
+    this.descriptionAbstractControl?.setValue(this.originalProject.description);
+    this.bannerAbstractControl?.setValue(this.originalProject.banner);
+    this.publishedAbstractControl?.setValue(this.originalProject.published);
   }
 }
 

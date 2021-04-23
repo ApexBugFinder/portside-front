@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of, } from 'rxjs';
+import { Observable, of, pipe, } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Constants } from '../helpers/Constants';
 import { Project } from './project';
@@ -25,7 +25,22 @@ export class ProjectService {
     this.userID = Constants.userID;
   }
 
-  createItem(item: Project) {}
+  createItem(item: Project) : Observable<Project>{
+    const address = '';
+    const urlAddress = this.apiAddress + address;
+
+    this.hdrs.append('Access-Control-Allow-Origin', [this.apiRt]);
+    this.hdrs.append('Access-Control-Allow-Methods', 'POST');
+    this.hdrs.append('Access-Control-Allow-Headers', 'Content-Type');
+    return this.http.post<Project>(
+      urlAddress,
+      item,
+      {headers: this.hdrs}
+    ).pipe(map((newProject: Project) => {
+      console.log('New Project added to DB: ', newProject);
+      return newProject;
+    }));
+  }
 
   readAll(id: string): Observable<Project[]> {
 
@@ -50,6 +65,10 @@ export class ProjectService {
     const address = id;
     const urlAddress = this.apiAddress + address;
 
+      this.hdrs.append('Access-Control-Allow-Origin', [this.apiRt]);
+  this.hdrs.append('Access-Control-Allow-Methods', 'GET');
+  this.hdrs.append('Access-Control-Allow-Headers', 'Content-Type');
+
     return this.http.get<Project>(
       urlAddress,
       {headers: this.hdrs}
@@ -61,8 +80,38 @@ export class ProjectService {
 
   updateItem(item: Project)  {
 
+    const address = this.userID;
+    const urlAddress = this.apiAddress + this.userID;
 
+
+    this.hdrs.append('Access-Control-Allow-Origin', [this.apiRt]);
+    this.hdrs.append('Access-Control-Allow-Methods', 'GET');
+    this.hdrs.append('Access-Control-Allow-Headers', 'Content-Type');
+    return this.http.put<Project>(
+      urlAddress,
+      item,
+      { headers: this.hdrs }
+    ).pipe(map((updatedItem: Project) => {
+      console.log('Updated Item: ', updatedItem);
+      return updatedItem;
+    }));
   }
 
-  deleteItem(id: string) {}
+  deleteItem(id: string) {
+
+    const address = id;
+    const urlAddress = this.apiAddress + id;
+
+    this.hdrs.append('Access-Control-Allow-Origin', [this.apiRt]);
+    this.hdrs.append('Access-Control-Allow-Methods', 'DELETE');
+    this.hdrs.append('Access-Control-Allow-Headers', 'Content-Type');
+
+    this.http.delete<Project>(
+      urlAddress,
+      {headers: this.hdrs}
+    ).pipe(map((itemDeleted:Project)=> {
+      console.log('Item Deleted: ', itemDeleted);
+      return itemDeleted;
+    }));
+  }
 }
