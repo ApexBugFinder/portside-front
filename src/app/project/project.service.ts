@@ -25,32 +25,41 @@ export class ProjectService {
     this.userID = Constants.userID;
   }
 
-  createItem(item: Project) : Observable<Project>{
-    const address = '';
-    const urlAddress = this.apiAddress + address;
+  public createItem(item: Project) : Observable<Project> {
+this.hdrs = new HttpHeaders();
+  //  const urlAddress = this.apiAddress;
+    const address = this.apiAddress + "new";
 
-    this.hdrs.append('Access-Control-Allow-Origin', [this.apiRt]);
-    this.hdrs.append('Access-Control-Allow-Methods', 'POST');
-    this.hdrs.append('Access-Control-Allow-Headers', 'Content-Type');
+    this.hdrs = new HttpHeaders()
+      .set('Access-Control-Allow-Origin', [this.apiRt, Constants.clientRoot, this.apiAddress, address])
+      .set('Access-Control-Allow-Methods', ['POST', 'GET', 'OPTIONS', 'DELETE', 'PUT'])
+      .set('content-type', 'application/json');
+
+    console.log('addresss: ', address);
+    console.log('HEADERS: ', this.hdrs);
     return this.http.post<Project>(
-      urlAddress,
+    address,
       item,
-      {headers: this.hdrs}
+      // {headers: this.hdrs}
     ).pipe(map((newProject: Project) => {
       console.log('New Project added to DB: ', newProject);
       return newProject;
     }));
   }
 
-  readAll(id: string): Observable<Project[]> {
+ public readAll(id: string): Observable<Project[]> {
 
     const address = 'all/' + Constants.userID;
     const urlAddress = this.apiAddress + address;
 
-  this.hdrs.append('Access-Control-Allow-Origin', [this.apiRt]);
-  this.hdrs.append('Access-Control-Allow-Methods', 'GET');
-  this.hdrs.append('Access-Control-Allow-Headers', 'Content-Type');
+    const hdrs = new HttpHeaders()
+  .set('Access-Control-Allow-Origin', [this.apiRt])
+  .set('Access-Control-Allow-Methods', 'GET')
+  .set('content-type', 'application/json');
 
+
+console.log('address: ', urlAddress);
+console.log('headers: ', hdrs);
     return this.http.get<Project[]>(
       urlAddress,
       { headers: this.hdrs })
@@ -60,14 +69,17 @@ export class ProjectService {
       } ));
 
   }
-  readItem(id: string): Observable<Project> {
+public readItem(id: string): Observable<Project> {
 
     const address = id;
     const urlAddress = this.apiAddress + address;
 
-      this.hdrs.append('Access-Control-Allow-Origin', [this.apiRt]);
-  this.hdrs.append('Access-Control-Allow-Methods', 'GET');
-  this.hdrs.append('Access-Control-Allow-Headers', 'Content-Type');
+
+this.hdrs = new HttpHeaders()
+  .set('Access-Control-Allow-Origin', [this.apiRt])
+  .set('Access-Control-Allow-Methods', 'GET')
+  .set('Access-Control-Allow-Headers', 'Content-Type')
+  .set('content-type', 'application/json');
 
     return this.http.get<Project>(
       urlAddress,
@@ -78,15 +90,20 @@ export class ProjectService {
     }));
   }
 
-  updateItem(item: Project)  {
-
-    const address = this.userID;
-    const urlAddress = this.apiAddress + this.userID;
+public updateItem(item: Project) : Observable<Project> {
 
 
-    this.hdrs.append('Access-Control-Allow-Origin', [this.apiRt]);
-    this.hdrs.append('Access-Control-Allow-Methods', 'GET');
-    this.hdrs.append('Access-Control-Allow-Headers', 'Content-Type');
+    const urlAddress = this.apiAddress + item.id;
+item.projectCreatorID = Constants.userID;
+this.hdrs = new HttpHeaders()
+  .set('Access-Control-Allow-Origin', [this.apiRt ])
+  .set('Access-Control-Allow-Methods', 'PUT')
+  .set('Access-Control-Allow-Headers', 'Content-Type')
+  .set('content-type', 'application/json');
+
+  console.log('user ID:', item.projectCreatorID);
+  console.log('urlAddress: ', urlAddress);
+  console.log('headers: ', this.hdrs);
     return this.http.put<Project>(
       urlAddress,
       item,
@@ -97,10 +114,11 @@ export class ProjectService {
     }));
   }
 
-  deleteItem(id: string) {
+public deleteItem(id: string) {
 
     const address = id;
     const urlAddress = this.apiAddress + id;
+    this.hdrs = new HttpHeaders();
 
     this.hdrs.append('Access-Control-Allow-Origin', [this.apiRt]);
     this.hdrs.append('Access-Control-Allow-Methods', 'DELETE');

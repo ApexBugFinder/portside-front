@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -16,6 +16,7 @@ import { throwIfEmpty } from 'rxjs/operators';
 
 import { defaultProject, Project, ProjectRequirement } from '../project';
 import { ProjectCardComponent } from '../project-card/project-card.component';
+import { ProjectService } from '../project.service';
 
 interface ViewProjectDialogData {
   project: Project;
@@ -26,9 +27,11 @@ interface ViewProjectDialogData {
   templateUrl: './edit-project.component.html',
   styleUrls: ['./edit-project.component.scss'],
 })
-export class EditProjectComponent implements OnInit {
-  @ViewChild('bannerContainer') banner: HTMLElement | undefined;
+export class EditProjectComponent implements OnInit, AfterViewInit {
+  @ViewChild('publishStatusButton') publishStatusButton: HTMLElement | null = document.getElementById('publishStatusButton');
+
   bkImg: string = '../../../assets/images/pngs/techDoc_banner_large.png';
+
   // ICONS
   faEye = faEye;
   faDelete = faMinusCircle;
@@ -52,16 +55,20 @@ export class EditProjectComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<EditProjectComponent>,
+    private renderer: Renderer2,
     @Inject(MAT_DIALOG_DATA) public data: ViewProjectDialogData,
+    private projectService: ProjectService,
     private fb: FormBuilder
   ) {
     console.log('data in constructor: ', JSON.stringify(this.data.project));
     this.originalProject = JSON.parse(JSON.stringify(this.data.project));
     this.localProject = JSON.parse(JSON.stringify(this.data.project));
 
-    this.localProject.banner = this.bkImg;
+
+    // this.localProject.banner = this.bkImg;
     console.log('local copy of data: ', JSON.stringify(this.localProject));
 
+    // INITIATE FORM
     this.requirementsForm = this.fb.group({
       id: ['new', [Validators.required]],
       projectName: [''],
@@ -75,7 +82,18 @@ export class EditProjectComponent implements OnInit {
     });
   }
 
+
+
+  ngAfterViewInit(): void {
+
+  }
+
   ngOnInit(): void {
+
+
+
+
+
     console.log(
       'data passed to edit component ngOnInit: ',
       JSON.stringify(this.data.project)
@@ -83,6 +101,7 @@ export class EditProjectComponent implements OnInit {
 
     this.initControls();
     this.resetControls();
+
   }
 
   onNoClick(): void {
@@ -102,7 +121,7 @@ export class EditProjectComponent implements OnInit {
 
   saveProject() {
     this.finalProject = this.buildFinalProject();
-this.finalProject.id = 'new';
+    this.finalProject.id = 'new';
     // IF new proect Create Project if updating project Update Project
     if (this.finalProject.id == 'new') {
       console.log(
@@ -121,15 +140,17 @@ this.finalProject.id = 'new';
 
   publishToggleProject() {
     let publishToggle = this.buildFinalProject();
-console.log('publishedToggle Project pre toggle: ', publishToggle);
- this.publishedAbstractControl?.setValue( this.publishedAbstractControl.value === true?  false:  true);
- let postToggle= this.buildFinalProject();
+    console.log('publishedToggle Project pre toggle: ', publishToggle);
+    this.publishedAbstractControl?.setValue(
+      this.publishedAbstractControl.value === true ? false : true
+    );
+    let postToggle = this.buildFinalProject();
     console.log('publishedToggle Project to be pushed to DB: ', postToggle);
+
     this.updateProject(postToggle);
   }
 
   clearChanges() {
-
     console.log(
       'the original project is now: ',
       JSON.stringify(this.originalProject)
@@ -144,12 +165,20 @@ console.log('publishedToggle Project pre toggle: ', publishToggle);
   createNewProject(a: Project) {
     a.id = '';
     console.log('Sending this project to DB to create New:', JSON.stringify(a));
+    this.projectService.createItem(a)
+    .subscribe(a => {
+      this.dialogRef.close();
+    })
+    ;
   }
 
   updateProject(a: Project) {
-   console.log('project to update: ', a);
-
-
+    console.log('project to update: ', a);
+    this.projectService.updateItem(a)
+    .subscribe((a) => {
+      this.dialogRef.close();
+    })
+    ;
   }
 
   deleteProject() {
@@ -168,8 +197,10 @@ console.log('publishedToggle Project pre toggle: ', publishToggle);
     return thisRequirement;
   }
   buildFinalProject(): Project {
+
     let a: Project = {
       id: this.idAbstractControl?.value,
+      projectCreatorID: this.localProject.projectCreatorID,
       projectName: this.projectNameAbstractControl?.value,
       started: this.startedAbstractControl?.value,
       completed: this.completedAbstractControl?.value,
@@ -180,10 +211,10 @@ console.log('publishedToggle Project pre toggle: ', publishToggle);
       projectRequirements: this.localProject.projectRequirements,
       projectLinks: this.localProject.projectLinks,
     };
+
+    console.log('Project Creator: ', a.projectCreatorID);
     return a;
   }
-
-
 
   initControls(): void {
     this.idAbstractControl = this.requirementsForm.get('id');
@@ -195,6 +226,21 @@ console.log('publishedToggle Project pre toggle: ', publishToggle);
     this.publishedAbstractControl = this.requirementsForm.get('published');
     this.projectLinkAbstractControl = this.requirementsForm.get('projectLink');
     this.requirementAbstractControl = this.requirementsForm.get('requirement');
+
+    this.publishedAbstractControl?.valueChanges.subscribe(selectedValue => {
+ this.publishStatusButton = document.getElementById(
+              'publishStatusButton'
+            );
+      if (selectedValue) {
+
+           console.log('red');
+this.renderer.addClass(this.publishStatusButton, 'publishStatusButtonTrue');
+
+      } else {
+this.renderer.removeClass(this.publishStatusButton, 'publishStatusButtonTrue');
+
+      }
+    })
   }
 
   resetControls(): void {

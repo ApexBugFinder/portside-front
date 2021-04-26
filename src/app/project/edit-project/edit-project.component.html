@@ -1,166 +1,213 @@
 <div mat-dialog-container>
-  <div mat-dialog-content><form
-                  [formGroup]="requirementsForm"
+  <div mat-dialog-content>
+    <form [formGroup]="requirementsForm" class="requirementsFormClass">
+      <div class="viewProjectContainer">
 
+        <div class="bannerContainer"
+         [ngStyle]="{ 'background-image': 'url(&quot;' + localProject.banner + '&quot; )' }"
+        id="bannerContainer">
+          <div class="bannerContent">
+            <div class="iconsContainer">
+              <div class="icons">
+                <fa-icon [icon]="faEdit"></fa-icon>
+                <i class="fab fa-github"></i>
 
-                  class="requirementsFormClass">
-    <div class="viewProjectContainer">
-
-      <div
-        class="bannerContainer"
-        [ngStyle]="{ 'background-image': 'url(&quot;' + localProject.banner + '&quot; )' }"
-      >
-        <div class="bannerContent">
-          <div class="iconsContainer">
-            <div class="icons">
-              <fa-icon [icon]="faEdit"></fa-icon>
-              <i class="fab fa-github"></i>
-
-              <fa-icon [icon]="faEye"></fa-icon>
-              <span class="icon" (click)="onNoClick()">X</span>
-            </div>
-          </div>
-
-          <div class="imgUploadSection">
-            <div class="imgUploadContainer">
-              <div class="labelContainer">
-                <p class="uploadLabel">Upload Banner:</p>
+                <fa-icon [icon]="faEye"></fa-icon>
+                <span class="icon" (click)="onNoClick()">X</span>
               </div>
-              <div class="uploadSection">
-                <div class="buttonSection">
-                  <button mat-raised-button class="browseButton">Browse</button>
-                  <p class="fileName">filename.jpg</p>
+            </div>
+
+            <div class="imgUploadSection">
+              <div class="imgUploadContainer">
+                <div class="labelContainer">
+                  <p class="uploadLabel">Upload Banner:</p>
                 </div>
-                <div class="dragDropSection">
-                  <div class="dragDrop">
-                    <div class="labelContainer">
-                      <p class="dragDropLabel">Drag & Drop</p>
+                <div class="uploadSection">
+                  <div class="buttonSection">
+                    <button mat-raised-button class="browseButton">
+                      Browse
+                    </button>
+                    <p class="fileName">filename.jpg</p>
+                  </div>
+                  <div class="dragDropSection">
+                    <div class="dragDrop">
+                      <div class="labelContainer">
+                        <p class="dragDropLabel">Drag & Drop</p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="projectStatusContainer">
-            <div class="projectStatus">
-              <div class="statusData">
-                <span>Date Started:</span>
-                <input matInput formControlName="started" id="startedId" type="date" class="startDate" />
-              </div>
+            <div class="projectStatusContainer">
+              <div class="projectStatus">
+                <div class="statusData">
+                  <span>Date Started:</span>
+                  <input
+                    matInput
+                    formControlName="started"
+                    id="startedId"
+                    type="date"
+                    class="startDate"
+                  />
+                </div>
 
-              <div class="statusData">
-                <span>Date Completed:</span>
+                <div class="statusData">
+                  <span>Date Completed:</span>
 
-                <input matInput formControlName="completed" id="completedId" type="date" class="completeDate" />
-              </div>
+                  <input
+                    matInput
+                    formControlName="completed"
+                    id="completedId"
+                    type="date"
+                    class="completeDate"
+                  />
+                </div>
 
-              <div class="statusData">
-                <p>Published:</p>
-                <!-- <fa-icon class="projectPublished" [icon]="faPublished"></fa-icon> -->
-                <div class="publishedIconContainer">
-                <span >
+                <div class="statusData">
+                  <p>Published:</p>
+                  <!-- <fa-icon class="projectPublished" [icon]="faPublished"></fa-icon> -->
+                  <div class="publishedIconContainer">
+                    <span>
                       <!-- {{ localProject.published }} -->
-                       <input type="button" formControlName="published" class="publishButton">
-                      <!-- <button matInput mat-raised-button formControlName="published"></button> -->
-                </span>
-                <!-- <i class="far fa-lightbulb projectPublished"></i> -->
+                      <input
+                        type="button"
+                        formControlName="published"
+                        id="publishStatusButton"
+                        name="publishStatusButton"
+                        class="publishStatusButton"
+                      />
+
+                    </span>
+
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="contentSection">
-        <div class="titleContatiner">
-          <div class="titleHeading">
-            <h4 class="title">Title:</h4>
+        <div class="contentSection">
+          <div class="titleContatiner">
+            <div class="titleHeading">
+              <h4 class="title">Title:</h4>
 
-            <input type="text" formControlName="projectName" id="projectNameId" class="titleInputData" />
+              <input
+                type="text"
+                formControlName="projectName"
+                id="projectNameId"
+                class="titleInputData"
+              />
+            </div>
           </div>
         </div>
-      </div>
-      <div class="contentSection">
-        <div class="descriptionTitleContainer">
-          <div class="descriptionTitle">
-            <h4>Project Description</h4>
+        <div class="contentSection">
+          <div class="descriptionTitleContainer">
+            <div class="descriptionTitle">
+              <h4>Project Description</h4>
+            </div>
+          </div>
+
+          <div class="descriptionContent">
+            <input
+              type="textarea"
+              formControlName="description"
+              id="descriptionId"
+              class="descriptionTextInput"
+            />
           </div>
         </div>
 
-        <div class="descriptionContent">
-          <input type="textarea" formControlName="description" id="descriptionId" class="descriptionTextInput" />
-        </div>
-      </div>
-
-      <div class="contentSection">
-        <div class="requirementsTitleContainer">
-          <div class="requirementsTitle">
-            <h4>Project Requirements</h4>
+        <div class="contentSection">
+          <div class="requirementsTitleContainer">
+            <div class="requirementsTitle">
+              <h4>Project Requirements</h4>
+            </div>
           </div>
-        </div>
-        <div class="reqContent">
-          <mat-list>
-            <mat-list-item *ngFor="let req of localProject.projectRequirements">
-              <div class="matListItemContent">
-                <div class="editAndReq">
-                  <div class="reqContainer">
-                    <fa-icon [icon]="faEdit"></fa-icon>
-                    <p class="req">
-                      {{ req.requirement }}
-                    </p>
+          <div class="reqContent">
+            <mat-list>
+              <mat-list-item
+                *ngFor="let req of localProject.projectRequirements"
+              >
+                <div class="matListItemContent">
+                  <div class="editAndReq">
+                    <div class="reqContainer">
+                      <fa-icon [icon]="faEdit"></fa-icon>
+                      <p class="req">
+                        {{ req.requirement }}
+                      </p>
+                    </div>
+                  </div>
+
+                  <fa-icon
+                    class="reqIcon reqIconDelete"
+                    [icon]="faDelete"
+                  ></fa-icon>
+                </div>
+              </mat-list-item>
+
+              <mat-list-item>
+                <div class="addReqContainer">
+                  <div class="reqInput">
+                    <input
+                      type="text"
+                      #p
+                      class="reqTextInput"
+                      id="requirement"
+                      name="requirement"
+                      matInput
+                      formControlName="requirement"
+                    />
+                  </div>
+                  <div class="reqAddButton">
+                    <button mat-raised-button (click)="addRequirement(p.value)">
+                      add
+                    </button>
                   </div>
                 </div>
+              </mat-list-item>
+            </mat-list>
+          </div>
 
-                <fa-icon
-                  class="reqIcon reqIconDelete"
-                  [icon]="faDelete"
-                ></fa-icon>
-              </div>
-            </mat-list-item>
-
-
-
-
-            <mat-list-item>
-
-
-              <div class="addReqContainer">
-
-
-                    <div class="reqInput">
-                      <input type="text" #p class="reqTextInput" id="requirement" name="requirement" matInput formControlName="requirement"/>
-                    </div>
-                    <div class="reqAddButton">
-                      <button mat-raised-button (click)="addRequirement(p.value)">
-                        add
-                      </button>
-                    </div>
-
-
-              </div>
-
-
-            </mat-list-item>
-          </mat-list>
-        </div>
-
-        <!-- <div class="contentSection">
+          <!-- <div class="contentSection">
           <div class="tagTitle">
             <h4>Languages & Platforms</h4>
           </div>
           <button mat-button class="tag">html</button>
         </div> -->
-
-
-
-      </div>
-    <div class="contentSection">
+        </div>
+        <div class="contentSection">
           <div class="actionButtonsContainer">
-             <button mat-raised-button class="deleteButton" (click)="clearChanges()">Cancel Changes</button>
-            <button mat-raised-button class="deleteButton" (click)="deleteProject()">Delete</button>
-            <button mat-raised-button class="saveButton" (click)="saveProject()">Save</button>
-            <button mat-raised-button class="publishButton" (click)="publishToggleProject()">Publish</button>
+            <button
+              mat-raised-button
+              class="actionButton deleteButton"
+              (click)="clearChanges()"
+            >
+              Cancel Changes
+            </button>
+            <button
+              mat-raised-button
+              class="actionButton deleteButton"
+              (click)="deleteProject()"
+            >
+              Delete
+            </button>
+            <button
+              mat-raised-button
+              class="actionButton saveButton"
+              (click)="saveProject()"
+            >
+              Save
+            </button>
+            <button
+              mat-raised-button
+              class="actionButton publishButton"
+              (click)="publishToggleProject()"
+            >
+              Publish
+            </button>
           </div>
         </div>
-    </div> </form>
+      </div>
+    </form>
   </div>
 </div>

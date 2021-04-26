@@ -40,7 +40,7 @@ mat-dialog-content {
   justify-content: center;
   top: 0px;
   padding: 0;
-  background-image: url('../../../assets/images/pngs/techDoc_banner_large.png');
+  //background-image: url('../../../assets/images/pngs/techDoc_banner_large.png');
   background-size: 976px 330px;
 
 }
@@ -133,6 +133,14 @@ height: 100%;
     column-gap: 30px;
     width: auto;
     justify-self: flex-end;
+
+    .publishStatusButton {
+      border-radius: 20px;;
+    }
+    .publishStatusButtonTrue {
+      background-color: var(--accent2Color);
+      border: 2px solid white;
+    }
   }
 
   .statusData {
