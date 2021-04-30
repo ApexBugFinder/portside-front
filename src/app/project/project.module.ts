@@ -8,6 +8,11 @@ import { ProjectService } from './project.service';
 import { SharedModule } from '../helpers/shared.module';
 import { MaterialModule } from '../helpers/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DisplayRquirementsComponent } from './edit/display-rquirements/display-rquirements.component';
+import { InputRequirementsComponent } from './edit/input-requirements/input-requirements.component';
+import { GitLinkComponent } from './edit/git-link/git-link.component';
+import { SiteLinkComponent } from './edit/site-link/site-link.component';
+import { EditShellComponent } from './edit/edit-shell.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +20,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ViewProjectComponent,
     EditProjectComponent,
     AddProjectComponent,
+    DisplayRquirementsComponent,
+    InputRequirementsComponent,
+    GitLinkComponent,
+    SiteLinkComponent,
+    EditShellComponent,
   ],
   imports: [CommonModule, MaterialModule, SharedModule, ReactiveFormsModule ],
  entryComponents: [ViewProjectComponent, EditProjectComponent],

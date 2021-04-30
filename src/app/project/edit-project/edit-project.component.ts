@@ -1,3 +1,4 @@
+import { stringify } from '@angular/compiler/src/util';
 import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
 import {
   FormBuilder,
@@ -12,11 +13,15 @@ import {
   faEye,
   faLightbulb,
 } from '@fortawesome/free-solid-svg-icons';
-import { throwIfEmpty } from 'rxjs/operators';
 
-import { defaultProject, Project, ProjectRequirement } from '../project';
+import { throwIfEmpty } from 'rxjs/operators';
+import { Constants } from 'src/app/helpers/Constants';
+
+import { defaultProject, editState, Project, ProjectRequirement, linkview, ProjectLink } from '../project';
 import { ProjectCardComponent } from '../project-card/project-card.component';
 import { ProjectService } from '../project.service';
+import { Guid } from 'guid-typescript'
+import { Console } from 'node:console';
 
 interface ViewProjectDialogData {
   project: Project;
@@ -29,9 +34,18 @@ interface ViewProjectDialogData {
 })
 export class EditProjectComponent implements OnInit, AfterViewInit {
   @ViewChild('publishStatusButton') publishStatusButton: HTMLElement | null = document.getElementById('publishStatusButton');
+  @ViewChild('req') reqEditState: HTMLElement | null = document.getElementById('req');
 
   bkImg: string = '../../../assets/images/pngs/techDoc_banner_large.png';
+  
 
+  // LINKS
+  linkView = linkview;
+  linkEditor: linkview;
+  gitStarter: ProjectLink;
+  gitLink: ProjectLink;
+  siteStarter: ProjectLink;
+  siteLink: ProjectLink;
   // ICONS
   faEye = faEye;
   faDelete = faMinusCircle;
@@ -63,14 +77,29 @@ export class EditProjectComponent implements OnInit, AfterViewInit {
     console.log('data in constructor: ', JSON.stringify(this.data.project));
     this.originalProject = JSON.parse(JSON.stringify(this.data.project));
     this.localProject = JSON.parse(JSON.stringify(this.data.project));
-
-
+    this.initializeProjectRequirements();
+    this.setProjectCreator();
+    this.linkEditor = linkview.NONE;
     // this.localProject.banner = this.bkImg;
     console.log('local copy of data: ', JSON.stringify(this.localProject));
-
+    this.gitStarter = {
+      id: '5555',
+      projectID: this.localProject.id,
+      service: 'git',
+      link: 'http://www.google.com'
+    }
+    this.siteStarter = {
+      id: '5556',
+      projectID: this.localProject.id,
+      service: 'site',
+      link: 'http://www.youtube.com'
+    }
+    // this.localProject.projectLinks.push(this.gitStarter);
+    // this.localProject.projectLinks.push(this.siteStarter);
+    this.initializeLinks();
     // INITIATE FORM
     this.requirementsForm = this.fb.group({
-      id: ['new', [Validators.required]],
+      id: ['', [Validators.required]],
       projectName: [''],
       started: [''],
       completed: [''],
@@ -79,6 +108,7 @@ export class EditProjectComponent implements OnInit, AfterViewInit {
       published: [''],
       requirement: ['', [Validators.required]],
       projectLinks: [[]],
+      reqEditState:['']
     });
   }
 
@@ -98,7 +128,8 @@ export class EditProjectComponent implements OnInit, AfterViewInit {
       'data passed to edit component ngOnInit: ',
       JSON.stringify(this.data.project)
     );
-
+      
+     
     this.initControls();
     this.resetControls();
 
@@ -108,47 +139,25 @@ export class EditProjectComponent implements OnInit, AfterViewInit {
     // this.dialogRef.close();
   }
 
-  // FORM ACTIONS
-  addRequirement(a: string) {
-    let newReq: ProjectRequirement = this.createRequirement();
+  
+  
+  
+  
+  
+  // PROJECT METHODS
+  // ===============================================================
+  
 
-    this.localProject.projectRequirements.push(newReq);
-    console.log(
-      'these the local project requirements: ',
-      JSON.stringify(this.localProject.projectRequirements)
-    );
+
+
+// MAJOR PROJECT ACTIONS
+//==================================================================
+// SET PROJECT CREATOR
+  setProjectCreator() {
+    this.localProject.projectCreatorID = Constants.userID;
   }
 
-  saveProject() {
-    this.finalProject = this.buildFinalProject();
-    this.finalProject.id = 'new';
-    // IF new proect Create Project if updating project Update Project
-    if (this.finalProject.id == 'new') {
-      console.log(
-        'this is the new project to be saved to DB: ',
-        JSON.stringify(this.finalProject)
-      );
-      this.createNewProject(this.finalProject);
-    } else {
-      console.log(
-        'this is the project to be updated in the DB: ',
-        JSON.stringify(this.finalProject)
-      );
-      this.updateProject(this.finalProject);
-    }
-  }
-
-  publishToggleProject() {
-    let publishToggle = this.buildFinalProject();
-    console.log('publishedToggle Project pre toggle: ', publishToggle);
-    this.publishedAbstractControl?.setValue(
-      this.publishedAbstractControl.value === true ? false : true
-    );
-    let postToggle = this.buildFinalProject();
-    console.log('publishedToggle Project to be pushed to DB: ', postToggle);
-
-    this.updateProject(postToggle);
-  }
+  // CLEAR FORM
 
   clearChanges() {
     console.log(
@@ -161,10 +170,175 @@ export class EditProjectComponent implements OnInit, AfterViewInit {
     this.dialogRef.close();
   }
 
-  // DB ACTIONS
+// DELETE PROJECT
+deleteProject() {
+  console.log('Beginning DELETE PROCESS for project: ', this.localProject.id);
+  this.projectService.deleteItem(this.localProject.id).subscribe(i => {
+    this.dialogRef.close();
+  });
+  
+}
+// 
+
+// MANAGE FORM
+// PUBLISH PROJECT && SAVE
+publishToggleProject() {
+  let publishToggle = this.buildFinalProject();
+  console.log('publishedToggle Project pre toggle: ', publishToggle);
+  this.publishedAbstractControl?.setValue(
+    this.publishedAbstractControl.value === true ? false : true
+  );
+  let postToggle:Project = this.buildFinalProject();
+  console.log('publishedToggle Project to be pushed to DB: ', postToggle);
+    this.saveProject();
+}
+
+// MANAGE REQUIREMENTS
+//============================================================
+// INITIALIZE REQUIREMENTS
+initializeProjectRequirements() {
+  this.localProject.projectRequirements.forEach(j => {
+      j.editState = editState.OK;
+      j.stateHistory = [editState.OK];
+      
+      
+    });
+    console.log('ProjectRequirements after Augment from initializeProjectRequirements: ', this.localProject);
+}
+
+// ADD A REQUIREMENT
+
+addRequirement(a: string) {
+  let newReq: ProjectRequirement = this.createRequirement();
+
+  this.localProject.projectRequirements.push(newReq);
+  console.log(
+    'these the local project requirements: ',
+    JSON.stringify(this.localProject.projectRequirements)
+  );
+}
+
+// AUGMENT REQUIREMENTS
+
+toggleRemoveRequirement(a: ProjectRequirement) {
+if (a.stateHistory[0] == editState.OK) {
+  console.log('HERE');
+  a.editState = a.editState == editState.OK? editState.REMOVE: editState.OK;
+}
+else {
+  console.log('THERE');
+  a.editState = a.editState == editState.ADD? editState.REMOVE: editState.ADD;
+}
+
+  console.log('the requirement ' + a.id + ' is marked for removal: ' + a.editState);
+ }
+// 
+  
+// LINKSS 
+// ==========================
+initializeLinks() {
+  console.log('HELLO, lets initialize links');
+  console.log(this.localProject.projectLinks);
+  this.localProject.projectLinks?.forEach(uu => {
+    if (uu.service == 'git') {
+      this.gitLink = uu;
+    }
+    if (uu.service =='service') {
+      this.siteLink = uu
+    }
+
+  });
+  if (this.localProject.projectLinks.filter(i=> i.service =='git').length == 0){
+    let newGitLink: ProjectLink = {
+      id: '',
+      projectID: this.localProject.id,
+      service: 'git',
+      link: ''
+
+    };
+    this.gitLink = newGitLink;
+    this.localProject.projectLinks.push(newGitLink);
+  }
+  if (this.localProject.projectLinks.filter(i => i.service == 'site').length == 0) {
+    let newSiteLink: ProjectLink = {
+      id: '',
+      projectID: this.localProject.id,
+      service: 'site',
+      link: ''
+    };
+    this.siteLink = newSiteLink;
+    this.localProject.projectLinks.push(newSiteLink);
+  }
+  console.log('HELLO, links initialized');
+  console.log(this.localProject.projectLinks);
+}
+
+
+newGitLinkToProcess(link: ProjectLink) {
+  // REMOVE GIT SERVICE FROM PROJECTLINKS AND ADD NEW GIT LINK FROM GIT LINK EDITOR
+    
+  this.localProject.projectLinks = this.localProject.projectLinks.filter(i => i.service !== 'git');
+  this.gitLink = link;
+  this.localProject.projectLinks.push(link);
+
+  
+}
+
+newSiteLinkToProcess(link: ProjectLink) {
+  // REMOVE SITE SERVICE FROM PROJECT LINKS AND ADD NEW SITE LINK EDITOR
+  this.localProject.projectLinks = this.localProject.projectLinks.filter(i => i.service !== 'site');
+  this.localProject.projectLinks.push(link);
+  this.siteLink = link;
+}
+
+linkViewTogglerClicked(message: string) {
+
+// TOGGLE CLOSED EITHER THE GIT LINK EDITOR OR THE SITE LINK EDITOR
+ if(message === linkview.NONE) {
+   this.linkEditor = linkview.NONE;
+ }
+}
+// DISPLAY GIT LINK EDITOR WHEN ICON IS CLICKED
+displayGitLinkEditor() {
+  this.linkEditor= this.linkEditor == linkview.GIT? linkview.NONE: linkview.GIT;
+}
+// DISPLAY SITE LINK EDITOR WHEN ICON IS CLICKED
+displaySiteLinkEditor() {
+  this.linkEditor = this.linkEditor == linkview.SITE? linkview.NONE: linkview.SITE;
+}
+
+// UPDATE PROJECT AND SAVE
+  saveProject() {
+    this.finalProject = this.buildFinalProject();
+    
+    // IF new proect Create Project if updating project Update Project
+    if (this.finalProject.id == '') {
+      console.log(
+        'this is the new project to be saved to DB: ',
+        JSON.stringify(this.finalProject)
+      );
+      this.createNewProject(this.finalProject);
+      
+    } else {
+      console.log(
+        'this is the project to be updated in the DB: ',
+        JSON.stringify(this.finalProject)
+      );
+      this.updateProject(this.finalProject);
+    }
+  }
+
+  
+
+
+
+ 
+  // CORE DB ACTIONS
   createNewProject(a: Project) {
     a.id = '';
     console.log('Sending this project to DB to create New:', JSON.stringify(a));
+    
+    
     this.projectService.createItem(a)
     .subscribe(a => {
       this.dialogRef.close();
@@ -181,21 +355,21 @@ export class EditProjectComponent implements OnInit, AfterViewInit {
     ;
   }
 
-  deleteProject() {
-    let projectToDeleteID = this.localProject.id;
-    console.log('Project to Delete ID: ', projectToDeleteID);
-  }
+
 
   // HELPERS
 
   createRequirement(): ProjectRequirement {
     let thisRequirement: ProjectRequirement = {
-      id: 'new',
+      id: Guid.create().toString(),
       projectID: this.localProject.id,
       requirement: this.requirementAbstractControl?.value,
+      editState: editState.ADD,
+      stateHistory: [editState.ADD] 
     };
     return thisRequirement;
   }
+
   buildFinalProject(): Project {
 
     let a: Project = {
@@ -207,7 +381,7 @@ export class EditProjectComponent implements OnInit, AfterViewInit {
       description: this.descriptionAbstractControl?.value,
       banner: this.bannerAbstractControl?.value,
       published: this.publishedAbstractControl?.value,
-
+    
       projectRequirements: this.localProject.projectRequirements,
       projectLinks: this.localProject.projectLinks,
     };
@@ -251,6 +425,19 @@ this.renderer.removeClass(this.publishStatusButton, 'publishStatusButtonTrue');
     this.descriptionAbstractControl?.setValue(this.originalProject.description);
     this.bannerAbstractControl?.setValue(this.originalProject.banner);
     this.publishedAbstractControl?.setValue(this.originalProject.published);
+  }
+
+  getReqState(editstate: string) {
+    switch (editstate) {
+      case editState.ADD: 
+        return 'markedForAdd';
+      case editState.REMOVE:
+        return 'markedForRemoval'
+      case editState.OK:
+        return 'unmarked';
+      default:
+        return 'unmarked';
+    }
   }
 }
 

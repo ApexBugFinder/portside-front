@@ -10,13 +10,21 @@
             <div class="iconsContainer">
               <div class="icons">
                 <fa-icon [icon]="faEdit"></fa-icon>
-                <i class="fab fa-github"></i>
+                <i (click)="displayGitLinkEditor()" class="fab fa-github"></i>
 
-                <fa-icon [icon]="faEye"></fa-icon>
+                <fa-icon (click)="displaySiteLinkEditor()" [icon]="faEye"></fa-icon>
                 <span class="icon" (click)="onNoClick()">X</span>
               </div>
             </div>
-
+            <app-git-link *ngIf="linkEditor == linkView.GIT" 
+                [gitLink]="gitLink"
+                (newGitToSave)="newGitLinkToProcess($event)"
+                (closeGitEditor)="linkViewTogglerClicked($event)"></app-git-link>
+            
+            <app-site-link *ngIf="linkEditor == linkView.SITE" 
+              [siteLink]="siteLink"
+              (newSiteToSave)="newSiteLinkToProcess($event)"
+            (closeSiteEditor)="linkViewTogglerClicked($event)"></app-site-link>
             <div class="imgUploadSection">
               <div class="imgUploadContainer">
                 <div class="labelContainer">
@@ -131,14 +139,15 @@
                 <div class="matListItemContent">
                   <div class="editAndReq">
                     <div class="reqContainer">
-                      <fa-icon [icon]="faEdit"></fa-icon>
-                      <p class="req">
+                    
+                      <p class="req" id="req" 
+                      [ngClass]="getReqState(req.editState)">
                         {{ req.requirement }}
                       </p>
                     </div>
                   </div>
 
-                  <fa-icon
+                  <fa-icon (click)="toggleRemoveRequirement(req)"
                     class="reqIcon reqIconDelete"
                     [icon]="faDelete"
                   ></fa-icon>

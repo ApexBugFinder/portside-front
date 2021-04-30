@@ -1,7 +1,8 @@
 import { AfterViewInit, Component, ElementRef, Inject, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Project } from '../project';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { defaultProject, Project } from '../project';
 import { faPenSquare, faMinusCircle, faEye, faLightbulb, } from '@fortawesome/free-solid-svg-icons';
+import { EditProjectComponent } from '../edit-project/edit-project.component';
 
 
 interface ViewProjectDialogData {
@@ -23,6 +24,7 @@ export class ViewProjectComponent implements OnInit, AfterViewInit {
 
   constructor(
 
+    public dialog: MatDialog,
     public dialogRef: MatDialogRef<ViewProjectComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ViewProjectDialogData
   ) {
@@ -41,7 +43,16 @@ export class ViewProjectComponent implements OnInit, AfterViewInit {
   //     'url(' + '../../../assets/images/pngs/techDoc_banner_large.png' + ');';
 
    }
-  onNoClick(): void {
+  editProject(): void {
+    
+    this.dialogRef.close();
+    this.dialog.open(EditProjectComponent, {
+      width: '980px',
+      data: { project: this.data.project },
+      panelClass: 'custom-modalbox'
+    })
+  }
+  closeProject(): void {
     this.dialogRef.close();
   }
 }

@@ -93,7 +93,9 @@ div.labelContainer{
     .dragDrop {
       border: 2px solid black;
       width: 275px;
-      height: 150px;
+
+      max-height: 150px;
+      min-height: 150px;
       border-radius: 20px;
 .labelContainer {
 display: flex;
@@ -106,6 +108,8 @@ height: 100%;
         font-size: 24px;
         margin: auto;
         padding: auto;
+        align-self: center;
+        vertical-align: center;
           -webkit-text-stroke-width: 1px;
           // -webkit-text-stroke-color: #95bcd3;
           -webkit-text-stroke-color: var(--accent2Color);
@@ -321,4 +325,13 @@ h4 {
   margin-top: 40px;
   margin-bottom: 40px;
 
+}
+.markedForRemoval {
+color: pink;
+}
+.markedForAdd {
+color: lightgreen;
+}
+.unmarked {
+  color: black;
 }

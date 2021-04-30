@@ -7,12 +7,12 @@
 
           <div class="iconsContainer">
             <div class="icons">
-              <fa-icon [icon]="faEdit"></fa-icon>
+              <fa-icon [icon]="faEdit" (click)="editProject()"></fa-icon>
               <i class="fab fa-github"></i>
 
 
               <fa-icon [icon]="faEye"></fa-icon>
-              <p  class="icon" (click)="onNoClick()">X</p>
+              <p  class="icon" (click)="closeProject()">X</p>
             </div>
           </div>
           <div class="projectStatusContainer">
@@ -70,46 +70,20 @@
           </div>
 
           <mat-list>
+            
+
             <mat-list-item *ngFor="let req of data.project.projectRequirements">
               <div class="matListItemContent">
                 <div class="editAndReq">
                   <div class="reqContainer">
-
-                    <fa-icon
-
-                      [icon]="faEdit"
-                    ></fa-icon>
+                   
                     <p class="req">
                       {{ req.requirement }}
                     </p>
                   </div>
                 </div>
 
-                <fa-icon
-                  class="reqIcon reqIconDelete"
-                  [icon]="faDelete"
-                ></fa-icon>
-              </div>
-            </mat-list-item>
-
-                        <mat-list-item *ngFor="let req of data.project.projectRequirements">
-              <div class="matListItemContent">
-                <div class="editAndReq">
-                  <div class="reqContainer">
-                    <fa-icon
-                      class="reqIcon reqIconEdit"
-                      [icon]="faEdit"
-                    ></fa-icon>
-                    <p class="req">
-                      {{ req.requirement }}
-                    </p>
-                  </div>
-                </div>
-
-                <fa-icon
-                  class="reqIcon reqIconDelete"
-                  [icon]="faDelete"
-                ></fa-icon>
+              
               </div>
             </mat-list-item>
           </mat-list>

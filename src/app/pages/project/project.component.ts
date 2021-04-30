@@ -38,9 +38,10 @@ export class ProjectComponent implements OnInit {
   }
 
   createProject(): void{
+    console.log('project to create: ', defaultProject);
     const dialogRef = this.dialog.open(EditProjectComponent, {
       width: '980px',
-      data: { project: this.myProjects[0]},
+      data: { project: defaultProject},
       panelClass: 'custom-modalbox'
     });
   }

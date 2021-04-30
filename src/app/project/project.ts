@@ -12,12 +12,23 @@ export interface Project {
 }
 export interface ProjectLink {
   id: string;
+  link: string;
+  service: string;
+  projectID: string;
 }
 
+
+export enum editState {
+  OK = 'ok',
+  REMOVE = 'remove',
+  ADD = 'add'
+}
 export interface ProjectRequirement {
   id: string;
   projectID: string;
   requirement: string;
+  editState: string;
+  stateHistory: [string];
 }
 export const defaultProject: Project = {
   id: '',
@@ -31,3 +42,11 @@ export const defaultProject: Project = {
   projectRequirements: [],
   projectLinks: [],
 };
+
+export enum linkview  {
+
+  'GIT'= 'git',
+  'SITE' = 'site',
+  'NONE' = 'none'
+
+}
