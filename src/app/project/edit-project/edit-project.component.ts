@@ -243,7 +243,7 @@ initializeLinks() {
     if (uu.service == 'git') {
       this.gitLink = uu;
     }
-    if (uu.service =='service') {
+    if (uu.service =='site') {
       this.siteLink = uu
     }
 
@@ -381,6 +381,7 @@ displaySiteLinkEditor() {
       description: this.descriptionAbstractControl?.value,
       banner: this.bannerAbstractControl?.value,
       published: this.publishedAbstractControl?.value,
+      smallBanner: '',
     
       projectRequirements: this.localProject.projectRequirements,
       projectLinks: this.localProject.projectLinks,

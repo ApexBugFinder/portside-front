@@ -33,7 +33,7 @@ export class ProjectCardComponent implements OnInit, AfterViewInit {
       data: {project: this.project as Project},
       panelClass: 'custom-modalbox'
     });
-    // dialogRef.afterClosed().subscribe(result => {});
+
   }
 
 }

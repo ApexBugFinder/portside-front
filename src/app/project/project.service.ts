@@ -51,24 +51,7 @@ this.hdrs = new HttpHeaders();
     }));
   }
 // CREATE LINKS
-public createLinks(item: ProjectLink[]): Observable<ProjectLink[]> {
-  let apiAddress = this.apiRt + 'projectLinks/';
- 
-  this.hdrs = new HttpHeaders()
-  .set('Access-Control-Allow-Origin', [this.apiRt, apiAddress, Constants.clientRoot])
-  .set('Access-Control-Allow-Methods', ['POST'])
-  .set('content-type', 'application/json');
 
-  this.printServiceInfo(apiAddress, item, this.hdrs);
-  return this.http.post<ProjectLink[]>(
-    apiAddress,
-    item,
-    { headers: this.hdrs }
-  ).pipe(map((some: ProjectLink[]) => {
-    console.log('added ProjectLinks', some);
-    return some;
-  }));
-}
   // READ ALL PROJECTS BY USER
  public readAll(id: string): Observable<Project[]> {
 

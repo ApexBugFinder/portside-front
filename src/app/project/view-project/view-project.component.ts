@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Inject, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { defaultProject, Project } from '../project';
+import { defaultProject, Project, ProjectLink } from '../project';
 import { faPenSquare, faMinusCircle, faEye, faLightbulb, } from '@fortawesome/free-solid-svg-icons';
 import { EditProjectComponent } from '../edit-project/edit-project.component';
 
@@ -29,19 +29,16 @@ export class ViewProjectComponent implements OnInit, AfterViewInit {
     @Inject(MAT_DIALOG_DATA) public data: ViewProjectDialogData
   ) {
     this.bkImg = '../../../assets/images/pngs/techDoc_banner_large.png';
-    this.data.project.banner = this.bkImg;
+  //  this.data.project.banner = this.bkImg;
   }
   ngAfterViewInit(): void {
 
-    this.data.project.banner =
-      '../../../assets/images/pngs/techDoc_banner_large.png';
   }
 
   ngOnInit(): void {
     console.log(this.data);
-  //   this.bkImg =
-  //     'url(' + '../../../assets/images/pngs/techDoc_banner_large.png' + ');';
 
+    console.log('PROJECT: \n', this.data.project);
    }
   editProject(): void {
     
@@ -54,5 +51,31 @@ export class ViewProjectComponent implements OnInit, AfterViewInit {
   }
   closeProject(): void {
     this.dialogRef.close();
+  }
+
+  gotToGitRepo() {
+    const getGitLink: string | undefined = this.data.project?.projectLinks?.find(i=> i.service === 'git')?.link;
+    console.log(getGitLink);
+    let url: string = '';
+    if (getGitLink != '') {
+      if (!/^http[s]?:\/\//.test(JSON.stringify(getGitLink))) {
+        url += 'http://';
+    }
+    url += getGitLink;
+      window.open(url, '_blank');
+    }
+    
+
+  }
+  goToSite() {
+    const getSiteLink: string | undefined = this.data.project.projectLinks.find(i => i.service === 'site')?.link;
+    let url: string = '';
+    if (getSiteLink != '') {
+      if (!/^http[s]?:\/\//.test(JSON.stringify(getSiteLink))) {
+        url += 'http://';
+    }
+    url += getSiteLink;
+    window.open(url, '_blank');
+    }
   }
 }

@@ -2,7 +2,7 @@
 
 
 <div class="bannerContainer" (click)="viewProject(project.id)">
-  <img src="../../../assets/images/pngs/banner_techDoc.png" alt="Technical Documentation Banner" class="projectBanner">
+  <img src="{{project.smallBanner}}" id="smallBanner" alt="Technical Documentation Banner" class="projectBanner">
 </div>
 <div class="titleContainer">
   <p class="title"  (click)="viewProject(project.id)">
