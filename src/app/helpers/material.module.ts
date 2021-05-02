@@ -9,6 +9,7 @@ import { MatSliderModule } from '@angular/material/slider'
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { MatInputModule } from '@angular/material/input';
     MatSliderModule,
     MatDividerModule,
     MatDialogModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule,
 
 
   ],
@@ -37,7 +39,8 @@ import { MatInputModule } from '@angular/material/input';
     MatSliderModule,
     MatDividerModule,
     MatDialogModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule
   ]
 })
 export class MaterialModule { }

@@ -1,0 +1,24 @@
+.bannUploadContainer {
+    display:flex;
+    flex-direction: row;
+  }
+  
+  .buttonSection {
+    display:flex;
+    flex-direction: row;
+    column-gap: 10px;
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    p.fileName {
+      margin: auto;
+      padding: auto;
+    }
+    .browseButton {
+       border: 1px solid var(--accent2Color);
+      border-radius: 20px;
+  // -webkit-box-shadow: 5px 5px 15px 8px rgba(149, 188, 211, 0.57);
+  // box-shadow: 5px 5px 15px 8px rgba(149, 188, 211, 0.57);
+  
+     }
+  }

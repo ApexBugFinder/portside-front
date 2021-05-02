@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of, pipe, } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of, pipe} from 'rxjs';
+import { map, timeout } from 'rxjs/operators';
 import { Constants } from '../helpers/Constants';
 import { editState, Project, ProjectLink } from './project';
 
@@ -68,7 +68,9 @@ this.hdrs = new HttpHeaders();
     return this.http.get<Project[]>(
       urlAddress,
       { headers: hdrs })
-      .pipe(map((usersProjects: Project[]) => {
+      .pipe(
+        timeout(2000),
+        map((usersProjects: Project[]) => {
         console.log('User\'s Projects Found:  ' + usersProjects );
         
      
@@ -96,7 +98,9 @@ this.hdrs = new HttpHeaders()
     return this.http.get<Project>(
       urlAddress,
       {headers: this.hdrs}
-    ).pipe(map((item: Project) => {
+    ).pipe(
+      timeout(2000),
+      map((item: Project) => {
       console.log('Item Found: ' + item);
       return item;
     }));
@@ -121,7 +125,9 @@ item.projectCreatorID = Constants.userID;
       urlAddress,
       item,
       { headers: hdrs }
-    ).pipe(map((updatedItem: Project) => {
+    ).pipe(
+      timeout(2000),
+      map((updatedItem: Project) => {
       console.log('Updated Item: ', updatedItem);
       return updatedItem;
     }));
@@ -145,7 +151,9 @@ public deleteItem(id: string): Observable<Project> {
     return this.http.delete<Project>(
       urlAddress,
       {headers: this.hdrs}
-    ).pipe(map((itemDeleted:Project)=> {
+    ).pipe(
+      timeout(2000),
+      map((itemDeleted:Project)=> {
       console.log('Item Deleted: ', itemDeleted);
       return itemDeleted;
     }));

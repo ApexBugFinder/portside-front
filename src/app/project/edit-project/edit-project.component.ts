@@ -37,7 +37,7 @@ export class EditProjectComponent implements OnInit, AfterViewInit {
   @ViewChild('req') reqEditState: HTMLElement | null = document.getElementById('req');
 
   bkImg: string = '../../../assets/images/pngs/techDoc_banner_large.png';
-  
+  getFileName:string;
 
   // LINKS
   linkView = linkview;
@@ -122,7 +122,7 @@ export class EditProjectComponent implements OnInit, AfterViewInit {
 
 
 
-
+    this.getfileName();
 
     console.log(
       'data passed to edit component ngOnInit: ',
@@ -439,6 +439,13 @@ this.renderer.removeClass(this.publishStatusButton, 'publishStatusButtonTrue');
       default:
         return 'unmarked';
     }
+  }
+
+  getfileName() {
+    let name = this.localProject.banner;
+    let fileInfo = name.split('/');
+    console.log(fileInfo[fileInfo.length-1]);
+    this.getFileName = fileInfo[fileInfo.length-1];
   }
 }
 

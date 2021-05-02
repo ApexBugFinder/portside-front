@@ -25,28 +25,22 @@
               [siteLink]="siteLink"
               (newSiteToSave)="newSiteLinkToProcess($event)"
             (closeSiteEditor)="linkViewTogglerClicked($event)"></app-site-link>
+           
+           
             <div class="imgUploadSection">
               <div class="imgUploadContainer">
-                <div class="labelContainer">
-                  <p class="uploadLabel">Upload Banner:</p>
-                </div>
-                <div class="uploadSection">
-                  <div class="buttonSection">
-                    <button mat-raised-button class="browseButton">
-                      Browse
-                    </button>
-                    <p class="fileName">filename.jpg</p>
-                  </div>
-                  <!-- <div class="dragDropSection">
-                    <div class="dragDrop">
-                      <div class="labelContainer">
-                        <p class="dragDropLabel">Drag & Drop</p>
-                      </div>
-                    </div>
-                  </div> -->
-                </div>
+                <app-image-getter [Title]="'Small Banner'"></app-image-getter>
+                <app-image-getter [Title]="'Big Banner'"></app-image-getter>
+
+               
+               
+            
+                
               </div>
             </div>
+           
+           
+           
             <div class="projectStatusContainer">
               <div class="projectStatus">
                 <div class="statusData">

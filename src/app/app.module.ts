@@ -12,6 +12,7 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { ProjectCardComponent } from './project/project-card/project-card.component';
 import { EditProjectComponent } from './project/edit-project/edit-project.component';
 import { ProjectModule } from './project/project.module';
+import { ImageGetterComponent } from './image/image-getter/image-getter.component';
 
 
 @NgModule({
@@ -20,9 +21,10 @@ import { ProjectModule } from './project/project.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule,
+    SharedModule, 
+    
     ProjectModule,
-    PagesModule,
+   PagesModule,
 
     RouterModule,
   ],

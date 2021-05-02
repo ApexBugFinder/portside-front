@@ -13,6 +13,7 @@ import { InputRequirementsComponent } from './edit/input-requirements/input-requ
 import { GitLinkComponent } from './edit/git-link/git-link.component';
 import { SiteLinkComponent } from './edit/site-link/site-link.component';
 import { EditShellComponent } from './edit/edit-shell.component';
+import { ImageModule } from '../image/image.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { EditShellComponent } from './edit/edit-shell.component';
     SiteLinkComponent,
     EditShellComponent,
   ],
-  imports: [CommonModule, MaterialModule, SharedModule, ReactiveFormsModule ],
+  imports: [CommonModule, SharedModule, ReactiveFormsModule, ImageModule ],
  entryComponents: [ViewProjectComponent, EditProjectComponent],
   exports: [
     ProjectCardComponent,
