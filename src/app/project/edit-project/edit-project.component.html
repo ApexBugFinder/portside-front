@@ -2,11 +2,12 @@
   <div mat-dialog-content>
     <form [formGroup]="requirementsForm" class="requirementsFormClass">
       <div class="viewProjectContainer">
-
-        <div class="bannerContainer"
+       
+       <div class="bannerContainer"
          [ngStyle]="{ 'background-image': 'url(&quot;' + localProject.banner + '&quot; )' }"
         id="bannerContainer">
           <div class="bannerContent">
+            
             <div class="iconsContainer">
               <div class="icons">
                 <fa-icon [icon]="faEdit"></fa-icon>
@@ -16,6 +17,8 @@
                 <span class="icon" (click)="onNoClick()">X</span>
               </div>
             </div>
+            
+            
             <app-git-link *ngIf="linkEditor == linkView.GIT" 
                 [gitLink]="gitLink"
                 (newGitToSave)="newGitLinkToProcess($event)"
@@ -29,15 +32,23 @@
            
             <div class="imgUploadSection">
               <div class="imgUploadContainer">
-                <app-image-getter [Title]="'Small Banner'"></app-image-getter>
-                <app-image-getter [Title]="'Big Banner'"></app-image-getter>
+                <app-image-getter [Title]="'Small Banner'" 
+                  [projectID]="localProject.id"
+                  [projectCreatorID]="localProject.projectCreatorID" 
+                  (mediaRtUrl)="processNewSmallBannerRt($event)">
+                </app-image-getter>
+                
+                <app-image-getter [Title]="'Big Banner'" 
+                [projectID]="localProject.id"
+                [projectCreatorID]="localProject.projectCreatorID"
+                (mediaRtUrl)="processNewBannerRt($event)"></app-image-getter>
 
                
                
             
                 
               </div>
-            </div>
+            </div> 
            
            
            
@@ -68,10 +79,10 @@
 
                 <div class="statusData">
                   <p>Published:</p>
-                  <!-- <fa-icon class="projectPublished" [icon]="faPublished"></fa-icon> -->
-                  <div class="publishedIconContainer">
+                
+                   <div class="publishedIconContainer">
                     <span>
-                      <!-- {{ localProject.published }} -->
+                      
                       <input
                         type="button"
                         formControlName="published"
@@ -87,7 +98,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> 
         <div class="contentSection">
           <div class="titleContatiner">
             <div class="titleHeading">

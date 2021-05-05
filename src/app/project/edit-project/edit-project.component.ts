@@ -1,4 +1,3 @@
-import { stringify } from '@angular/compiler/src/util';
 import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
 import {
   FormBuilder,
@@ -21,7 +20,7 @@ import { defaultProject, editState, Project, ProjectRequirement, linkview, Proje
 import { ProjectCardComponent } from '../project-card/project-card.component';
 import { ProjectService } from '../project.service';
 import { Guid } from 'guid-typescript'
-import { Console } from 'node:console';
+
 
 interface ViewProjectDialogData {
   project: Project;
@@ -66,6 +65,7 @@ export class EditProjectComponent implements OnInit, AfterViewInit {
   bannerAbstractControl: AbstractControl | null;
   publishedAbstractControl: AbstractControl | null;
   projectLinkAbstractControl: AbstractControl | null;
+  smallBannerAbstractControl: AbstractControl | null; 
 
   constructor(
     public dialogRef: MatDialogRef<EditProjectComponent>,
@@ -96,7 +96,7 @@ export class EditProjectComponent implements OnInit, AfterViewInit {
     }
     // this.localProject.projectLinks.push(this.gitStarter);
     // this.localProject.projectLinks.push(this.siteStarter);
-    this.initializeLinks();
+   
     // INITIATE FORM
     this.requirementsForm = this.fb.group({
       id: ['', [Validators.required]],
@@ -105,6 +105,7 @@ export class EditProjectComponent implements OnInit, AfterViewInit {
       completed: [''],
       description: [''],
       banner: [''],
+      smallBanner: [''],
       published: [''],
       requirement: ['', [Validators.required]],
       projectLinks: [[]],
@@ -307,6 +308,28 @@ displaySiteLinkEditor() {
   this.linkEditor = this.linkEditor == linkview.SITE? linkview.NONE: linkview.SITE;
 }
 
+
+
+// IMAGE UPLOAD 
+processNewSmallBannerRt(returnUrl: string) {
+  this.localProject.smallBanner = returnUrl;
+  this.smallBannerAbstractControl?.setValue(returnUrl);
+  
+}
+
+processNewBannerRt(returnUrl: string) {
+  console.log('REached RT process', returnUrl);
+  this.localProject.banner = returnUrl;
+  this.bannerAbstractControl?.setValue(returnUrl);
+  let urlString =  'url(&quot;' + returnUrl + '&quot; )'
+  let bannerCtl = document.getElementById('bannerContainer');
+  this.renderer.setStyle(bannerCtl, 'background-image', urlString)
+  console.log(urlString);
+}
+
+
+
+
 // UPDATE PROJECT AND SAVE
   saveProject() {
     this.finalProject = this.buildFinalProject();
@@ -380,8 +403,9 @@ displaySiteLinkEditor() {
       completed: this.completedAbstractControl?.value,
       description: this.descriptionAbstractControl?.value,
       banner: this.bannerAbstractControl?.value,
+      smallBanner: this.smallBannerAbstractControl?.value,
       published: this.publishedAbstractControl?.value,
-      smallBanner: '',
+      
     
       projectRequirements: this.localProject.projectRequirements,
       projectLinks: this.localProject.projectLinks,
@@ -398,23 +422,20 @@ displaySiteLinkEditor() {
     this.completedAbstractControl = this.requirementsForm.get('completed');
     this.descriptionAbstractControl = this.requirementsForm.get('description');
     this.bannerAbstractControl = this.requirementsForm.get('banner');
+    this.smallBannerAbstractControl = this.requirementsForm.get('smallBanner');
     this.publishedAbstractControl = this.requirementsForm.get('published');
     this.projectLinkAbstractControl = this.requirementsForm.get('projectLink');
     this.requirementAbstractControl = this.requirementsForm.get('requirement');
 
     this.publishedAbstractControl?.valueChanges.subscribe(selectedValue => {
- this.publishStatusButton = document.getElementById(
-              'publishStatusButton'
-            );
-      if (selectedValue) {
+        this.publishStatusButton = document.getElementById('publishStatusButton');
+        if (selectedValue) {
+       
+        this.renderer.addClass(this.publishStatusButton, 'publishStatusButtonTrue');
 
-           console.log('red');
-this.renderer.addClass(this.publishStatusButton, 'publishStatusButtonTrue');
-
-      } else {
-this.renderer.removeClass(this.publishStatusButton, 'publishStatusButtonTrue');
-
-      }
+        } else {
+        this.renderer.removeClass(this.publishStatusButton, 'publishStatusButtonTrue');
+        }
     })
   }
 
@@ -426,6 +447,7 @@ this.renderer.removeClass(this.publishStatusButton, 'publishStatusButtonTrue');
     this.descriptionAbstractControl?.setValue(this.originalProject.description);
     this.bannerAbstractControl?.setValue(this.originalProject.banner);
     this.publishedAbstractControl?.setValue(this.originalProject.published);
+    this.smallBannerAbstractControl?.setValue(this.originalProject.smallBanner);
   }
 
   getReqState(editstate: string) {

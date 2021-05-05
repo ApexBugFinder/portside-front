@@ -1,14 +1,17 @@
 <div class="bannerUpload">
     <div class="bannerUploadContainer">
-      <div class="bannerUploadLabel">
+      <form action="">
+         <div class="bannerUploadLabel">
         <p class="uploadLabel"> {{Title}} </p>
-      </div>
-      <div class="bannerUploadButton">
+        </div>
+        <div class="bannerUploadButton">
        
-       <input id="file-input" type="file" accept="image/*" (change)="handleFileInput($event.target.files)">
-         <p class="fileName"></p>
+        <input id="file-input" type="file" accept="image/*" (change)="handleFileInput($event.target.files)">
+        <p class="fileName"></p>
        
       </div>
+      </form>
+     
       
     </div>
   </div>
