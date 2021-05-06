@@ -19,7 +19,7 @@ export class ProjectService {
   
   constructor(private http: HttpClient) {
     this.ctlrName = 'projects/';
-    this.apiRt = Constants.apiRoot
+    this.apiRt = Constants.apiRoot;
     this.apiAddress  = this.apiRt + this.ctlrName;
     this.hdrs = new HttpHeaders();
     this.userID = Constants.userID;

@@ -16,6 +16,7 @@ import { EditShellComponent } from './edit/edit-shell.component';
 import { ImageModule } from '../image/image.module';
 
 
+
 @NgModule({
   declarations: [
     ProjectCardComponent,
@@ -27,6 +28,7 @@ import { ImageModule } from '../image/image.module';
     GitLinkComponent,
     SiteLinkComponent,
     EditShellComponent,
+
 
   ],
   imports: [CommonModule, SharedModule, ReactiveFormsModule, ImageModule ],
