@@ -8,13 +8,19 @@ import { ProjectService } from './project.service';
 import { SharedModule } from '../helpers/shared.module';
 import { MaterialModule } from '../helpers/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DisplayRquirementsComponent } from './edit/display-rquirements/display-rquirements.component';
+
 import { InputRequirementsComponent } from './edit/input-requirements/input-requirements.component';
 import { GitLinkComponent } from './edit/git-link/git-link.component';
 import { SiteLinkComponent } from './edit/site-link/site-link.component';
 import { EditShellComponent } from './edit/edit-shell.component';
 import { ImageModule } from '../image/image.module';
-
+import { IconsSectionComponent } from './edit/icons-section/icons-section.component';
+import { StoreModule } from '@ngrx/store';
+import { projectReducers } from './state';
+import { ProjectStatusSectionComponent } from './edit/project-status-section/project-status-section.component';
+import { ActionButtonsComponent } from './edit/action-buttons/action-buttons.component';
+import { editProjectReducer } from './edit/state/edit-project.reducer';
+import { DisplayRequirementsComponent } from './edit/display-requirements/display-requirements.component';
 
 
 @NgModule({
@@ -23,15 +29,24 @@ import { ImageModule } from '../image/image.module';
     ViewProjectComponent,
     EditProjectComponent,
     AddProjectComponent,
-    DisplayRquirementsComponent,
+    
     InputRequirementsComponent,
     GitLinkComponent,
     SiteLinkComponent,
     EditShellComponent,
+    IconsSectionComponent,
+    ProjectStatusSectionComponent,
+    ActionButtonsComponent,
+    DisplayRequirementsComponent,
+   
 
 
   ],
-  imports: [CommonModule, SharedModule, ReactiveFormsModule, ImageModule ],
+  imports: [
+    SharedModule, 
+    StoreModule.forFeature('editProject', editProjectReducer),
+    ReactiveFormsModule, 
+    ImageModule ],
  entryComponents: [ViewProjectComponent, EditProjectComponent],
   exports: [
     ProjectCardComponent,

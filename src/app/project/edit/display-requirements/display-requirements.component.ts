@@ -9,11 +9,11 @@ import * as edipProjectActions from '../../edit/state/edit-project.actions';
 import { Observable, throwError } from 'rxjs';
 
 @Component({
-  selector: 'app-display-rquirements',
-  templateUrl: './display-rquirements.component.html',
-  styleUrls: ['./display-rquirements.component.scss']
+  selector: 'app-display-requirements',
+  templateUrl: './display-requirements.component.html',
+  styleUrls: ['./display-requirements.component.scss']
 })
-export class DisplayRquirementsComponent implements OnInit {
+export class DisplayRequirementsComponent implements OnInit {
 
   projectID$: Observable<string>;
   projectIDStore: string;
@@ -130,8 +130,14 @@ addRequirement() {
     let b = JSON.parse(JSON.stringify(a)) as ProjectRequirement;
   if (b.stateHistory[0] === editState.OK) {
     console.log('HERE');
-    a.editState = a.editState == editState.OK? editState.REMOVE: editState.OK;
-    console.log(a);
+    b.editState = b.editState == editState.OK? editState.REMOVE: editState.OK;
+    console.log('pre', this.projectRequirementsStore);
+    this.projectRequirementsStore.pop(); 
+    let _projectRequirementsStore = this.projectRequirementsStore.filter(i => i.id === b.id).pop() ;
+    console.log('post', this.projectRequirementsStore);
+    this.projectRequirementsStore.push(b);
+    console.log(b);
+    console.log(this.projectRequirementsStore);
   }
   else {
     console.log('THERE', a);
@@ -144,7 +150,7 @@ addRequirement() {
   // 
     getReqState(b: string) {
   
-      console.log('HELLO MARKY MARK & THE FUNKY BUNCH', b);
+      console.log('HELLO MARKY MARK & THE FUNKY BUNCH', this.projectRequirementsStore);
       switch (b) {
         case editState.ADD: 
           return 'markedForAdd';

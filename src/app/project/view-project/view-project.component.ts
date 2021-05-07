@@ -3,7 +3,10 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { defaultProject, Project, ProjectLink } from '../project';
 import { faPenSquare, faMinusCircle, faEye, faLightbulb, } from '@fortawesome/free-solid-svg-icons';
 import { EditProjectComponent } from '../edit-project/edit-project.component';
-
+import { EditShellComponent } from '../edit/edit-shell.component';
+import { Store, select } from '@ngrx/store';
+import * as fromEditProject from '../edit/state/edit-project.reducer';
+import * as editProjectActions from '../edit/state/edit-project.actions';
 
 interface ViewProjectDialogData {
   project: Project;
@@ -23,7 +26,7 @@ export class ViewProjectComponent implements OnInit, AfterViewInit {
   faPublished = faLightbulb;
 
   constructor(
-
+    private editProjectStore: Store<fromEditProject.EditProjectState>,
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<ViewProjectComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ViewProjectDialogData
@@ -43,9 +46,12 @@ export class ViewProjectComponent implements OnInit, AfterViewInit {
   editProject(): void {
     
     this.dialogRef.close();
-    this.dialog.open(EditProjectComponent, {
+    
+    this.editProjectStore.dispatch(new editProjectActions.SetOriginalProject(this.data.project));
+    console.log(this.data.project);
+    this.dialog.open(EditShellComponent, {
       width: '980px',
-      data: { project: this.data.project },
+     
       panelClass: 'custom-modalbox'
     })
   }

@@ -28,6 +28,17 @@ export class ProjectCardComponent implements OnInit, AfterViewInit {
   }
   viewProject(id: string): void {
     console.log(id);
+    console.log('this is the project to post: ', this.project);
+    this.project.projectRequirements.forEach(ij => {
+      let p = JSON.stringify(ij.editState);
+      console.log(p);
+      
+        ij.stateHistory = [ij.editState]
+   
+      
+      console.log(ij.stateHistory);
+    });
+    console.log('HELLO: ', this.project);
     const dialogRef = this.dialog.open(ViewProjectComponent, {
       width: '980px',
       data: {project: this.project as Project},

@@ -1,0 +1,55 @@
+<div class="projectStatusSection">
+    <form [formGroup]="statusForm">
+    <div class="projectStatusContainer">
+        <div class="projectStatus">
+          <div class="statusData">
+            <span>Date Started:</span>
+            <input
+              matInput
+            fromControlName="started"
+              id="startedId"
+              type="date"
+              class="startDate"
+              name="start"
+              
+            />
+          </div>
+
+          <div class="statusData">
+            <span>Date Started:</span>
+            <input
+              matInput
+            fromControlName="completed"
+              id="completedId"
+              type="date"
+              class="completeDate"
+              name="start"
+              
+            />
+          </div>
+
+         
+
+          
+          <div class="statusData">
+            <p>Published:</p>
+          
+             <div class="publishedIconContainer">
+              <span>
+                
+                <input
+                  type="button"
+                  formControlName="published"
+                  id="publishStatusButton"
+                  name="publishStatusButton"
+                  class="publishStatusButton"
+                />
+
+              </span>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+</div>

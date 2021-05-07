@@ -26,6 +26,8 @@
     "@fortawesome/angular-fontawesome": "^0.8.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@ngrx/store": "^11.1.1",
+    "@ngrx/store-devtools": "^11.1.1",
     "bootstrap": "^3.4.1",
     "firebase": "^8.4.3",
     "guid-typescript": "^1.0.9",
@@ -50,6 +52,6 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~4.1.5"
+    "typescript": "^4.1.5"
   }
 }

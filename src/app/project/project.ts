@@ -2,8 +2,8 @@ export interface Project {
   id: string;
   projectCreatorID: string;
   projectName: string;
-  started: Date;
-  completed: Date;
+  started?: Date;
+  completed?: Date;
   description: string;
   banner: string;
   smallBanner: string;
@@ -18,6 +18,12 @@ export interface ProjectLink {
   projectID: string;
 }
 
+export const defaultProjectLink: ProjectLink = {
+  id: 'defaultProjectLink1',
+  link: 'defaultLink',
+  service: 'default',
+  projectID: 'defaultLink'
+};
 
 export enum editState {
   OK = 'ok',
@@ -27,13 +33,20 @@ export enum editState {
 export interface ProjectRequirement {
   id: string;
   projectID: string;
-  requirement: string;
+  requirement?: string;
   editState: string;
   stateHistory: [string];
 }
+export const defaultProjectRequirement: ProjectRequirement = {
+  id: 'defaultProjectReq1',
+  projectID: 'defaultProjectReq1',
+  stateHistory: [editState.OK],
+  editState: editState.OK
+};
+
 export const defaultProject: Project = {
   id: '',
-  projectName: '',
+  projectName: 'Default',
   projectCreatorID: '',
   started: new Date(2021, 0o1, 0o1),
   completed: new Date(2021, 0o2, 0o1),

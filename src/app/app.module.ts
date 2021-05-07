@@ -9,11 +9,10 @@ import { HeaderComponent } from './header/header.component';
 import { PagesModule } from './pages/pages.module';
 import { RouterModule } from '@angular/router';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
-import { ProjectCardComponent } from './project/project-card/project-card.component';
-import { EditProjectComponent } from './project/edit-project/edit-project.component';
 import { ProjectModule } from './project/project.module';
-import { ImageGetterComponent } from './image/image-getter/image-getter.component';
-
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -22,10 +21,14 @@ import { ImageGetterComponent } from './image/image-getter/image-getter.componen
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule, 
-    
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument({
+      name: 'App Demo DevTools',
+      maxAge: 25,
+      logOnly: environment.production
+      }),
     ProjectModule,
-   PagesModule,
-
+    PagesModule,
     RouterModule,
   ],
   exports: [HeaderComponent],

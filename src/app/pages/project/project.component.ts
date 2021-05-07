@@ -11,7 +11,7 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { EditProjectComponent } from '../../project/edit-project/edit-project.component';
-
+import { EditShellComponent } from '../../project/edit/edit-shell.component';
 
 @Component({
   selector: 'app-project',
@@ -39,7 +39,7 @@ export class ProjectComponent implements OnInit {
 
   createProject(): void{
     console.log('project to create: ', defaultProject);
-    const dialogRef = this.dialog.open(EditProjectComponent, {
+    const dialogRef = this.dialog.open(EditShellComponent, {
       width: '980px',
       data: { project: defaultProject},
       panelClass: 'custom-modalbox'

@@ -3,14 +3,12 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of, pipe} from 'rxjs';
 import { map, timeout } from 'rxjs/operators';
-import { Constants } from '../helpers/Constants';
-import { Experience } from './experience';
-
-
+import { Constants } from '../../helpers/Constants';
+import { Degree } from './degree';
 @Injectable({
   providedIn: 'root'
 })
-export class ExperienceService {
+export class DegreeService {
   private ctlrName;
   private apiAddress;
   private userID;
@@ -18,18 +16,18 @@ export class ExperienceService {
   private apiRt;
   private clientRt;
 
-  constructor(private http: HttpClient) { 
-    this.ctlrName = 'experiences/';
+  constructor(private http: HttpClient) {
+    this.ctlrName = 'Degrees/';
     this.apiRt = Constants.apiRoot;
     this.apiAddress = this.apiRt + this.ctlrName;
     this.hdrs = new HttpHeaders();
     this.userID = Constants.userID;
     this.clientRt = Constants.clientRoot;
+   }
 
-  }
 
-  // CREATE EXPERIENCE
-  public createItem(item: Experience) : Observable<Experience> {
+   // CREATE Degree
+   public createItem(item: Degree) : Observable<Degree> {
     this.hdrs = new HttpHeaders();
 
         const address = this.apiAddress + "new";
@@ -40,22 +38,22 @@ export class ExperienceService {
           .set('content-type', 'application/json');
     
         this.printServiceInfo(address, item, this.hdrs);
-        return this.http.post<Experience>(
+        return this.http.post<Degree>(
         address,
           item,
          {headers: this.hdrs}
         ).pipe(
           timeout(2000),
-          map((newExperience: Experience) => {
-          console.log('New Experience added to DB: ', newExperience);
-          return newExperience;
+          map((newDegree: Degree) => {
+          console.log('New Degree added to DB: ', newDegree);
+          return newDegree;
         }));
       }
 
 
-     // READ ALL ExperienceS BY USER
+     // READ ALL DegreeS BY USER
  
-public readAll(id: string): Observable<Experience[]> {
+public readAll(id: string): Observable<Degree[]> {
 
       const address = 'all/' + this.userID;
       const urlAddress = this.apiAddress + address;
@@ -67,23 +65,23 @@ public readAll(id: string): Observable<Experience[]> {
 
 
       this.printServiceInfo(urlAddress, id, this.hdrs);
-      return this.http.get<Experience[]>(
+      return this.http.get<Degree[]>(
         urlAddress,
         { headers: this.hdrs })
         .pipe(
           timeout(2000),
-          map((usersExperiences: Experience[]) => {
-          console.log('User\'s Experiences Found:  ' + usersExperiences );
+          map((usersDegrees: Degree[]) => {
+          console.log('User\'s Degrees Found:  ' + usersDegrees );
           
       
           
-          return usersExperiences;
+          return usersDegrees;
     } ));
 
 } 
 
-  // GET Experience BY ID
-public readItem(id: string): Observable<Experience> {
+  // GET Degree BY ID
+public readItem(id: string): Observable<Degree> {
 
     const address = id;
     const urlAddress = this.apiAddress + address;
@@ -96,20 +94,20 @@ public readItem(id: string): Observable<Experience> {
     .set('content-type', 'application/json');
 
     this.printServiceInfo(urlAddress, id, this.hdrs);
-      return this.http.get<Experience>(
+      return this.http.get<Degree>(
         urlAddress,
         {headers: this.hdrs}
       ).pipe(
         timeout(2000),
-        map((item: Experience) => {
+        map((item: Degree) => {
         console.log('Item Found: ' + item);
         return item;
       }));
 }
 
 
-//  UPDATE Experience
-public updateItem(item: Experience) : Observable<Experience> {
+//  UPDATE Degree
+public updateItem(item: Degree) : Observable<Degree> {
 
 
   const urlAddress = this.apiAddress + item.id;
@@ -123,21 +121,21 @@ public updateItem(item: Experience) : Observable<Experience> {
 
   this.printServiceInfo(urlAddress, item, this.hdrs);
   
-    return this.http.put<Experience>(
+    return this.http.put<Degree>(
       urlAddress,
       item,
       { headers: this.hdrs }
     ).pipe(
       timeout(2000),
-      map((updatedItem: Experience) => {
+      map((updatedItem: Degree) => {
       console.log('Updated Item: ', updatedItem);
       return updatedItem;
     }));
   }
 
 
-  // DELETE Experience
-public deleteItem(id: string): Observable<Experience> {
+  // DELETE Degree
+public deleteItem(id: string): Observable<Degree> {
 
     const address = id;
     const urlAddress = this.apiAddress + id;
@@ -150,12 +148,12 @@ public deleteItem(id: string): Observable<Experience> {
     this.printServiceInfo(urlAddress, id, this.hdrs);
 
 
-    return this.http.delete<Experience>(
+    return this.http.delete<Degree>(
       urlAddress,
       {headers: this.hdrs}
     ).pipe(
       timeout(2000),
-      map((itemDeleted:Experience)=> {
+      map((itemDeleted:Degree)=> {
       console.log('Item Deleted: ', itemDeleted);
       return itemDeleted;
     }));

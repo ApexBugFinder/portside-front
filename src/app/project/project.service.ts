@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, of, pipe} from 'rxjs';
 import { map, timeout } from 'rxjs/operators';
 import { Constants } from '../helpers/Constants';
-import { editState, Project, ProjectLink } from './project';
+import { Project  } from './project';
 
 @Injectable({
   providedIn: 'root',

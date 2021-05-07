@@ -13,15 +13,18 @@ import { defaultMediaFile, MediaFile } from '../Models/image';
 export class ImageGetterComponent implements OnInit {
   mediaToSendToDB: MediaFile;
   @Input() Title: string;
-  @Input() projectID: string; 
+  @Input() docID: string; 
   @Input() projectCreatorID: string;
+  @Input() typeOfClass: string;  // this is either Projects Experience or Education: part of mediaLocation
+  
+  
   @Output() mediaRtUrl: EventEmitter<string> = new EventEmitter<string>();
   constructor(private imageService: ImageService) { }
 
   ngOnInit(): void {
 
     console.log('ImageGetter Title: ', this.Title);
-    console.log('ProjectID: ', this.projectID);
+    console.log('ProjectID: ', this.docID);
     console.log('Project Creator', this.projectCreatorID);
     this.mediaToSendToDB = defaultMediaFile;
     
@@ -37,19 +40,19 @@ export class ImageGetterComponent implements OnInit {
     this.mediaToSendToDB.filelist = myFile;
     this.mediaToSendToDB.type = this.Title;
     this.mediaToSendToDB.fileToUpload = myFile?.item(0) as File;
-    this.mediaToSendToDB.mediaLocation = 'users' + 
-    '/'+ 
-    this.projectCreatorID + 
-    '/' + 
-    'projects' + 
-    '/' + 
-    this.projectID +
-    '/' +
+    this.mediaToSendToDB.mediaLocation = 
+    "users/" +
+    this.projectCreatorID +
+    this.typeOfClass +
+    this.docID +
+    "/" +
     this.mediaToSendToDB.type;
 
     
    this.imageService.uploadToFirebase(this.mediaToSendToDB).then(value => {
     console.log('download URl returned: ', value);
+    // Use ngrx instead of eventemitter
+    
     this.mediaRtUrl.emit(value?.dloadUrl);
    });
     

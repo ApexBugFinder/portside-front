@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, Inject,  OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -13,11 +13,11 @@ import {
   faLightbulb,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { throwIfEmpty } from 'rxjs/operators';
+
 import { Constants } from 'src/app/helpers/Constants';
 
 import { defaultProject, editState, Project, ProjectRequirement, linkview, ProjectLink } from '../project';
-import { ProjectCardComponent } from '../project-card/project-card.component';
+
 import { ProjectService } from '../project.service';
 import { Guid } from 'guid-typescript'
 
@@ -77,6 +77,7 @@ export class EditProjectComponent implements OnInit, AfterViewInit {
     console.log('data in constructor: ', JSON.stringify(this.data.project));
     this.originalProject = JSON.parse(JSON.stringify(this.data.project));
     this.localProject = JSON.parse(JSON.stringify(this.data.project));
+    this.initializeLinks();
     this.initializeProjectRequirements();
     this.setProjectCreator();
     this.linkEditor = linkview.NONE;
