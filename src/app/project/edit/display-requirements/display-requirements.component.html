@@ -29,8 +29,8 @@
         <div class="editAndReq">
           <div class="reqContainer">
           
-            <p class="req" id="req" 
-            [ngClass]="markedForRemoval">
+            <p class="" id="req" 
+            [ngClass]="getReqState(req.editState)">
               {{ req.requirement }}
             </p>
           </div>

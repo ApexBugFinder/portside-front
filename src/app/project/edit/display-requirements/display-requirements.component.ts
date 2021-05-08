@@ -49,7 +49,7 @@ export class DisplayRequirementsComponent implements OnInit {
     });
     this.projectIDStore = '1234';
     console.log(this.projectIDStore);
-    this.initializeProjectRequirements();
+   // this.initializeProjectRequirements();
     
     this.initControls();
   }
@@ -61,7 +61,7 @@ initializeProjectRequirements() {
   console.log(this.projectRequirementsStore.length);
   this.projectRequirementsStore.forEach(j => {
     console.log(j.editState);
-      j.editState = editState.ADD;
+      j.editState = editState.OK;
       j.stateHistory.push(j.editState);
       console.log('pre: ', j.stateHistory);
       
@@ -78,79 +78,47 @@ initializeProjectRequirements() {
 
 addRequirement() {
   let newReq: ProjectRequirement = this.createRequirement();
-  // GET DEEP COPY OF PROJECT REQUIREMENTS AND ADD NEW  PROJECT REQ
-  // THEN UPDATE NGRX STORE
-  let reqs: ProjectRequirement[] = JSON.parse(JSON.stringify(this.projectRequirementsStore));
-  reqs.push(newReq);
-  this.editProjectStore.dispatch(new edipProjectActions.SetEditProjectProjectRequirements(reqs));
-  
+  this.projectRequirementsStore.push(newReq);
+  this.updatePRStore();
+  this.requirementAbstractControl?.setValue('');
   
 }
 
 // AUGMENT REQUIREMENTS
 
-// toggleRemoveRequirement(a: ProjectRequirement) {
-//   console.log(a);
-//   a = JSON.parse(JSON.stringify(a)) as ProjectRequirement;
-// if (a.stateHistory[0] == editState.OK) {
-//   console.log('HERE');
-//   a.editState = a.editState == editState.OK? editState.REMOVE: editState.OK;
-//   console.log(a);
-// }
-// else {
-//   console.log('THERE', a);
-//   a.editState = a.editState == editState.ADD? editState.REMOVE: editState.ADD;
-//   console.log(a);
-// }
-
-//   console.log('the requirement ' + a.id + ' is marked for removal: ' + a.editState);
-//  }
-// // 
-//   getReqState(b: string) {
-
-//     console.log('HELLO MARKY MARK & THE FUNKY BUNCH', b);
-//     switch (b) {
-//       case editState.ADD: 
-//         return 'markedForAdd';
-//       case editState.REMOVE:
-//         return 'markedForRemoval'
-//       case editState.OK:
-//         return 'unmarked';
-//       default:
-//         return 'unmarked';
-//     }
-//   }
-
-
-
-
-
-  toggleRemoveRequirement(a: ProjectRequirement) {
+toggleRemoveRequirement(a: ProjectRequirement) {
     console.log(a);
+    // DO A DEEP COPY OF the PR because it is readonly because of NGRX
     let b = JSON.parse(JSON.stringify(a)) as ProjectRequirement;
   if (b.stateHistory[0] === editState.OK) {
     console.log('HERE');
-    b.editState = b.editState == editState.OK? editState.REMOVE: editState.OK;
-    console.log('pre', this.projectRequirementsStore);
-    this.projectRequirementsStore.pop(); 
-    let _projectRequirementsStore = this.projectRequirementsStore.filter(i => i.id === b.id).pop() ;
-    console.log('post', this.projectRequirementsStore);
-    this.projectRequirementsStore.push(b);
-    console.log(b);
-    console.log(this.projectRequirementsStore);
-  }
+    // TOGGLE STATE
+    b.editState = a.editState == editState.OK? editState.REMOVE: editState.OK; }
+ 
   else {
     console.log('THERE', a);
-    a.editState = a.editState == editState.ADD? editState.REMOVE: editState.ADD;
-    console.log(a);
+    // TOGGLE STATE
+    b.editState = a.editState == editState.ADD? editState.REMOVE: editState.ADD;
+
   }
+    // ADD TO STATE HISTORY
+    b.stateHistory.push(b.editState);
+    console.log('pre', this.projectRequirementsStore);
+    
+    // DROP a FROM PRStore and replace it with b
+    this.projectRequirementsStore = this.projectRequirementsStore.filter(i => i.id !== a.id);
+    this.projectRequirementsStore.push(b);
+    console.log('post filter & push', this.projectRequirementsStore);
+    
+    // UPDATE STORE
+   this.updatePRStore();
+  
   
     console.log('the requirement ' + b.id + ' is marked for removal: ' + b.editState);
    }
-  // 
-    getReqState(b: string) {
   
-      console.log('HELLO MARKY MARK & THE FUNKY BUNCH', this.projectRequirementsStore);
+
+  getReqState(b: string): string {
       switch (b) {
         case editState.ADD: 
           return 'markedForAdd';
@@ -161,10 +129,13 @@ addRequirement() {
         default:
           return 'unmarked';
       }
-    }
+}
 
 
-
+  updatePRStore() {
+    this.editProjectStore.dispatch(new edipProjectActions.SetEditProjectProjectRequirements(this.projectRequirementsStore));
+    console.log('post dispatch', this.projectRequirementsStore);
+  }
 
 
   createRequirement(): ProjectRequirement {
