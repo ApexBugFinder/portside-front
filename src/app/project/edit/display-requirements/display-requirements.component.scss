@@ -48,7 +48,8 @@ margin: 0 0 30px 0;
 .addReqContainer {
 display: flex;
 flex-direction: row;
-margin-top: 30px;
+margin-top: 50px;
+margin-bottom: 50px;
 
 justify-content: space-between;
 
@@ -85,4 +86,11 @@ p.unmarked {
 textarea#requirement {
     border: 0.5px solid lightgrey;
     line-height: 1.5rem;
+}
+
+mat-list-item.displayReqListItem {
+  margin: 10px 0px;
+}
+mat-list-item.addReqListItem {
+  margin: 30px 0px;
 }

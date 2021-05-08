@@ -61,8 +61,9 @@
                     />
                   </div>
                 </div>
-              </div>
-              <div class="contentSection">
+            </div>
+            
+            <div class="contentSection">
                 <div class="descriptionTitleContainer">
                   <div class="descriptionTitle">
                     <h4>Project Description</h4>
@@ -77,26 +78,28 @@
                     class="descriptionTextInput"
                   />
                 </div>
-              </div>
+            </div>
 
-              <div class="contentSection">
+            <div class="contentSection">
                 <div class="requirementsTitleContainer">
                   <div class="requirementsTitle">
                     <h4>Project Requirements</h4>
                   </div>
                 </div>
 
-               <app-display-requirements></app-display-requirements>
+            <app-display-requirements></app-display-requirements>
       
 
 
             </div> 
 
-
-            <app-action-buttons
-            (closeDiaglog)="closeDialog($event)"
-            ></app-action-buttons>
-            </div> <!--  closes viewProjectContainer  -->
+            <div class="contentSection">
+              <app-action-buttons (closeDiaglog)="closeDialog($event)" ></app-action-buttons>
+            </div>
+            
+            
+          
+          </div> <!--  closes viewProjectContainer  -->
         </form>
          
     </div>
