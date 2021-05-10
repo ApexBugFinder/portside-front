@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProjectCardComponent } from './project-card/project-card.component';
 import { ViewProjectComponent } from './view-project/view-project.component';
-import { EditProjectComponent } from './edit-project/edit-project.component';
-import { AddProjectComponent } from './add-project/add-project.component';
+
+
 import { ProjectService } from './project.service';
 import { SharedModule } from '../helpers/shared.module';
 import { MaterialModule } from '../helpers/material.module';
@@ -21,14 +21,15 @@ import { ProjectStatusSectionComponent } from './edit/project-status-section/pro
 import { ActionButtonsComponent } from './edit/action-buttons/action-buttons.component';
 import { editProjectReducer } from './edit/state/edit-project.reducer';
 import { DisplayRequirementsComponent } from './edit/display-requirements/display-requirements.component';
-
+import { EffectsModule } from '@ngrx/effects';
+import { EditProjectEffects } from './edit/state/edit-project.effects';
 
 @NgModule({
   declarations: [
     ProjectCardComponent,
     ViewProjectComponent,
-    EditProjectComponent,
-    AddProjectComponent,
+
+
     
     InputRequirementsComponent,
     GitLinkComponent,
@@ -44,15 +45,16 @@ import { DisplayRequirementsComponent } from './edit/display-requirements/displa
   ],
   imports: [
     SharedModule, 
-    StoreModule.forFeature('editProject', editProjectReducer),
+    StoreModule.forFeature('projects', projectReducers),
+    EffectsModule.forFeature([EditProjectEffects, ]),
     ReactiveFormsModule, 
     ImageModule ],
- entryComponents: [ViewProjectComponent, EditProjectComponent],
+ entryComponents: [ViewProjectComponent, EditShellComponent],
   exports: [
     ProjectCardComponent,
     ViewProjectComponent,
-    EditProjectComponent,
-    AddProjectComponent,
+   
+
   ],
   providers: [
     { provide: 'PROJECT_SERVICE', useClass: ProjectService }

@@ -10,6 +10,7 @@ import { Store, select } from '@ngrx/store';
 import * as fromEditProject from '../../edit/state';
 import * as edipProjectActions from '../../edit/state/edit-project.actions';
 import { Observable } from 'rxjs';
+import { ProjectCardComponent } from '../../project-card/project-card.component';
 
 @Component({
   selector: 'app-icons-section',
@@ -33,12 +34,12 @@ export class IconsSectionComponent implements OnInit {
   linkView = linkview;
   linkEditor: linkview;
   
-  projectLinks$: Observable<ProjectLink[]>;
-  projectLinksStore: ProjectLink[];
-  projectID$: Observable<string>;
-  projectIDStore: string;
-  projectCreatorID$: Observable<string>;
-  projectCreatorIDStore: string;
+  projectLinks$: Observable<ProjectLink[]  | undefined>;
+  projectLinksStore: ProjectLink[]  | undefined;
+  projectID$: Observable<string  | undefined> ;
+  projectIDStore: string  | undefined;
+  projectCreatorID$: Observable<string  | undefined>;
+  projectCreatorIDStore: string  | undefined;
   
   @Output() closeDialog: EventEmitter<string> = new EventEmitter<string>();
   
@@ -96,28 +97,30 @@ export class IconsSectionComponent implements OnInit {
 
   newGitLinkToProcess(link: ProjectLink) {
     console.log('ProjectLinks in store: ', this.projectLinksStore);
-    this.projectLinksStore.filter(i => i.id == link.id).pop();
+    this.projectLinksStore?.filter(i => i.id == link.id).pop();
     console.log('ProjectLinks in store: ', this.projectLinksStore);
-    this.projectLinksStore.push(link);
+    this.projectLinksStore?.push(link);
     console.log('ProjectLinks in store: ', this.projectLinksStore);
     // update using ngrx store
+    if (this.projectLinksStore)
     this.editProjectStore.dispatch(new edipProjectActions.SetEditProjectProjectLinks(this.projectLinksStore));
   }
 
   newSiteLinkToProcess(link: ProjectLink) {
     console.log('ProjectLinks in store: ', this.projectLinksStore);
-    this.projectLinksStore.filter(i => i.id == link.id).pop();
+    this.projectLinksStore?.filter(i => i.id == link.id).pop();
     console.log('ProjectLinks in store: ', this.projectLinksStore);
-    this.projectLinksStore.push(link);
+    this.projectLinksStore?.push(link);
     console.log('ProjectLinks in store: ', this.projectLinksStore);
      // update using ngrx store
+     if(this.projectLinksStore)
      this.editProjectStore.dispatch(new edipProjectActions.SetEditProjectProjectLinks(this.projectLinksStore));
   }
 
-  initializeLinks(myProjectLinks: ProjectLink[]) {
+  initializeLinks(myProjectLinks: ProjectLink[] | undefined) {
     console.log('HELLO, lets initialize links');
     console.log(myProjectLinks);
-    myProjectLinks.forEach(uu => {
+    myProjectLinks?.forEach(uu => {
       if (uu.service == 'git') {
         this.GitLink = uu;
       }
@@ -126,25 +129,34 @@ export class IconsSectionComponent implements OnInit {
       }
   
     });
-    if (myProjectLinks.filter(i=> i.service =='git').length == 0){
+    if (myProjectLinks?.filter(i=> i.service =='git').length == 0){
       let newGitLink: ProjectLink = {
         id: '',
-        projectID: this.projectIDStore,
+        projectID: this.projectIDStore as string,
         service: 'git',
         link: ''
   
       };
       this.GitLink = newGitLink;
+      if (myProjectLinks.length === 0 || myProjectLinks === null) {
+        myProjectLinks = [];
+        myProjectLinks.push(newGitLink);
+      }
       myProjectLinks.push(newGitLink);
     }
-    if (myProjectLinks.filter(i => i.service == 'site').length == 0) {
+    if (myProjectLinks?.filter(i => i.service == 'site').length == 0) {
       let newSiteLink: ProjectLink = {
         id: '',
-        projectID: this.projectIDStore,
+        projectID: this.projectIDStore as string,
         service: 'site',
         link: ''
       };
       this.SiteLink = newSiteLink;
+      if (myProjectLinks.length === 0 || myProjectLinks === null) {
+        myProjectLinks = [];
+        myProjectLinks.push(newSiteLink);
+      }
+      myProjectLinks.push(newSiteLink);
       myProjectLinks.push(newSiteLink);
     }
     console.log('HELLO, links initialized');

@@ -3,6 +3,24 @@ import { Project, ProjectLink, ProjectRequirement } from '../../project';
 import { EditShellComponent } from '../edit-shell.component';
 
 export enum EditProjectActionTypes {
+    LOAD_PROJECTS_FROM_DB = '[PROJECT PAGE] LOAD PROJECTS FROM DB',
+    LOAD_PROJECTS_FROM_DB_SUCCESS = '[PROJECT PAGE] LOAD PROJECTS FROM DB SUCCESSFULL',
+    LOAD_PROJECTS_FROM_DB_FAIL = '[PROJECT PAGE] LOAD PROJECTS FROM DB FAILED',
+
+    SAVE_EDITPROJECT_TO_DB = '[EDIT PROJECT] SAVE EDIT PROJECT TO DB',
+    SAVE_EDITPROJECT_TO_DB_SUCCESS = '[EDIT PROJECT] SAVE EDIT PROJECT TO DB WAS SUCCESSFULL',
+    SAVE_EDITPROJECT_TO_DB_FAIL = '[EDIT PROJECT] SAVE EDIT PROJECT TO DB FAILED',
+
+    UPDATE_EDITPROJECT_TO_DB = '[EDIT PROJECT] UPDATE EDIT PROJECT TO DB',
+    UPDATE_EDITPROJECT_TO_DB_SUCCESS = '[EDIT PROJECT] UPDATE EDIT PROJECT TO DB WAS SUCCESSFULL',
+    UPDATE_EDITPROJECT_TO_DB_FAIL = '[EDIT PROJECT] UPDATE EDIT PROJECT TO DB FAILED',
+
+
+    DELETE_EDITPROJECT_TO_DB = '[EDIT PROJECT] DELETE EDIT PROJECT TO DB',
+    DELETE_EDITPROJECT_TO_DB_SUCCESS = '[EDIT PROJECT] DELETE EDIT PROJECT TO DB WAS SUCCESSFULL',
+    DELETE_EDITPROJECT_TO_DB_FAIL = '[EDIT PROJECT] DELETE EDIT PROJECT TO DB FAILED',
+
+    
     SET_ORIGINALPROJECT = '[EDIT PROJECT] SET ORIGINAL PROJECT',
     SET_EDITPROJECT = '[EDIT PROJECT] SET EDIT PROJECT',
     SET_EDITPROJECT_ID = '[EDIT PROJECT] SET EDIT PROJECT ID',
@@ -34,7 +52,7 @@ export enum EditProjectActionTypes {
     CLEAR_EDITPROJECT_PROJECT_LINKS = '[EDIT PROJECT] CLEAR EDIT PROJECT PROJECT LINKS',
 
 
-    UPDATE_EDITPROJECT = '[EDIT PROJECT] UPDATE EDIT PROJECT',
+    UPDATE_EDITPROJECT = '[EDIT PROJECT] UPDATE EDIT PROJECT',    
     UPDATE_EDITPROJECT_ID = '[EDIT PROJECT] UPDATE EDIT PROJECT ID',
     UPDATE_EDITPROJECT_PROJECTCREATOR_ID = '[EDIT PROJECT] UPDATE EDIT PROJECT PROJECT CREATOR ID',
     
@@ -54,6 +72,7 @@ export enum EditProjectActionTypes {
 }
 
 // SET ACTIONS
+
 export class SetOriginalProject implements Action {
     readonly type = EditProjectActionTypes.SET_ORIGINALPROJECT;
     constructor(public payload: Project) {}
@@ -208,6 +227,69 @@ export class ResetEditProject implements Action {
     readonly type = EditProjectActionTypes.RESET_EDIT_PROJECT;
 
 }
+
+
+// EFFECT ACTIONS
+export class SaveEditProjectToDB implements Action {
+    readonly type = EditProjectActionTypes.SAVE_EDITPROJECT_TO_DB;
+}
+
+export class SaveEditProjectToDBSuccess implements Action {
+    readonly type = EditProjectActionTypes.SAVE_EDITPROJECT_TO_DB_SUCCESS;
+    constructor(public payload: Project) {}
+}
+
+export class SaveEditProjectToDBFail implements Action {
+    readonly type = EditProjectActionTypes.SAVE_EDITPROJECT_TO_DB_FAIL;
+    constructor(public payload: string) {}
+}
+
+
+export class UpdateEditProjectToDB implements Action {
+    readonly type = EditProjectActionTypes.UPDATE_EDITPROJECT_TO_DB;
+    constructor(public payload: Project) {}
+}
+
+export class UpdateEditProjectToDBSuccess implements Action {
+    readonly type = EditProjectActionTypes.UPDATE_EDITPROJECT_TO_DB_SUCCESS;
+    constructor(public payload: Project) {}
+}
+
+export class UpdateEditProjectToDBFail implements Action {
+    readonly type = EditProjectActionTypes.UPDATE_EDITPROJECT_TO_DB_FAIL;
+    constructor(public payload: string) {}
+}
+
+export class DeleteEditProjectToDB implements Action {
+    readonly type = EditProjectActionTypes.DELETE_EDITPROJECT_TO_DB;
+    constructor(public payload: string) {}
+}
+
+export class DeleteEditProjectToDBSuccess implements Action {
+    readonly type = EditProjectActionTypes.DELETE_EDITPROJECT_TO_DB_SUCCESS;
+    constructor(public payload: Project) {}
+}
+
+export class DeleteEditProjectToDBFail implements Action {
+    readonly type = EditProjectActionTypes.DELETE_EDITPROJECT_TO_DB_FAIL;
+    constructor(public payload: string) {}
+}
+
+
+export class LoadProjectsByProjectCreatorIDFromDB implements Action {
+    readonly type = EditProjectActionTypes.LOAD_PROJECTS_FROM_DB;
+    constructor(public payload: string) {}
+}
+
+export class LoadProjectsByProjectCreatorIDFromDBSuccess implements Action {
+    readonly type = EditProjectActionTypes.LOAD_PROJECTS_FROM_DB_SUCCESS;
+    constructor(public payload: Project[]) {}
+}
+
+export class LoadProjectsByProjectCreatorIDFromDBFail implements Action {
+    readonly type = EditProjectActionTypes.LOAD_PROJECTS_FROM_DB_FAIL;
+    constructor(public payload: string) {}
+}
 export type EditProjectActions = SetOriginalProject
                             // SET EDIT_PROJECT
                             |   SetEditProject
@@ -234,8 +316,8 @@ export type EditProjectActions = SetOriginalProject
                             |   ClearEditProjectIsPublished
                             |   ClearEditProjectProjectRequirements
                             |   ClearEditProjectProjectLinks
-                             
-                            // UPDATE EDIT_PROJECT
+                          
+                            // UPDATE EDIT_PROJECT TO DB
                             |   UpdateEditProjectId
                             |   UpdateEditProjectProjectCreatorID
                             |   UpdateEditProjectStartDate
@@ -246,6 +328,22 @@ export type EditProjectActions = SetOriginalProject
                             |   UpdateEditProjectIsPublished
                             |   UpdateEditProjectProjectRequirements
                             |   UpdateEditProjectProjectLinks
-
                             |   ResetEditProject
+
+                            // EFFECTS
+                            |   SaveEditProjectToDB
+                            |   SaveEditProjectToDBSuccess
+                            |   SaveEditProjectToDBFail
+                               
+                            |   UpdateEditProjectToDB
+                            |   UpdateEditProjectToDBSuccess
+                            |   UpdateEditProjectToDBFail
+
+                            |   DeleteEditProjectToDB
+                            |   DeleteEditProjectToDBSuccess
+                            |   DeleteEditProjectToDBFail
+
+                            |   LoadProjectsByProjectCreatorIDFromDB
+                            |   LoadProjectsByProjectCreatorIDFromDBSuccess
+                            |   LoadProjectsByProjectCreatorIDFromDBFail
                             ;

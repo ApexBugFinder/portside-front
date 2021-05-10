@@ -1,21 +1,21 @@
 export interface Project {
-  id: string;
-  projectCreatorID: string;
-  projectName: string;
+  id?: string;
+  projectCreatorID?: string;
+  projectName?: string;
   started?: Date;
   completed?: Date;
-  description: string;
-  banner: string;
-  smallBanner: string;
-  published: boolean;
-  projectRequirements: ProjectRequirement[];
-  projectLinks: ProjectLink[];
+  description?: string;
+  banner?: string;
+  smallBanner?: string;
+  published?: boolean;
+  projectRequirements?: ProjectRequirement[] | undefined;
+  projectLinks?: ProjectLink[] | undefined;
 }
 export interface ProjectLink {
-  id: string;
-  link: string;
-  service: string;
-  projectID: string;
+  id?: string;
+  link?: string;
+  service?: string;
+  projectID?: string;
 }
 
 export const defaultProjectLink: ProjectLink = {
@@ -31,17 +31,18 @@ export enum editState {
   ADD = 'add'
 }
 export interface ProjectRequirement {
-  id: string;
-  projectID: string;
-  requirement?: string;
-  editState: string;
-  stateHistory: [string];
+  id: string | undefined;
+  projectID: string | undefined;
+  requirement: string  | undefined;
+  editState: string  | undefined;
+  stateHistory: [string]  | undefined;
 }
 export const defaultProjectRequirement: ProjectRequirement = {
   id: 'defaultProjectReq1',
   projectID: 'defaultProjectReq1',
   stateHistory: [editState.OK],
-  editState: editState.OK
+  editState: editState.OK,
+  requirement: 'default'
 };
 
 export const defaultProject: Project = {

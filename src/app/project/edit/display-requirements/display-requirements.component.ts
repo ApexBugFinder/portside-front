@@ -15,10 +15,10 @@ import { Observable, throwError } from 'rxjs';
 })
 export class DisplayRequirementsComponent implements OnInit {
 
-  projectID$: Observable<string>;
-  projectIDStore: string;
+  projectID$: Observable<string | undefined>;
+  projectIDStore: string | undefined;
   
-  projectRequirements$: Observable<ProjectRequirement[]>;
+  projectRequirements$: Observable<ProjectRequirement[] | undefined>;
   projectRequirementsStore: ProjectRequirement[];
 
   requirementForm: FormGroup;
@@ -47,7 +47,7 @@ export class DisplayRequirementsComponent implements OnInit {
       error: err => console.log('OOps sorry, error occured getting projectId from store in DisplayRequirements component: ', err),
       complete: () => console.log('Completed getting projectID from ngrx store in DisplayRequirements component')
     });
-    this.projectIDStore = '1234';
+    
     console.log(this.projectIDStore);
    // this.initializeProjectRequirements();
     
@@ -62,7 +62,7 @@ initializeProjectRequirements() {
   this.projectRequirementsStore.forEach(j => {
     console.log(j.editState);
       j.editState = editState.OK;
-      j.stateHistory.push(j.editState);
+      j.stateHistory?.push(j.editState);
       console.log('pre: ', j.stateHistory);
       
       console.log('post: ', j.stateHistory);
@@ -88,8 +88,10 @@ addRequirement() {
 
 toggleRemoveRequirement(a: ProjectRequirement) {
     console.log(a);
+
     // DO A DEEP COPY OF the PR because it is readonly because of NGRX
-    let b = JSON.parse(JSON.stringify(a)) as ProjectRequirement;
+    let b = JSON.parse(JSON.stringify(a)) ;
+
   if (b.stateHistory[0] === editState.OK) {
     console.log('HERE');
     // TOGGLE STATE
@@ -102,7 +104,7 @@ toggleRemoveRequirement(a: ProjectRequirement) {
 
   }
     // ADD TO STATE HISTORY
-    b.stateHistory.push(b.editState);
+    b.stateHistory?.push(b.editState);
     console.log('pre', this.projectRequirementsStore);
     
     // DROP a FROM PRStore and replace it with b
@@ -115,6 +117,7 @@ toggleRemoveRequirement(a: ProjectRequirement) {
   
   
     console.log('the requirement ' + b.id + ' is marked for removal: ' + b.editState);
+
    }
   
 
@@ -141,7 +144,7 @@ toggleRemoveRequirement(a: ProjectRequirement) {
   createRequirement(): ProjectRequirement {
     let thisRequirement: ProjectRequirement = {
       id: Guid.create().toString(),
-      projectID: this.projectIDStore,
+      projectID: this.projectIDStore as string,
       requirement: this.requirementAbstractControl?.value,
       editState: editState.ADD,
       stateHistory: [editState.ADD] 

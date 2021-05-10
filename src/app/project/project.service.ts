@@ -4,7 +4,10 @@ import { Router } from '@angular/router';
 import { Observable, of, pipe} from 'rxjs';
 import { map, timeout } from 'rxjs/operators';
 import { Constants } from '../helpers/Constants';
-import { Project  } from './project';
+import { Project, ProjectRequirement  } from './project';
+import { Store, select } from '@ngrx/store';
+import * as fromProject from './state';
+import * as projectActions from './state/project.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +20,7 @@ export class ProjectService {
   private apiRt;
   private clientRt;
   
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private projectStore: Store<fromProject.State>) {
     this.ctlrName = 'projects/';
     this.apiRt = Constants.apiRoot;
     this.apiAddress  = this.apiRt + this.ctlrName;
@@ -28,7 +31,7 @@ export class ProjectService {
 
 
 // CREATE PROJECT
-  public createItem(item: Project) : Observable<Project> {
+  public createItem(item: Project | undefined) : Observable<Project> {
 this.hdrs = new HttpHeaders();
   //  const urlAddress = this.apiAddress;
     const address = this.apiAddress + "new";
@@ -47,13 +50,15 @@ this.hdrs = new HttpHeaders();
      {headers: hdrs}
     ).pipe(map((newProject: Project) => {
       console.log('New Project added to DB: ', newProject);
+      // Update NGRX state
+      this.projectStore.dispatch(projectActions.addProject({project: newProject}));
       return newProject;
     }));
   }
 // CREATE LINKS
 
   // READ ALL PROJECTS BY USER
- public readAll(id: string): Observable<Project[]> {
+ public readAll(id: string | undefined): Observable<Project[]> {
 
     const address = 'all/' + Constants.userID;
     const urlAddress = this.apiAddress + address;
@@ -71,7 +76,21 @@ this.hdrs = new HttpHeaders();
       .pipe(
         timeout(2000),
         map((usersProjects: Project[]) => {
-        console.log('User\'s Projects Found:  ' + usersProjects );
+        console.log('User\'s Projects Found:  ' + JSON.stringify(usersProjects) );
+        // this.projectStore.dispatch(projectActions.addProjects({projects: usersProjects}));
+        usersProjects.forEach(up => {up?.projectRequirements?.forEach((ij: ProjectRequirement) => {
+          
+          
+          let p = JSON.stringify(ij.editState);
+          console.log(p);
+          
+            ij.stateHistory = [ij.editState as string];
+       
+          
+          console.log(ij.stateHistory);
+          
+        })
+      });
         
      
         
@@ -82,7 +101,7 @@ this.hdrs = new HttpHeaders();
 
 
   // GET PROJECT BY ID
-public readItem(id: string): Observable<Project> {
+public readItem(id: string | undefined): Observable<Project> {
 
     const address = id;
     const urlAddress = this.apiAddress + address;
@@ -108,11 +127,10 @@ this.hdrs = new HttpHeaders()
 
 
 //  UPDATE PROJECT
-public updateItem(item: Project) : Observable<Project> {
+public updateItem(item: Project | undefined) : Observable<Project> {
+  
+    const urlAddress = this.apiAddress + item?.id;
 
-
-    const urlAddress = this.apiAddress + item.id;
-item.projectCreatorID = Constants.userID;
  const hdrs = new HttpHeaders()
   .set('Access-Control-Allow-Origin',  [this.apiRt, this.apiAddress, Constants.clientRoot])
   .set('Access-Control-Allow-Methods', ['PUT','POST','DELETE', 'GET'])
@@ -126,7 +144,7 @@ item.projectCreatorID = Constants.userID;
       item,
       { headers: hdrs }
     ).pipe(
-      timeout(2000),
+ //     timeout(2000),
       map((updatedItem: Project) => {
       console.log('Updated Item: ', updatedItem);
       return updatedItem;
@@ -135,8 +153,8 @@ item.projectCreatorID = Constants.userID;
 
 
   // DELETE PROJECT
-public deleteItem(id: string): Observable<Project> {
-
+public deleteItem(id: string | undefined): Observable<Project> {
+    console.log('HELLO');
     const address = id;
     const urlAddress = this.apiAddress + id;
     this.hdrs = new HttpHeaders();

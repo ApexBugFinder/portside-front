@@ -6,3 +6,24 @@
     margin-bottom: 30px;
     
 }
+button.actionButton {
+   border-radius: 20px;
+    
+}
+.resetButton {
+    background-color: var(--accent3Color);
+    color: white;
+}
+.deleteButton {
+    background-color: var(--accent3Color);
+}
+
+.saveButton {
+    background-color: var(--accent2Color);
+
+}
+
+.publishButton {
+background-color: var(--accent1Color);
+border: 1px solid var(--accent3Color);
+}

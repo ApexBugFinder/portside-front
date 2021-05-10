@@ -36,17 +36,17 @@ interface ViewProjectDialogData {
 })
 export class EditShellComponent implements OnInit {
   
-  projectID$: Observable<string>;
-  projectIDStore: string;
-  projectCreatorID$: Observable<string>;
-  projectCreatorIDStore: string;
-  projectBanner$: Observable<string>;
-  projectBannerStore: string;
+  projectID$: Observable<string  | undefined>;
+  projectIDStore: string   | undefined;
+  projectCreatorID$: Observable<string  | undefined>;
+  projectCreatorIDStore: string  | undefined;
+  projectBanner$: Observable<string  | undefined>;
+  projectBannerStore: string  | undefined;
 
-  projectName$: Observable<string>;
-  projectNameStore: string;
-  projectDescription$: Observable<string>;
-  projectDescriptionStore: string;
+  projectName$: Observable<string  | undefined>;
+  projectNameStore: string  | undefined;
+  projectDescription$: Observable<string  | undefined>;
+  projectDescriptionStore: string  | undefined;
 
 
 
@@ -109,8 +109,7 @@ export class EditShellComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    // this.projectID$.subscribe(value => this.projectIDStore = value);
-    // this.projectName$.subscribe(value => this.projectNameStore = value);
+
  this.projectID$.subscribe({
    next: value => {
      this.projectIDStore = value
@@ -217,26 +216,6 @@ this.monitorForControlChanges();
       }
     }
 
-    // LINKS
-    //======================================
-    // newGitLinkToProcess(link: ProjectLink) {
-    //   // REMOVE GIT SERVICE FROM PROJECTLINKS AND ADD NEW GIT LINK FROM GIT LINK EDITOR
-    //   console.log('Hello Made it to the top'); 
-    //   this.localProject.projectLinks = this.localProject.projectLinks.filter(i => i.service !== 'git');
-    //   this.gitLink = link;
-    //   // UPDATE LOCAL STORE
-    //   this.localProject.projectLinks.push(link);
-    
-      
-    // }
-    
-    // newSiteLinkToProcess(link: ProjectLink) {
-    //   // REMOVE SITE SERVICE FROM PROJECT LINKS AND ADD NEW SITE LINK EDITOR
-    //   this.localProject.projectLinks = this.localProject.projectLinks.filter(i => i.service !== 'site');
-    //   // UPDATE LOCAL STORE
-    //   this.localProject.projectLinks.push(link);
-    //   this.siteLink = link;
-    // }
     
 
     // IMAGES
@@ -246,7 +225,7 @@ this.monitorForControlChanges();
       this.editProjectStore.dispatch(new edipProjectActions.SetEditProjectSmallBanner(returnUrl));
 
       /// TODO: might not need these below
-      this.localProject.smallBanner = returnUrl;
+     
       this.smallBannerAbstractControl?.setValue(returnUrl);
       
     }
@@ -256,143 +235,17 @@ this.monitorForControlChanges();
 
       this.editProjectStore.dispatch(new edipProjectActions.SetEditProjectBigBanner(returnUrl));
 
-      this.localProject.banner = returnUrl;
+   
       this.bannerAbstractControl?.setValue(returnUrl);
      
     }
 
-    // SAVE
 
-    // CLEAR
-
-    // PUBLISH
-
-    // DELETE
     
-    // DB ACTIONS
-    
-    
-    // HELPERS
-    // LINKSS 
-// ==========================
-// initializeLinks() {
-//   console.log('HELLO, lets initialize links');
-//   console.log(this.localProject.projectLinks);
-//   this.localProject.projectLinks?.forEach(uu => {
-//     if (uu.service == 'git') {
-//       this.gitLink = uu;
-//     }
-//     if (uu.service =='site') {
-//       this.siteLink = uu
-//     }
-
-//   });
-//   if (this.localProject.projectLinks.filter(i=> i.service =='git').length == 0){
-//     let newGitLink: ProjectLink = {
-//       id: '',
-//       projectID: this.localProject.id,
-//       service: 'git',
-//       link: ''
-
-//     };
-//     this.gitLink = newGitLink;
-//     this.localProject.projectLinks.push(newGitLink);
-//   }
-//   if (this.localProject.projectLinks.filter(i => i.service == 'site').length == 0) {
-//     let newSiteLink: ProjectLink = {
-//       id: '',
-//       projectID: this.localProject.id,
-//       service: 'site',
-//       link: ''
-//     };
-//     this.siteLink = newSiteLink;
-//     this.localProject.projectLinks.push(newSiteLink);
-//   }
-//   console.log('HELLO, links initialized');
-//   console.log(this.localProject.projectLinks);
-// }
 
 
-// MANAGE REQUIREMENTS
-//============================================================
-// INITIALIZE REQUIREMENTS
-// initializeProjectRequirements() {
-//   this.localProject.projectRequirements.forEach(j => {
-//       j.editState = editState.OK;
-//       j.stateHistory = [editState.OK];
-      
-      
-//     });
-//     console.log('ProjectRequirements after Augment from initializeProjectRequirements: ', this.localProject);
-// }
 
-// // ADD A REQUIREMENT
 
-// addRequirement(a: string) {
-//   let newReq: ProjectRequirement = this.createRequirement();
-
-//   this.localProject.projectRequirements.push(newReq);
-//   console.log(
-//     'these the local project requirements: ',
-//     JSON.stringify(this.localProject.projectRequirements)
-//   );
-// }
-
-// // AUGMENT REQUIREMENTS
-
-// toggleRemoveRequirement(a: ProjectRequirement) {
-// if (a.stateHistory[0] == editState.OK) {
-//   console.log('HERE');
-//   a.editState = a.editState == editState.OK? editState.REMOVE: editState.OK;
-// }
-// else {
-//   console.log('THERE');
-//   a.editState = a.editState == editState.ADD? editState.REMOVE: editState.ADD;
-// }
-
-//   console.log('the requirement ' + a.id + ' is marked for removal: ' + a.editState);
-//  }
-// // 
-  
-// createRequirement(): ProjectRequirement {
-//   let thisRequirement: ProjectRequirement = {
-//     id: Guid.create().toString(),
-//     projectID: this.localProject.id,
-//     requirement: this.requirementAbstractControl?.value,
-//     editState: editState.ADD,
-//     stateHistory: [editState.ADD] 
-//   };
-//   return thisRequirement;
-// }
-
-buildFinalProject(): Project {
-
-  let a: Project = {
-    id: this.idAbstractControl?.value,
-    projectCreatorID: this.localProject.projectCreatorID,
-    projectName: this.projectNameAbstractControl?.value,
-    started: this.startedAbstractControl?.value,
-    completed: this.completedAbstractControl?.value,
-    description: this.descriptionAbstractControl?.value,
-    banner: this.bannerAbstractControl?.value,
-    smallBanner: this.smallBannerAbstractControl?.value,
-    published: this.publishedAbstractControl?.value,
-    
-  
-    projectRequirements: this.localProject.projectRequirements,
-    projectLinks: this.localProject.projectLinks,
-  };
-
-  console.log('Project Creator: ', a.projectCreatorID);
-  return a;
-}
-
-// getMediaLocation(): string {
-
-//   let location:string = '';
-//   location = 'users/'+ this.projectCreatorIDStore + '/projects/' + this.projectIDStore;
-//   return location;
-// }
 
 getClass(): string {
   let typeOfClass: string = '/projects/';

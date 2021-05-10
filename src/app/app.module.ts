@@ -11,8 +11,11 @@ import { RouterModule } from '@angular/router';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { ProjectModule } from './project/project.module';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
+
+
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -22,6 +25,7 @@ import { environment } from 'src/environments/environment';
     BrowserAnimationsModule,
     SharedModule, 
     StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       name: 'App Demo DevTools',
       maxAge: 25,

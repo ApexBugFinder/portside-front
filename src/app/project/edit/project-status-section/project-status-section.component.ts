@@ -22,8 +22,8 @@ export class ProjectStatusSectionComponent implements OnInit {
   completed$: Observable<Date | undefined>;
   completed: Date | undefined;
 
-  published$: Observable<boolean>;
-  published: boolean
+  published$: Observable<boolean  | undefined>;
+  published: boolean  | undefined;
 
 
   startedAbstractControl: AbstractControl | null;

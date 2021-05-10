@@ -2,18 +2,19 @@ import { Project, ProjectLink, ProjectRequirement, defaultProject, defaultProjec
 import { EditProjectActions, EditProjectActionTypes } from './edit-project.actions';
 
 export interface EditProjectState {
-    originalProject: Project;
-    id: string;
-    projectCreatorID: string;
-    projectName: string;
+    originalProject?: Project | undefined;
+    id?: string;
+    projectCreatorID?: string;
+    projectName?: string;
     started?: Date;
     completed?: Date;
-    description: string;
-    banner: string;
-    smallBanner: string;
-    published: boolean;
-    projectRequirements: ProjectRequirement[ ];
-    projectLinks: ProjectLink[];
+    description?: string;
+    banner?: string;
+    smallBanner?: string;
+    published?: boolean;
+    projectRequirements?: ProjectRequirement[ ];
+    projectLinks?: ProjectLink[];
+    error?: string;
 
 }
 
@@ -30,7 +31,7 @@ const initialState: EditProjectState = {
     published: false,
     projectRequirements: [defaultProjectRequirement],
     projectLinks: [defaultProjectLink],
-  
+    error: ''
     
 
 
@@ -250,16 +251,72 @@ export function editProjectReducer(state = initialState, action: EditProjectActi
         case EditProjectActionTypes.RESET_EDIT_PROJECT:
             return {
                 ...state,
-                id: state.originalProject.id,
-                projectCreatorID: state.originalProject.projectCreatorID,
-                started: state.originalProject.started,
-                completed: state.originalProject.completed,
-                description: state.originalProject.description,
-                banner: state.originalProject.banner,
-                smallBanner: state.originalProject.smallBanner,
-                published: state.originalProject.published,
-                projectRequirements: state.originalProject.projectRequirements,
-                projectLinks: state.originalProject.projectLinks
+                id: state.originalProject?.id,
+                projectCreatorID: state.originalProject?.projectCreatorID,
+                started: state.originalProject?.started,
+                completed: state.originalProject?.completed,
+                description: state.originalProject?.description,
+                banner: state.originalProject?.banner,
+                smallBanner: state.originalProject?.smallBanner,
+                published: state.originalProject?.published,
+                projectRequirements: state.originalProject?.projectRequirements,
+                projectLinks: state.originalProject?.projectLinks
+            };
+
+        case EditProjectActionTypes.LOAD_PROJECTS_FROM_DB_SUCCESS:
+            return {
+                ...state,
+                // It adds the Projects through a second action to the Projects State to the NGRX entity
+            };
+
+        case EditProjectActionTypes.LOAD_PROJECTS_FROM_DB_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            };
+        case EditProjectActionTypes.SAVE_EDITPROJECT_TO_DB_SUCCESS:
+            return {
+                ...state,
+                originalProject: action.payload,
+                id: action.payload.id,
+                projectCreatorID: action.payload.projectCreatorID,
+                projectName: action.payload.projectName,
+                started: action.payload.started,
+                completed: action.payload.completed,
+                description: action.payload.description,
+                banner: action.payload.banner,
+                smallBanner: action.payload.smallBanner,
+                published: action.payload.published,
+                projectRequirements: action.payload.projectRequirements,
+                projectLinks: action.payload.projectLinks
+            };
+        case EditProjectActionTypes.SAVE_EDITPROJECT_TO_DB_FAIL:
+            return {
+                    ...state,
+                    error: action.payload
+            };
+        case EditProjectActionTypes.UPDATE_EDITPROJECT_TO_DB_SUCCESS:
+            return {
+               
+                ...state,
+                originalProject: action.payload,
+                id: action.payload.id,
+                projectCreatorID: action.payload.projectCreatorID,
+                projectName: action.payload.projectName,
+                started: action.payload.started,
+                completed: action.payload.completed,
+                description: action.payload.description,
+                banner: action.payload.banner,
+                smallBanner: action.payload.smallBanner,
+                published: action.payload.published,
+                projectRequirements: action.payload.projectRequirements,
+                projectLinks: action.payload.projectLinks
+            };
+        
+        case EditProjectActionTypes.UPDATE_EDITPROJECT_TO_DB_FAIL:
+            return {
+                ...state,
+                error: action.payload
             };
         default: 
             return state;

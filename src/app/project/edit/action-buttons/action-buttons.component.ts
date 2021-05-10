@@ -17,8 +17,8 @@ export class ActionButtonsComponent implements OnInit {
   finalProject$: Observable<any>;
   finalProjectStore: Project;
 
-  editProjectPublished$: Observable<boolean>;
-  editProjectPublishedStore: boolean;
+  editProjectPublished$: Observable<boolean | undefined>;
+  editProjectPublishedStore: boolean | undefined;
 
   constructor(private editProjectStore: Store<fromEditProject.EditProjectState>) {
     this.finalProject$ = this.editProjectStore.pipe(select(fromEditProject.getEditProject));
@@ -51,23 +51,23 @@ export class ActionButtonsComponent implements OnInit {
  clearChanges() {
  
   this.editProjectStore.dispatch(new editProjectActions.ResetEditProject());
+  this.closeEditShellDialog();
 }
 
 // DELETE PROJECT
 deleteProject() {
-  // EFFECTS
-// console.log('Beginning DELETE PROCESS for project: ', this.localProject.id);
-// this.projectService.deleteItem(this.localProject.id).subscribe(i => {
-//   this.dialogRef.close();
-// });
+
+  this.editProjectStore.dispatch(new editProjectActions.DeleteEditProjectToDB(this.finalProjectStore.id as string));
+  this.closeEditShellDialog()
 
 }
 
 // MANAGE FORM
 // PUBLISH PROJECT && SAVE
 publishToggleProject() {
-  
+  console.log('HELLO');
   this.updateIsPublished().then(() => {
+    console.log('HELLO');
     this.saveProject();
 
   })
@@ -81,29 +81,17 @@ saveProject() {
 
   // first Save Project to DB
   // EFFECTS
+  if (this.finalProjectStore.id === '') {
+    this.editProjectStore.dispatch(new editProjectActions.SaveEditProjectToDB()); 
+  } else {
+
+    
+    this.editProjectStore.dispatch(new editProjectActions.UpdateEditProjectToDB(this.finalProjectStore));
+  }
   
   // then close Dialog
   this.closeEditShellDialog();
  
- 
- 
-  // this.finalProject = this.buildFinalProject();
-  
-  // // IF new proect Create Project if updating project Update Project
-  // if (this.finalProject.id == '') {
-  //   console.log(
-  //     'this is the new project to be saved to DB: ',
-  //     JSON.stringify(this.finalProject)
-  //   );
-  //   this.createNewProject(this.finalProject);
-    
-  // } else {
-  //   console.log(
-  //     'this is the project to be updated in the DB: ',
-  //     JSON.stringify(this.finalProject)
-  //   );
-  //   this.updateProject(this.finalProject);
-  // }
 }
 
 updateIsPublished(): Promise<any> {

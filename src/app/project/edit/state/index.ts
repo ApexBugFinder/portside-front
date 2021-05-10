@@ -1,7 +1,8 @@
 import * as fromRoot from '../../../state/app.state';
 import * as fromEditProject from './edit-project.reducer';
 import {createFeatureSelector, createSelector } from '@ngrx/store';
-
+import * as fromProject from '../../state'
+import {ProjectModuleState, selectProjectModuleState} from '../../state'
 
 
 export interface EditProjectState extends fromRoot.State {
@@ -12,72 +13,73 @@ export interface EditProjectState extends fromRoot.State {
 const getEditProjectFeatureState = createFeatureSelector<fromEditProject.EditProjectState>('editProject');
 
 export const getOriginalProject = createSelector(
-    getEditProjectFeatureState,
-    state => state.originalProject
+    selectProjectModuleState,
+    state => state.editProject.originalProject
 );
 
 export const getEditProjectId = createSelector (
-    getEditProjectFeatureState,
-    state => state.id
+    selectProjectModuleState,
+    state => state.editProject.id
 );
 
 export const getEditProjectProjectCreatorID = createSelector (
-    getEditProjectFeatureState,
-    state => state.projectCreatorID
+    selectProjectModuleState,
+    state => state.editProject.projectCreatorID
 );
 
 export const getEditProjectProjectName = createSelector (
-    getEditProjectFeatureState,
-    state => state.projectName
+    selectProjectModuleState,
+    state => state.editProject.projectName
 )
 export const getEditProjectStartDate = createSelector (
-    getEditProjectFeatureState,
-    state => state.started
+    selectProjectModuleState,
+    state => state.editProject.started
 );
 
 export const getEditProjectCompleteDate = createSelector (
-    getEditProjectFeatureState,
-    state => state.completed
+    selectProjectModuleState,
+    state => state.editProject.completed
 );
 export const getEditProjectDescription = createSelector (
-    getEditProjectFeatureState,
-    state => state.description
+    selectProjectModuleState,
+    state => state.editProject.description
 );
 export const getEditProjectBigBanner = createSelector (
-    getEditProjectFeatureState,
-    state => state.banner
+    selectProjectModuleState,
+    state => state.editProject.banner
 );
 export const getEditProjectSmallBanner = createSelector (
-    getEditProjectFeatureState,
-    state => state.smallBanner
+    selectProjectModuleState,
+    state => state.editProject.smallBanner
 );
 export const getEditProjectIsPublished = createSelector (
-    getEditProjectFeatureState,
-    state => state.published
+    selectProjectModuleState,
+    state => state.editProject.published
 );
 export const getEditProjectProjectRequirements = createSelector (
-    getEditProjectFeatureState,
-    state => state.projectRequirements
+    selectProjectModuleState,
+    state => state.editProject.projectRequirements
 );
 export const getEditProjectProjectLinks = createSelector (
-    getEditProjectFeatureState,
-    state => state.projectLinks
+    selectProjectModuleState,
+    state => state.editProject.projectLinks
 );
 
 export const getEditProject = createSelector (
-    getEditProjectFeatureState,
+    selectProjectModuleState,
     state => {
-        state.id,
-        state.projectCreatorID,
-        state.projectName,
-        state.description,
-        state.started,
-        state.completed,
-        state.banner,
-        state.smallBanner,
-        state.published,
-        state.projectLinks,
-        state.projectRequirements
-        
+     return {   
+        id: state.editProject.id,
+        projectCreatorID: state.editProject.projectCreatorID,
+        projectName: state.editProject.projectName,
+        description: state.editProject.description,
+        started: state.editProject.started,
+        completed: state.editProject.completed,
+        banner: state.editProject.banner,
+        smallBanner: state.editProject.smallBanner,
+        published: state.editProject.published,
+        projectLinks: state.editProject.projectLinks,
+        projectRequirements: state.editProject.projectRequirements
+     }
     } 
 );
