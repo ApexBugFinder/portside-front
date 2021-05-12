@@ -1,7 +1,9 @@
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { defaultProject, Project }     from '../project';
-import { Action, createReducer, on } from '@ngrx/store';
+import { defaultProject, Project }     from '../models/project';
+import { Action, createReducer, createSelector, on } from '@ngrx/store';
 import * as ProjectActions from '../state/project.actions';
+import { selectAllProjects, selectCurrentProjectId } from '.';
+import { ɵCompiler_compileModuleAndAllComponentsSync__POST_R3__ } from '@angular/core';
 
 
 export interface State extends EntityState<Project> {
@@ -9,7 +11,7 @@ export interface State extends EntityState<Project> {
    ids: string[];
    entities: {[key: string]:Project | undefined};
   // additional state property
-  selectedProjectId: string;
+  selectedProjectId: string | '';
 
   
 }
@@ -18,17 +20,21 @@ export function selectProjectId(a:Project): string {
     return a.id as string;
 }
 export function sortByDateStarted(a: Project, b: Project): number {
-    let c = a.started as Date;
-    if ((a.started as Date).getDate > (b.started as Date).getDate) {
-         return 1;
-    }else {
-        return 0;
-    }
+  let compare = (a.started?.valueOf()) as number - (b.started?.valueOf() as number);
+  if (compare > 1) {
+       return 1;
+  }
+  else if (compare < 1) {
+      return -1
+  }
+  else {
+      return 0;
+  }
 }
 export const adapter: EntityAdapter<Project> = createEntityAdapter<Project>(
     {
         selectId: selectProjectId,
-        
+        sortComparer: sortByDateStarted
         // sortComparer: sortByDateStarted,
     }
 );
@@ -37,8 +43,8 @@ export const initialState: State = adapter.getInitialState({
     // additional entity state properties
     selectedProjectId: '',
     ids: [],
-    entities: {  }
-
+    entities: {  },
+  
 
   });
    
@@ -82,6 +88,7 @@ export const initialState: State = adapter.getInitialState({
     }),
   
     on(ProjectActions.loadProjects, (state, { projects }) => {
+      
       return adapter.setAll(projects,state);
     }),
     
@@ -98,10 +105,17 @@ export const initialState: State = adapter.getInitialState({
   }
 
   export const getSelectedProjectId = (state: State) => state.selectedProjectId;
+
+  export const selectCurrentProject = createSelector(
+    selectAllProjects,
+    selectCurrentProjectId,
+    (projects, projectId: string) => projects.find(i => i?.id == projectId)
+  );
   export const getentities = (state: State) => Object.values(state.entities);
 
  export const selectAlld = (state: State) => {
    const allProjects = Object.values(state.entities);
+   
    console.log(allProjects);
    return allProjects;
  }

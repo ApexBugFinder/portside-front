@@ -11,7 +11,7 @@ import * as fromEditProject from './';
 
 
 import { ProjectService } from '../../project.service';
-import { Project } from '../../project';
+import { Project } from '../../models/project';
 import { merge, Observable, of } from "rxjs";
 import { Update } from "@ngrx/entity";
 

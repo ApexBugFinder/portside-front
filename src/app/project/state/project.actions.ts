@@ -2,7 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import { Update, EntityMap, EntityMapOne, Predicate } from '@ngrx/entity';
 
 
-import { Project } from '../project';
+import { Project } from '../models/project';
 
 export const selectProject = createAction('[Projects Page] Select Project', props<{ projectId: string }>());
 export const selectProjectsByProjectCreatorID = createAction('[Projects Page] Select Projects By ProjectCreator', props<{ projectCreatorID: string }>());

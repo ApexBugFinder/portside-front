@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
-import { linkview, ProjectLink,  } from '../../project';
+import { ProjectLink, linkview } from '../../models/projectLink';
+
 
 @Component({
   selector: 'app-site-link',

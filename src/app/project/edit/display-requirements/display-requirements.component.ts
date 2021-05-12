@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, AbstractControl, FormBuilder } from '@angular/forms';
 import { Guid } from 'guid-typescript';
-import { editState, Project, ProjectRequirement } from '../../project';
+import { ProjectRequirement } from '../../models/projectRequirement';
+import { editState } from '../../../shared/models/shared';
+
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Store, select } from '@ngrx/store';
 import * as fromEditProject from '../../edit/state';

@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { Observable, of, pipe} from 'rxjs';
 import { map, timeout } from 'rxjs/operators';
 import { Constants } from '../helpers/Constants';
-import { Project, ProjectRequirement  } from './project';
+import { Project  } from './models/project';
+import { ProjectRequirement } from './models/projectRequirement';
 import { Store, select } from '@ngrx/store';
 import * as fromProject from './state';
 import * as projectActions from './state/project.actions';
@@ -48,7 +49,9 @@ this.hdrs = new HttpHeaders();
     address,
       item,
      {headers: hdrs}
-    ).pipe(map((newProject: Project) => {
+    ).pipe(
+      timeout(2000),
+      map((newProject: Project) => {
       console.log('New Project added to DB: ', newProject);
       // Update NGRX state
       this.projectStore.dispatch(projectActions.addProject({project: newProject}));

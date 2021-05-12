@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ExperienceService } from './experience.service';
+import { ExperienceShellComponent } from './experience-shell/experience-shell.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ExperienceShellComponent
+  ],
   imports: [
     CommonModule
   ], 

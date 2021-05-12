@@ -1,9 +1,92 @@
 <div class="shellContainer">
     <div class="shellContent">
-        <div class="actionButtons"></div>
+        <div class="actionButtons">
+            <app-action-buttons [myClass]="pageClass" (addClassSignal)="createExperience()"></app-action-buttons>
+        </div>
         <div class="experienceContent">
 
+            <div class="experienceContainer">
+                <div class="infoContainer">
+                    <div class="infoContent">
+                        <div class="infoTitle">Company:</div>
+                        <div class="infoData">
+                            <div class="dataContainer">
+                                <!-- <div class="logo"></div> -->
+                                <div class="name">UPS</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="infoContainer">
+                    <div class="infoContent">
+                        <div class="infoTitle">Title:</div>
+                        <div class="infoData">UPS Package Loader</div>
+                    </div>
+                </div>
+                <div class="infoContainer">
+                    <div class="infoContent">
+                        <div class="infoTitle">Duration:</div>
+                        <div class="infoData">03/2017 - 01/2018</div>
+                    </div>
+                </div>
+                <div class="infoContainer">
+                    <div class="infoContent">
+                        <div class="infoTitle">Location:</div>
+                        <div class="infoData">San Diego, CA</div>
+                    </div>
+                </div>
+                <div class="infoContainer">
+                    <div class="infoContent">
+                        <div class="infoTitle">Role:</div>
+                        <div class="infoData">
+                            <div class="dataContainer">
+                                <div class="role">
+                                    <p>
+                                    Part time - loading trucks for delivery
+                                    </p>
+                                </div>
+                                <div class="role">Seasonal - helping drivers deliver during the holiday season</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="infoContainer edit">
+                    <div class="infoContent">
+                        <div class="infoTitle"></div>
+                        <div class="infoData">
+                            <div class="editContainer">
+                                <fa-icon class="addClassIcon"  [icon]="editIcon" ></fa-icon>
+                                <p>Edit Experience</p>
+                            </div>
+                           
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+
             
+
+        </div>
+<div class="experienceCtroller">
+                <div class="experienceControllerContent">
+                    <p>&lt;</p>
+                    <p>3</p> 
+                    <p>of</p> 
+                    <p>3</p>
+                    <p class="gapper">&gt;</p>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+
+
+
+
+
 <!-- <div id="g_id_onload"
      data-client_id="896122756583-u21hkavku4lf10sa3au0n34glgpljbv5.apps.googleusercontent.com"
      data-login_uri="http://localhost:4200"
@@ -17,7 +100,3 @@
      data-shape="rectangular"
      data-logo_alignment="left">
 </div> -->
-        </div>
-
-    </div>
-</div>

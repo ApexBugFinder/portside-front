@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, of, pipe} from 'rxjs';
 import { map, timeout } from 'rxjs/operators';
 import { Constants } from '../helpers/Constants';
-import { Experience } from './experience';
+import { Experience } from './Models/experience';
 
 
 @Injectable({
@@ -19,7 +19,7 @@ export class ExperienceService {
   private clientRt;
 
   constructor(private http: HttpClient) { 
-    this.ctlrName = 'experiences/';
+    this.ctlrName = 'Experiences/';
     this.apiRt = Constants.apiRoot;
     this.apiAddress = this.apiRt + this.ctlrName;
     this.hdrs = new HttpHeaders();
@@ -29,14 +29,14 @@ export class ExperienceService {
   }
 
   // CREATE EXPERIENCE
-  public createItem(item: Experience) : Observable<Experience> {
+  public createItem(item: Experience | undefined) : Observable<Experience> {
     this.hdrs = new HttpHeaders();
 
         const address = this.apiAddress + "new";
-    
+        console.log('item to send: ', item);
         this.hdrs = new HttpHeaders()
           .set('Access-Control-Allow-Origin', [this.apiRt, this.apiAddress, Constants.clientRoot])
-          .set('Access-Control-Allow-Methods', ['PUT','POST','DELETE', 'GET'])
+          .set('Access-Control-Allow-Methods', ['PUT','POST',])
           .set('content-type', 'application/json');
     
         this.printServiceInfo(address, item, this.hdrs);
@@ -45,7 +45,7 @@ export class ExperienceService {
           item,
          {headers: this.hdrs}
         ).pipe(
-          timeout(2000),
+         
           map((newExperience: Experience) => {
           console.log('New Experience added to DB: ', newExperience);
           return newExperience;

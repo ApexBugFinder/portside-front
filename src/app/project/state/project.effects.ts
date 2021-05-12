@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Project } from '../project';
+import { Project } from '../models/project';
 import * as fromProject from './';
 import * as projectActions from './project.actions';
 import { Store, select } from '@ngrx/store';

@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { defaultProject, Project } from '../project';
+import { defaultProject, Project } from '../models/project';
 import {
   MatDialog,
   MatDialogRef,

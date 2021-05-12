@@ -11,23 +11,21 @@ import * as fromEditProject from '../edit/state';
 import * as fromProject from '../state';
 import * as edipProjectActions from '../edit/state/edit-project.actions';
 
-
-
-import { Constants } from 'src/app/helpers/Constants';
-
-import { defaultProject, editState, Project, ProjectRequirement, linkview, ProjectLink } from '../project';
-
+// Models
+import { Project} from '../models/project';
+import { ProjectLink } from '../models/projectLink';
 import { ProjectService } from '../project.service';
-import { Guid } from 'guid-typescript'
+interface ViewProjectDialogData {
+  project: Project;
+}
+
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 
 
 
-interface ViewProjectDialogData {
-  project: Project;
-}
+
 
 @Component({
   selector: 'app-edit-shell',

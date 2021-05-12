@@ -5,8 +5,8 @@ import { ViewProjectComponent } from './view-project/view-project.component';
 
 
 import { ProjectService } from './project.service';
-import { SharedModule } from '../helpers/shared.module';
-import { MaterialModule } from '../helpers/material.module';
+import { SharedModule } from '../shared/shared.module';
+import { MaterialModule } from '../shared/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { InputRequirementsComponent } from './edit/input-requirements/input-requirements.component';

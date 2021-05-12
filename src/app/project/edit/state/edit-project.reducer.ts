@@ -1,5 +1,10 @@
-import { Project, ProjectLink, ProjectRequirement, defaultProject, defaultProjectRequirement, defaultProjectLink  } from '../../project';
+import { Project,   defaultProject  } from '../../models/project';
+
 import { EditProjectActions, EditProjectActionTypes } from './edit-project.actions';
+
+import { ProjectLink,  defaultProjectLink } from '../../models/projectLink';
+import { ProjectRequirement, defaultProjectRequirement } from '../../models/projectRequirement';
+
 
 export interface EditProjectState {
     originalProject?: Project | undefined;

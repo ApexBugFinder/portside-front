@@ -1,6 +1,8 @@
 import { Action } from '@ngrx/store';
-import { Project, ProjectLink, ProjectRequirement } from '../../project';
-import { EditShellComponent } from '../edit-shell.component';
+import { Project, } from '../../models/project';
+import { ProjectLink } from '../../models/projectLink';
+import { ProjectRequirement  } from '../../models/projectRequirement';
+
 
 export enum EditProjectActionTypes {
     LOAD_PROJECTS_FROM_DB = '[PROJECT PAGE] LOAD PROJECTS FROM DB',

@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
 import { Constants } from 'src/app/helpers/Constants';
-import { defaultProject, Project } from 'src/app/project/project';
+import { defaultProject, Project } from 'src/app/project/models/project';
 import { ProjectService } from 'src/app/project/project.service';
 import {
   faPlusCircle,

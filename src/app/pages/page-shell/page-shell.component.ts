@@ -3,7 +3,7 @@ import { Store, select } from '@ngrx/store';
 import * as fromEditProject from '../../project/edit/state';
 import * as editProjectActions from '../../project/edit/state/edit-project.actions';
 import { Observable } from 'rxjs';
-import { Project } from 'src/app/project/project';
+import { Project } from 'src/app/project/models/project';
 import { ThisReceiver } from '@angular/compiler';
 import { Constants } from 'src/app/helpers/Constants';
 

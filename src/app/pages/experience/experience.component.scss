@@ -1,0 +1,100 @@
+.shellContainer {
+    width: 100%;
+
+.shellContent{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    justify-content: flex-end;
+    margin: auto;
+
+    .actionButtons {
+ 
+    height: 60px;
+    width: 100%;
+    
+}
+.experienceContent {
+    
+    height: 500px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+
+
+
+}
+
+}
+.experienceCtroller {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    justify-self: center;
+    justify-content: center;
+    margin-top: 0px;
+    font-family: bio-sans, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 22px;
+    margin:0 auto;
+}
+
+.experienceControllerContent {
+display: flex;
+flex-direction:row;
+column-gap: 60px;
+}
+//EXPERIENCE CONTAINER  ALL WILL BE IT'S OWN COMPONENT
+.experienceContainer{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+    
+    margin: 60px 0 0 0;
+    .infoContainer {
+        justify-content: flex-start;
+        font-family: bio-sans, sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 18px;
+    
+    .infoContent{
+        display: flex;
+        flex-direction: row;
+        column-gap: 30px;
+        color: #707070;
+
+        .infoTitle {
+            width: 140px;
+        }
+        .infoData {
+            .dataContainer {
+                display: flex;
+                flex-direction:column;
+                row-gap: 20px;
+            }
+            .editContainer {
+                display: flex;
+                flex-direction: row;
+                column-gap: 20px;
+                font-family: futura-pt;
+                font-size: 22px;
+            }
+        }
+    }
+    }
+    .edit {
+        margin-top: 20px;
+        
+    }
+}
+
+}
+.addClassIcon {
+    color: darkblue;
+}

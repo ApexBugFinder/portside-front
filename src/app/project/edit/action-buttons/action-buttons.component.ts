@@ -3,7 +3,7 @@ import { Store, select } from '@ngrx/store';
 import * as fromEditProject from '../../edit/state';
 import * as editProjectActions from '../../edit/state/edit-project.actions';
 import { Observable } from 'rxjs';
-import { Project } from '../../project';
+import { Project } from '../../models/project';
 
 
 @Component({
@@ -97,7 +97,8 @@ saveProject() {
 updateIsPublished(): Promise<any> {
   const myPublishPromise = new Promise((resolve, reject) => {
     try{
-      this.editProjectStore.dispatch(new editProjectActions.SetEditProjectIsPublished(!this.editProjectPublishedStore));
+      let newpublished = !this.editProjectPublishedStore;
+      this.editProjectStore.dispatch(new editProjectActions.SetEditProjectIsPublished(newpublished));
       resolve;
     } catch(err) {
       reject(err);

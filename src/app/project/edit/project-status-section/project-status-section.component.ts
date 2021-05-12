@@ -40,9 +40,9 @@ export class ProjectStatusSectionComponent implements OnInit {
       this.completed$ = this.editProjectStore.pipe(select(fromEditProject.getEditProjectCompleteDate));
       this.published$ = this.editProjectStore.pipe(select(fromEditProject.getEditProjectIsPublished));
     this.statusForm = this.fb.group({
-      started: [''],
-      completed: [''],
-      published: ['']
+      started: [this.started],
+      completed: [this.completed],
+      published: [this.published]
     })
   }
 
@@ -58,7 +58,21 @@ export class ProjectStatusSectionComponent implements OnInit {
       complete: () => console.log('Completed getting completeDate from ngrx store in projectStatusSection component')
     });
     this.published$.subscribe({
-      next: value => this.published = value,
+      next: value =>{ 
+        this.published = value
+        
+          this.publishStatusButton = document.getElementById('publishStatusButton');
+          if (this.published) {
+         
+          this.renderer.addClass(this.publishStatusButton, 'publishStatusButtonTrue');
+            this.renderer.setValue(this.publishStatusButton, 'true');
+          } else {
+          this.renderer.removeClass(this.publishStatusButton, 'publishStatusButtonTrue');
+          this.renderer.setValue(this.publishStatusButton, 'false');
+          }
+      
+
+      },
       error: err => console.log('OOps sorry, error occured getting IsPublished from store in projectStatusSection component: ', err),
       complete: () => console.log('Completed getting IsPublished from ngrx store in projectStatusSection component')
     });
@@ -80,16 +94,7 @@ export class ProjectStatusSectionComponent implements OnInit {
     this.completedAbstractControl = this.statusForm.get('completed');
     
     this.publishedAbstractControl = this.statusForm.get('published');
-    this.publishedAbstractControl?.valueChanges.subscribe(selectedValue => {
-      this.publishStatusButton = document.getElementById('publishStatusButton');
-      if (selectedValue) {
-     
-      this.renderer.addClass(this.publishStatusButton, 'publishStatusButtonTrue');
-
-      } else {
-      this.renderer.removeClass(this.publishStatusButton, 'publishStatusButtonTrue');
-      }
-  })
+   
   }
 
   setControls() {
@@ -124,5 +129,10 @@ export class ProjectStatusSectionComponent implements OnInit {
       error: err => console.log('OOPs, sorry there was an error changing Complete Date, ', err),
       complete: () => console.log('Completed: the value of the complete date in project-status section has been changed')
     });
+    
+  }
+  publishChange() {
+    console.log('HAHAHa date changed');
+    
   }
 }

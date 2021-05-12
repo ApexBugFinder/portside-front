@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
-import { linkview, ProjectLink } from '../../project';
+import { ProjectLink, linkview } from '../../models/projectLink';
 import {
   faPenSquare,
   faMinusCircle,

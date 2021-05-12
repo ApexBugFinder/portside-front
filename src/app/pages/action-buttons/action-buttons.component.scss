@@ -1,0 +1,29 @@
+
+.addClassContainer {
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    width: 80%;
+    margin: 20px;
+    justify-content: flex-end;
+  
+  }
+  .fa-plus-circle {
+    color: var(--accent1Color);
+  }
+  
+  .addClassIcon{
+  
+    font-size: 30px;
+    color: var(--accent2Color);
+  
+  
+  }
+  p.iconLabel {
+    font-size: 18px;
+    font-family: futura-pt, sans-serif;
+   margin: auto;
+   padding-top: 5px;
+   text-decoration: underline;
+  
+  }

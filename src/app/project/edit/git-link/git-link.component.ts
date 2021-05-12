@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, AbstractControl, Validators, SelectControlValueAccessor } from '@angular/forms';
-import { linkview, ProjectLink } from '../../project';
+
+import { ProjectLink, linkview } from '../../models/projectLink';
 
 @Component({
   selector: 'app-git-link',

@@ -7,10 +7,12 @@ import { ProjectComponent } from './project/project.component';
 import { EducationComponent } from './education/education.component';
 import { ExperienceComponent } from './experience/experience.component';
 import { PageShellComponent } from './page-shell/page-shell.component';
-import { SharedModule } from '../helpers/shared.module';
+import { SharedModule } from '../shared/shared.module';
 import { ProjectModule } from '../project/project.module';
-import { ProjectCardComponent } from '../project/project-card/project-card.component';
+
 import { ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ActionButtonsComponent } from './action-buttons/action-buttons.component';
 
 
 @NgModule({
@@ -20,7 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     EducationComponent,
     ExperienceComponent,
     PageShellComponent,
-
+    ActionButtonsComponent
 
   ],
   imports: [CommonModule, ReactiveFormsModule, PagesRoutingModule, SharedModule, ProjectModule,  ],
@@ -30,7 +32,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     EducationComponent,
     ExperienceComponent,
     PageShellComponent,
-
+    ActionButtonsComponent
   ],
 })
 export class PagesModule {}
