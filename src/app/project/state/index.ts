@@ -69,14 +69,11 @@ export const selectProjectIds = createSelector(
   export const selectCurrentProject = createSelector(
     selectProjectEntities,
     selectCurrentProjectId,
-    (projectEntities, projectId) => projectEntities[projectId]
+    (projectEntities, projectId) => Object.values(projectEntities).find(i => i?.id == projectId)
   );
 
 
   export const selectAll = createSelector(selectProjectStateFromMod, (state) => (state?.ids as Array<string|number>)?.map(id => state?.entities[id]));
 
 
-  // export const selectIds = createSelector(
-  //   selectProjectState,
-  //   (state: State) => state?.ids);
-  // )
+ 

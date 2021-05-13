@@ -104,21 +104,10 @@ export const initialState: State = adapter.getInitialState({
     return projectReducer(state, action);
   }
 
-  export const getSelectedProjectId = (state: State) => state.selectedProjectId;
 
-  export const selectCurrentProject = createSelector(
-    selectAllProjects,
-    selectCurrentProjectId,
-    (projects, projectId: string) => projects.find(i => i?.id == projectId)
-  );
-  export const getentities = (state: State) => Object.values(state.entities);
+  
 
- export const selectAlld = (state: State) => {
-   const allProjects = Object.values(state.entities);
-   
-   console.log(allProjects);
-   return allProjects;
- }
+
 // get the selectors
 // const {
   

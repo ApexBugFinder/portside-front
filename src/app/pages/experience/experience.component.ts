@@ -28,22 +28,22 @@ export class ExperienceComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.itemToSend = JSON.parse(JSON.stringify(defaultExperience));
-    this.itemToSend.id = '77339c8d-a1cc-4e1c-9ae1-424309852125';
+    // this.itemToSend = JSON.parse(JSON.stringify(defaultExperience));
+    // this.itemToSend.id = '77339c8d-a1cc-4e1c-9ae1-424309852125';
 
 
-    this.role1 = JSON.parse(JSON.stringify(defaultRole));
-    this.role1.id = 'f7169a5d-8e0f-4301-9495-ad5ade7b5803';
-    this.role1.experienceID = this.itemToSend.id;
+    // this.role1 = JSON.parse(JSON.stringify(defaultRole));
+    // this.role1.id = 'f7169a5d-8e0f-4301-9495-ad5ade7b5803';
+    // this.role1.experienceID = this.itemToSend.id;
     
-    this.role2 = JSON.parse(JSON.stringify(defaultRole));
-    this.role2.id = '76af3a13-33e0-4348-adfd-85a6f3b27290';
-    this.role2.experienceID = this.itemToSend.id;
+    // this.role2 = JSON.parse(JSON.stringify(defaultRole));
+    // this.role2.id = '76af3a13-33e0-4348-adfd-85a6f3b27290';
+    // this.role2.experienceID = this.itemToSend.id;
 
-    this.itemToSend.roles?.push(this.role1, this.role2 );
+    // this.itemToSend.roles?.push(this.role1, this.role2 );
     
     
-  this.experienceService.createItem(this.itemToSend).subscribe(value => {
+  this.experienceService.deleteItem('621C8318-DCFE-4050-A7F5-8D96EDF2BB54').subscribe(value => {
     console.log('create value returned: ', value);
   })
   }
