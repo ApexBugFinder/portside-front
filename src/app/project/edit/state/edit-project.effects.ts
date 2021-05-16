@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from "@angular/core";
+import { Injectable, OnDestroy } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, mergeMap, catchError, tap, switchMap } from 'rxjs/operators';
 import { Store, select } from '@ngrx/store';
@@ -92,23 +92,10 @@ export class EditProjectEffects implements OnDestroy {
                     this.projectStore.dispatch(projectActions.addProjects({projects: payload}));
                     return new editProjectActions.LoadProjectsByProjectCreatorIDFromDBSuccess(payload)                        
                     
-                })
+                }),
+                catchError(err => of(new editProjectActions.LoadProjectsByProjectCreatorIDFromDBFail(err)))
                 
             ))
     ));
-    
-    //     mergeMap((action: editProjectActions.LoadProjectsByProjectCreatorIDFromDBSuccess) =>
-    //         this.projectService.readAll(action.payload)
-    //         .pipe(
-    //             switchMap((res) => [
-                    
-    //             ])
-    //         )
-    //     switchMap((res) => [
-    //         new projectActions.addProjects(res),
-    //         new editProjectActions.LoadProjectsByProjectCreatorIDFromDBSuccess(res)
-    //     ])
-
-        
-    // );
+            
 }

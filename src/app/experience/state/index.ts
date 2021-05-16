@@ -4,15 +4,15 @@ import * as fromRoot from '../../state/app.state';
 import * as fromExperienceData from './experience.reducer';
 import {  selectExperienceEntityDataState } from '../index';
 import { selectCurrentProjectId } from 'src/app/project/state';
+import * as fromExperienceRoot from '../index';
 
-export interface State extends fromRoot.State {
 
-    experienceEntityState: fromExperienceData.State
-}
 
 // SELECTors
 
-
+export interface ExperienceDataState extends fromExperienceRoot.ExperienceModuleState {
+    experienceData: fromExperienceData.State;
+}
 
 export const selectExperienceIds = createSelector(
     selectExperienceEntityDataState,
@@ -41,7 +41,7 @@ export const selectCurrentExperienceId = createSelector(
     (state) => state.selectedExperienceId
 );
 
-export const selectCurrentProject = createSelector(
+export const selectCurrentExperience = createSelector(
     selectExperienceEntities,
     selectCurrentExperienceId,
     (experienceEntities, experienceId) => Object.values(experienceEntities).find(i=> i?.id == experienceId)

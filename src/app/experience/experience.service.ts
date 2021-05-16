@@ -109,11 +109,11 @@ public readItem(id: string): Observable<Experience> {
 
 
 //  UPDATE Experience
-public updateItem(item: Experience) : Observable<Experience> {
+public updateItem(item: Experience | undefined) : Observable<Experience> {
 
 
-  const urlAddress = this.apiAddress + item.id;
-  item.projectCreatorID = Constants.userID;
+  const urlAddress = this.apiAddress + item?.id;
+  // item.projectCreatorID = Constants.userID as string;
   
   this.hdrs = new HttpHeaders()
   .set('Access-Control-Allow-Origin',  [this.apiRt, this.apiAddress, this.clientRt])
@@ -137,7 +137,7 @@ public updateItem(item: Experience) : Observable<Experience> {
 
 
   // DELETE Experience
-public deleteItem(id: string): Observable<Experience> {
+public deleteItem(id: string | undefined): Observable<Experience> {
 
     const address = id;
     const urlAddress = this.apiAddress + id;

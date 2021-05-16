@@ -2,9 +2,10 @@ import { createSelector } from '@ngrx/store';
 import { selectExperienceModuleState, selectExperienceShellState } from '../..';
 import * as fromRoot from '../../../state/app.state';
 import * as fromExperienceShell from './experience-shell.reducer';
+import * as fromExperiencesRoot from '../../index';
 
 
-export interface ExperienceShellState extends fromRoot.State {
+export interface ExperienceShellState extends fromExperiencesRoot.ExperienceModuleState{
     experienceShell: fromExperienceShell.ExperienceShellState;
 }
 

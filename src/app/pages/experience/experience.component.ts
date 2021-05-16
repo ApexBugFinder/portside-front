@@ -7,7 +7,16 @@ import { ExperienceService } from 'src/app/experience/experience.service';
 import { Constants } from 'src/app/helpers/Constants';
 import { Guid } from 'guid-typescript';
 import { defaultRole, Role } from 'src/app/experience/Models/role';
+import { Observable, of } from 'rxjs';
 
+import { Store, select }from '@ngrx/store';
+import * as fromExperienceData from '../../experience/state';
+import * as fromExperienceShell from '../../experience/experience-shell/state';
+import * as experienceDataActions from '../../experience/state/experience.actions';
+import * as experienceShellActions from '../../experience/experience-shell/state/experience-shell.actions';
+import * as fromExperiences from '../../experience';
+import {first, takeUntil, distinctUntilChanged } from 'rxjs/operators';
+import { InvokeMethodExpr, ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-experience',
@@ -15,40 +24,107 @@ import { defaultRole, Role } from 'src/app/experience/Models/role';
   styleUrls: ['./experience.component.scss']
 })
 export class ExperienceComponent implements OnInit {
-
+  experienceData$: Observable<(Experience | undefined)[]>;
+  experienceDataTotal$: Observable<Number>;
+  currentExperience$: Observable<Experience>;
+  currentExperience: Experience;
+  experienceDataTotal: Number;
+  experienceData: (Experience | undefined) [];
   role1: Role;
   role2: Role;
   itemToSend: Experience;
+  first: boolean = false;
+  focalPoint: number = 0;
 
-  editIcon = faPencilAlt;
   pageClass= "Experience";
-  constructor(private experienceService: ExperienceService) { 
-    
+  constructor(private experienceService: ExperienceService,
+    private experienceDataStore: Store<fromExperienceData.ExperienceDataState>,
+    private experienceShellStore: Store<fromExperienceShell.ExperienceShellState>) { 
+    this.experienceData$ = this.experienceDataStore.pipe(select(fromExperienceData.selectAllExperiences));
+    this.currentExperience$ = this.experienceShellStore.pipe(select(fromExperienceShell.getCurrentExperience));
+    this.experienceDataTotal$ = this.experienceDataStore.pipe(select(fromExperienceData.selectExperiencesTotal));
   }
 
 
   ngOnInit(): void {
-    // this.itemToSend = JSON.parse(JSON.stringify(defaultExperience));
-    // this.itemToSend.id = '77339c8d-a1cc-4e1c-9ae1-424309852125';
+  // this.experienceData$.pipe().subscribe({
+  //     next: (value) => {
+  //       this.experienceData = (value) as Experience[];
+       
+        
+       
+  //       console.log('My experiences called from DB into experiences Component Page', value);
+  //      return value;
+  //      },
+  //     error: err => console.log('OOps sorry, error occured getting the user\'s experiences from store in Experiences component: ', err),
+  //     complete: () => console.log('Completed getting user\'s Experiences from ngrx store in Experiences component')
+  //   });
+  this.currentExperience$.subscribe({
+    next: (value: Experience) => {
+      this.currentExperience = value;
+    },
+    error: err => console.log('OOps sorry, error occured getting the user\'s current experience from store in Experiences component: ', err),
+    complete: () => console.log('Completed getting user\'s Current Experiences from ngrx store in Experiences component')
+  });
+  this.experienceData$.subscribe({
+    next: (value) => {
+      this.experienceData = (value) as Experience[];
+      this.focusExperience();
+      
+     
+      console.log('My experiences called from DB into experiences Component Page', value);
+     return value;
+     },
+    error: err => console.log('OOps sorry, error occured getting the user\'s experiences from store in Experiences component: ', err),
+    complete: () => console.log('Completed getting user\'s Experiences from ngrx store in Experiences component')
+  });
+    this.experienceDataTotal$.subscribe({
+      next: (value) => {
+        this.experienceDataTotal = (value);
+        
+        console.log('Total Number of experiences called from DB into NGRX state into experiences Component Page', value);
+       return value;
+       },
+      error: err => console.log('OOps sorry, error occured getting the Total of user\'s Experiences from store in Experiences component: ', err),
+      complete: () => console.log('Completed getting user\'s Experiences from ngrx store inExperiences component')
+    });
 
-
-    // this.role1 = JSON.parse(JSON.stringify(defaultRole));
-    // this.role1.id = 'f7169a5d-8e0f-4301-9495-ad5ade7b5803';
-    // this.role1.experienceID = this.itemToSend.id;
     
-    // this.role2 = JSON.parse(JSON.stringify(defaultRole));
-    // this.role2.id = '76af3a13-33e0-4348-adfd-85a6f3b27290';
-    // this.role2.experienceID = this.itemToSend.id;
-
-    // this.itemToSend.roles?.push(this.role1, this.role2 );
-    
-    
-  this.experienceService.deleteItem('621C8318-DCFE-4050-A7F5-8D96EDF2BB54').subscribe(value => {
-    console.log('create value returned: ', value);
-  })
   }
 
   createExperience() {
 
+  }
+ 
+  focusExperience() {
+    if (this.currentExperience.id === '1234' && this.experienceData.length> 0) {
+      let focalPoint = 0;
+      this.experienceShellStore.dispatch(new experienceShellActions.SetCurrentExperience(this.experienceData[focalPoint] as Experience));
+    }
+    
+    
+  }
+
+  upOneExperience() {
+    console.log(JSON.stringify(this.experienceData));
+    let lastFocus = this.experienceData.indexOf(this.currentExperience) +  1;
+    console.log('last focus was: ', lastFocus);
+    console.log('Experience Data Length: ', this.experienceData.length);
+    if (lastFocus < (this.experienceData.length - 1)) {
+      lastFocus++;
+      this.experienceShellStore.dispatch(new experienceShellActions.SetCurrentExperience(this.experienceData[lastFocus] as Experience));
+    }
+    console.log('las focus is now: ', lastFocus);
+  }
+  downOneExperience() {
+    console.log(JSON.stringify(this.experienceData));
+    let lastFocus = this.experienceData.indexOf(this.currentExperience) + 1;
+    console.log('last focus was: ', lastFocus);
+    console.log('Experience Data Length: ', this.experienceData.length);
+    if (lastFocus > 0) {
+      lastFocus--;
+      this.experienceShellStore.dispatch(new experienceShellActions.SetCurrentExperience(this.experienceData[lastFocus] as Experience));
+    }
+    console.log('las focus is now: ', lastFocus);
   }
 }

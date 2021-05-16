@@ -1,1 +1,60 @@
-<p>experience-shell works!</p>
+<div class="experienceContainer">
+    <div class="infoContainer">
+        <div class="infoContent">
+            <div class="infoTitle">Company:</div>
+            <div class="infoData">
+                <div class="dataContainer">
+                    <!-- <div class="logo"></div> -->
+                    <div class="name">{{ (currentExperience$ | async).company }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="infoContainer">
+        <div class="infoContent">
+            <div class="infoTitle">Title:</div>
+            <div class="infoData">{{ (currentExperience$ | async).title }}</div>
+        </div>
+    </div>
+    <div class="infoContainer">
+        <div class="infoContent">
+            <div class="infoTitle">Duration:</div>
+            <div class="infoData">{{(currentExperience$ | async).started | date }} - {{(currentExperience$ | async).completed  | date }}</div>
+        </div>
+    </div>
+    <div class="infoContainer">
+        <div class="infoContent">
+            <div class="infoTitle">Location:</div>
+            <div class="infoData">{{(currentExperience$ | async).city }}, {{(currentExperience$|async).state}}</div>
+        </div>
+    </div>
+    <div class="infoContainer">
+        <div class="infoContent">
+            <div class="infoTitle">Role:</div>
+            <div class="infoData">
+                <div class="dataContainer">
+                    <div *ngFor="let role of (currentExperience$|async).roles" class="role">
+                        <p>
+                        {{ role.myTitle }} - {{ role.myRole}}
+                        </p>
+                    </div>
+                    <div class="role">Seasonal - helping drivers deliver during the holiday season</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="infoContainer edit">
+        <div class="infoContent">
+            <div class="infoTitle"></div>
+            <div class="infoData">
+                <div class="editContainer">
+                    <fa-icon class="addClassIcon"  [icon]="editIcon" ></fa-icon>
+                    <p>Edit Experience</p>
+                </div>
+               
+            </div>
+            
+        </div>
+    </div>
+
+</div>
