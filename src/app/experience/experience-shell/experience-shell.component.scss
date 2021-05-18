@@ -11,6 +11,7 @@
         font-weight: 400;
         font-style: normal;
         font-size: 18px;
+
     
     .infoContent{
         display: flex;
@@ -23,6 +24,7 @@
         }
         .infoData {
             .dataContainer {
+                width: 400px;
                 display: flex;
                 flex-direction:column;
                 row-gap: 20px;

@@ -17,6 +17,8 @@ import * as experienceShellActions from '../../experience/experience-shell/state
 import * as fromExperiences from '../../experience';
 import {first, takeUntil, distinctUntilChanged } from 'rxjs/operators';
 import { InvokeMethodExpr, ThrowStmt } from '@angular/compiler';
+import { MatDialog } from '@angular/material/dialog';
+import { EditModalShellComponent } from 'src/app/experience/editModal/edit-modal-shell/edit-modal-shell.component';
 
 @Component({
   selector: 'app-experience',
@@ -39,6 +41,7 @@ export class ExperienceComponent implements OnInit {
   pageClass= "Experience";
   constructor(private experienceService: ExperienceService,
     private experienceDataStore: Store<fromExperienceData.ExperienceDataState>,
+    public dialog: MatDialog,
     private experienceShellStore: Store<fromExperienceShell.ExperienceShellState>) { 
     this.experienceData$ = this.experienceDataStore.pipe(select(fromExperienceData.selectAllExperiences));
     this.currentExperience$ = this.experienceShellStore.pipe(select(fromExperienceShell.getCurrentExperience));
@@ -93,7 +96,10 @@ export class ExperienceComponent implements OnInit {
   }
 
   createExperience() {
-
+    const dialogRef = this.dialog.open(EditModalShellComponent, {
+      width: '980px',
+      panelClass: 'custom-modalbox'
+    });
   }
  
   focusExperience() {

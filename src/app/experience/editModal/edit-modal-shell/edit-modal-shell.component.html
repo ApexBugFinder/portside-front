@@ -1,0 +1,206 @@
+<div mat-dialog-container>
+    <div mat-dialog-content>
+        <form action="" class="myExperienceForm" [formGroup]="myExperienceForm" >
+            <div class="shellContainer">
+                <div class="shellContent">
+                    <div class="header">
+                        <p>Edit Experiences</p>
+                    <mat-divider class="mat-devider"></mat-divider>
+                   <div class="headerAction">
+                       <div class="headerActionContainer">
+                           <div class="experienceSlider">
+                               <div class="experienceSliderContainer">
+                                   <p>&lt;</p>
+                                   <p>1</p>
+                                   <p>of</p>
+                                   <p>3</p>
+                                   <p>&gt;</p>
+                               </div>
+                           </div>
+                            <button class="addExperiencesButton">Add Experiences</button>
+                       </div>
+                      
+                   </div> 
+                    </div>
+                    
+                    <div class="infoSection">
+                        <div class="infoContainer">
+                            <app-image-getter [Title]="'Logo'" [docID]="id$ | async" [projectCreatorID]="projectCreatorID$ | async"
+                                [typeOfClass]="getClass()" (mediaRtUrl)="processNewLogoUrlRt($event)">
+                            </app-image-getter>
+                            <mat-form-field class="infoContainer">
+                                <mat-label class="infoLabel">Company</mat-label>
+                                <div class="infoData">
+                                    <div class="dataContainer">
+                                        
+                                        <input matInput placeholder="{{company}}" name="company" id="companyId" formControlName="company">
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </mat-form-field>
+                            
+                            <!-- <div class="infoLabel">
+                                <p>Company</p>
+                            </div>
+                            <div class="infoData">
+                                <div class="dataContainer">
+                                    <input type="text" mapInput name="company" id="companyId" formControlName="company" id="">
+                                    <p>{{company$ | async}}</p>
+                                </div>
+                            </div> -->
+                           
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="infoSection">
+                        <div class="infoContainer">
+                            <div class="infoLabel">
+                                <p>Logo:</p>
+                            </div>
+                            <div class="infoData">
+                                <div class="dataContainer"> -->
+                                    <!-- <app-image-getter
+                                    [Title]="'Logo'" 
+                                [docID]="id$ | async"
+                                [projectCreatorID]="projectCreatorID$ | async" 
+                                [typeOfClass]="getClass()"
+                                
+                                (mediaRtUrl)="processNewLogoUrlRt($event)">
+                                    </app-image-getter> -->
+                               
+                                
+                                <!-- </div>
+                            </div>
+                            
+                        </div>
+                    </div> -->
+                    <div class="infoSection">
+                        <div class="infoContainer dateAndTitle">
+                            <mat-form-field class="title">
+                                <mat-label class="infoLabel">Title</mat-label>
+                                <div class="infoData">
+                                    <div class="dataContainer">
+                    
+                                        <input matInput placeholder="{{title}}" name="title" id="titleId" formControlName="title">
+                    
+                                    </div>
+                    
+                                </div>
+                            </mat-form-field>
+                            <div class="duration">
+                    
+                    
+                                <mat-form-field class="infoContainer">
+                                    <mat-label class="infoLabel">Started</mat-label>
+                                    <div class="infoData">
+                                        <div class="dataContainer">
+                    
+                                            <input type="date" matInput placeholder="{{started}}" name="started" id="staredId"
+                                                formControlName="started">
+                    
+                                        </div>
+                    
+                                    </div>
+                                </mat-form-field>
+                                <mat-form-field class=infoContainer>
+                                    <mat-label class="infoLabel">Completed</mat-label>
+                                    <div class="infoData">
+                                        <div class="dataContainer">
+                    
+                                            <input type="date" matInput placeholder="{{completed}}" name="completed" id="completedId"
+                                                formControlName="completed">
+                    
+                                        </div>
+                    
+                                    </div>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="infoSection">
+                        <div class="infoContainer cityAndState">
+                            <mat-form-field class="">
+                                <mat-label class="infoLabel">City</mat-label>
+                                <div class="infoData">
+                                    <div class="dataContainer">
+                    
+                                        <input matInput placeholder="{{city}}" name="city" id="cityId" formControlName="city">
+                    
+                                    </div>
+                    
+                                </div>
+                            </mat-form-field>
+                            <mat-form-field class="infoContainer">
+                                <mat-label class="infoLabel">State</mat-label>
+                                <div class="infoData">
+                                    <div class="dataContainer">
+                    
+                                        <input matInput placeholder="{{state}}" name="state" id="stateId" formControlName="state">
+                    
+                                    </div>
+                    
+                                </div>
+                            </mat-form-field>
+                            
+                        </div>
+                    </div>
+                    <div class="infoSection">
+
+                        
+                        <div class="infoContainer">
+                            <div class="infoLabel roles">
+                                <p>Roles:</p>
+                            </div>
+                            <div class="infoData">
+                                <div class="roleContainer">
+                                    <div *ngFor="let role of (roles$|async)" class="roleContent">
+                                        <p>{{role.myTitle}}</p>
+                                        <p>-</p>
+                                        <p>{{role.myRole}}</p>
+                                    </div>
+                                    
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="infoSection">
+                        <div class="infoContainer">
+                            <mat-form-field class="">
+                                <mat-label class="infoLabel">Role:</mat-label>
+                                <div class="infoData">
+                                    <div class="roleContainer">
+                                        <div class="roleContent">
+                                            <input type="text" matInput class="roleTitle" formControlName="myTitle" id="roleTitleId" name="roleTitle">
+                                            <p>-</p>
+                                            <input matInput type="text"class="roleMyRole" formControlName="myRole" id="roleMyRoleId" name="roleMyRole">
+                                        </div>
+                                        
+                                    </div>
+                    
+                                </div>
+                            </mat-form-field>
+        
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                <div class="actionButtonsSection">
+                        <div class="actionButtonContainer">
+                            <button mat-raised-button class="actionButton deleteButton">Delete</button>
+                            <button mat-raised-button class="actionButton resetButton">Reset</button>
+                            <button mat-raised-button class="actionButton saveButton">Save</button>
+                            <button mat-raised-button class="actionButton publishButton">Publish</button>
+                        </div>
+                    </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>

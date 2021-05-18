@@ -8,7 +8,7 @@ export interface Experience {
     company?: string;
     title?: string;
     logoUrl?: string;
-    started?: Date;
+    started: Date;
     completed?: Date;
     city?: string;
     state?: string;

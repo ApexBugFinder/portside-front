@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import {
   faPencilAlt
   } from '@fortawesome/free-solid-svg-icons';
@@ -6,6 +7,8 @@ import {
 // NGRX
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
+
+import { EditModalShellComponent } from '../editModal/edit-modal-shell/edit-modal-shell.component';
 import { Experience } from '../Models/experience';
 import * as fromExperienceShell from './state/';
 import * as ExperienceShellActions from './state/experience-shell.actions';
@@ -20,11 +23,19 @@ export class ExperienceShellComponent implements OnInit {
   currentExperience$: Observable<Experience | undefined>;
   
 
-  constructor(private experienceShellStore: Store<fromExperienceShell.ExperienceShellState>) {
+  constructor(
+    private experienceShellStore: Store<fromExperienceShell.ExperienceShellState>,
+    public dialog: MatDialog) {
     this.currentExperience$ = this.experienceShellStore.pipe(select(fromExperienceShell.getCurrentExperience));
    }
 
   ngOnInit(): void {
   }
 
+  editExperience() {
+    const dialogRef = this.dialog.open(EditModalShellComponent, {
+      width: '980px',
+      panelClass: 'custom-modalbox'
+    });
+  }
 }

@@ -145,14 +145,12 @@ this.monitorForControlChanges();
   initControls(): void {
     this.idAbstractControl = this.myProjectForm.get('id');
     this.projectNameAbstractControl = this.myProjectForm.get('projectName');
-    // this.startedAbstractControl = this.myProjectForm.get('started');
-    // this.completedAbstractControl = this.myProjectForm.get('completed');
+    
+    
     this.descriptionAbstractControl = this.myProjectForm.get('description');
     this.bannerAbstractControl = this.myProjectForm.get('banner');
     this.smallBannerAbstractControl = this.myProjectForm.get('smallBanner');
-    // this.publishedAbstractControl = this.myProjectForm.get('published');
-    // this.projectLinkAbstractControl = this.myProjectForm.get('projectLink');
-    // this.requirementAbstractControl = this.myProjectForm.get('requirement');
+
 
   }
 
