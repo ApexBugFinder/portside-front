@@ -147,7 +147,7 @@ public updateItem(item: Project | undefined) : Observable<Project> {
       item,
       { headers: hdrs }
     ).pipe(
- //     timeout(2000),
+      timeout(2000),
       map((updatedItem: Project) => {
       console.log('Updated Item: ', updatedItem);
       return updatedItem;

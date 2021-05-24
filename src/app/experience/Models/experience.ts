@@ -13,15 +13,16 @@ export interface Experience {
     city?: string;
     state?: string;
     roles?: Role[];
+    
 }
 
 
 export const defaultExperience: Experience = {
-    id: '',
+    id: 'new',
     projectCreatorID: Constants.userID,
     company: 'default company',
     title: 'Default Title',
-    logoUrl: 'www.google.com',
+    logoUrl: '',
     started: new Date(2021, 4, 12),
     completed: new Date(2021, 5, 2),
     city: 'San Diego',

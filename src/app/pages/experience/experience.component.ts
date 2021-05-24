@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {
-faPencilAlt
+faPencilAlt,
+faAnchor
 } from '@fortawesome/free-solid-svg-icons';
 import { defaultExperience, Experience } from 'src/app/experience/Models/experience';
 import { ExperienceService } from 'src/app/experience/experience.service';
-import { Constants } from 'src/app/helpers/Constants';
-import { Guid } from 'guid-typescript';
+
+
 import { defaultRole, Role } from 'src/app/experience/Models/role';
 import { Observable, of } from 'rxjs';
 
@@ -16,9 +17,11 @@ import * as experienceDataActions from '../../experience/state/experience.action
 import * as experienceShellActions from '../../experience/experience-shell/state/experience-shell.actions';
 import * as fromExperiences from '../../experience';
 import {first, takeUntil, distinctUntilChanged } from 'rxjs/operators';
-import { InvokeMethodExpr, ThrowStmt } from '@angular/compiler';
+
 import { MatDialog } from '@angular/material/dialog';
 import { EditModalShellComponent } from 'src/app/experience/editModal/edit-modal-shell/edit-modal-shell.component';
+import { makeid } from 'src/app/helpers/helperFunctions';
+import { MakeGuid } from '../../helpers/make-guid';
 
 @Component({
   selector: 'app-experience',
@@ -37,7 +40,8 @@ export class ExperienceComponent implements OnInit {
   itemToSend: Experience;
   first: boolean = false;
   focalPoint: number = 0;
-
+  focusedAt: number = 0;
+  faAnchor = faAnchor;
   pageClass= "Experience";
   constructor(private experienceService: ExperienceService,
     private experienceDataStore: Store<fromExperienceData.ExperienceDataState>,
@@ -50,25 +54,19 @@ export class ExperienceComponent implements OnInit {
 
 
   ngOnInit(): void {
-  // this.experienceData$.pipe().subscribe({
-  //     next: (value) => {
-  //       this.experienceData = (value) as Experience[];
-       
-        
-       
-  //       console.log('My experiences called from DB into experiences Component Page', value);
-  //      return value;
-  //      },
-  //     error: err => console.log('OOps sorry, error occured getting the user\'s experiences from store in Experiences component: ', err),
-  //     complete: () => console.log('Completed getting user\'s Experiences from ngrx store in Experiences component')
-  //   });
-  this.currentExperience$.subscribe({
-    next: (value: Experience) => {
-      this.currentExperience = value;
-    },
-    error: err => console.log('OOps sorry, error occured getting the user\'s current experience from store in Experiences component: ', err),
-    complete: () => console.log('Completed getting user\'s Current Experiences from ngrx store in Experiences component')
-  });
+    this.currentExperience$.subscribe({
+      next: (value: Experience) => {
+        this.currentExperience = value;
+        console.log('currentExperience is: ', value);
+        console.log('experienceDatat: ', this.experienceData);
+        if(this.currentExperience && (this.experienceData?.length>0))
+        this.focusedAt = this.experienceData?.findIndex(i => i?.id == this.currentExperience.id);
+        console.log('my new focal point: ', this.focusedAt);
+        console.log('My current experience on Component Page', value);
+      },
+      error: err => console.log('OOps sorry, error occured getting the user\'s current experience from store in Experiences component: ', err),
+      complete: () => console.log('Completed getting user\'s Current Experiences from ngrx store in Experiences component')
+    });
   this.experienceData$.subscribe({
     next: (value) => {
       this.experienceData = (value) as Experience[];
@@ -81,6 +79,7 @@ export class ExperienceComponent implements OnInit {
     error: err => console.log('OOps sorry, error occured getting the user\'s experiences from store in Experiences component: ', err),
     complete: () => console.log('Completed getting user\'s Experiences from ngrx store in Experiences component')
   });
+ 
     this.experienceDataTotal$.subscribe({
       next: (value) => {
         this.experienceDataTotal = (value);
@@ -96,6 +95,22 @@ export class ExperienceComponent implements OnInit {
   }
 
   createExperience() {
+    // SET CURRENT EXPERIENCE AS DEFAULT EXPERIENCE
+    // GET DEFAULT EXPERIENCE
+    let newExp: Experience = JSON.parse(JSON.stringify(defaultExperience));
+    // CREATE  NEW ID WITH 'new-' PREFIX
+    newExp.id = JSON.stringify((new  MakeGuid()).id);
+    this.experienceShellStore.dispatch(new experienceShellActions.SetOriginalExperience(newExp));
+    this.experienceShellStore.dispatch(new experienceShellActions.SaveExperienceToDB);
+
+    
+    
+    
+
+    
+    
+    
+    // OPEN DIALOG OF EDIT MODAL SHELL
     const dialogRef = this.dialog.open(EditModalShellComponent, {
       width: '980px',
       panelClass: 'custom-modalbox'
@@ -112,25 +127,45 @@ export class ExperienceComponent implements OnInit {
   }
 
   upOneExperience() {
-    console.log(JSON.stringify(this.experienceData));
-    let lastFocus = this.experienceData.indexOf(this.currentExperience) +  1;
-    console.log('last focus was: ', lastFocus);
-    console.log('Experience Data Length: ', this.experienceData.length);
-    if (lastFocus < (this.experienceData.length - 1)) {
-      lastFocus++;
-      this.experienceShellStore.dispatch(new experienceShellActions.SetCurrentExperience(this.experienceData[lastFocus] as Experience));
+  console.log(this.currentExperience);
+    // GET INDEX NUMBER OF CURRENT EXPERIENCE
+    console.log('the experienceData: ', this.experienceData);
+    let focusedAtLocal = this.experienceData.findIndex(i => i?.id == this.currentExperience.id);
+    console.log('index number of current Experience: ', focusedAtLocal);
+    // CHECK TO TO SEE IF INDEX NUMBER IS LAST NUMBER
+    let dataArrayLength = this.experienceData.length;
+    console.log('what is the length of data array: ', this.experienceData.length);
+    
+    if (focusedAtLocal < (this.experienceData.length -1 )){
+    // ADD ONE TO INDEX NUMBER  
+      focusedAtLocal ++;
+      console.log('focused new value: ', focusedAtLocal);
+      console.log('new Experience from experienceData: ', this.experienceData[focusedAtLocal]);
+      // GET EXPERIENCE WITH INDENTICAL INDEX NUMBER
+      this.experienceShellStore.dispatch(new experienceShellActions.SetCurrentExperience(this.experienceData[focusedAtLocal] as Experience));
     }
-    console.log('las focus is now: ', lastFocus);
+    
+    
   }
   downOneExperience() {
-    console.log(JSON.stringify(this.experienceData));
-    let lastFocus = this.experienceData.indexOf(this.currentExperience) + 1;
-    console.log('last focus was: ', lastFocus);
-    console.log('Experience Data Length: ', this.experienceData.length);
-    if (lastFocus > 0) {
-      lastFocus--;
-      this.experienceShellStore.dispatch(new experienceShellActions.SetCurrentExperience(this.experienceData[lastFocus] as Experience));
+    console.log('current experience is: ', this.currentExperience);
+    // GET INDEX NUMBER OF CURRENT EXPERIENCE
+    console.log('the experienceData: ', this.experienceData);
+    let focusedAtLocal = this.experienceData.findIndex(i => i?.id == this.currentExperience.id);
+    console.log('index number of current Experience: ', focusedAtLocal);
+    // CHECK TO TO SEE IF INDEX NUMBER IS LAST NUMBER
+    let dataArrayLength = this.experienceData.length;
+    console.log('what is the length of data array: ', this.experienceData.length);
+    
+    if (focusedAtLocal >= 1){
+    // SUBTRACT ONE TO INDEX NUMBER  
+     focusedAtLocal--;
+
+      console.log('focused new value: ', focusedAtLocal);
+      // GET EXPERIENCE WITH INDENTICAL INDEX NUMBER
+      this.experienceShellStore.dispatch(new experienceShellActions.SetCurrentExperience(this.experienceData[focusedAtLocal] as Experience));
     }
-    console.log('las focus is now: ', lastFocus);
+
+    
   }
 }

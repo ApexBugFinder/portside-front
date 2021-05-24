@@ -25,9 +25,7 @@ export class PageShellComponent implements OnInit {
     this.editProjectStore.dispatch(new editProjectActions.LoadProjectsByProjectCreatorIDFromDB(Constants.userID));
     this.experienceShellStore.dispatch(new experienceShellActions.LoadExperiencesByProjectCreatorIDFromDB(Constants.userID));
 
-    // this.experienceService.readAll(Constants.userID).subscribe(value => {
-
-    // });
+    
   }
 
   ngOnInit(): void {

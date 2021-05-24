@@ -6,24 +6,42 @@
     width: 80%;
     margin: 20px;
     justify-content: flex-end;
+    align-items: center;
   
   }
   .fa-plus-circle {
     color: var(--accent1Color);
   }
-  
+  .boatWheel {
+    
+    width: 40px;
+    margin: auto;
+    align-self: center;
+    justify-self: center;
+  }
   .addClassIcon{
   
     font-size: 30px;
     color: var(--accent2Color);
+    // outline: white 2px solid;
   
-  
+    path {
+      fill: none;
+      //stroke: #646464;
+      stroke: white;
+      stroke-width: 5px;
+      stroke-dasharray: 2,2;
+      stroke-linejoin: round;
+    }
   }
   p.iconLabel {
+    align-self: center;
+    vertical-align: center;
     font-size: 18px;
     font-family: futura-pt, sans-serif;
-   margin: auto;
-   padding-top: 5px;
-   text-decoration: underline;
+    font-weight: 200;
+    margin: auto;
+    padding-top: 5px;
+    // text-decoration: underline;
   
   }

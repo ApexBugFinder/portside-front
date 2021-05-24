@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import {
   faPencilAlt
@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 
 import { EditModalShellComponent } from '../editModal/edit-modal-shell/edit-modal-shell.component';
 import { Experience } from '../Models/experience';
+import * as fromExperienceEntityData from '../state';
 import * as fromExperienceShell from './state/';
 import * as ExperienceShellActions from './state/experience-shell.actions';
 
@@ -25,8 +26,11 @@ export class ExperienceShellComponent implements OnInit {
 
   constructor(
     private experienceShellStore: Store<fromExperienceShell.ExperienceShellState>,
+    private renderer: Renderer2,
+    private experienceDataStore: Store<fromExperienceEntityData.ExperienceDataState>,
     public dialog: MatDialog) {
     this.currentExperience$ = this.experienceShellStore.pipe(select(fromExperienceShell.getCurrentExperience));
+  
    }
 
   ngOnInit(): void {
@@ -38,4 +42,6 @@ export class ExperienceShellComponent implements OnInit {
       panelClass: 'custom-modalbox'
     });
   }
+
+
 }

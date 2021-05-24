@@ -173,9 +173,9 @@ this.monitorForControlChanges();
     });
     this.bannerAbstractControl?.valueChanges.subscribe({
       next: value => {
-        let urlString =  'url(&quot;' + value + '&quot; )'
+        let urlString =  'url(&quot;' + value + '&quot; )';
         let bannerCtl = document.getElementById('bannerContainer');
-        this.renderer.setStyle(bannerCtl, 'background-image', urlString)
+        this.renderer.setStyle(bannerCtl, 'background-image', urlString);
         console.log(urlString);
       },
       error: err => console.log('OOOps, there was an error while changing the value of your banner url: ', err),

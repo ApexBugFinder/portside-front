@@ -7,6 +7,7 @@ export interface Role {
     myRole: string;
     myTitle: string;
     editState?: string;
+    stateHistory?: string[];
 }
 export const defaultRole: Role = {
     id: Guid.create().toString(),
@@ -14,6 +15,7 @@ export const defaultRole: Role = {
     myRole: 'Seeding',
     myTitle: 'Lead Seeder',
     editState: editState.ADD
+    
 
 
 }

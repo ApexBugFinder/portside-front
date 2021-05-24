@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/storage';
 import { Observable, of } from 'rxjs';
-import { finalize, catchError} from 'rxjs/operators';
+import { finalize, catchError, timeout} from 'rxjs/operators';
 import { Constants } from '../helpers/Constants';
 import { KeyValuePair, MediaFile } from './Models/image';
 
@@ -39,6 +39,7 @@ export class ImageService {
           const task = this.mediaRef.put(mediaToSend.fileToUpload);
     
           task.snapshotChanges().pipe(
+            timeout(2000),
             finalize(() => this.downloadURL=this.mediaRef.getDownloadURL()))
             .subscribe(val => {
               val?.ref.getDownloadURL().then(url => {

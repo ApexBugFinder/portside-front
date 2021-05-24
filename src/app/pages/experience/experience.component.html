@@ -1,28 +1,48 @@
 <div class="shellContainer">
     <div class="shellContent">
+
         <div class="actionButtons">
-            <app-action-buttons [myClass]="pageClass" (addClassSignal)="createExperience()"></app-action-buttons>
+
+            <div class="actionButtonsContainer">
+
+                <div class="experienceCtroller">
+                    <div class="experienceControllerContent">
+                        <button mat-raised-button (click)="downOneExperience()" class="gapper">Prev</button>
+                        <p>{{focusedAt + 1}}</p>
+                        <fa-icon class="anchorIcon"  [icon]="faAnchor" ></fa-icon>
+                        <p>{{ (experienceDataTotal$ | async) }}</p>
+                        <button mat-raised-button class="gapper" (click)="upOneExperience()">Next</button>
+                    </div>
+                </div>
+               
+               
+                <app-action-buttons [myClass]="pageClass" (addClassSignal)="createExperience()"></app-action-buttons>
+
+            </div>
         </div>
+        
+        
+        
         <div class="experienceContent">
 
-          
-                 <app-experience-shell ></app-experience-shell>  
-       
-        
 
-            
+            <app-experience-shell></app-experience-shell>
+
+
+
+
 
         </div>
-<div class="experienceCtroller">
-                <div class="experienceControllerContent">
-                    <p (click)="downOneExperience()">&lt;</p>
-                    <p>3</p> 
-                    <p>of</p> 
-                    <p>{{ experienceDataTotal$ | async}}</p>
-                    <p class="gapper" (click)="upOneExperience()">&gt;</p>
-                </div>
-            </div>
+
     </div>
+
+
+
+
+
+
+
+
 </div>
 
 

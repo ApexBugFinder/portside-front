@@ -1,4 +1,5 @@
 import { ConvertActionBindingResult } from "@angular/compiler/src/compiler_util/expression_converter";
+import { ɵangular_packages_platform_browser_dynamic_platform_browser_dynamic_a } from "@angular/platform-browser-dynamic";
 import { Constants } from "src/app/helpers/Constants";
 import { Experience, defaultExperience } from "../../Models/experience";
 import { defaultRole, Role } from "../../Models/role";
@@ -22,15 +23,15 @@ export interface ExperienceShellState {
 
 const initialState: ExperienceShellState = {
     originalExperience: defaultExperience,
-    id: '1234',
+    id: '',
     projectCreatorID: Constants.userID,
-    company: 'RecipeAnt',
-    title: 'CEO & Founder',
-    logoUrl: 'www.recipeant.com',
+    company: '',
+    title: '',
+    logoUrl: '',
     started: new Date(2021, 0o1, 0o1),
     completed: new Date(2021, 0o1, 0o1),
-    city: 'San Diego',
-    state: 'CA',
+    city: '',
+    state: '',
     roles: [defaultRole],
     error: ''
 
@@ -219,6 +220,28 @@ export function experienceReducer(state = initialState, action: ExperienceAction
 
         // TO DB
         // LOAD
+        case ExperienceActionTypes.LOAD_EXPERIENCES_FROM_DB_SUCCESS:
+            if(action.payload.length>0) {
+                return {
+                ...state,
+                originalExperience: action.payload[0],
+                id: action.payload[0].id,
+                projectCreatorID: action.payload[0].projectCreatorID,
+                company: action.payload[0].company as string,
+                title: action.payload[0].title as string,
+                logoUrl: action.payload[0].logoUrl as string,
+                started: action.payload[0].started as Date,
+                completed: action.payload[0].completed as Date,
+                city: action.payload[0].city,
+                state: action.payload[0].state,
+                roles: action.payload[0].roles,
+            };
+            } else {
+                return {
+                    ...state
+                };
+            }
+            
         // LOADING ACTION WiLL BE PUSHED TO ENTITy DATA
         case ExperienceActionTypes.LOAD_EXPERIENCES_FROM_DB_FAIL:
             return {
@@ -272,17 +295,17 @@ export function experienceReducer(state = initialState, action: ExperienceAction
         case ExperienceActionTypes.DELETE_EXPERIENCE_TO_DB_SUCCESS:
             return {
                 ...state,
-                originalExperience: initialState.originalExperience,
-                id: initialState.id,
-                projectCreatorID: initialState.projectCreatorID,
-                company: initialState.company,
-                title: initialState.title,
-                logoUrl: initialState.logoUrl,
-                started: initialState.started,
-                completed: initialState.completed,
-                city: initialState.city,
-                state: initialState.state,
-                roles: initialState.roles,
+                originalExperience: action.payload,
+                id: action.payload.id,
+                projectCreatorID: action.payload.projectCreatorID,
+                company: action.payload.company  as string,
+                title: action.payload.title as string,
+                logoUrl: action.payload.logoUrl as string,
+                started: action.payload.started,
+                completed: action.payload.completed as Date,
+                city: action.payload.city,
+                state: action.payload.state,
+                roles: action.payload.roles,
             };
         case ExperienceActionTypes.DELETE_EXPERIENCE_TO_DB_FAIL:
             return {

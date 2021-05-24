@@ -4,8 +4,11 @@
             <div class="infoTitle">Company:</div>
             <div class="infoData">
                 <div class="dataContainer">
-                    <!-- <div class="logo"></div> -->
-                    <div class="name">{{ (currentExperience$ | async).company }}</div>
+                    <div class="companyContainer">
+                        <div class="logo" ><img [appImgSrc]="(currentExperience$|async).logoUrl" alt="" class="logo"></div>
+                        <div class="name">{{ (currentExperience$ | async).company }}</div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -38,7 +41,7 @@
                         {{ role.myTitle }} - {{ role.myRole}}
                         </p>
                     </div>
-                    <div class="role">Seasonal - helping drivers deliver during the holiday season</div>
+                   
                 </div>
             </div>
         </div>
@@ -48,8 +51,11 @@
             <div class="infoTitle"></div>
             <div class="infoData">
                 <div class="editContainer">
-                    <fa-icon class="addClassIcon"  [icon]="editIcon" ></fa-icon>
-                    <p (click)="editExperience()">Edit Experience</p>
+                    <button mat-raised-button class="editButton" (click)="editExperience()">
+                        <!-- <fa-icon class="addClassIcon"  [icon]="editIcon" ></fa-icon> -->
+                        Edit Experience
+                    </button>
+                    
                 </div>
                
             </div>

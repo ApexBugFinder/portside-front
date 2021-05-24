@@ -74,26 +74,52 @@ mat-dialog-content {
         align-items: flex-end;
         margin-bottom:0px;
         width: 100%;
+        app-image-getter {
+            width: 40%;
+        }
         .infoContainer.dateAndTitle {
             column-gap: 50px;
             
         }
         mat-form-field {
-            margin-top: 25px;
+            margin-top: 5px;
             align-self: flex-end;
         }
         mat-form-field.title {
             width: 253px;
         }
+        .mat-form-field-label-wrapper {
+            width: 100%;
+        }
+        .label-wrapper {
+            width: 100%;
+            background-color: var(--accent2Color);
+            line-height: 0.9em;
+            margin: 8px 0;
+            padding: 5px 5px;
+        }
         .infoLabel {
             width: 150px;
             align-items: center;
             margin: auto 0;
+            font-size: 9px;
+            color: #707070;
+        }
+        mat-form-field.addRole {
+            width: 100%;
+           
         }
         .infoLabel.roles {
             align-items: flex-start;
             margin-top: 0;
         }
+        .label-wrapper.addRole {
+            width: 100%;
+            margin-top: 10px;
+        }
+        // .infoLabel.addRole {
+
+        // }
         .infoData {
             align-items: center;
             margin: 0;
@@ -105,18 +131,105 @@ mat-dialog-content {
             flex-direction: row;
             column-gap: 10px;
         }
-        .roleContainer {
+        .infoData.roles .rolesContainer {
             display: flex;
             flex-direction: column;
             row-gap: 10px;
-        }
-            .roleContent {
-                display: flex;
-                flex-direction: row;
-                column-gap: 10px;
+            width: 100%;
+       
+        .roleContent {
+            display: flex;
+            flex-direction: row;
+            column-gap: 30px;
+           
+            padding: 10px 10%;
+            width: 100%;
+            justify-content: flex-start;
+            .dataContainer {
+                width: 100%;
 
+                .roleTitle {
+                    width: 20%;
+                   
+                }
+                .roleDescription {
+                    width: 50%;
+                }
+                .roleDescription p {
+                    flex-wrap:wrap;
+                    
+                }
+                .spacer {
+                    width: auto;
+                }
+                fa-icon {
+    
+                    justify-self: flex-end;
+                }
+                p.markedForRemoval {
+                    color: pink;
+                }
+                
+                
+                p.markedForAdd {
+                    color: lightgreen;
+                }
+                p.unmarked {
+                    color: black;
+                }
             }
-        
+        } 
+    }
+        .displayRoles {
+            width: 100%;
+        }
+        .infoData.roles {
+            width: 100%;
+        }
+        .roleContainer .roleContent {
+            display: flex;
+            flex-direction: row;
+            column-gap: 10px;
+            width: 100%;
+           justify-content: space-around;
+           align-items: flex-end;
+     
+        }
+        .addRoleTitle {
+            width: 20%;
+            display: flex;
+            flex-direction: column;
+            padding-top: 8px;
+        }
+        .addRoleHeader {
+            font-size: 9px;
+            color: #707070;
+        }
+        .addRoleDescription {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            padding-top: 8px;
+        }
+        textarea#roleTitleId {
+            width: 100%;
+            background-color:#ecebeb2d;
+            opacity: .7;
+            border-bottom: var(--primaryColor) 1px solid;
+        }
+        textarea#roleMyRoleId {
+            width: 100%;
+            background-color:#ecebeb2d;
+            opacity: .7;
+            border-bottom: var(--primaryColor) 1px solid;
+        }
+        .spacer{
+            width: auto;
+        }
+        .addRoleButton {
+
+            justify-self: flex-end;
+        }
     }
 }
 

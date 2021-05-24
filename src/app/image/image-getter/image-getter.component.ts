@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, Renderer2 } from '@angular/core';
 
 import { throwError } from 'rxjs';
 import { Constants } from 'src/app/helpers/Constants';
@@ -16,10 +16,12 @@ export class ImageGetterComponent implements OnInit {
   @Input() docID: string; 
   @Input() projectCreatorID: string;
   @Input() typeOfClass: string;  // this is either Projects Experience or Education: part of mediaLocation
-  
-  
+  thumbnailImg: HTMLElement | null;
+  downloadUrl: string;
   @Output() mediaRtUrl: EventEmitter<string> = new EventEmitter<string>();
-  constructor(private imageService: ImageService) { }
+  constructor(private imageService: ImageService, private renderer: Renderer2) {
+    
+   }
 
   ngOnInit(): void {
 
@@ -52,7 +54,12 @@ export class ImageGetterComponent implements OnInit {
    this.imageService.uploadToFirebase(this.mediaToSendToDB).then(value => {
     console.log('download URl returned: ', value);
     // Use ngrx instead of eventemitter
-    
+    // SET THUMBNAIL PREVIEW
+    this.thumbnailImg = document.getElementById('thumbnail');
+    console.log(value.dloadUrl);
+    let imgUrl = 'url(&quot;' + value.dloadUrl + '&quot; )';
+   this.downloadUrl = value.dloadUrl;
+
     this.mediaRtUrl.emit(value?.dloadUrl);
    });
     

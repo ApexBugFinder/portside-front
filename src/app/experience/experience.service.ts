@@ -45,7 +45,7 @@ export class ExperienceService {
           item,
          {headers: this.hdrs}
         ).pipe(
-         
+          timeout(2000),
           map((newExperience: Experience) => {
           console.log('New Experience added to DB: ', newExperience);
           return newExperience;
@@ -71,10 +71,15 @@ public readAll(id: string): Observable<Experience[]> {
         urlAddress,
         { headers: this.hdrs })
         .pipe(
-          timeout(2000),
+          // timeout(3000),
           map((usersExperiences: Experience[]) => {
           console.log('User\'s Experiences Found:  ' + usersExperiences );
-          
+          usersExperiences.forEach(exp => {
+            exp.roles?.forEach(role => {
+              let p = JSON.stringify(role.editState);
+              role.stateHistory = [role.editState as string];
+            });
+          });
       
           
           return usersExperiences;
