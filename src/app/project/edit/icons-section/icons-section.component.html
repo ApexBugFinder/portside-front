@@ -1,0 +1,22 @@
+<div class="iconsSection">
+  <div class="iconsContainer">
+    <div class="icons">
+      <fa-icon [icon]="faEdit" *ngIf="editMode != true"></fa-icon>
+      <i (click)="displayGitLinkEditor()" class="fab fa-github"></i>
+
+      <fa-icon (click)="displaySiteLinkEditor()" [icon]="faEye"></fa-icon>
+      <span class="icon" (click)="closeOnClick()">X</span>
+      </div>
+      <app-git-link *ngIf="linkEditor == linkView.GIT" 
+      [gitLink]="GitLink"
+      (newGitToSave)="newGitLinkToProcess($event)"
+      (closeGitEditor)="linkViewTogglerClicked($event)"></app-git-link>
+  
+  <app-site-link *ngIf="linkEditor == linkView.SITE" 
+    [siteLink]="SiteLink"
+    (newSiteToSave)="newSiteLinkToProcess($event)"
+  (closeSiteEditor)="linkViewTogglerClicked($event)"></app-site-link>
+    
+  </div>
+
+</div>

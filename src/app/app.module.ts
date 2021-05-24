@@ -4,14 +4,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule } from './helpers/shared.module';
+import { SharedModule } from './shared/shared.module';
 import { HeaderComponent } from './header/header.component';
 import { PagesModule } from './pages/pages.module';
 import { RouterModule } from '@angular/router';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
-import { ProjectCardComponent } from './project/project-card/project-card.component';
-import { EditProjectComponent } from './project/edit-project/edit-project.component';
 import { ProjectModule } from './project/project.module';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
+import { ActionButtonsComponent } from './pages/action-buttons/action-buttons.component';
+
 
 
 @NgModule({
@@ -20,10 +24,16 @@ import { ProjectModule } from './project/project.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule,
+    SharedModule, 
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+      name: 'App Demo DevTools',
+      maxAge: 25,
+      logOnly: environment.production
+      }),
     ProjectModule,
     PagesModule,
-
     RouterModule,
   ],
   exports: [HeaderComponent],

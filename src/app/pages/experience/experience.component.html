@@ -1,1 +1,66 @@
-<p>experience works!</p>
+<div class="shellContainer">
+    <div class="shellContent">
+
+        <div class="actionButtons">
+
+            <div class="actionButtonsContainer">
+
+                <div class="experienceCtroller">
+                    <div class="experienceControllerContent">
+                        <button mat-raised-button (click)="downOneExperience()" class="gapper">Prev</button>
+                        <p>{{focusedAt + 1}}</p>
+                        <fa-icon class="anchorIcon"  [icon]="faAnchor" ></fa-icon>
+                        <p>{{ (experienceDataTotal$ | async) }}</p>
+                        <button mat-raised-button class="gapper" (click)="upOneExperience()">Next</button>
+                    </div>
+                </div>
+               
+               
+                <app-action-buttons [myClass]="pageClass" (addClassSignal)="createExperience()"></app-action-buttons>
+
+            </div>
+        </div>
+        
+        
+        
+        <div class="experienceContent">
+
+
+            <app-experience-shell></app-experience-shell>
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<!-- <div id="g_id_onload"
+     data-client_id="896122756583-u21hkavku4lf10sa3au0n34glgpljbv5.apps.googleusercontent.com"
+     data-login_uri="http://localhost:4200"
+     data-auto_prompt="false">
+</div>
+<div class="g_id_signin"
+     data-type="standard"
+     data-size="large"
+     data-theme="outline"
+     data-text="sign_in_with"
+     data-shape="rectangular"
+     data-logo_alignment="left">
+</div> -->

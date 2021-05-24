@@ -1,0 +1,47 @@
+.projectStatusContainer {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-self: flex-end;
+    justify-content: flex-end;
+    margin-left: 20px;
+
+
+  }
+
+  .projectStatus {
+    display: flex;
+    flex-direction: row;
+    column-gap: 30px;
+    width: auto;
+    justify-self: flex-end;
+
+    .publishStatusButton {
+      border-radius: 20px;;
+    }
+    .publishStatusButtonTrue {
+      background-color: var(--accent2Color);
+      border: 2px solid white;
+    }
+  }
+
+  .statusData {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    column-gap: 30px;
+
+    .startDate {
+      background-color: transparent;
+      border: none;
+      margin-top: -10px;
+    }
+    .completeDate {
+      background-color: transparent;
+      border: none;
+      margin-top: -10px;
+
+    }
+  }
+
+

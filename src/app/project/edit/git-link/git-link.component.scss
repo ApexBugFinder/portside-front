@@ -1,0 +1,34 @@
+.gitLinkContainer {
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 30px;
+    padding-right: 20px;
+}
+.gitInput {
+    background-color: transparent;
+    border-top: none;
+    border-bottom: 1px black solid;
+    border-left: none;
+    border-right: none;
+    width: 200px;
+
+}
+
+.gitSave {
+    background-color: var(--accent2Color);
+    border: white 2px solid;
+    border-radius: 20px;
+    height: 30px;
+    padding: 0px 10px 0px 10px;
+    text-align: center;
+    vertical-align: center;
+    font-size: 12px;
+    line-height: 20px;
+}
+.gitLabel {
+    justify-self: center;
+    align-self: center;
+}

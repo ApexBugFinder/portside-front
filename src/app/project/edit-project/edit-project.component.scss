@@ -57,7 +57,8 @@ mat-dialog-content {
 .imgUploadContainer {
 display: flex;
 flex-direction: row;
-justify-content: center;
+justify-content: flex-start;
+margin-left:20px;
 column-gap: 30px;
 div.labelContainer{
   margin-top: 10px;
@@ -70,6 +71,16 @@ div.labelContainer{
   display:flex;
   flex-direction: column;
   row-gap: 20px;
+
+
+
+}
+
+.bannUploadContainer {
+  display:flex;
+  flex-direction: row;
+}
+
 .buttonSection {
   display:flex;
   flex-direction: row;
@@ -88,31 +99,6 @@ div.labelContainer{
 // box-shadow: 5px 5px 15px 8px rgba(149, 188, 211, 0.57);
 
    }
-}
-
-    .dragDrop {
-      border: 2px solid black;
-      width: 275px;
-      height: 150px;
-      border-radius: 20px;
-.labelContainer {
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-height: 100%;
-}
-      p.dragDropLabel {
-        font-size: 24px;
-        margin: auto;
-        padding: auto;
-          -webkit-text-stroke-width: 1px;
-          // -webkit-text-stroke-color: #95bcd3;
-          -webkit-text-stroke-color: var(--accent2Color);
-          ;
-          text-shadow: 2px 2px black;
-      }
-    }
 }
 }
 
@@ -164,6 +150,7 @@ height: 100%;
 
 
 }
+
 
 .iconsContainer {
   align-self: flex-end;
@@ -321,4 +308,13 @@ h4 {
   margin-top: 40px;
   margin-bottom: 40px;
 
+}
+.markedForRemoval {
+color: pink;
+}
+.markedForAdd {
+color: lightgreen;
+}
+.unmarked {
+  color: black;
 }

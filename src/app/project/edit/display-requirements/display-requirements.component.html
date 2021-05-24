@@ -1,0 +1,69 @@
+<div class="reqContent">
+    <form [formGroup]="requirementForm">
+    <mat-list>
+      <!-- <mat-list-item
+        *ngFor="let req of (projectRequirements$ | async)"
+      >
+        <div class="matListItemContent">
+          <div class="editAndReq">
+            <div class="reqContainer">
+            
+              <p class="req" id="req" 
+              [ngClass]="getReqState(req.editState)">
+                {{ req.requirement }}
+              </p>
+            </div>
+          </div>
+
+          <fa-icon (click)="toggleRemoveRequirement(req)"
+            class="reqIcon reqIconDelete"
+           
+            [icon]="faDelete"
+          ></fa-icon>
+        </div>
+      </mat-list-item> -->
+      <mat-list-item class="displayReqListItem" *ngFor="let req of (projectRequirements$ | async)">
+      <div class="matListItemContent">
+        <div class="editAndReq">
+          <div class="reqContainer">
+          
+            <p class="" id="req" 
+            [ngClass]="getReqState(req.editState)">
+          
+              {{ req.requirement }}
+            </p>
+          </div>
+        </div>
+
+        <fa-icon (click)="toggleRemoveRequirement(req)"
+          class="reqIcon reqIconDelete"
+         
+          [icon]="faDelete"
+        ></fa-icon>
+      </div>
+    </mat-list-item>
+      <mat-list-item class="addReqListItem">
+        <div class="addReqContainer">
+          <div class="reqInput">
+            <textarea
+              type="textarea"
+              #p
+              rows="3"
+              class="reqTextInput"
+              id="requirement"
+              name="requirement"
+              matInput
+              formControlName="requirement"
+            ></textarea>    
+          </div>
+          <div class="reqAddButton">
+            <button mat-raised-button (click)="addRequirement()">
+              add
+            </button>
+          </div>
+        </div>
+      </mat-list-item>
+    </mat-list>
+</form>
+  
+</div>
