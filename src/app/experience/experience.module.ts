@@ -9,13 +9,15 @@ import { ExperienceShellEffects } from './experience-shell/state/experience-shel
 import { SharedModule } from '../shared/shared.module';
 import { EditModalShellComponent } from './editModal/edit-modal-shell/edit-modal-shell.component';
 import { ImageModule } from '../image/image.module';
+import { ExperienceControllerComponent } from './experience-controller/experience-controller.component';
 
 
 @NgModule({
   declarations: [
     ExperienceShellComponent,
-    EditModalShellComponent
-    
+    EditModalShellComponent,
+    ExperienceControllerComponent
+
   ],
   imports: [
     CommonModule,
@@ -23,11 +25,12 @@ import { ImageModule } from '../image/image.module';
     StoreModule.forFeature('experienceState', experienceReducers),
     ImageModule,
     EffectsModule.forFeature([ExperienceShellEffects])
-  ], 
+  ],
   entryComponents: [EditModalShellComponent],
   exports: [
     ExperienceShellComponent,
-    EditModalShellComponent
+    EditModalShellComponent,
+    ExperienceControllerComponent
   ],
   providers: [
     { provide: 'EXPERIENCE_SERVICE', useClass: ExperienceService }

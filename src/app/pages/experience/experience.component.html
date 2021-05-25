@@ -5,24 +5,16 @@
 
             <div class="actionButtonsContainer">
 
-                <div class="experienceCtroller">
-                    <div class="experienceControllerContent">
-                        <button mat-raised-button (click)="downOneExperience()" class="gapper">Prev</button>
-                        <p>{{focusedAt + 1}}</p>
-                        <fa-icon class="anchorIcon"  [icon]="faAnchor" ></fa-icon>
-                        <p>{{ (experienceDataTotal$ | async) }}</p>
-                        <button mat-raised-button class="gapper" (click)="upOneExperience()">Next</button>
-                    </div>
-                </div>
-               
-               
+
+                <app-experience-controller ></app-experience-controller>
+
                 <app-action-buttons [myClass]="pageClass" (addClassSignal)="createExperience()"></app-action-buttons>
 
             </div>
         </div>
-        
-        
-        
+
+
+
         <div class="experienceContent">
 
 

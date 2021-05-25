@@ -1,0 +1,38 @@
+.componentContainer {
+width: 350px;
+margin: 20px;
+  .componentContent {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 40px;
+    grid-template-areas:
+    "button label divide label button"
+    ;
+
+
+    button.expControllerBttn {
+grid-area: button;
+      background-color: var(--accent2Color);
+      opacity: 0.5;
+      font-family: futura-pt;
+      border: #707070 1px solid;
+
+    }
+
+
+    mat-label.controllerData {
+  grid-area: label;
+
+    }
+.anchorContainer {
+  margin: auto;
+}
+    fa-icon.anchorDivide {
+  grid-area: divide;
+
+    }
+  }
+}

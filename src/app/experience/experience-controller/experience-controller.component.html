@@ -1,0 +1,30 @@
+<div class="componentContainer" *ngIf="experienceData.length>0">
+
+  <div class="componentContent">
+
+    <div class="buttonContainer">
+ <button mat-raised-button class="expControllerBttn">Prev</button>
+    </div>
+<div class="labelContainer">
+<mat-label class="controllerData">{{focusedAt + 1}}</mat-label>
+</div>
+
+<div class="anchorContainer">
+ <fa-icon class="anchorDivide" [icon]="faAnchor"></fa-icon>
+</div>
+
+
+<div class="labelContainer">
+<mat-label class="controllerData">{{experienceDataTotal}}</mat-label>
+</div>
+    <div class="buttonContainer">
+<button mat-raised-button class="expControllerBttn">Next</button>
+    </div>
+
+
+
+
+
+  </div>
+
+</div>

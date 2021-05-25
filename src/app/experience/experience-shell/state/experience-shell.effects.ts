@@ -22,13 +22,13 @@ import { ThrowStmt } from '@angular/compiler';
 export class ExperienceShellEffects {
     currentExperience$: Observable<Experience | undefined>;
     currentExperience: Experience | undefined ;
-    
+
     experienceData$: Observable<(Experience | undefined) []>;
     experienceData: (Experience | undefined) [];
     experienceDataIds$: Observable<string []>;
     experienceDataIds: string [];
-    
-    constructor(private actions$: Actions, 
+
+    constructor(private actions$: Actions,
         private experienceShellStore: Store<fromExperienceShell.ExperienceShellState>,
         private experienceEntityDataStore: Store<fromExperienceEntityData.ExperienceDataState>,
         private experienceService: ExperienceService) {
@@ -46,23 +46,23 @@ export class ExperienceShellEffects {
     // LOAD EXPERIENCES TO ADAPTER
     LoadExperiences$ = createEffect(() => this.actions$.pipe(
         ofType(experienceShellActions.ExperienceActionTypes.LOAD_EXPERIENCES_FROM_DB),
-        mergeMap((action: experienceShellActions.LoadExperiencesByProjectCreatorIDFromDB) => 
+        mergeMap((action: experienceShellActions.LoadExperiencesByProjectCreatorIDFromDB) =>
             this.experienceService.readAll(Constants.userID)
                 .pipe(
                     tap(payload => console.log('NGRX EFFECT - READ ALL EXPERIENCES FROM DB')),
                     map((payload: Experience[]) => {
                         // Delete all experiences
                         this.experienceEntityDataStore.dispatch(experienceEntityDataActions.deleteExperiences({ids: this.experienceDataIds}));
-                        
+
                         // ADD ALL EXPERIENCES FROM THE BACKEND
                         this.experienceEntityDataStore.dispatch(experienceEntityDataActions.addExperiences({experiences: payload}));
-                        
+
                        // SET CURRENT EXPERIENCE
                        this.experienceShellStore.dispatch(new experienceShellActions.SetOriginalExperience(payload[0]));
-                       
-                        
-                        
-                        
+                       this.experienceShellStore.dispatch(new experienceShellActions.SetCurrentExperience(payload[0]));
+
+
+
                         // THROW SUCCESS ACTION
                         return new experienceShellActions.LoadExperiencesByProjectCreatorIDFromDBSuccess(payload);
                     }),
@@ -75,7 +75,7 @@ export class ExperienceShellEffects {
 
     SaveNewExperience$ = createEffect(() => this.actions$.pipe(
         ofType(experienceShellActions.ExperienceActionTypes.SAVE_EXPERIENCE_TO_DB),
-        mergeMap((action: experienceShellActions.SaveExperienceToDB) => 
+        mergeMap((action: experienceShellActions.SaveExperienceToDB) =>
         this.experienceService.createItem(this.currentExperience)
             .pipe(
                 tap((payload: Experience) => console.log('NGRX EFFECT - SAVE EXPERIENCE TO DB SUCCESSFUL: ', payload)),
@@ -84,22 +84,22 @@ export class ExperienceShellEffects {
                     this.experienceEntityDataStore.dispatch(experienceEntityDataActions.addExperience({experience: payload}));
 
                     return new experienceShellActions.SaveExperienceToDBSuccess(payload);
-                
+
                 }),
                 catchError(err => of(new experienceShellActions.SaveExperienceToDBFail(err)))
-            
+
             ))
     ));
     // UPDATE EXPERIENCE
 
     UpdateExperience$ = createEffect(() => this.actions$.pipe(
         ofType(experienceShellActions.ExperienceActionTypes.UPDATE_EXPERIENCE_TO_DB),
-        mergeMap((action: experienceShellActions.UpdateExperienceToDB) => 
+        mergeMap((action: experienceShellActions.UpdateExperienceToDB) =>
         this.experienceService.updateItem(this.currentExperience)
             .pipe(
                 tap((payload: Experience) => console.log('NGRX EFFECT - UPDATE EXPERIENCE TO DB SUCCESSFUL: ', payload)),
                 map((payload: Experience) => {
-                    
+
                     // CHANGE ENTITY DATA STORE
                     this.experienceEntityDataStore.dispatch(experienceEntityDataActions.upsertExperience({experience: payload}));
 
@@ -112,30 +112,30 @@ export class ExperienceShellEffects {
 
     DeleteExperience$ = createEffect(() => this.actions$.pipe(
         ofType(experienceShellActions.ExperienceActionTypes.DELETE_EXPERIENCE_TO_DB),
-        mergeMap((action: experienceShellActions.DeleteExperienceToDB) => 
+        mergeMap((action: experienceShellActions.DeleteExperienceToDB) =>
         this.experienceService.deleteItem(this.currentExperience?.id)
         .pipe(
             tap((payload: Experience) => console.log('NGRX EFFECT - DELETED EXPERIENCE: ', payload)),
-            
+
             map((payload: Experience) => {
-            
+
                 // this.experienceShellStore.dispatch(new experienceShellActions.ClearOriginalExperience());
                  //this.experienceShellStore.dispatch(new experienceShellActions.ClearCurrentExperience());
-            
+
 
                 // CLEAR ENTITY DATA STORE Of CURRENT EXPERIENCE AND SET NEW CURRENT EXPERIENCE
                 this.experienceEntityDataStore.dispatch(experienceEntityDataActions.deleteExperience({id: payload.id}));
-                
-                
-                
-                  
-                
-                
-                
 
-                
-                
-                
+
+
+
+
+
+
+
+
+
+
                 return new experienceShellActions.DeleteExperienceToDBSuccess(this.experienceData[0] as Experience);
             }),
             catchError((err) => of(new experienceShellActions.DeleteExperienceToDBFail(err)))
@@ -144,9 +144,9 @@ export class ExperienceShellEffects {
 
     setNewDataStore(newDataStore: Experience []): Promise<void> {
         const myProm = new Promise<void>((resolve,reject) => {
-           
+
         });
-        
+
 
         return myProm;
     }
