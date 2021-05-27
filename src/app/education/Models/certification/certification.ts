@@ -7,11 +7,12 @@ export interface Certification {
     isActive?: boolean;
     issuingBody_Name?: string;
     issuingBody_Logo?: string;
-
+    issuedDate: Date;
 }
 
 export const defaultCert: Certification = {
     id: '1234',
     projectCreatorID: Constants.userID,
-    certName: 'Default Cert'
+    certName: 'Default Cert',
+    issuedDate: new Date(2021, 4, 12)
 }

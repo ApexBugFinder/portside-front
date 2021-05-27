@@ -1,12 +1,7 @@
 <div class="sectionContainer">
-<div class="addProjectsContainer">
-  <div (click)="createProject()" class="iconContainer">
-     <fa-icon class="addProjectIcon"[icon]="faPlusCircle" ></fa-icon>
-  </div>
-  <div >
-    <p class="iconLabel"  (click)="createProject()">Add Project</p>
-  </div>
-</div>
+       <app-action-buttons [myClass]="pageClass" (addClassSignal)="createProject()"></app-action-buttons>
+
+
 
 
 <div class="displayProjectsSection" *ngIf="myProjects">

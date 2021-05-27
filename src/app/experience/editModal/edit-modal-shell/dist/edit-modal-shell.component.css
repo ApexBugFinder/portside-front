@@ -1,0 +1,274 @@
+mat-dialog-container {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+mat-dialog-content {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.shellContainer {
+  width: 940px;
+  padding: 20px;
+  margin: 0;
+  align-content: space-between;
+}
+.shellContainer .shellContent {
+  width: 940px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  justify-content: center;
+}
+.shellContainer .shellContent .header {
+  width: 90%;
+  margin: auto;
+}
+
+.mat-divider {
+  border-top-color: var(--secondaryColor);
+  width: 100%;
+  margin: auto;
+}
+
+.headerAction {
+  width: 100%;
+  margin: 10px auto;
+}
+.headerAction .headerActionContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.addExperiencesButton {
+  border: none;
+  justify-self: flex-end;
+  float: right;
+}
+
+.experienceSlider {
+  width: 250px;
+}
+.experienceSlider .experienceSliderContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+}
+
+.infoSection {
+  width: 80%;
+  margin: 0 auto;
+}
+.infoSection .infoContainer {
+  display: flex;
+  flex-direction: row;
+  column-gap: 50px;
+  justify-content: flex-start;
+  padding: 0 auto;
+  align-content: flex-start;
+  margin-top: 0;
+  width: 100%;
+}
+.infoSection .infoContainer app-image-getter {
+  width: 40%;
+}
+.infoSection .infoContainer .info {
+  align-self: flex-start;
+  padding-top: 0;
+  border-bottom: 1px black solid;
+}
+.infoSection .infoContainer .infoContainer.dateAndTitle {
+  column-gap: 50px;
+}
+.infoSection .infoContainer mat-form-field.infoContainer {
+  margin: 0;
+  padding: 0;
+  align-self: flex-start;
+  vertical-align: top;
+  height: 100%;
+}
+.infoSection .infoContainer mat-form-field.infoContainer div.mat-form-field-label-wrapper {
+  padding: 0;
+}
+.infoSection .infoContainer mat-form-field.infoContainer mat-label.infoLabel {
+  margin-top: 0;
+  padding-top: 0;
+}
+.infoSection .infoContainer mat-form-field.title {
+  width: 253px;
+}
+.infoSection .infoContainer .mat-form-field-label-wrapper {
+  width: 100%;
+  padding-top: 0;
+}
+.infoSection .infoContainer .label-wrapper {
+  width: 100%;
+  background-color: var(--accent2Color);
+  line-height: 0.9em;
+  margin: 0px 0 8px 0;
+  padding: 5px 5px;
+}
+.infoSection .infoContainer .infoLabel {
+  width: 150px;
+  align-items: center;
+  margin: auto 0;
+  font-size: 9px;
+  color: #707070;
+}
+.infoSection .infoContainer mat-form-field.addRole {
+  width: 100%;
+}
+.infoSection .infoContainer .infoLabel.roles {
+  align-items: flex-start;
+  margin-top: 0;
+}
+.infoSection .infoContainer .label-wrapper.addRole {
+  width: 100%;
+  margin-top: 10px;
+}
+.infoSection .infoContainer input {
+  padding: 5px 5px;
+}
+.infoSection .infoContainer .infoData {
+  align-items: center;
+  margin: 0;
+  justify-content: flex-start;
+}
+.infoSection .infoContainer .dataContainer {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+}
+.infoSection .infoContainer .infoData.roles .rolesContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  width: 100%;
+}
+.infoSection .infoContainer .infoData.roles .rolesContainer .roleContent {
+  display: flex;
+  flex-direction: row;
+  column-gap: 30px;
+  padding: 10px 10%;
+  width: 100%;
+  justify-content: flex-start;
+}
+.infoSection .infoContainer .infoData.roles .rolesContainer .roleContent .dataContainer {
+  width: 100%;
+}
+.infoSection .infoContainer .infoData.roles .rolesContainer .roleContent .dataContainer .roleTitle {
+  width: 20%;
+}
+.infoSection .infoContainer .infoData.roles .rolesContainer .roleContent .dataContainer .roleDescription {
+  width: 50%;
+}
+.infoSection .infoContainer .infoData.roles .rolesContainer .roleContent .dataContainer .roleDescription p {
+  flex-wrap: wrap;
+}
+.infoSection .infoContainer .infoData.roles .rolesContainer .roleContent .dataContainer .spacer {
+  width: auto;
+}
+.infoSection .infoContainer .infoData.roles .rolesContainer .roleContent .dataContainer fa-icon {
+  justify-self: flex-end;
+}
+.infoSection .infoContainer .infoData.roles .rolesContainer .roleContent .dataContainer p.markedForRemoval {
+  color: pink;
+}
+.infoSection .infoContainer .infoData.roles .rolesContainer .roleContent .dataContainer p.markedForAdd {
+  color: lightgreen;
+}
+.infoSection .infoContainer .infoData.roles .rolesContainer .roleContent .dataContainer p.unmarked {
+  color: black;
+}
+.infoSection .infoContainer .displayRoles {
+  width: 100%;
+}
+.infoSection .infoContainer .infoData.roles {
+  width: 100%;
+}
+.infoSection .infoContainer .roleContainer .roleContent {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+  width: 100%;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+.infoSection .infoContainer .addRoleTitle {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 8px;
+}
+.infoSection .infoContainer .addRoleHeader {
+  font-size: 9px;
+  color: #707070;
+}
+.infoSection .infoContainer .addRoleDescription {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 8px;
+}
+.infoSection .infoContainer textarea#roleTitleId {
+  width: 100%;
+  background-color: #ecebeb2d;
+  opacity: 0.7;
+  border-bottom: var(--primaryColor) 1px solid;
+}
+.infoSection .infoContainer textarea#roleMyRoleId {
+  width: 100%;
+  background-color: #ecebeb2d;
+  opacity: 0.7;
+  border-bottom: var(--primaryColor) 1px solid;
+}
+.infoSection .infoContainer .spacer {
+  width: auto;
+}
+.infoSection .infoContainer .addRoleButton {
+  justify-self: flex-end;
+}
+
+.actionButtonsSection {
+  width: 100%;
+  margin-top: 30px;
+  justify-self: flex-end;
+}
+.actionButtonsSection .actionButtonContainer {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 30px;
+}
+.actionButtonsSection .actionButtonContainer .resetButton {
+  background-color: var(--accent3Color);
+  color: white;
+}
+.actionButtonsSection .actionButtonContainer .deleteButton {
+  background-color: var(--accent3Color);
+}
+.actionButtonsSection .actionButtonContainer .saveButton {
+  background-color: var(--accent2Color);
+}
+.actionButtonsSection .actionButtonContainer .publishButton {
+  background-color: var(--accent1Color);
+  border: 1px solid var(--accent3Color);
+}
+.actionButtonsSection .actionButtonContainer .actionButton {
+  border-radius: 20px;
+}
+
+.duration {
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+}

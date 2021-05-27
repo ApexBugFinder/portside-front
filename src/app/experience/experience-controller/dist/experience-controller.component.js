@@ -10,46 +10,34 @@ exports.ExperienceControllerComponent = void 0;
 // Core IMports
 var core_1 = require("@angular/core");
 var store_1 = require("@ngrx/store");
+var free_solid_svg_icons_1 = require("@fortawesome/free-solid-svg-icons");
 // NGRX STATE
 var fromExperienceData = require("../state");
+var fromExperienceShell = require("../experience-shell/state");
 var experienceShellActions = require("../experience-shell/state/experience-shell.actions");
 var ExperienceControllerComponent = /** @class */ (function () {
-    function ExperienceControllerComponent(experienceDataStore, experienceShellStore, fb) {
+    function ExperienceControllerComponent(experienceDataStore, experienceShellStore) {
         this.experienceDataStore = experienceDataStore;
         this.experienceShellStore = experienceShellStore;
-        this.fb = fb;
+        this.faAnchor = free_solid_svg_icons_1.faAnchor;
         //  Actions
+        // *********
         // I need to set the current experience for the experience Shell ☑️
         // Calculations
-        // I need to calculate next and previous experience
+        // ***********
+        // I need to calculate next and previous experience☑️
         this.focusedAt = 0;
         this.experienceData$ = this.experienceDataStore.pipe(store_1.select(fromExperienceData.selectAllExperiences));
         this.experienceDataTotal$ = this.experienceDataStore.pipe(store_1.select(fromExperienceData.selectExperiencesTotal));
-        this.experienceControllerForm = this.fb.group({
-            currentIndex: [0],
-            total: [0]
-        });
+        this.experienceShellCurrentExperience$ = this.experienceShellStore.pipe(store_1.select(fromExperienceShell.getCurrentExperience));
     }
     ExperienceControllerComponent.prototype.ngOnInit = function () {
         var _this = this;
-        // CURRENT EXPERIENCE
-        this.experienceShellCurrentExperience$.subscribe({
-            next: function (value) {
-                // GET current Experience
-                _this.currentExperience = value;
-                _this.setFocalPoint();
-            },
-            error: function (err) {
-                return console.log('OOps, sorry it looks like there was problem when getting the Current Experience from the ExperienceShell in the Experience Controller', err);
-            },
-            complete: function () {
-                return console.log('Completed getting the current Experience from the experienceShell Store in the ExperienceController component');
-            }
-        });
         // EXPERIENCE_DATA []
         this.experienceData$.subscribe({
             next: function (value) {
                 _this.experienceData = value;
+                // this.setFocalPoint();
             },
             error: function (err) {
                 return console.log('OOps, sorry it looks like there was problem when getting the experienceData array from the ExperienceData Store in the Experience Controller', err);
@@ -58,11 +46,27 @@ var ExperienceControllerComponent = /** @class */ (function () {
                 return console.log('Completed getting the experienceData array in the ExperienceController component');
             }
         });
+        // CURRENT EXPERIENCE
+        this.experienceShellCurrentExperience$.subscribe({
+            next: function (value) {
+                // GET current Experience
+                if (value != undefined) {
+                    _this.currentExperience = value;
+                    _this.setFocalPoint();
+                }
+            },
+            error: function (err) {
+                return console.log('OOps, sorry it looks like there was problem when getting the Current Experience from the ExperienceShell in the Experience Controller', err);
+            },
+            complete: function () {
+                return console.log('Completed getting the current Experience from the experienceShell Store in the ExperienceController component');
+            }
+        });
         // EXPERIENCE DATA TOTAL
         this.experienceDataTotal$.subscribe({
             next: function (value) {
                 _this.experienceDataTotal = value;
-                _this.setFocalPoint();
+                // this.updateFocalPoint();
             },
             error: function (err) {
                 return console.log('OOps, sorry something went wrong when getting the experience');
@@ -75,12 +79,12 @@ var ExperienceControllerComponent = /** @class */ (function () {
     // SETS FORM FIELD WITH CURRENT EXPERIENCE INDEX + 1
     ExperienceControllerComponent.prototype.setFocalPoint = function () {
         var _this = this;
-        var _a, _b, _c;
+        var _a, _b;
         console.log('My old focalPoint is: ', this.focusedAt);
         // if the curent Experience has been assigned and the the experienceData has loaded
         // then get focal point
-        if (this.currentExperience && this.experienceData.length > 0) {
-            this.focusedAt = (_a = this.experienceData) === null || _a === void 0 ? void 0 : _a.findIndex(function (i) { var _a; return (i === null || i === void 0 ? void 0 : i.id) === ((_a = _this.currentExperience) === null || _a === void 0 ? void 0 : _a.id); });
+        if (this.currentExperience && ((_a = this.experienceData) === null || _a === void 0 ? void 0 : _a.length) > 0) {
+            this.focusedAt = (_b = this.experienceData) === null || _b === void 0 ? void 0 : _b.findIndex(function (i) { var _a; return (i === null || i === void 0 ? void 0 : i.id) === ((_a = _this.currentExperience) === null || _a === void 0 ? void 0 : _a.id); });
         }
         else {
             this.focusedAt = 0;
@@ -88,8 +92,6 @@ var ExperienceControllerComponent = /** @class */ (function () {
         // SET the form value for current
         this.printInfo();
         console.log('My new focalPoint is: ', this.focusedAt);
-        (_b = this.currentAbstractControl) === null || _b === void 0 ? void 0 : _b.setValue(this.focusedAt + 1);
-        console.log('My current abstract Value is: ', (_c = this.currentAbstractControl) === null || _c === void 0 ? void 0 : _c.value);
     };
     ExperienceControllerComponent.prototype.updateFocalPoint = function () {
         var _this = this;
@@ -133,10 +135,9 @@ var ExperienceControllerComponent = /** @class */ (function () {
     };
     // HELPERS
     ExperienceControllerComponent.prototype.printInfo = function () {
-        var _a;
         console.log('My new current Experience is: ', this.currentExperience);
         console.log('My experienceData array: ', this.experienceData);
-        console.log('Current current Abstract Value is: ', (_a = this.currentAbstractControl) === null || _a === void 0 ? void 0 : _a.value);
+        console.log('Current Experience Index Value is: ', this.focusedAt);
     };
     ExperienceControllerComponent = __decorate([
         core_1.Component({

@@ -18,26 +18,26 @@ export class ImageService {
   constructor(
     private storage: AngularFireStorage,
     private afs: AngularFirestore) {
-      
+
      }
 
-  
-  
+
+
     // POST
     // SEND MEDIA TO ONLINE BUCKET STORAGE
 
     uploadToFirebase(mediaToSend: MediaFile): Promise<MediaFile> {
       console.log('from the imageService uploadToFirebase Method:');
-    
-    
-    
+
+
+
 
       // SET STORAGE LOCATION
       const myUploadPromise = new Promise<MediaFile>((resolve, reject) => {
         if (mediaToSend.fileToUpload !== null) {
           this.mediaRef = this.storage.ref(mediaToSend.mediaLocation);
           const task = this.mediaRef.put(mediaToSend.fileToUpload);
-    
+
           task.snapshotChanges().pipe(
             timeout(2000),
             finalize(() => this.downloadURL=this.mediaRef.getDownloadURL()))
@@ -52,23 +52,23 @@ export class ImageService {
               });
             }
             );
-          
-        
+
+
         }
 
       });
       return myUploadPromise;
-     
-      
 
-    
 
-    
+
+
+
+
   }
 
   processFileInput(file: FileList): Promise<string>|undefined {
 
-    
+
       let myFile = file?.item(0) as File;
       const myProcessFilePromise = new Promise<string>((resolve, reject) => {
         if (this.isImage(myFile)) {
@@ -79,14 +79,14 @@ export class ImageService {
           reader.readAsDataURL(myFile);
 
         } else {
-          
+
           reject('File not a Picture');
         }
       });
       return myProcessFilePromise;
-    
-   
- 
+
+
+
 }
 
   isImage(file: File | null): boolean {

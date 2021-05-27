@@ -1,0 +1,50 @@
+.addClassContainer {
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+  width: 80%;
+  margin: 20px;
+  justify-content: flex-end;
+  justify-self: flex-end;
+  align-items: center;
+  align-self: center;
+}
+.addClassContainer .iconContainer {
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.fa-plus-circle {
+  color: var(--accent1Color);
+}
+
+.boatWheel {
+  width: 40px;
+  margin: auto;
+  align-self: center;
+  justify-self: center;
+}
+
+.addClassIcon {
+  font-size: 30px;
+  color: var(--accent2Color);
+}
+.addClassIcon path {
+  fill: none;
+  stroke: white;
+  stroke-width: 5px;
+  stroke-dasharray: 2, 2;
+  stroke-linejoin: round;
+}
+
+p.iconLabel {
+  align-self: center;
+  vertical-align: center;
+  font-size: 18px;
+  font-family: futura-pt, sans-serif;
+  font-weight: 200;
+  margin: auto;
+  padding-top: 5px;
+}

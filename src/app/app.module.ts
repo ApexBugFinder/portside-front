@@ -22,19 +22,20 @@ import { ActionButtonsComponent } from './pages/action-buttons/action-buttons.co
   declarations: [AppComponent, HeaderComponent],
   imports: [
     BrowserModule,
+    RouterModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule, 
+    SharedModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       name: 'App Demo DevTools',
       maxAge: 25,
-      logOnly: environment.production
-      }),
-    ProjectModule,
+      logOnly: environment.production,
+    }),
+    
+
     PagesModule,
-    RouterModule,
   ],
   exports: [HeaderComponent],
   // entryComponents: [ProjectCardComponent, EditProjectComponent],

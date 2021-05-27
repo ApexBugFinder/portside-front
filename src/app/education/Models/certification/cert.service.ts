@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of, pipe} from 'rxjs';
 import { map, timeout } from 'rxjs/operators';
-import { Constants } from '../../helpers/Constants';
+import { Constants } from '../../../helpers/Constants';
 import { Certification  } from './certification';
 
 @Injectable({
@@ -17,7 +17,7 @@ export class CertService {
   private apiRt;
   private clientRt;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.ctlrName = 'certifications/';
     this.apiRt = Constants.apiRoot;
     this.apiAddress = this.apiRt + this.ctlrName;
@@ -31,12 +31,12 @@ public createItem(item: Certification) : Observable<Certification> {
   this.hdrs = new HttpHeaders();
 
       const address = this.apiAddress + "new";
-  
+
       this.hdrs = new HttpHeaders()
         .set('Access-Control-Allow-Origin', [this.apiRt, this.apiAddress, Constants.clientRoot])
         .set('Access-Control-Allow-Methods', ['PUT','POST','DELETE', 'GET'])
         .set('content-type', 'application/json');
-  
+
       this.printServiceInfo(address, item, this.hdrs);
       return this.http.post<Certification>(
       address,
@@ -48,7 +48,7 @@ public createItem(item: Certification) : Observable<Certification> {
         console.log('New Certification added to DB: ', newCertification);
         return newCertification;
       }));
-    
+
 }
   // READ ALL CertificationS BY USER
 public readAll(id: string): Observable<Certification[]> {
@@ -70,13 +70,13 @@ public readAll(id: string): Observable<Certification[]> {
       timeout(2000),
       map((usersCertifications: Certification[]) => {
       console.log('User\'s Certifications Found:  ' + usersCertifications );
-      
-  
-      
+
+
+
       return usersCertifications;
 } ));
 
-} 
+}
 
   // GET Certification BY ID
   public readItem(id: string): Observable<Certification> {
@@ -110,7 +110,7 @@ public updateItem(item: Certification) : Observable<Certification> {
 
   const urlAddress = this.apiAddress + item.id;
   item.projectCreatorID = Constants.userID;
-  
+
   this.hdrs = new HttpHeaders()
   .set('Access-Control-Allow-Origin',  [this.apiRt, this.apiAddress, this.clientRt])
   .set('Access-Control-Allow-Methods', ['PUT','POST','DELETE', 'GET'])
@@ -118,7 +118,7 @@ public updateItem(item: Certification) : Observable<Certification> {
   .set('content-type', 'application/json');
 
   this.printServiceInfo(urlAddress, item, this.hdrs);
-  
+
     return this.http.put<Certification>(
       urlAddress,
       item,

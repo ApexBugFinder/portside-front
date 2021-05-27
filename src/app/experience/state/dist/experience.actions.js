@@ -1,0 +1,21 @@
+"use strict";
+exports.__esModule = true;
+exports.clearExperiences = exports.deleteExperiencesByPredicate = exports.deleteExperiences = exports.deleteExperience = exports.mapExperiences = exports.mapExperience = exports.updateExperiences = exports.updateExperience = exports.upsertExperiences = exports.addExperiences = exports.upsertExperience = exports.setExperience = exports.addExperience = exports.loadExperiences = exports.selectExperiencesByProjectCreatorID = exports.selectExperience = void 0;
+var store_1 = require("@ngrx/store");
+exports.selectExperience = store_1.createAction('[Experiences Page] Select Experience', store_1.props());
+exports.selectExperiencesByProjectCreatorID = store_1.createAction('[Experiences Page] Select Experiences By ExperienceCreator', store_1.props());
+exports.loadExperiences = store_1.createAction('[Experience/API] Load Experiences', store_1.props());
+exports.addExperience = store_1.createAction('[Experience/API] Add Experience', store_1.props());
+exports.setExperience = store_1.createAction('[Experience/API] Set Experience', store_1.props());
+exports.upsertExperience = store_1.createAction('[Experience/API] Upsert Experience', store_1.props());
+exports.addExperiences = store_1.createAction('[Experience/API] Add Experiences', store_1.props());
+exports.upsertExperiences = store_1.createAction('[Experience/API] Upsert Experiences', store_1.props());
+exports.updateExperience = store_1.createAction('[Experience/API] Update Experience', store_1.props());
+exports.updateExperiences = store_1.createAction('[Experience/API] Update Experiences', store_1.props());
+exports.mapExperience = store_1.createAction('[Experience/API] Map Experience', store_1.props());
+exports.mapExperiences = store_1.createAction('[Experience/API] Map Experiences', store_1.props());
+exports.deleteExperience = store_1.createAction('[Experience/API] Delete Experience', store_1.props());
+exports.deleteExperiences = store_1.createAction('[Experience/API] Delete Experiences', store_1.props());
+exports.deleteExperiencesByPredicate = store_1.createAction('[Experience/API] Delete Experiences By Predicate', store_1.props());
+exports.clearExperiences = store_1.createAction('[Experience/API] Clear Experiences');
+// EFFECT ACTION

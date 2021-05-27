@@ -36,12 +36,16 @@ h3 {
   font-family: futura-pt, sans-serif;
   color: var(--accent1Color);
 }
+ .showMe {
+   display: block;
+ }
 .custom-modalbox {
 width: 976px;
 padding: 0 20px;
 .bannerTitle {
   width: 100%;
 }
+
 .bannerImage {
   width: 100%;
 }

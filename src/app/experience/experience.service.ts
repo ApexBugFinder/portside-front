@@ -18,7 +18,7 @@ export class ExperienceService {
   private apiRt;
   private clientRt;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.ctlrName = 'Experiences/';
     this.apiRt = Constants.apiRoot;
     this.apiAddress = this.apiRt + this.ctlrName;
@@ -34,16 +34,16 @@ export class ExperienceService {
 
         const address = this.apiAddress + "new";
         console.log('item to send: ', item);
-        this.hdrs = new HttpHeaders()
+        const hdrs = new HttpHeaders()
           .set('Access-Control-Allow-Origin', [this.apiRt, this.apiAddress, Constants.clientRoot])
           .set('Access-Control-Allow-Methods', ['PUT','POST',])
           .set('content-type', 'application/json');
-    
+
         this.printServiceInfo(address, item, this.hdrs);
         return this.http.post<Experience>(
         address,
           item,
-         {headers: this.hdrs}
+         {headers: hdrs}
         ).pipe(
           timeout(2000),
           map((newExperience: Experience) => {
@@ -54,7 +54,7 @@ export class ExperienceService {
 
 
      // READ ALL ExperienceS BY USER
- 
+
 public readAll(id: string): Observable<Experience[]> {
 
       const address = 'all/' + this.userID;
@@ -80,12 +80,12 @@ public readAll(id: string): Observable<Experience[]> {
               role.stateHistory = [role.editState as string];
             });
           });
-      
-          
+
+
           return usersExperiences;
     } ));
 
-} 
+}
 
   // GET Experience BY ID
 public readItem(id: string): Observable<Experience> {
@@ -119,7 +119,7 @@ public updateItem(item: Experience | undefined) : Observable<Experience> {
 
   const urlAddress = this.apiAddress + item?.id;
   // item.projectCreatorID = Constants.userID as string;
-  
+
   this.hdrs = new HttpHeaders()
   .set('Access-Control-Allow-Origin',  [this.apiRt, this.apiAddress, this.clientRt])
   .set('Access-Control-Allow-Methods', ['PUT','POST','DELETE', 'GET'])
@@ -127,7 +127,7 @@ public updateItem(item: Experience | undefined) : Observable<Experience> {
   .set('content-type', 'application/json');
 
   this.printServiceInfo(urlAddress, item, this.hdrs);
-  
+
     return this.http.put<Experience>(
       urlAddress,
       item,
@@ -167,7 +167,7 @@ public deleteItem(id: string | undefined): Observable<Experience> {
   }
 
   public printServiceInfo(address: string, payload: any, httpHrd: HttpHeaders){
-    
+
     console.log('urlAddress: ', address);
     console.log('HEADERS:', httpHrd);
     console.log('payload: ', payload);

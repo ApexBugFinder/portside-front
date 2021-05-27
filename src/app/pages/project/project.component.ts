@@ -28,22 +28,23 @@ import { Dictionary } from '@ngrx/entity';
   styleUrls: ['./project.component.scss'],
 })
 export class ProjectComponent implements OnInit {
-
   faPlusCircle = faPlusCircle;
   myProjects: (Project | undefined)[] = [];
   loadProj: Promise<Project[]>;
-
+  pageClass = 'Project';
   userProjects$: Observable<(Project | undefined)[]>;
-  
-  constructor(private projectService: ProjectService, 
+
+  constructor(
+    private projectService: ProjectService,
     private editProjectStore: Store<fromEditProject.EditProjectState>,
     private projectStore: Store<fromProject.State>,
-  public dialog: MatDialog) {
+    public dialog: MatDialog
+  ) {
     console.log(this.myProjects);
-    this.userProjects$ = this.projectStore.pipe(select(fromProject.selectAllProjects));
+    this.userProjects$ = this.projectStore.pipe(
+      select(fromProject.selectAllProjects)
+    );
   }
-
- 
 
   ngOnInit(): void {
     // this.projectService.readAll(Constants.userID).subscribe({
@@ -52,42 +53,39 @@ export class ProjectComponent implements OnInit {
     //     if (!value) {
     //       this.myProjects.push(defaultProject);
     //     }
-        
+
     //     console.log('my projects in observable on project component', value);
     //    return value;
     //    },
     //   error: err => console.log('OOps sorry, error occured getting the user\'s projects from store in project component: ', err),
     //   complete: () => console.log('Completed getting user\'s projects from ngrx store in project component')
- 
+
     // });
     this.userProjects$.subscribe({
       next: (value) => {
-        this.myProjects = (value);
-        
+        this.myProjects = value;
+
         console.log('my projects in observable on project component', value);
-       return value;
-       },
-      error: err => console.log('OOps sorry, error occured getting the user\'s projects from store in project component: ', err),
-      complete: () => console.log('Completed getting user\'s projects from ngrx store in project component')
+        return value;
+      },
+      error: (err) =>
+        console.log(
+          "OOps sorry, error occured getting the user's projects from store in project component: ",
+          err
+        ),
+      complete: () =>
+        console.log(
+          "Completed getting user's projects from ngrx store in project component"
+        ),
     });
   }
-   
 
-
- 
-
-  createProject(): void{
+  createProject(): void {
     console.log('project to create: ', defaultProject);
     const dialogRef = this.dialog.open(EditShellComponent, {
       width: '980px',
-      data: { project: defaultProject},
-      panelClass: 'custom-modalbox'
+      data: { project: defaultProject },
+      panelClass: 'custom-modalbox',
     });
-  } 
-  
-
-  
-  
-
- 
+  }
 }

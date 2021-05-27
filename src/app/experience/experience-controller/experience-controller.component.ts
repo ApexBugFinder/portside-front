@@ -73,26 +73,6 @@ export class ExperienceControllerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // CURRENT EXPERIENCE
-    this.experienceShellCurrentExperience$.subscribe({
-      next: (value: Experience | undefined) => {
-        // GET current Experience
-        if (value) {
-        this.currentExperience = value as Experience;
-        this.setFocalPoint();
-        }
-      },
-      error: (err: string) =>
-        console.log(
-          'OOps, sorry it looks like there was problem when getting the Current Experience from the ExperienceShell in the Experience Controller',
-          err
-        ),
-      complete: () =>
-        console.log(
-          'Completed getting the current Experience from the experienceShell Store in the ExperienceController component'
-        ),
-    });
-
     // EXPERIENCE_DATA []
     this.experienceData$.subscribe({
       next: (value: (Experience | undefined)[]) => {
@@ -109,13 +89,31 @@ export class ExperienceControllerComponent implements OnInit {
           'Completed getting the experienceData array in the ExperienceController component'
         ),
     });
+    // CURRENT EXPERIENCE
+    this.experienceShellCurrentExperience$.subscribe({
+      next: (value: Experience | undefined) => {
+        // GET current Experience
+        if (value != undefined) {
+          this.currentExperience = value as Experience;
+          this.setFocalPoint();
+        }
+      },
+      error: (err: string) =>
+        console.log(
+          'OOps, sorry it looks like there was problem when getting the Current Experience from the ExperienceShell in the Experience Controller',
+          err
+        ),
+      complete: () =>
+        console.log(
+          'Completed getting the current Experience from the experienceShell Store in the ExperienceController component'
+        ),
+    });
 
     // EXPERIENCE DATA TOTAL
     this.experienceDataTotal$.subscribe({
       next: (value) => {
         this.experienceDataTotal = value;
-        this.updateFocalPoint();
-
+        // this.updateFocalPoint();
       },
       error: (err) =>
         console.log(
@@ -135,7 +133,7 @@ export class ExperienceControllerComponent implements OnInit {
     // if the curent Experience has been assigned and the the experienceData has loaded
     // then get focal point
 
-    if (this.currentExperience && this.experienceData.length > 0) {
+    if (this.currentExperience && this.experienceData?.length > 0) {
       this.focusedAt = this.experienceData?.findIndex(
         (i) => i?.id === this.currentExperience?.id
       );

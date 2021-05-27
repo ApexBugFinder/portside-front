@@ -15,6 +15,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ActionButtonsComponent } from './action-buttons/action-buttons.component';
 
 import { ExperienceModule } from '../experience/experience.module';
+import { EducationModule } from '../education/education.module';
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import { ExperienceModule } from '../experience/experience.module';
     ActionButtonsComponent
 
   ],
-  imports: [CommonModule, ReactiveFormsModule, PagesRoutingModule, SharedModule, ProjectModule, ExperienceModule  ],
+  imports: [CommonModule, ReactiveFormsModule, PagesRoutingModule, SharedModule, ProjectModule, ExperienceModule,  EducationModule ],
   exports: [
     HomeComponent,
     ProjectComponent,

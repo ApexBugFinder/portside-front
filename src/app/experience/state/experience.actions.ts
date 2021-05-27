@@ -5,7 +5,7 @@ import { Update, EntityMap, EntityMapOne, Predicate } from '@ngrx/entity';
 import { Experience } from '../Models/experience';
 
 export const selectExperience = createAction('[Experiences Page] Select Experience', props<{ experienceId: string }>());
-export const selectExperiencesByExperienceCreatorID = createAction('[Experiences Page] Select Experiences By ExperienceCreator', props<{ experienceCreatorID: string }>());
+export const selectExperiencesByProjectCreatorID = createAction('[Experiences Page] Select Experiences By ExperienceCreator', props<{ experienceCreatorID: string }>());
 
 export const loadExperiences = createAction('[Experience/API] Load Experiences', props<{ experiences: Experience[] }>());
 export const addExperience = createAction('[Experience/API] Add Experience', props<{ experience: Experience }>());

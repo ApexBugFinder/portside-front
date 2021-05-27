@@ -1,0 +1,69 @@
+.experienceContainer {
+  width: 850px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  margin: 60px 0 0 0;
+}
+.experienceContainer .infoContainer {
+  justify-content: flex-start;
+  font-family: futura-pt, bio-sans, sans-serif;
+  font-weight: 200;
+  font-style: normal;
+  font-size: 18px;
+}
+.experienceContainer .infoContainer .infoContent {
+  display: flex;
+  flex-direction: row;
+  column-gap: 30px;
+  color: #707070;
+}
+.experienceContainer .infoContainer .infoContent .infoTitle {
+  width: 140px;
+  align-self: center;
+}
+.experienceContainer .infoContainer .infoContent .infoData .dataContainer {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+.experienceContainer .infoContainer .infoContent .infoData .companyContainer {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+}
+.experienceContainer .infoContainer .infoContent .infoData .companyContainer .logo {
+  width: 50px;
+  display: none;
+  justify-content: center;
+}
+.experienceContainer .infoContainer .infoContent .infoData .editContainer {
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+  font-family: futura-pt;
+  font-size: 22px;
+}
+.experienceContainer .infoContainer .infoContent .infoData .editContainer button.editButton {
+  border: 1px solid var(--secondaryColor);
+  font-family: futura-pt;
+  background-color: transparent;
+}
+.experienceContainer .infoContainer .infoContent .infoData .editContainer button.editButton:hover {
+  color: var(--secondaryColor);
+  border: var(--accent1Color) solid 1px;
+}
+.experienceContainer .edit {
+  margin-top: 20px;
+}
+
+.addClassIcon {
+  color: darkblue;
+}
+
+.showLogo {
+  display: block;
+}

@@ -4,14 +4,14 @@ import { Action, createReducer, createSelector, on } from '@ngrx/store';
 
 // MODELs
 import { Experience } from "../Models/experience";
-import { selectCurrentExperienceId } from ".";
+
 
 
 export interface State extends EntityState<Experience> {
     ids: string[];
     entities: {[key: string]: Experience | undefined};
     selectedExperienceId: string | '';
-    
+
 }
 export function selectedExperienceId(a: Experience): string {
     return a.id as string;
@@ -82,21 +82,21 @@ const experienceReducer = createReducer(
     on(ExperienceActions.deleteExperiencesByPredicate, (state, { predicate }) => {
       return adapter.removeMany(predicate, state);
     }),
-  
+
     on(ExperienceActions.loadExperiences, (state, { experiences }) => {
-      
+
       return adapter.setAll(experiences,state);
     }),
-    
+
     on(ExperienceActions.clearExperiences, state => {
       return adapter.removeAll({ ...state, selectedExperienceId: '' });
     }),
- 
-    
+
+
   );
   export function reducer(state: State | undefined, action: Action) {
       return experienceReducer(state, action);
   }
 
 
-//   
+//

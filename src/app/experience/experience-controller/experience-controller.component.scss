@@ -22,7 +22,10 @@ grid-area: button;
 
     }
 
-
+.labelContainer {
+  justify-content: center;
+  margin: auto;
+}
     mat-label.controllerData {
   grid-area: label;
 

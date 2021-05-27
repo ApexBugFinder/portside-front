@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import {
 faPencilAlt,
 faAnchor
@@ -53,7 +53,9 @@ export class ExperienceComponent implements OnInit {
   }
 
 
+
   ngOnInit(): void {
+    this.pageClass = 'Experience';
     this.currentExperience$.subscribe({
       next: (value: Experience) => {
         this.currentExperience = value;

@@ -27,7 +27,7 @@ mat-dialog-content {
             width: 90%;
             margin: auto;
 
-           
+
         }
     }
 }
@@ -49,7 +49,7 @@ mat-dialog-content {
 .addExperiencesButton {
     border: none;
     justify-self: flex-end;
-   
+
     float: right;
 }
 .experienceSlider {
@@ -64,38 +64,55 @@ mat-dialog-content {
 
 .infoSection {
     width: 80%;
-    margin: auto;
+    margin: 0 auto;
 
     .infoContainer{
         display: flex;
         flex-direction: row;
         column-gap: 50px;
-        padding-bottom: 0;
-        align-items: flex-end;
-        margin-bottom:0px;
+        justify-content: flex-start;
+        padding: 0 auto;
+        align-content: flex-start;
+        margin-top: 0;
         width: 100%;
         app-image-getter {
             width: 40%;
         }
+        .info {
+          align-self: flex-start;
+          padding-top: 0;
+          border-bottom: 1px black solid;
+        }
         .infoContainer.dateAndTitle {
             column-gap: 50px;
-            
+
         }
-        mat-form-field {
-            margin-top: 5px;
-            align-self: flex-end;
+        mat-form-field.infoContainer {
+            margin: 0;
+            padding:0;
+            align-self: flex-start;
+            vertical-align: top;
+            height: 100%;
+            div.mat-form-field-label-wrapper {
+              padding: 0;
+            }
+            mat-label.infoLabel {
+              margin-top: 0;
+              padding-top: 0;
+            }
         }
         mat-form-field.title {
             width: 253px;
         }
         .mat-form-field-label-wrapper {
             width: 100%;
+            padding-top:0;
         }
         .label-wrapper {
             width: 100%;
             background-color: var(--accent2Color);
             line-height: 0.9em;
-            margin: 8px 0;
+            margin: 0px 0 8px 0;
             padding: 5px 5px;
         }
         .infoLabel {
@@ -107,7 +124,7 @@ mat-dialog-content {
         }
         mat-form-field.addRole {
             width: 100%;
-           
+
         }
         .infoLabel.roles {
             align-items: flex-start;
@@ -118,7 +135,9 @@ mat-dialog-content {
             margin-top: 10px;
         }
         // .infoLabel.addRole {
-
+          input {
+            padding: 5px 5px;
+          }
         // }
         .infoData {
             align-items: center;
@@ -136,12 +155,12 @@ mat-dialog-content {
             flex-direction: column;
             row-gap: 10px;
             width: 100%;
-       
+
         .roleContent {
             display: flex;
             flex-direction: row;
             column-gap: 30px;
-           
+
             padding: 10px 10%;
             width: 100%;
             justify-content: flex-start;
@@ -150,27 +169,27 @@ mat-dialog-content {
 
                 .roleTitle {
                     width: 20%;
-                   
+
                 }
                 .roleDescription {
                     width: 50%;
                 }
                 .roleDescription p {
                     flex-wrap:wrap;
-                    
+
                 }
                 .spacer {
                     width: auto;
                 }
                 fa-icon {
-    
+
                     justify-self: flex-end;
                 }
                 p.markedForRemoval {
                     color: pink;
                 }
-                
-                
+
+
                 p.markedForAdd {
                     color: lightgreen;
                 }
@@ -178,7 +197,7 @@ mat-dialog-content {
                     color: black;
                 }
             }
-        } 
+        }
     }
         .displayRoles {
             width: 100%;
@@ -193,7 +212,7 @@ mat-dialog-content {
             width: 100%;
            justify-content: space-around;
            align-items: flex-end;
-     
+
         }
         .addRoleTitle {
             width: 20%;
@@ -254,12 +273,12 @@ mat-dialog-content {
         .deleteButton {
             background-color: var(--accent3Color);
         }
-        
+
         .saveButton {
             background-color: var(--accent2Color);
-        
+
         }
-        
+
         .publishButton {
         background-color: var(--accent1Color);
         border: 1px solid var(--accent3Color);

@@ -1,0 +1,96 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  padding: 0;
+}
+
+:host {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  --primaryColor: #BA2BD2;
+  --secondaryColor: #707070;
+  --accent1Color: #4B304F;
+  --accent2Color: #95bcd3;
+  --accent3Color: #85801C;
+  --folderColor: #57B3A1;
+}
+
+h1 {
+  font-family: surburban, sans-serif;
+}
+
+h2 {
+  font-family: futura-pt, sans-serif;
+}
+
+h3 {
+  font-family: suburban, sans-serif;
+}
+
+h4 {
+  font-size: 20px;
+  font-family: futura-pt, sans-serif;
+  color: var(--accent1Color);
+}
+
+.showMe {
+  display: block;
+}
+
+.custom-modalbox {
+  width: 976px;
+  padding: 0 20px;
+}
+.custom-modalbox .bannerTitle {
+  width: 100%;
+}
+.custom-modalbox .bannerImage {
+  width: 100%;
+}
+.custom-modalbox mat-dialog-content {
+  padding: 0;
+  margin: 0;
+  width: 976px;
+  overflow-x: hidden;
+}
+.custom-modalbox .mat-dialog-content {
+  width: 976px;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+.custom-modalbox mat-dialog-container {
+  padding: 0 0 3% 0;
+  margin: 0;
+  margin: 0;
+  width: 976px;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.showLogo {
+  display: block;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

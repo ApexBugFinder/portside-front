@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of, pipe} from 'rxjs';
 import { map, timeout } from 'rxjs/operators';
-import { Constants } from '../../helpers/Constants';
+import { Constants } from '../../../helpers/Constants';
 import { Degree } from './degree';
 @Injectable({
   providedIn: 'root'
@@ -31,12 +31,12 @@ export class DegreeService {
     this.hdrs = new HttpHeaders();
 
         const address = this.apiAddress + "new";
-    
+
         this.hdrs = new HttpHeaders()
           .set('Access-Control-Allow-Origin', [this.apiRt, this.apiAddress, Constants.clientRoot])
           .set('Access-Control-Allow-Methods', ['PUT','POST','DELETE', 'GET'])
           .set('content-type', 'application/json');
-    
+
         this.printServiceInfo(address, item, this.hdrs);
         return this.http.post<Degree>(
         address,
@@ -52,7 +52,7 @@ export class DegreeService {
 
 
      // READ ALL DegreeS BY USER
- 
+
 public readAll(id: string): Observable<Degree[]> {
 
       const address = 'all/' + this.userID;
@@ -72,13 +72,13 @@ public readAll(id: string): Observable<Degree[]> {
           timeout(2000),
           map((usersDegrees: Degree[]) => {
           console.log('User\'s Degrees Found:  ' + usersDegrees );
-          
-      
-          
+
+
+
           return usersDegrees;
     } ));
 
-} 
+}
 
   // GET Degree BY ID
 public readItem(id: string): Observable<Degree> {
@@ -112,7 +112,7 @@ public updateItem(item: Degree) : Observable<Degree> {
 
   const urlAddress = this.apiAddress + item.id;
   item.projectCreatorID = Constants.userID;
-  
+
   this.hdrs = new HttpHeaders()
   .set('Access-Control-Allow-Origin',  [this.apiRt, this.apiAddress, this.clientRt])
   .set('Access-Control-Allow-Methods', ['PUT','POST','DELETE', 'GET'])
@@ -120,7 +120,7 @@ public updateItem(item: Degree) : Observable<Degree> {
   .set('content-type', 'application/json');
 
   this.printServiceInfo(urlAddress, item, this.hdrs);
-  
+
     return this.http.put<Degree>(
       urlAddress,
       item,
@@ -160,7 +160,7 @@ public deleteItem(id: string): Observable<Degree> {
   }
 
   public printServiceInfo(address: string, payload: any, httpHrd: HttpHeaders){
-    
+
     console.log('urlAddress: ', address);
     console.log('HEADERS:', httpHrd);
     console.log('payload: ', payload);

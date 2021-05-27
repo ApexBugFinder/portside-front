@@ -1,5 +1,5 @@
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
-import { ExperienceModule } from './experience.module';
+
 import * as fromExperienceData from './state/experience.reducer';
 
 import * as fromExperienceShell from './experience-shell/state/experience-shell.reducer';

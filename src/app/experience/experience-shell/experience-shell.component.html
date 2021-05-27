@@ -5,7 +5,7 @@
             <div class="infoData">
                 <div class="dataContainer">
                     <div class="companyContainer">
-                        <div class="logo" ><img [appImgSrc]="(currentExperience$|async).logoUrl" alt="" class="logo"></div>
+                        <div class="logoContainer" *ngIf="((currentExperience$|async).logoUrl)"><img [appImgSrc]="(currentExperience$|async).logoUrl" alt="" class="logo"></div>
                         <div class="name">{{ (currentExperience$ | async).company }}</div>
                     </div>
 
