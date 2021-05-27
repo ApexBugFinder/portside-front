@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.ResetCurrentDegreeToOriginal = exports.DeleteDegreeToDBFail = exports.DeleteDegreeToDBSuccess = exports.DeleteDegreeToDB = exports.UpdateDegreeToDBFail = exports.UpdateDegreeToDBSuccess = exports.UpdateDegreeToDB = exports.SaveDegreeToDBFail = exports.SaveDegreeToDBSuccess = exports.SaveDegreeToDB = exports.LoadDegreesByProjectCreatorIDFromDBFail = exports.LoadDegreesByProjectCreatorIDFromDBSuccess = exports.LoadDegreesByProjectCreatorIDFromDB = exports.ClearCurrentDegreeIsGraduatedFromDegreeShellEditCpt = exports.ClearCurrentDegreeGraduationYrFromDegreeShellEditCpt = exports.ClearCurrentDegreeIssuedDateFromDegreeShellEdit = exports.ClearCurrentDegreeIssuingBodyLogoFromDegreeShellEdit = exports.ClearCurrentDegreeIssuingBodyNameFromDegreeShellEdit = exports.ClearCurrentDegreeIsActiveFromDegreeShellEdit = exports.ClearCurrentDegreeDegreeNameFromDegreeShellEdit = exports.ClearCurrentDegreeProjectCreatorIDFromDegreeShellEdit = exports.ClearCurrentDegreeIdFromDegreeShellEdit = exports.ClearCurrentDegreeFromDegreeEffectsDelete = exports.ClearOriginalDegreeFromDegreeEffectsDelete = exports.ClearCurrentDegreeFromDegreeEffectsUpdate = exports.ClearOriginalDegreeFromDegreeEffectsUpdate = exports.ClearCurrentDegreeFromDegreeEffectsSave = exports.ClearOriginalDegreeFromDegreeEffectsSave = exports.SetCurrentDegreeIsGraduatedFromDegreeShellEditCpt = exports.SetCurrentDegreeGraduationYrFromDegreeShellEditCpt = exports.SetCurrentDegreeIssuedDateFromDegreeShellEditCpt = exports.SetCurrentDegreeIssuingBodyLogoFromDegreeShellEditCpt = exports.SetCurrentDegreeIssuingBodyNameFromDegreeShellEditCpt = exports.SetCurrentDegreeIsActiveFromDegreeShellEditCpt = exports.SetCurrentDegreeDegreeNameFromDegreeShellEditCpt = exports.SetCurrentDegreeProjectCreatorIDFromDegreeShellEditCpt = exports.SetCurrentDegreeIdFromDegreeShellEditCpt = exports.SetCurrentDegreeFromDegreeEffects = exports.SetOriginalDegreeFromDegreeEffects = exports.SetCurrentDegreeFromViewDegree = exports.SetOriginalDegreeFromViewDegree = exports.DegreeActionTypes = void 0;
+exports.ResetCurrentDegreeToOriginal = exports.DeleteDegreeToDBFail = exports.DeleteDegreeToDBSuccess = exports.DeleteDegreeToDB = exports.UpdateDegreeToDBFail = exports.UpdateDegreeToDBSuccess = exports.UpdateDegreeToDB = exports.SaveDegreeToDBFail = exports.SaveDegreeToDBSuccess = exports.SaveDegreeToDB = exports.LoadDegreesByProjectCreatorIDFromDBFail = exports.LoadDegreesByProjectCreatorIDFromDBSuccess = exports.LoadDegreesByProjectCreatorIDFromDB = exports.ClearCurrentDegreeIsGraduatedFromDegreeShellEditCpt = exports.ClearCurrentDegreeGraduationYrFromDegreeShellEditCpt = exports.ClearCurrentDegreeStateFromDegreeShellEdit = exports.ClearCurrentDegreeCityFromDegreeShellEdit = exports.ClearCurrentDegreeInstitutionFromDegreeShellEdit = exports.ClearCurrentDegreeMinorDegreeShellEdit = exports.ClearCurrentDegreeDegreeTypeFromDegreeShellEditCpt = exports.ClearCurrentDegreeDegreeNameFromDegreeShellEdit = exports.ClearCurrentDegreeProjectCreatorIDFromDegreeShellEdit = exports.ClearCurrentDegreeIdFromDegreeShellEdit = exports.ClearCurrentDegreeFromDegreeEffectsDelete = exports.ClearOriginalDegreeFromDegreeEffectsDelete = exports.ClearCurrentDegreeFromDegreeEffectsUpdate = exports.ClearOriginalDegreeFromDegreeEffectsUpdate = exports.ClearCurrentDegreeFromDegreeEffectsSave = exports.ClearOriginalDegreeFromDegreeEffectsSave = exports.SetCurrentDegreeIsGraduatedFromDegreeShellEditCpt = exports.SetCurrentDegreeGraduationYrFromDegreeShellEditCpt = exports.SetCurrentDegreeStateDegreeShellEditCpt = exports.SetCurrentDegreeCityFromDegreeShellEditCpt = exports.SetCurrentDegreeInstitutionFromDegreeShellEditCpt = exports.SetCurrentDegreeMinorFromDegreeShellEditCpt = exports.SetCurrentDegreeDegreeTypeFromDegreeShellEditCpt = exports.SetCurrentDegreeDegreeNameFromDegreeShellEditCpt = exports.SetCurrentDegreeProjectCreatorIDFromDegreeShellEditCpt = exports.SetCurrentDegreeIdFromDegreeShellEditCpt = exports.SetCurrentDegreeFromDegreeEffects = exports.SetOriginalDegreeFromDegreeEffects = exports.SetCurrentDegreeFromViewDegree = exports.SetOriginalDegreeFromViewDegree = exports.DegreeActionTypes = void 0;
 // ACTION ORIGINS
 // load from db: from PageShell Component
 // Save Update & Delete: from DegreeShellEdit Component acTIONbUTTONS
@@ -39,6 +39,7 @@ var DegreeActionTypes;
     DegreeActionTypes["SET_CURRENT_DEGREE_STATE_FROM_DEGREE_SHELL_EDIT_CPT"] = "[CURRENT DEGREE] SET DEGREE COMPLETE DATE FROM DEGREE SHELL EDIT CPT";
     DegreeActionTypes["SET_CURRENT_DEGREE_GRADUATION_YR_FROM_DEGREE_SHELL_EDIT_CPT"] = "[CURRENT DEGREE] SET DEGREE GRADUATION YEAR FROM DEGREE SHELL EDIT CPT";
     DegreeActionTypes["SET_CURRENT_DEGREE_isGRADUATED_FROM_DEGREE_SHELL_EDIT_CPT"] = "[CURRENT DEGREE] SET DEGREE IS GRADUATED FROM DEGREE SHELL EDIT CPT";
+    DegreeActionTypes["SET_CURRENT_DEGREE_DEGREE_TYPE_FROM_DEGREE_SHELL_EDIT_CPT"] = "[CURRENT DEGREE] SET DEGREE TYPE FROM DEGREE SHELL EDIT CPT";
     // CLEAR FROM EFFECTS -SAVE UPDATE DELETE (6)
     DegreeActionTypes["CLEAR_ORIGINAL_DEGREE_FROM_DEGREE_EFFECTS_SAVE"] = "[DEGREE] LEAR ORIGINAL DEGREES FROM DEGREE EFFECTS SAVE";
     DegreeActionTypes["CLEAR_CURRENT_DEGREE_FROM_DEGREE_EFFECTS_SAVE"] = "[DEGREE] CLEAR CURRENT DEGREES FROM DEGREE EFFECTS SAVE";
@@ -56,6 +57,7 @@ var DegreeActionTypes;
     DegreeActionTypes["CLEAR_CURRENT_DEGREE_STATE_FROM_DEGREE_SHELL_EDIT_CPT"] = "[CURRENT DEGREE] CLEAR DEGREE COMPLETE DATE FROM DEGREE SHELL EDIT CPT";
     DegreeActionTypes["CLEAR_CURRENT_DEGREE_GRADUATION_YR_FROM_DEGREE_SHELL_EDIT_CPT"] = "[CURRENT DEGREE] CLEAR DEGREE GRADUATION YEAR FROM DEGREE SHELL EDIT CPT";
     DegreeActionTypes["CLEAR_CURRENT_DEGREE_isGRADUATED_FROM_DEGREE_SHELL_EDIT_CPT"] = "[CURRENT DEGREE] CLEAR DEGREE IS GRADUATED FROM DEGREE SHELL EDIT CPT";
+    DegreeActionTypes["CLEAR_CURRENT_DEGREE_DEGREE_TYPE_FROM_DEGREE_SHELL_EDIT_CPT"] = "[CURRENT DEGREE] CLEAR DEGREE DEGREE TYPE FROM DEGREE SHELL EDIT CPT";
     // UPDATE (1)
     DegreeActionTypes["RESET_CURRENT_DEGREE_FROM_DEGREE_SHELL_EDIT_CPT"] = "[CURRENT DEGREE] RESETS CURRENT DEGREE BACK TO ORIGINAL PROJECT FROM DEGREE SHELL EDIT CPT";
 })(DegreeActionTypes = exports.DegreeActionTypes || (exports.DegreeActionTypes = {}));
@@ -120,38 +122,46 @@ var SetCurrentDegreeDegreeNameFromDegreeShellEditCpt = /** @class */ (function (
     return SetCurrentDegreeDegreeNameFromDegreeShellEditCpt;
 }());
 exports.SetCurrentDegreeDegreeNameFromDegreeShellEditCpt = SetCurrentDegreeDegreeNameFromDegreeShellEditCpt;
-var SetCurrentDegreeIsActiveFromDegreeShellEditCpt = /** @class */ (function () {
-    function SetCurrentDegreeIsActiveFromDegreeShellEditCpt(payload) {
+var SetCurrentDegreeDegreeTypeFromDegreeShellEditCpt = /** @class */ (function () {
+    function SetCurrentDegreeDegreeTypeFromDegreeShellEditCpt(payload) {
+        this.payload = payload;
+        this.type = DegreeActionTypes.SET_CURRENT_DEGREE_DEGREE_TYPE_FROM_DEGREE_SHELL_EDIT_CPT;
+    }
+    return SetCurrentDegreeDegreeTypeFromDegreeShellEditCpt;
+}());
+exports.SetCurrentDegreeDegreeTypeFromDegreeShellEditCpt = SetCurrentDegreeDegreeTypeFromDegreeShellEditCpt;
+var SetCurrentDegreeMinorFromDegreeShellEditCpt = /** @class */ (function () {
+    function SetCurrentDegreeMinorFromDegreeShellEditCpt(payload) {
         this.payload = payload;
         this.type = DegreeActionTypes.SET_CURRENT_DEGREE_MINOR_FROM_DEGREE_SHELL_EDIT_CPT;
     }
-    return SetCurrentDegreeIsActiveFromDegreeShellEditCpt;
+    return SetCurrentDegreeMinorFromDegreeShellEditCpt;
 }());
-exports.SetCurrentDegreeIsActiveFromDegreeShellEditCpt = SetCurrentDegreeIsActiveFromDegreeShellEditCpt;
-var SetCurrentDegreeIssuingBodyNameFromDegreeShellEditCpt = /** @class */ (function () {
-    function SetCurrentDegreeIssuingBodyNameFromDegreeShellEditCpt(payload) {
+exports.SetCurrentDegreeMinorFromDegreeShellEditCpt = SetCurrentDegreeMinorFromDegreeShellEditCpt;
+var SetCurrentDegreeInstitutionFromDegreeShellEditCpt = /** @class */ (function () {
+    function SetCurrentDegreeInstitutionFromDegreeShellEditCpt(payload) {
         this.payload = payload;
         this.type = DegreeActionTypes.SET_CURRENT_DEGREE_INSTITUTION_FROM_DEGREE_SHELL_EDIT_CPT;
     }
-    return SetCurrentDegreeIssuingBodyNameFromDegreeShellEditCpt;
+    return SetCurrentDegreeInstitutionFromDegreeShellEditCpt;
 }());
-exports.SetCurrentDegreeIssuingBodyNameFromDegreeShellEditCpt = SetCurrentDegreeIssuingBodyNameFromDegreeShellEditCpt;
-var SetCurrentDegreeIssuingBodyLogoFromDegreeShellEditCpt = /** @class */ (function () {
-    function SetCurrentDegreeIssuingBodyLogoFromDegreeShellEditCpt(payload) {
+exports.SetCurrentDegreeInstitutionFromDegreeShellEditCpt = SetCurrentDegreeInstitutionFromDegreeShellEditCpt;
+var SetCurrentDegreeCityFromDegreeShellEditCpt = /** @class */ (function () {
+    function SetCurrentDegreeCityFromDegreeShellEditCpt(payload) {
         this.payload = payload;
         this.type = DegreeActionTypes.SET_CURRENT_DEGREE_CITY_FROM_DEGREE_SHELL_EDIT_CPT;
     }
-    return SetCurrentDegreeIssuingBodyLogoFromDegreeShellEditCpt;
+    return SetCurrentDegreeCityFromDegreeShellEditCpt;
 }());
-exports.SetCurrentDegreeIssuingBodyLogoFromDegreeShellEditCpt = SetCurrentDegreeIssuingBodyLogoFromDegreeShellEditCpt;
-var SetCurrentDegreeIssuedDateFromDegreeShellEditCpt = /** @class */ (function () {
-    function SetCurrentDegreeIssuedDateFromDegreeShellEditCpt(payload) {
+exports.SetCurrentDegreeCityFromDegreeShellEditCpt = SetCurrentDegreeCityFromDegreeShellEditCpt;
+var SetCurrentDegreeStateDegreeShellEditCpt = /** @class */ (function () {
+    function SetCurrentDegreeStateDegreeShellEditCpt(payload) {
         this.payload = payload;
         this.type = DegreeActionTypes.SET_CURRENT_DEGREE_STATE_FROM_DEGREE_SHELL_EDIT_CPT;
     }
-    return SetCurrentDegreeIssuedDateFromDegreeShellEditCpt;
+    return SetCurrentDegreeStateDegreeShellEditCpt;
 }());
-exports.SetCurrentDegreeIssuedDateFromDegreeShellEditCpt = SetCurrentDegreeIssuedDateFromDegreeShellEditCpt;
+exports.SetCurrentDegreeStateDegreeShellEditCpt = SetCurrentDegreeStateDegreeShellEditCpt;
 var SetCurrentDegreeGraduationYrFromDegreeShellEditCpt = /** @class */ (function () {
     function SetCurrentDegreeGraduationYrFromDegreeShellEditCpt(payload) {
         this.payload = payload;
@@ -233,34 +243,41 @@ var ClearCurrentDegreeDegreeNameFromDegreeShellEdit = /** @class */ (function ()
     return ClearCurrentDegreeDegreeNameFromDegreeShellEdit;
 }());
 exports.ClearCurrentDegreeDegreeNameFromDegreeShellEdit = ClearCurrentDegreeDegreeNameFromDegreeShellEdit;
-var ClearCurrentDegreeIsActiveFromDegreeShellEdit = /** @class */ (function () {
-    function ClearCurrentDegreeIsActiveFromDegreeShellEdit() {
+var ClearCurrentDegreeDegreeTypeFromDegreeShellEditCpt = /** @class */ (function () {
+    function ClearCurrentDegreeDegreeTypeFromDegreeShellEditCpt() {
+        this.type = DegreeActionTypes.CLEAR_CURRENT_DEGREE_DEGREE_TYPE_FROM_DEGREE_SHELL_EDIT_CPT;
+    }
+    return ClearCurrentDegreeDegreeTypeFromDegreeShellEditCpt;
+}());
+exports.ClearCurrentDegreeDegreeTypeFromDegreeShellEditCpt = ClearCurrentDegreeDegreeTypeFromDegreeShellEditCpt;
+var ClearCurrentDegreeMinorDegreeShellEdit = /** @class */ (function () {
+    function ClearCurrentDegreeMinorDegreeShellEdit() {
         this.type = DegreeActionTypes.CLEAR_CURRENT_DEGREE_MINOR_FROM_DEGREE_SHELL_EDIT_CPT;
     }
-    return ClearCurrentDegreeIsActiveFromDegreeShellEdit;
+    return ClearCurrentDegreeMinorDegreeShellEdit;
 }());
-exports.ClearCurrentDegreeIsActiveFromDegreeShellEdit = ClearCurrentDegreeIsActiveFromDegreeShellEdit;
-var ClearCurrentDegreeIssuingBodyNameFromDegreeShellEdit = /** @class */ (function () {
-    function ClearCurrentDegreeIssuingBodyNameFromDegreeShellEdit() {
+exports.ClearCurrentDegreeMinorDegreeShellEdit = ClearCurrentDegreeMinorDegreeShellEdit;
+var ClearCurrentDegreeInstitutionFromDegreeShellEdit = /** @class */ (function () {
+    function ClearCurrentDegreeInstitutionFromDegreeShellEdit() {
         this.type = DegreeActionTypes.CLEAR_CURRENT_DEGREE_INSTITUTION_FROM_DEGREE_SHELL_EDIT_CPT;
     }
-    return ClearCurrentDegreeIssuingBodyNameFromDegreeShellEdit;
+    return ClearCurrentDegreeInstitutionFromDegreeShellEdit;
 }());
-exports.ClearCurrentDegreeIssuingBodyNameFromDegreeShellEdit = ClearCurrentDegreeIssuingBodyNameFromDegreeShellEdit;
-var ClearCurrentDegreeIssuingBodyLogoFromDegreeShellEdit = /** @class */ (function () {
-    function ClearCurrentDegreeIssuingBodyLogoFromDegreeShellEdit() {
+exports.ClearCurrentDegreeInstitutionFromDegreeShellEdit = ClearCurrentDegreeInstitutionFromDegreeShellEdit;
+var ClearCurrentDegreeCityFromDegreeShellEdit = /** @class */ (function () {
+    function ClearCurrentDegreeCityFromDegreeShellEdit() {
         this.type = DegreeActionTypes.CLEAR_CURRENT_DEGREE_CITY_FROM_DEGREE_SHELL_EDIT_CPT;
     }
-    return ClearCurrentDegreeIssuingBodyLogoFromDegreeShellEdit;
+    return ClearCurrentDegreeCityFromDegreeShellEdit;
 }());
-exports.ClearCurrentDegreeIssuingBodyLogoFromDegreeShellEdit = ClearCurrentDegreeIssuingBodyLogoFromDegreeShellEdit;
-var ClearCurrentDegreeIssuedDateFromDegreeShellEdit = /** @class */ (function () {
-    function ClearCurrentDegreeIssuedDateFromDegreeShellEdit() {
+exports.ClearCurrentDegreeCityFromDegreeShellEdit = ClearCurrentDegreeCityFromDegreeShellEdit;
+var ClearCurrentDegreeStateFromDegreeShellEdit = /** @class */ (function () {
+    function ClearCurrentDegreeStateFromDegreeShellEdit() {
         this.type = DegreeActionTypes.CLEAR_CURRENT_DEGREE_STATE_FROM_DEGREE_SHELL_EDIT_CPT;
     }
-    return ClearCurrentDegreeIssuedDateFromDegreeShellEdit;
+    return ClearCurrentDegreeStateFromDegreeShellEdit;
 }());
-exports.ClearCurrentDegreeIssuedDateFromDegreeShellEdit = ClearCurrentDegreeIssuedDateFromDegreeShellEdit;
+exports.ClearCurrentDegreeStateFromDegreeShellEdit = ClearCurrentDegreeStateFromDegreeShellEdit;
 var ClearCurrentDegreeGraduationYrFromDegreeShellEditCpt = /** @class */ (function () {
     function ClearCurrentDegreeGraduationYrFromDegreeShellEditCpt(payload) {
         this.payload = payload;

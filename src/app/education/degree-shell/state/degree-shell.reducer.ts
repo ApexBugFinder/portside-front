@@ -104,6 +104,11 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           ...state,
           degreeName: action.payload,
         };
+        case DegreeActionTypes.SET_CURRENT_DEGREE_DEGREE_TYPE_FROM_DEGREE_SHELL_EDIT_CPT:
+        return {
+            ...state,
+            degreeType: action.payload
+        };
       case DegreeActionTypes.SET_CURRENT_DEGREE_MINOR_FROM_DEGREE_SHELL_EDIT_CPT:
         return {
           ...state,
@@ -250,7 +255,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           ...state,
           isGraduated: initialState.isGraduated,
         };
-      case DegreeActionTypes.CLEAR_CURRENT_DEGREE_STATE_FROM_DEGREE_SHELL_EDIT_CPT:
+      case DegreeActionTypes.CLEAR_CURRENT_DEGREE_GRADUATION_YR_FROM_DEGREE_SHELL_EDIT_CPT:
         return {
           ...state,
           graduationYear: initialState.graduationYear,

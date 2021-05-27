@@ -40,6 +40,8 @@ function degreeReducer(state, action) {
             return __assign(__assign({}, state), { projectCreatorID: action.payload });
         case degree_shell_actions_1.DegreeActionTypes.SET_CURRENT_DEGREE_DEGREE_NAME_FROM_DEGREE_SHELL_EDIT_CPT:
             return __assign(__assign({}, state), { degreeName: action.payload });
+        case degree_shell_actions_1.DegreeActionTypes.SET_CURRENT_DEGREE_DEGREE_TYPE_FROM_DEGREE_SHELL_EDIT_CPT:
+            return __assign(__assign({}, state), { degreeType: action.payload });
         case degree_shell_actions_1.DegreeActionTypes.SET_CURRENT_DEGREE_MINOR_FROM_DEGREE_SHELL_EDIT_CPT:
             return __assign(__assign({}, state), { minor: action.payload });
         case degree_shell_actions_1.DegreeActionTypes.SET_CURRENT_DEGREE_INSTITUTION_FROM_DEGREE_SHELL_EDIT_CPT:
@@ -81,7 +83,7 @@ function degreeReducer(state, action) {
             return __assign(__assign({}, state), { state: initialState.state });
         case degree_shell_actions_1.DegreeActionTypes.CLEAR_CURRENT_DEGREE_isGRADUATED_FROM_DEGREE_SHELL_EDIT_CPT:
             return __assign(__assign({}, state), { isGraduated: initialState.isGraduated });
-        case degree_shell_actions_1.DegreeActionTypes.CLEAR_CURRENT_DEGREE_STATE_FROM_DEGREE_SHELL_EDIT_CPT:
+        case degree_shell_actions_1.DegreeActionTypes.CLEAR_CURRENT_DEGREE_GRADUATION_YR_FROM_DEGREE_SHELL_EDIT_CPT:
             return __assign(__assign({}, state), { graduationYear: initialState.graduationYear });
         case degree_shell_actions_1.DegreeActionTypes.RESET_CURRENT_DEGREE_FROM_DEGREE_SHELL_EDIT_CPT:
             return __assign(__assign({}, state), { id: (_a = state.originalDegree) === null || _a === void 0 ? void 0 : _a.id, projectCreatorID: (_b = state.originalDegree) === null || _b === void 0 ? void 0 : _b.projectCreatorID, degreeName: (_c = state.originalDegree) === null || _c === void 0 ? void 0 : _c.degreeName, minor: (_d = state.originalDegree) === null || _d === void 0 ? void 0 : _d.minor, institution: (_e = state.originalDegree) === null || _e === void 0 ? void 0 : _e.institution, city: (_f = state.originalDegree) === null || _f === void 0 ? void 0 : _f.city, state: (_g = state.originalDegree) === null || _g === void 0 ? void 0 : _g.state, graduationYear: (_h = state.originalDegree) === null || _h === void 0 ? void 0 : _h.graduationYear, isGraduated: (_j = state.originalDegree) === null || _j === void 0 ? void 0 : _j.isGraduated });
