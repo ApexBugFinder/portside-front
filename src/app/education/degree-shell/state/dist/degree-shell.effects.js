@@ -69,7 +69,7 @@ var DegreeShellEffects = /** @class */ (function () {
         // UPDATE DEGREE
         this.UpdateDegree$ = effects_1.createEffect(function () {
             return _this.actions$.pipe(effects_1.ofType(degreeShellActions.DegreeActionTypes
-                .UPDATE_DEGREE_TO_DB_from_DegreeShellEdit), operators_1.mergeMap(function (action) {
+                .UPDATE_DEGREE_TO_DB_from_DegreeShellEdit), operators_1.tap(function () { return console.log(_this.currentDegree); }), operators_1.mergeMap(function (action) {
                 return _this.degreeService.updateItem(_this.currentDegree).pipe(operators_1.tap(function (payload) {
                     return console.log('NGRX EFFECT - UPDATE DEGREE TO DB SUCCESSFUL: ', payload);
                 }), operators_1.map(function (payload) {

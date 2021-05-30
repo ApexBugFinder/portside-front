@@ -20,15 +20,15 @@ export const getCurrentDegree = createSelector(
     selectDegreeShellState,
     state => {
         return {
-          id: state.originalDegree?.id as string,
-          projectCreatorID: state.originalDegree?.projectCreatorID as string,
-          degreeName: state.originalDegree?.degreeName as string,
-          minor: state.originalDegree?.minor,
-          institution: state.originalDegree?.institution,
-          city: state.originalDegree?.city,
-          state: state.originalDegree?.state,
-          graduationYear: state.originalDegree?.graduationYear,
-          isGraduated: state.originalDegree?.isGraduated,
+          id: state.id as string,
+          projectCreatorID: state.projectCreatorID as string,
+          degreeName: state.degreeName as string,
+          minor: state.minor,
+          institution: state.institution,
+          city: state.city,
+          state: state.state,
+          graduationYear: state.graduationYear,
+          isGraduated: state.isGraduated,
         };
     }
 );

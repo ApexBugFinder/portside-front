@@ -34,7 +34,7 @@ public createItem(item: Certification) : Observable<Certification> {
 
       this.hdrs = new HttpHeaders()
         .set('Access-Control-Allow-Origin', [this.apiRt, this.apiAddress, Constants.clientRoot])
-        .set('Access-Control-Allow-Methods', ['PUT','POST','DELETE', 'GET'])
+        .set('Access-Control-Allow-Methods', ['POST',])
         .set('content-type', 'application/json');
 
       this.printServiceInfo(address, item, this.hdrs);

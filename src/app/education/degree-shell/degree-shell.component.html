@@ -1,1 +1,12 @@
-<p>degree-shell works!</p>
+<div class="shellContainer">
+  <div class="shellContent">
+    <div class="degreeHeading">
+      <h4>Degrees</h4>
+    </div>
+    <div class="degreeContainer" *ngFor="let degree of (myDegrees$|async)">
+        <app-view-degree [myDegree]="degree"></app-view-degree>
+
+    </div>
+    
+  </div>
+</div>

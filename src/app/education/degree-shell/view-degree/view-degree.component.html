@@ -1,1 +1,24 @@
-<p>view-degree works!</p>
+<div class="shellContainer">
+  <div class="shellContent">
+    <div class="degreeType" id="degreeType">BS:</div>
+    <div class="degreeName">
+      <div class="degreeNameContainer">
+               <button class="editButton" (click)="editDegree()">
+                  {{myDegree.degreeName}}
+               </button>
+               <p>Grad: {{myDegree.graduationYear | date: 'YYYY'}}</p>
+      </div>
+    </div>
+
+
+      <div class="minorHeading">Minors:</div>
+      <div class="minorData">{{ myDegree.minor }}</div>
+
+
+    <div class="institutionHeading">Institution:</div>
+    <div class="institutionData">{{ myDegree.institution}}</div>
+
+    <div class="locationHeading">Location:</div>
+    <div class="locationData">{{myDegree.city}}, {{ myDegree.state }}</div>
+  </div>
+</div>

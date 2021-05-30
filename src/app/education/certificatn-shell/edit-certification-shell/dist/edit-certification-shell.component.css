@@ -1,0 +1,80 @@
+.shellContainer {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  scroll-behavior: auto;
+  overflow-x: hidden;
+  width: 560px;
+  margin: auto;
+  align-content: space-between;
+  border: solid 1px #eee0e056;
+}
+.shellContainer .header {
+  width: 100%;
+  margin: auto;
+  font-size: 12px;
+  font-family: furtura-pt;
+  padding: 5px;
+  color: var(--secondaryColor);
+}
+.shellContainer .certContainer {
+  margin: 0px 10px;
+  justify-self: center;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-self: center;
+  overflow-x: hidden;
+}
+.shellContainer .certContainer .infoSection {
+  margin: 15px auto;
+  justify-self: space-between;
+  width: 100%;
+}
+.shellContainer .certContainer .infoSection .infoContainer {
+  justify-content: space-between;
+  width: 100%;
+}
+.shellContainer .certContainer .infoSection .infoContainer .label-wrapper {
+  width: 50%;
+  background-color: var(--accent2Color);
+  height: 20px;
+  padding: 4px 8px;
+}
+.shellContainer .certContainer .infoSection .infoContainer .label-wrapper mat-label {
+  height: 20px;
+  background-color: var(--accent2Color);
+  margin: 0;
+  font-size: 9px;
+  color: var(--secondaryColor);
+}
+.shellContainer .certContainer .infoSection .infoContainer mat-form-field {
+  margin: 0px;
+  width: 100%;
+  padding: 4px 0px;
+}
+.shellContainer .certContainer .infoSection .infoContainer .infoSection#certNameSection {
+  margin-top: 20px 0;
+  padding: 20px;
+}
+.shellContainer .certContainer .infoSection .infoContainer .isActiveContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.shellContainer .activeButton {
+  margin: 10px 20px;
+}
+.shellContainer .logoGetter {
+  margin-top: 20px;
+  width: 600px;
+}
+.shellContainer app-edit-action-buttons {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: row;
+  column-gap: 30px;
+  justify-content: space-evenly;
+}

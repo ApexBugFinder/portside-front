@@ -1,0 +1,14 @@
+.actionButtonsSection {
+  width: 350px;
+}
+.actionButtonsSection .actionButtonContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  column-gap: 20px;
+}
+.actionButtonsSection .actionButtonContainer .saveButton {
+  background-color: var(--accent2Color);
+  border: 1px solid var(--secondaryColor);
+}

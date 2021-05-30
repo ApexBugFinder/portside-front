@@ -1,0 +1,57 @@
+.shellContainer {
+  width: 100%;
+}
+.shellContainer .shellContent {
+  display: grid;
+  grid-template-columns: 30px 30px 100px 300px;
+  grid-template-rows: 40px 30px 30px 30px;
+  grid-template-areas: "a b c c" "a b d e" "a b f g" "a b h i";
+}
+.shellContainer .shellContent .degreeType {
+  grid-area: b;
+  position: relative;
+  margin: 10px;
+}
+.shellContainer .shellContent .degreeName {
+  grid-area: c;
+  position: relative;
+  margin: 10px;
+}
+.shellContainer .shellContent .degreeNameContainer {
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+  justify-content: space-between;
+  margin: 0px;
+  padding: 0px;
+}
+.shellContainer .shellContent .degreeNameContainer p {
+  margin: 0;
+  padding: 0;
+}
+.shellContainer .shellContent .minorHeading {
+  grid-area: d;
+}
+.shellContainer .shellContent .minorData {
+  grid-area: e;
+}
+.shellContainer .shellContent .institutionHeading {
+  grid-area: f;
+}
+.shellContainer .shellContent .institutionData {
+  grid-area: g;
+}
+.shellContainer .shellContent .locationHeading {
+  grid-area: h;
+}
+.shellContainer .shellContent .locationData {
+  grid-area: i;
+}
+
+.editButton {
+  background-color: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--accent3Color);
+}

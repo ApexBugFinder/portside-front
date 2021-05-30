@@ -1,0 +1,60 @@
+.shellContainer {
+  width: 100%;
+}
+.shellContainer .shellContent {
+  width: 80%;
+  row-gap: 20px;
+  justify-content: flex-end;
+  margin: auto;
+}
+.shellContainer .shellContent .actionButtons {
+  height: 60px;
+  width: 100%;
+}
+.shellContainer .shellContent .actionButtons .actionButtonsContainer {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+  justify-content: space-between;
+}
+.shellContainer .shellContent .actionButtons .actionButtonsContainer button.gapper {
+  background-color: rgba(149, 188, 211, 0.5);
+  font-family: futura-pt;
+  border: #707070 1px solid;
+}
+.shellContainer .shellContent .actionButtons .actionButtonsContainer .experienceCtroller {
+  margin-top: 0px;
+  font-family: bio-sans, sans-serif;
+  font-weight: 200;
+  font-style: normal;
+  font-size: 18px;
+  margin: 20px 0;
+}
+.shellContainer .shellContent .actionButtons .actionButtonsContainer .experienceCtroller .experienceControllerContent {
+  display: flex;
+  flex-direction: row;
+  column-gap: 40px;
+  margin: auto;
+  justify-self: flex-start;
+}
+.shellContainer .shellContent .actionButtons .actionButtonsContainer .experienceCtroller .experienceControllerContent fa-icon.anchorIcon {
+  align-self: center;
+  font-size: 30px;
+}
+.shellContainer .shellContent .actionButtons .actionButtonsContainer .experienceCtroller .experienceControllerContent p {
+  vertical-align: center;
+  justify-self: center;
+  align-self: center;
+  margin: auto;
+}
+.shellContainer .shellContent .actionButtons .actionButtonsContainer app-action-buttons {
+  width: 30%;
+}
+.shellContainer .shellContent .experienceContent {
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-start;
+}

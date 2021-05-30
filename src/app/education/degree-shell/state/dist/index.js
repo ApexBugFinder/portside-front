@@ -5,17 +5,16 @@ var store_1 = require("@ngrx/store");
 var state_1 = require("../../state");
 exports.getOrginalDegree = store_1.createSelector(state_1.selectDegreeShellState, function (state) { return state.originalDegree; });
 exports.getCurrentDegree = store_1.createSelector(state_1.selectDegreeShellState, function (state) {
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
     return {
-        id: (_a = state.originalDegree) === null || _a === void 0 ? void 0 : _a.id,
-        projectCreatorID: (_b = state.originalDegree) === null || _b === void 0 ? void 0 : _b.projectCreatorID,
-        degreeName: (_c = state.originalDegree) === null || _c === void 0 ? void 0 : _c.degreeName,
-        minor: (_d = state.originalDegree) === null || _d === void 0 ? void 0 : _d.minor,
-        institution: (_e = state.originalDegree) === null || _e === void 0 ? void 0 : _e.institution,
-        city: (_f = state.originalDegree) === null || _f === void 0 ? void 0 : _f.city,
-        state: (_g = state.originalDegree) === null || _g === void 0 ? void 0 : _g.state,
-        graduationYear: (_h = state.originalDegree) === null || _h === void 0 ? void 0 : _h.graduationYear,
-        isGraduated: (_j = state.originalDegree) === null || _j === void 0 ? void 0 : _j.isGraduated
+        id: state.id,
+        projectCreatorID: state.projectCreatorID,
+        degreeName: state.degreeName,
+        minor: state.minor,
+        institution: state.institution,
+        city: state.city,
+        state: state.state,
+        graduationYear: state.graduationYear,
+        isGraduated: state.isGraduated
     };
 });
 exports.getCurrentDegreeId = store_1.createSelector(state_1.selectDegreeShellState, function (state) { return state.id; });

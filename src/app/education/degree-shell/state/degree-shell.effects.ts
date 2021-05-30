@@ -152,7 +152,7 @@ export class DegreeShellEffects {
       ofType(
         degreeShellActions.DegreeActionTypes
           .UPDATE_DEGREE_TO_DB_from_DegreeShellEdit
-      ),
+      ), tap(()=> console.log(this.currentDegree)),
       mergeMap((action: degreeShellActions.UpdateDegreeToDB) =>
         this.degreeService.updateItem(this.currentDegree).pipe(
           tap((payload: Degree) =>

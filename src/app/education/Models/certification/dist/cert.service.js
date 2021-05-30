@@ -27,7 +27,7 @@ var CertService = /** @class */ (function () {
         var address = this.apiAddress + "new";
         this.hdrs = new http_1.HttpHeaders()
             .set('Access-Control-Allow-Origin', [this.apiRt, this.apiAddress, Constants_1.Constants.clientRoot])
-            .set('Access-Control-Allow-Methods', ['PUT', 'POST', 'DELETE', 'GET'])
+            .set('Access-Control-Allow-Methods', ['POST',])
             .set('content-type', 'application/json');
         this.printServiceInfo(address, item, this.hdrs);
         return this.http.post(address, item, { headers: this.hdrs }).pipe(operators_1.timeout(2000), operators_1.map(function (newCertification) {

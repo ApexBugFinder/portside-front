@@ -16,6 +16,7 @@ import { ActionButtonsComponent } from './action-buttons/action-buttons.componen
 
 import { ExperienceModule } from '../experience/experience.module';
 import { EducationModule } from '../education/education.module';
+import { EditActionButtonsComponent } from '../shared/edit-action-buttons/edit-action-buttons.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { EducationModule } from '../education/education.module';
     EducationComponent,
     ExperienceComponent,
     PageShellComponent,
-    ActionButtonsComponent
+    ActionButtonsComponent,
+
 
   ],
   imports: [CommonModule, ReactiveFormsModule, PagesRoutingModule, SharedModule, ProjectModule, ExperienceModule,  EducationModule ],
@@ -35,7 +37,8 @@ import { EducationModule } from '../education/education.module';
     EducationComponent,
     ExperienceComponent,
     PageShellComponent,
-    ActionButtonsComponent
+    ActionButtonsComponent,
+    
   ],
 })
 export class PagesModule {}

@@ -1,1 +1,156 @@
-<p>edit-degree-shell works!</p>
+
+<mat-dialog-content>
+  <form action="" [formGroup]="degreeForm">
+
+
+
+        <div class="shellContainer">
+
+          <div class="degreeContainer">
+
+
+            <div class="header">
+            <p>Edit Degree</p>
+            <mat-divider></mat-divider>
+            </div>
+
+
+
+
+
+          <div class="infoSection" id="degreeNameSection">
+            <div class="infoContainer">
+              <div class="label-wrapper">
+                <mat-label>
+                  Degree Name:
+                </mat-label>
+              </div>
+              <mat-form-field>
+
+                <input type="text"
+                 matInput
+                 formControlName="degreeName"
+                 placeholder="{{ (myDegree$ | async).degreeName }}"
+                name="degreeNameInputName" id="degreeNameInputId">
+
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="infoSection">
+            <div class="infoContainer">
+              <div class="label-wrapper">
+                <mat-label>Degree Type:</mat-label>
+              </div>
+
+              <mat-form-field>
+                <input type="text"
+                matInput
+                formControlName="degreeType"
+                placeholder="{{ (myDegree$ | async).degreeType }}"
+                name="degreeInputName" id="degreeInputId">
+              </mat-form-field>
+            </div>
+          </div>
+
+
+          <div class="infoSection">
+            <div class="infoContainer">
+              <div class="label-wrapper">
+                <mat-label>Minor:</mat-label>
+              </div>
+              <mat-form-field>
+
+                <input type="text"
+                matInput
+                formControlName="minor"
+                placeholder="{{ (myDegree$ | async).minor }}"
+                name="minorInputName" id="minorInputId">
+
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="infoSection">
+            <div class="infoContainer">
+              <div class="label-wrapper">
+                <mat-label>Institution:</mat-label>
+              </div>
+
+              <mat-form-field>
+                <input type="text"
+                  matInput
+                  formControlName="institution"
+                  placeholder="{{ (myDegree$ | async).institution }}"
+                  name="institutionInputName"
+                  id="institutionInputId">
+              </mat-form-field>
+
+            </div>
+          </div>
+
+
+
+          <div class="infoSection">
+            <div class="infoContainer">
+              <div class="label-wrapper">
+                <mat-label>City:</mat-label>
+              </div>
+
+              <mat-form-field>
+                <input type="text"
+                matInput
+                formControlName="city"
+                placeholder="{{ (myDegree$ | async).city }}"
+                name="cityInputName" id="cityInputId">
+              </mat-form-field>
+
+            </div>
+          </div>
+          <div class="infoSection">
+            <div class="infoContainer">
+              <div class="label-wrapper">
+                <mat-label>State:</mat-label>
+              </div>
+
+              <mat-form-field>
+                <input type="text"
+                  matInput
+                  formControlName="state"
+                  placeholder="{{ (myDegree$ | async).state }}"
+                  name="stateInputName" id="stateInputId">
+              </mat-form-field>
+
+            </div>
+          </div>
+
+
+          <div class="infoSection">
+            <div class="infoContainer">
+              <div class="label-wrapper">
+                <mat-label>Graduation Year</mat-label>
+              </div>
+              <mat-form-field>
+                <input type="text"
+                matInput
+                formControlName="graduationYear"
+
+                name="graduationYearInputName" id="graduationYearInputId"></mat-form-field>
+            </div>
+          </div>
+          <div class="infoSection">
+            <div class="infoContainer">
+              <div class="label-wrapper">
+                <mat-label>Graduated</mat-label>
+              </div>
+              <!-- <mat-form-field><input type="text"
+                matInput
+                name="" id=""></mat-form-field> -->
+            </div>
+          </div>
+        </div>
+      <app-edit-action-buttons
+          (save)="saveToDB($event)"
+          (reset)="resetChanges($event)"
+          (delete)="deleteFromDB($event)" ></app-edit-action-buttons>
+      </div>
+  </form>
+</mat-dialog-content>

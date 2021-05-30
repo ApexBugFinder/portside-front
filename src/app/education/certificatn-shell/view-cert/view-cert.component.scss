@@ -1,0 +1,80 @@
+.shellContainer
+{
+  width: auto;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  // flex-direction: column-reverse;
+  .shellContent {
+    display: grid;
+justify-content: flex-start;
+  grid-template-areas:
+    "p a a a a a a a a a"  //CERTNAME
+    "b b ba h h bf f f f f "  //  ISSUED & VALID
+    "c c ca ca l l l l l  l" // CERT ID
+    "d d da da da n n  n n n"  // ISSUING BODY
+    ;
+
+    grid-template-columns: 30px 30px 50px 50px 50px 50px 50px 50px 50px 200px;
+    grid-template-rows: 40px 30px 30px 30px;
+
+
+
+
+
+
+  }
+  .shellContent > .certName {
+    grid-area: a;
+    p{
+        color: var(--accent3Color);
+        width:fit-content;
+    }
+
+
+  }
+
+.issuedHeading {
+grid-area: ba;
+}
+.issuedData {
+  grid-area: h;
+}
+.validHeading {
+  grid-area: bf;
+}
+.validData {
+grid-area: f;
+}
+.certIdHeading {
+  grid-area: ca;
+}
+.certIdData {
+  grid-area: l;
+}
+.issuingBodyHeading {
+  grid-area: da;
+  align-items: center;
+  vertical-align: center;
+}
+.issuingBodyingData{
+  grid-area: n;
+.isb-dataContainer {
+display: flex;
+flex-direction: row;
+column-gap: 10px;
+.isb-logo {
+  width: 30px;
+  align-self: center;
+  justify-self: center;
+}
+.isb-Name {
+  text-align: center;
+  align-self: center;
+  
+}
+}
+}
+}
+
+

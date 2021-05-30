@@ -23,7 +23,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./edit-modal-shell.component.scss']
 })
 export class EditModalShellComponent implements OnInit {
-  
+
   faTrash = faTrash;
   readonly classe: string = 'Experiences';
   originalExp$: Observable<Experience | undefined>;
@@ -51,7 +51,7 @@ export class EditModalShellComponent implements OnInit {
   myExperienceForm: FormGroup;
   currentExp$: Observable<Experience | undefined>;
   currentExp: Experience|undefined;
- 
+
 
   // ABSTRACTCONTROLS
   companyAbstractControl: AbstractControl | null;
@@ -64,13 +64,13 @@ export class EditModalShellComponent implements OnInit {
   logoUrlAbstractControl: AbstractControl | null;
   myRoleAbstractControl: AbstractControl | null;
   myTitleAbstractControl: AbstractControl | null;
-  
+
 
   constructor(public dialogRef: MatDialogRef<EditModalShellComponent>,
     private router: Router,
     private experienceDataStore: Store<fromExperienceShell.ExperienceShellState>,
     private experienceEntityStore: Store<fromExperienceEntityData.ExperienceDataState>,
-    private fb: FormBuilder) { 
+    private fb: FormBuilder) {
     this.originalExp$ = this.experienceDataStore.pipe(select(fromExperienceShell.getOrginalExperience));
     this.currentExp$ = this.experienceDataStore.pipe(select(fromExperienceShell.getCurrentExperience));
     this.company$ = this.experienceDataStore.pipe(select(fromExperienceShell.getCurrentExperienceCompany));
@@ -96,7 +96,7 @@ export class EditModalShellComponent implements OnInit {
       logoUrl: [''],
       myRole: [''],
       myTitle: ['']
-     
+
     })
   }
 
@@ -259,7 +259,7 @@ closeDialog() {
 
   getReqState(b: string): string {
     switch (b) {
-      case editState.ADD: 
+      case editState.ADD:
         return 'markedForAdd';
       case editState.REMOVE:
         return 'markedForRemoval'
@@ -276,13 +276,13 @@ closeDialog() {
 
 // SAVE TO DB
 saveToDB() {
-  
 
-    
+
+
     // UPDATE DB IF UPDATING
     this.experienceDataStore.dispatch(new experienceShellActions.UpdateExperienceToDB());
 
-  
+
 
 
 
@@ -292,11 +292,11 @@ saveToDB() {
 }
 
 deleteFromDB() {
-  
+
     this.experienceDataStore.dispatch(new experienceShellActions.DeleteExperienceToDB())
     // CLOSE DIALOG
    this.closeDialog();
-  
+
 }
 
   // FORM HELPERS
@@ -327,7 +327,7 @@ deleteFromDB() {
 
   }
   monitorForControlChanges() {
-    
+
     this.companyAbstractControl?.valueChanges.pipe(
       debounceTime(500),
       distinctUntilChanged()
@@ -410,9 +410,9 @@ deleteFromDB() {
   //   title: this.titleAbstractControl?.value,
   //   started: this.startedAbstractControl?.value,
   //   completed: this.completedAbstractControl?.value,
-  //   city: this.cityAbstractControl?.value, 
-  //   state: this.stateAbstractControl?.value, 
-  //   roles: this.rolesAbstractControl?.value, 
+  //   city: this.cityAbstractControl?.value,
+  //   state: this.stateAbstractControl?.value,
+  //   roles: this.rolesAbstractControl?.value,
   //   logoUrl: this.logoUrlAbstractControl?.value,
   //   id: this.experienceID,
   //   projectCreatorID: this.projectCreatorID

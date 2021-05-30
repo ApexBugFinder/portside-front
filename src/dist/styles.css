@@ -81,6 +81,48 @@ h4 {
   flex-direction: column;
   align-items: center;
 }
+.custom-modalbox .shellContainer {
+  width: 940px;
+  padding: 20px;
+  margin: 0;
+  align-content: space-between;
+}
+.custom-modalbox .shellContainer .shellContent {
+  width: 940px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  justify-content: center;
+}
+.custom-modalbox .shellContainer .shellContent .header {
+  width: 90%;
+  margin: auto;
+}
+.custom-modalbox .custom-modalbox2 {
+  padding: 0;
+  overflow-x: hidden;
+  margin: 0;
+}
+.custom-modalbox .custom-modalbox2 mat-dialog-container {
+  width: 100%;
+  overflow-x: hidden;
+  padding: 0;
+  width: 100%;
+}
+.custom-modalbox .custom-modalbox2 mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  padding: 0 0px;
+  margin: auto;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: transparent;
+}
+.custom-modalbox .custom-modalbox2 mat-dialog-content .shellContainer {
+  width: 560px;
+  padding: 0;
+}
 
 .showLogo {
   display: block;

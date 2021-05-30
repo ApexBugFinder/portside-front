@@ -10,14 +10,20 @@ exports.PageShellComponent = void 0;
 var core_1 = require("@angular/core");
 var editProjectActions = require("../../project/edit/state/edit-project.actions");
 var experienceShellActions = require("../../experience/experience-shell/state/experience-shell.actions");
+var certificationShellActions = require("../../education/certificatn-shell/state/certification-shell.actions");
+var degreeShellActions = require("../../education/degree-shell/state/degree-shell.actions");
 var Constants_1 = require("src/app/helpers/Constants");
 var PageShellComponent = /** @class */ (function () {
-    function PageShellComponent(editProjectStore, certicationShellStore, experienceShellStore) {
+    function PageShellComponent(editProjectStore, certicationShellStore, degreeShellStore, experienceShellStore) {
         this.editProjectStore = editProjectStore;
         this.certicationShellStore = certicationShellStore;
+        this.degreeShellStore = degreeShellStore;
         this.experienceShellStore = experienceShellStore;
-        this.editProjectStore.dispatch(new editProjectActions.LoadProjectsByProjectCreatorIDFromDB(Constants_1.Constants.userID));
-        this.experienceShellStore.dispatch(new experienceShellActions.LoadExperiencesByProjectCreatorIDFromDB(Constants_1.Constants.userID));
+        this.userID = Constants_1.Constants.userID;
+        this.editProjectStore.dispatch(new editProjectActions.LoadProjectsByProjectCreatorIDFromDB(this.userID));
+        this.experienceShellStore.dispatch(new experienceShellActions.LoadExperiencesByProjectCreatorIDFromDB(this.userID));
+        this.degreeShellStore.dispatch(new degreeShellActions.LoadDegreesByProjectCreatorIDFromDB(this.userID));
+        this.certicationShellStore.dispatch(new certificationShellActions.LoadCertificationsByProjectCreatorIDFromDB(this.userID));
     }
     PageShellComponent.prototype.ngOnInit = function () {
     };

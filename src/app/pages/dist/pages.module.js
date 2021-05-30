@@ -32,7 +32,7 @@ var PagesModule = /** @class */ (function () {
                 education_component_1.EducationComponent,
                 experience_component_1.ExperienceComponent,
                 page_shell_component_1.PageShellComponent,
-                action_buttons_component_1.ActionButtonsComponent
+                action_buttons_component_1.ActionButtonsComponent,
             ],
             imports: [common_1.CommonModule, forms_1.ReactiveFormsModule, pages_routing_module_1.PagesRoutingModule, shared_module_1.SharedModule, project_module_1.ProjectModule, experience_module_1.ExperienceModule, education_module_1.EducationModule],
             exports: [
@@ -41,7 +41,7 @@ var PagesModule = /** @class */ (function () {
                 education_component_1.EducationComponent,
                 experience_component_1.ExperienceComponent,
                 page_shell_component_1.PageShellComponent,
-                action_buttons_component_1.ActionButtonsComponent
+                action_buttons_component_1.ActionButtonsComponent,
             ]
         })
     ], PagesModule);

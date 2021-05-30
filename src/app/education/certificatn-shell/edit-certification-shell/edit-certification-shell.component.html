@@ -1,1 +1,122 @@
-<p>edit-certification-shell works!</p>
+
+  <mat-dialog-content>
+
+    <form action="" [formGroup]="certificationForm">
+      <div class="shellContainer">
+
+          <div class="certContainer">
+
+
+            <div class="header">
+              <p>Edit Certification</p>
+              <mat-divider></mat-divider>
+          </div>
+
+          <div class="infoSection" id="certNameSection">
+            <div class="infoContainer">
+              <div class="label-wrapper">
+              <mat-label for="certNameInputId" id="certNameLabelId">
+                Certification Name:
+              </mat-label >
+            </div>
+              <mat-form-field>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="certName"
+                   placeholder="{{myCert.certName}}"
+                  id="certNameInputId"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="infoSection">
+            <div class="infoContainer">
+
+              <div class="label-wrapper">
+              <mat-label for="certIDInputId" id="certIDLabelId"
+                  >Certification ID#:
+                </mat-label>
+                </div>
+                <mat-form-field>
+
+                <input
+                  type="text"
+                  matInput
+                  formControlName="certId"
+                   placeholder="{{myCert.certId }}"
+                  id="certIDInputId"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="infoSection">
+            <div class="infoContainer isActiveContainer">
+
+              <div class="label-wrapper">
+              <mat-label for="certIsActiveInputId" id="certIsActiveLabelId">
+                    Is Active:
+                </mat-label >
+                </div>
+                <button mat-raised-buton class="activeButton" >{{myCert.isActive}}</button>
+            </div>
+          </div>
+
+          <div class="infoSection">
+            <div class="infoContainer">
+
+
+
+
+              <div class="label-wrapper">
+
+
+              <mat-label
+                  for="certIssuingBodyNameId"
+                  id="certIssuingBodyNameLabelId"
+                  >Issuing Body: </mat-label>
+
+
+                </div>
+              <mat-form-field>
+
+                <input
+                  type="text"
+                  matInput
+                  placeholder="{{myCert.issuingBody_Name}}"
+
+                  formControlName="issuingBodyName"
+                  id="certIssuingBodyNameInputId"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+
+            <div class="infoSection">
+            <div class="infoContainer">
+
+              <app-image-getter [Title]="'Issuing Body Logo'" [docID]="myCert.id" [projectCreatorID]="myCert.projectCreatorID"
+                                [typeOfClass]="getClass()" (mediaRtUrl)="processNewLogoUrlRt($event)"
+                                [preview]="myCert.issuingBody_Logo"
+                                class="logoGetter" >
+                            </app-image-getter>
+
+
+            </div>
+          </div>
+</div>
+
+           <app-edit-action-buttons
+          (save)="saveToDB($event)"
+          (reset)="resetChanges($event)"
+          (delete)="deleteFromDB($event)" ></app-edit-action-buttons>
+
+
+
+      </div>
+    </form>
+
+
+</mat-dialog-content>

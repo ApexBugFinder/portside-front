@@ -33,7 +33,7 @@ import { ActionButtonsComponent } from './pages/action-buttons/action-buttons.co
       maxAge: 25,
       logOnly: environment.production,
     }),
-    
+
 
     PagesModule,
   ],

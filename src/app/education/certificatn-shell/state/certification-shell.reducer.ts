@@ -9,6 +9,7 @@ export interface CertificationShellState {
   originalCertification: Certification | undefined;
   id: string;
   projectCreatorID: string;
+  certId: string;
   certName: string;
   isActive?: boolean;
   issuingBody_Name?: string;
@@ -22,6 +23,7 @@ const initialState: CertificationShellState = {
   id: '',
   projectCreatorID: '',
   certName: '',
+  certId: '',
   isActive: false,
   issuingBody_Name: '',
   issuingBody_Logo: '',
@@ -38,6 +40,7 @@ export function certificationReducer(state = initialState, action: Certification
           id: action.payload.id,
           projectCreatorID: action.payload.projectCreatorID,
           certName: action.payload.certName,
+          certId: action.payload.certId as string,
           isActive: action.payload.isActive,
           issuingBody_Name: action.payload.issuingBody_Name,
           issuingBody_Logo: action.payload.issuingBody_Logo,
@@ -46,9 +49,10 @@ export function certificationReducer(state = initialState, action: Certification
       case CertificationActionTypes.SET_CURRENT_CERTIFICATION_from_CERT_EFFECTS:
         return {
           ...state,
-          id: action.payload.id,
+         id: action.payload.id,
           projectCreatorID: action.payload.projectCreatorID,
           certName: action.payload.certName,
+          certId: action.payload.certId as string,
           isActive: action.payload.isActive,
           issuingBody_Name: action.payload.issuingBody_Name,
           issuingBody_Logo: action.payload.issuingBody_Logo,
@@ -58,9 +62,10 @@ export function certificationReducer(state = initialState, action: Certification
         return {
           ...state,
           originalCertification: action.payload,
-          id: action.payload.id,
+           id: action.payload.id,
           projectCreatorID: action.payload.projectCreatorID,
           certName: action.payload.certName,
+          certId: action.payload.certId as string,
           isActive: action.payload.isActive,
           issuingBody_Name: action.payload.issuingBody_Name,
           issuingBody_Logo: action.payload.issuingBody_Logo,
@@ -72,6 +77,7 @@ export function certificationReducer(state = initialState, action: Certification
           id: action.payload.id,
           projectCreatorID: action.payload.projectCreatorID,
           certName: action.payload.certName,
+          certId: action.payload.certId as string,
           isActive: action.payload.isActive,
           issuingBody_Name: action.payload.issuingBody_Name,
           issuingBody_Logo: action.payload.issuingBody_Logo,
@@ -121,6 +127,7 @@ export function certificationReducer(state = initialState, action: Certification
           id: initialState.id,
           projectCreatorID: initialState.projectCreatorID,
           certName: initialState.certName,
+          certId: initialState.certId,
           isActive: initialState.isActive,
           issuingBody_Name: initialState.issuingBody_Name,
           issuingBody_Logo: initialState.issuingBody_Logo,
@@ -133,6 +140,7 @@ export function certificationReducer(state = initialState, action: Certification
           id: initialState.id,
           projectCreatorID: initialState.projectCreatorID,
           certName: initialState.certName,
+          certId: initialState.certId,
           isActive: initialState.isActive,
           issuingBody_Name: initialState.issuingBody_Name,
           issuingBody_Logo: initialState.issuingBody_Logo,
@@ -145,6 +153,7 @@ export function certificationReducer(state = initialState, action: Certification
           id: initialState.id,
           projectCreatorID: initialState.projectCreatorID,
           certName: initialState.certName,
+          certId: initialState.certId,
           isActive: initialState.isActive,
           issuingBody_Name: initialState.issuingBody_Name,
           issuingBody_Logo: initialState.issuingBody_Logo,
@@ -157,6 +166,7 @@ export function certificationReducer(state = initialState, action: Certification
           id: initialState.id,
           projectCreatorID: initialState.projectCreatorID,
           certName: initialState.certName,
+          certId: initialState.certId,
           isActive: initialState.isActive,
           issuingBody_Name: initialState.issuingBody_Name,
           issuingBody_Logo: initialState.issuingBody_Logo,
@@ -169,6 +179,7 @@ export function certificationReducer(state = initialState, action: Certification
           id: initialState.id,
           projectCreatorID: initialState.projectCreatorID,
           certName: initialState.certName,
+          certId: initialState.certId,
           isActive: initialState.isActive,
           issuingBody_Name: initialState.issuingBody_Name,
           issuingBody_Logo: initialState.issuingBody_Logo,
@@ -181,6 +192,7 @@ export function certificationReducer(state = initialState, action: Certification
           id: initialState.id,
           projectCreatorID: initialState.projectCreatorID,
           certName: initialState.certName,
+          certId: initialState.certId,
           isActive: initialState.isActive,
           issuingBody_Name: initialState.issuingBody_Name,
           issuingBody_Logo: initialState.issuingBody_Logo,
@@ -231,6 +243,7 @@ export function certificationReducer(state = initialState, action: Certification
           projectCreatorID: state.originalCertification
             ?.projectCreatorID as string,
           certName: state.originalCertification?.certName as string,
+          certId: state.originalCertification?.certId as string,
           isActive: state.originalCertification?.isActive,
           issuingBody_Name: state.originalCertification?.issuingBody_Name,
           issuingBody_Logo: state.originalCertification?.issuingBody_Logo,
@@ -247,6 +260,7 @@ export function certificationReducer(state = initialState, action: Certification
             id: action.payload[0].id,
             projectCreatorID: action.payload[0].projectCreatorID,
             certName: action.payload[0].certName as string,
+            certId: action.payload[0].certId as string,
             isActive: action.payload[0].isActive,
             issuingBody_Name: action.payload[0].issuingBody_Name,
             issuingBody_Logo: action.payload[0].issuingBody_Logo,
@@ -290,12 +304,14 @@ export function certificationReducer(state = initialState, action: Certification
           originalCertification: action.payload,
           id: action.payload.id,
           projectCreatorID: action.payload.projectCreatorID,
-          certName: action.payload.certName as string,
+          certName: action.payload.certName,
+          certId: action.payload.certId as string,
           isActive: action.payload.isActive,
           issuingBody_Name: action.payload.issuingBody_Name as string,
           issuingBody_Logo: action.payload.issuingBody_Logo,
           issuedDate: action.payload.issuedDate as Date,
         };
+
       case CertificationActionTypes.UPDATE_CERTIFICATION_TO_DB_from_CertShellEdit_FAIL:
         return {
           ...state,
@@ -308,12 +324,14 @@ export function certificationReducer(state = initialState, action: Certification
           originalCertification: action.payload,
           id: action.payload.id,
           projectCreatorID: action.payload.projectCreatorID,
-          certName: action.payload.certName as string,
+          certName: action.payload.certName,
+          certId: action.payload.certId as string,
           isActive: action.payload.isActive,
           issuingBody_Name: action.payload.issuingBody_Name as string,
           issuingBody_Logo: action.payload.issuingBody_Logo,
           issuedDate: action.payload.issuedDate as Date,
         };
+
       case CertificationActionTypes.DELETE_CERTIFICATION_TO_DB_from_CertShellEdit_FAIL:
         return {
           ...state,

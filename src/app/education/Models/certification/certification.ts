@@ -4,6 +4,7 @@ export interface Certification {
     id: string;
     projectCreatorID: string;
     certName: string;
+    certId?: string;
     isActive?: boolean;
     issuingBody_Name?: string;
     issuingBody_Logo?: string;

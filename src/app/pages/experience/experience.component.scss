@@ -7,16 +7,16 @@
     row-gap: 20px;
     justify-content: flex-end;
     margin: auto;
-    
+
     .actionButtons {
- 
+
     height: 60px;
     width: 100%;
 
     .actionButtonsContainer {
        display: flex;
        flex-direction: row;
-       column-gap: 10px; 
+       column-gap: 10px;
        justify-content: space-between;
        button.gapper {
            background-color: transparentize($color: #95bcd3, $amount: 0.5);
@@ -25,8 +25,8 @@
         border: #707070 1px solid;
        }
         .experienceCtroller {
-            
-            
+
+
             margin-top: 0px;
             font-family: bio-sans, sans-serif;
             font-weight: 200;
@@ -53,16 +53,16 @@
             }
     }
     app-action-buttons{
-        width: 20%;
+        width: 30%;
     }
-    
+
 
     }
 
 }
 
 .experienceContent {
-    
+
     height: auto;
     width: 100%;
     display: flex;

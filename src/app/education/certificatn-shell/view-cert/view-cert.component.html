@@ -1,1 +1,24 @@
-<p>view-cert works!</p>
+<div class="shellContainer">
+  <div class="shellContent">
+    <div class="certName">
+      <p (click)="editCert()">{{ myCert.certName }}</p>
+    </div>
+
+    <div class="issuedHeading">Issued:</div>
+    <div class="issuedData">{{ myCert.issuedDate | date: "MMYYYY" }}</div>
+
+    <div class="validHeading">Valid:</div>
+    <div class="validData">{{ myCert.isActive }}</div>
+
+    <div class="certIdHeading">CertID#</div>
+    <div class="certIdData">{{ myCert.certId }}</div>
+
+    <div class="issuingBodyHeading">Issuing Body:</div>
+    <div class="issuingBodyingData">
+        <div class="isb-dataContainer">
+          <div class="isb-Logo"><img src="" [appImgSrc]="myCert.issuingBody_Logo" class="isb-logo"alt=""></div>
+          <div class="isb-Name">{{ myCert.issuingBody_Name }}</div>
+        </div>
+      </div>
+  </div>
+</div>

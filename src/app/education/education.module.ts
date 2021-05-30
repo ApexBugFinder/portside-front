@@ -11,8 +11,13 @@ import { StoreModule } from '@ngrx/store';
 import { educationReducers } from './state';
 import { EffectsModule } from '@ngrx/effects';
 import { CertificationShellEffects } from './certificatn-shell/state/certification-shell.effects';
+import { DegreeShellEffects } from './degree-shell/state/degree-shell.effects';
 import { ViewCertComponent } from './certificatn-shell/view-cert/view-cert.component';
 import { ViewDegreeComponent } from './degree-shell/view-degree/view-degree.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { ImageModule } from '../image/image.module';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogConfig } from '@angular/material/dialog';
+import { PagesModule } from '../pages/pages.module';
 
 @NgModule({
   declarations: [
@@ -21,18 +26,36 @@ import { ViewDegreeComponent } from './degree-shell/view-degree/view-degree.comp
     EditCertificationShellComponent,
     EditDegreeShellComponent,
     ViewCertComponent,
-    ViewDegreeComponent
+    ViewDegreeComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
+    MatSliderModule,
+    MatDialogModule,
     StoreModule.forFeature('educationState', educationReducers),
-    EffectsModule.forFeature([CertificationShellEffects])
+    ImageModule,
+
+
+    EffectsModule.forFeature([CertificationShellEffects, DegreeShellEffects]),
   ],
-  exports: [],
+  entryComponents: [
+    EditCertificationShellComponent,
+    EditDegreeShellComponent
+  ],
+  exports: [
+    DegreeShellComponent,
+    CertificatnShellComponent,
+    EditCertificationShellComponent,
+    EditDegreeShellComponent,
+    ViewCertComponent,
+    ViewDegreeComponent,
+  ],
   providers: [
-    { provide: 'CERTIFICATION_SERVICE', useClass: CertService},
-    { provide: 'DEGREE_SERVICE', useClass: DegreeService }
-  ]
+    { provide: 'CERTIFICATION_SERVICE', useClass: CertService },
+    { provide: 'DEGREE_SERVICE', useClass: DegreeService },
+        { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
+        
+  ],
 })
-export class EducationModule { }
+export class EducationModule {}

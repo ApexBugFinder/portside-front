@@ -38,7 +38,7 @@ export interface EducationModuleState {
 
  }
 
-export const selectEducationModuleState = createFeatureSelector<EducationModuleState>('degreeState');
+export const selectEducationModuleState = createFeatureSelector<EducationModuleState>('educationState');
 
 
 // HOOKS FOR SUB STATE

@@ -12,7 +12,7 @@ exports.educationReducers = {
     certData: fromCertData.reducer,
     certShell: fromCertShell.certificationReducer
 };
-exports.selectEducationModuleState = store_1.createFeatureSelector('degreeState');
+exports.selectEducationModuleState = store_1.createFeatureSelector('educationState');
 // HOOKS FOR SUB STATE
 exports.selectDegreeEntityDataState = store_1.createSelector(exports.selectEducationModuleState, function (state) { return state.degreeData; });
 exports.selectDegreeShellState = store_1.createSelector(exports.selectEducationModuleState, function (state) { return state.degreeShell; });

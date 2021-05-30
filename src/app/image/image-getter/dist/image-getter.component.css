@@ -1,0 +1,76 @@
+.bannerUploadContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+.bannerUploadContainer .bannerUploadLabel {
+  width: 100%;
+  background-color: var(--accent2Color);
+  height: 24px;
+}
+.bannerUploadContainer .bannerUploadLabel mat-label.uploadLabel {
+  font-size: 9px;
+  color: #707070;
+  margin-bottom: 5px;
+  width: 50%;
+  padding: 8px;
+  opacity: 0.7;
+  line-height: 14px;
+}
+.bannerUploadContainer .bannerUploadButton {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  column-gap: 20px;
+  justify-content: space-around;
+}
+.bannerUploadContainer .bannerUploadButton mat-label.fileName {
+  margin: auto 0;
+  padding: 8px;
+  width: auto;
+  font-size: 50px;
+  color: red !important;
+}
+.bannerUploadContainer .bannerUploadButton input#file-input.file-custom-upload {
+  width: 200px;
+  margin: 0;
+}
+.bannerUploadContainer .bannerUploadButton img#thumbnail.thumb {
+  border: none;
+  width: 50px;
+  height: 50px;
+  display: none;
+  margin: 0;
+}
+
+.thumb {
+  border: none;
+}
+
+.buttonSection {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.buttonSection input[type=file] {
+  display: none;
+}
+.buttonSection .custom-file-upload {
+  border: 1px solid var(--accent2Color);
+  border-radius: 20px;
+  display: inline-block;
+  background-color: var(--accent2Color);
+}
+.buttonSection #file-input {
+  border: 1px solid var(--accent2Color);
+  border-radius: 20px;
+  display: inline-block;
+  background-color: var(--accent2Color);
+}
+.buttonSection input, .buttonSection button {
+  border: 1px solid var(--accent3Color);
+  border-radius: 20px;
+}

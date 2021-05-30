@@ -7,11 +7,12 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActionButtonsComponent } from '../pages/action-buttons/action-buttons.component';
+import { EditActionButtonsComponent } from './edit-action-buttons/edit-action-buttons.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [ EditActionButtonsComponent],
   imports: [
     CommonModule,
     MaterialModule,
@@ -31,7 +32,8 @@ import { ActionButtonsComponent } from '../pages/action-buttons/action-buttons.c
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    
+    EditActionButtonsComponent
+
   ]
 })
 export class SharedModule { }

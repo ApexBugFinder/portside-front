@@ -1,0 +1,60 @@
+.shellContainer {
+  width: auto;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+}
+.shellContainer .shellContent {
+  display: grid;
+  justify-content: flex-start;
+  grid-template-areas: "p a a a a a a a a a" "b b ba h h bf f f f f " "c c ca ca l l l l l  l" "d d da da da n n  n n n";
+  grid-template-columns: 30px 30px 50px 50px 50px 50px 50px 50px 50px 200px;
+  grid-template-rows: 40px 30px 30px 30px;
+}
+.shellContainer .shellContent > .certName {
+  grid-area: a;
+}
+.shellContainer .shellContent > .certName p {
+  color: var(--accent3Color);
+  width: fit-content;
+}
+.shellContainer .issuedHeading {
+  grid-area: ba;
+}
+.shellContainer .issuedData {
+  grid-area: h;
+}
+.shellContainer .validHeading {
+  grid-area: bf;
+}
+.shellContainer .validData {
+  grid-area: f;
+}
+.shellContainer .certIdHeading {
+  grid-area: ca;
+}
+.shellContainer .certIdData {
+  grid-area: l;
+}
+.shellContainer .issuingBodyHeading {
+  grid-area: da;
+  align-items: center;
+  vertical-align: center;
+}
+.shellContainer .issuingBodyingData {
+  grid-area: n;
+}
+.shellContainer .issuingBodyingData .isb-dataContainer {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+}
+.shellContainer .issuingBodyingData .isb-dataContainer .isb-logo {
+  width: 30px;
+  align-self: center;
+  justify-self: center;
+}
+.shellContainer .issuingBodyingData .isb-dataContainer .isb-Name {
+  text-align: center;
+  align-self: center;
+}
