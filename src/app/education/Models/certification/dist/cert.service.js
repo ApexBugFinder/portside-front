@@ -11,15 +11,21 @@ var http_1 = require("@angular/common/http");
 var core_1 = require("@angular/core");
 var operators_1 = require("rxjs/operators");
 var Constants_1 = require("../../../helpers/Constants");
+var fromShared = require("../../../shared/state");
+var store_1 = require("@ngrx/store");
 var CertService = /** @class */ (function () {
-    function CertService(http) {
+    function CertService(http, sharedStore) {
+        var _this = this;
         this.http = http;
+        this.sharedStore = sharedStore;
         this.ctlrName = 'certifications/';
         this.apiRt = Constants_1.Constants.apiRoot;
         this.apiAddress = this.apiRt + this.ctlrName;
         this.hdrs = new http_1.HttpHeaders();
-        this.userID = Constants_1.Constants.userID;
+        this.userID = this.userID;
         this.clientRt = Constants_1.Constants.clientRoot;
+        this.userID$ = this.sharedStore.pipe(store_1.select(fromShared.getUserId));
+        this.userID$.subscribe(function (value) { return _this.userID = value; });
     }
     // CREATE CERTIFCATION
     CertService.prototype.createItem = function (item) {
@@ -37,7 +43,7 @@ var CertService = /** @class */ (function () {
     };
     // READ ALL CertificationS BY USER
     CertService.prototype.readAll = function (id) {
-        var address = 'all/' + Constants_1.Constants.userID;
+        var address = 'all/' + this.userID;
         var urlAddress = this.apiAddress + address;
         this.hdrs = new http_1.HttpHeaders()
             .set('Access-Control-Allow-Origin', [this.apiRt, this.apiAddress, Constants_1.Constants.clientRoot])
@@ -68,7 +74,7 @@ var CertService = /** @class */ (function () {
     //  UPDATE Certification
     CertService.prototype.updateItem = function (item) {
         var urlAddress = this.apiAddress + item.id;
-        item.projectCreatorID = Constants_1.Constants.userID;
+        item.projectCreatorID = this.userID;
         this.hdrs = new http_1.HttpHeaders()
             .set('Access-Control-Allow-Origin', [this.apiRt, this.apiAddress, this.clientRt])
             .set('Access-Control-Allow-Methods', ['PUT', 'POST', 'DELETE', 'GET'])

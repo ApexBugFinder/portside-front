@@ -18,6 +18,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { ImageModule } from '../image/image.module';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogConfig } from '@angular/material/dialog';
 import { PagesModule } from '../pages/pages.module';
+import { AddEducationComponent } from './add-education/add-education.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { PagesModule } from '../pages/pages.module';
     EditDegreeShellComponent,
     ViewCertComponent,
     ViewDegreeComponent,
+    AddEducationComponent,
   ],
   imports: [
     CommonModule,
@@ -41,7 +43,8 @@ import { PagesModule } from '../pages/pages.module';
   ],
   entryComponents: [
     EditCertificationShellComponent,
-    EditDegreeShellComponent
+    EditDegreeShellComponent,
+    AddEducationComponent
   ],
   exports: [
     DegreeShellComponent,
@@ -55,7 +58,7 @@ import { PagesModule } from '../pages/pages.module';
     { provide: 'CERTIFICATION_SERVICE', useClass: CertService },
     { provide: 'DEGREE_SERVICE', useClass: DegreeService },
         { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
-        
+
   ],
 })
 export class EducationModule {}

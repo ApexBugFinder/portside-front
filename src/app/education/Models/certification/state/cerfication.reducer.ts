@@ -7,7 +7,7 @@ import { Certification }  from '../certification';
 export interface State extends EntityState<Certification> {
   ids: string[];
   entities: { [key: string]: Certification | undefined };
-  selectedCertificationId: string | '';
+  selectedCertificationId: string |  '';
 }
 
 export function selectedCertificationId(a: Certification): string {
@@ -27,11 +27,21 @@ export function sortByDateStarted(a: Certification, b: Certification): number {
   }
 }
 
-
+export function sortByName(a: Certification, b: Certification): number {
+  let compare =
+  a.certName.localeCompare(b.certName);
+   if (compare > 1) {
+     return 1;
+   } else if (compare < 1) {
+     return -1;
+   } else {
+     return 0;
+   }
+}
 export const adapter: EntityAdapter<Certification> =
   createEntityAdapter<Certification>({
     selectId: selectedCertificationId,
-    sortComparer: sortByDateStarted,
+    sortComparer: sortByName
   });
 
 

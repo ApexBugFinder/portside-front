@@ -1,3 +1,4 @@
+import { HttpHeaders } from "@angular/common/http";
 
 export function makeid(length: number) {
     var result = [];
@@ -7,4 +8,10 @@ export function makeid(length: number) {
         result.push(characters.charAt(Math.floor(Math.random() * charactersLength)));
     }
     return result.join('');
+}
+
+export function printServiceInfo(address: string, payload: any, httpHdr: HttpHeaders) {
+      console.log('urlAddress: ', address);
+      console.log('HEADERS:', httpHdr);
+      console.log('payload: ', payload);
 }

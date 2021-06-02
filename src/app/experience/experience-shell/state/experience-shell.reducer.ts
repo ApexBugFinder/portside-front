@@ -1,5 +1,3 @@
-import { ConvertActionBindingResult } from "@angular/compiler/src/compiler_util/expression_converter";
-import { ɵangular_packages_platform_browser_dynamic_platform_browser_dynamic_a } from "@angular/platform-browser-dynamic";
 import { Constants } from "src/app/helpers/Constants";
 import { Experience, defaultExperience } from "../../Models/experience";
 import { defaultRole, Role } from "../../Models/role";
@@ -204,7 +202,7 @@ export function experienceReducer(state = initialState, action: ExperienceAction
         case ExperienceActionTypes.RESET_CURRENT_EXPERIENCE:
             return {
                 ...state,
-               
+
                 id : state.originalExperience?.id as string,
                 projectCreatorID: state.originalExperience?.projectCreatorID as string,
                 company: state.originalExperience?.company as string,
@@ -241,7 +239,7 @@ export function experienceReducer(state = initialState, action: ExperienceAction
                     ...state
                 };
             }
-            
+
         // LOADING ACTION WiLL BE PUSHED TO ENTITy DATA
         case ExperienceActionTypes.LOAD_EXPERIENCES_FROM_DB_FAIL:
             return {
@@ -269,7 +267,7 @@ export function experienceReducer(state = initialState, action: ExperienceAction
                 ...state,
                 error: action.payload
             };
-        
+
         // UPDATE
         case ExperienceActionTypes.UPDATE_EXPERIENCE_TO_DB_SUCCESS:
             return {
@@ -318,4 +316,4 @@ export function experienceReducer(state = initialState, action: ExperienceAction
             return state;
         }
 
-} 
+}

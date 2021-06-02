@@ -26,6 +26,7 @@ var view_degree_component_1 = require("./degree-shell/view-degree/view-degree.co
 var slider_1 = require("@angular/material/slider");
 var image_module_1 = require("../image/image.module");
 var dialog_1 = require("@angular/material/dialog");
+var add_education_component_1 = require("./add-education/add-education.component");
 var EducationModule = /** @class */ (function () {
     function EducationModule() {
     }
@@ -38,6 +39,7 @@ var EducationModule = /** @class */ (function () {
                 edit_degree_shell_component_1.EditDegreeShellComponent,
                 view_cert_component_1.ViewCertComponent,
                 view_degree_component_1.ViewDegreeComponent,
+                add_education_component_1.AddEducationComponent,
             ],
             imports: [
                 common_1.CommonModule,
@@ -50,7 +52,8 @@ var EducationModule = /** @class */ (function () {
             ],
             entryComponents: [
                 edit_certification_shell_component_1.EditCertificationShellComponent,
-                edit_degree_shell_component_1.EditDegreeShellComponent
+                edit_degree_shell_component_1.EditDegreeShellComponent,
+                add_education_component_1.AddEducationComponent
             ],
             exports: [
                 degree_shell_component_1.DegreeShellComponent,

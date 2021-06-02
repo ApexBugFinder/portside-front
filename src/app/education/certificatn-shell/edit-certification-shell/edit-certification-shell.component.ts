@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Store, select  } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
@@ -24,7 +25,8 @@ export class EditCertificationShellComponent implements OnInit {
   controllerClass: string = 'Certification';
   constructor(
     private fb: FormBuilder,
-    private certificationShellStore: Store<fromCertficationShell.CertificationShellState>
+    private certificationShellStore: Store<fromCertficationShell.CertificationShellState>,
+    private dialogRef: MatDialogRef<EditCertificationShellComponent>
   ) {
     this.myCert$ = this.certificationShellStore.pipe(
       select(fromCertficationShell.getCurrentCertification)
@@ -58,9 +60,18 @@ export class EditCertificationShellComponent implements OnInit {
           "Completed getting user's Current Certification from ngrx store in Education's Certification Edit Shell component"
         ),
     });
+    this.initiateControls();
     this.monitorControlChanges();
   }
 
+  initiateControls() {
+    this.certNameAbstractControl = this.certificationForm.get('certName');
+    this.certIdAbstractControl = this.certificationForm.get('certId');
+    this.isActiveAbstractControl = this.certificationForm.get('isActive');
+    this.issuingBodyNameAbstractControl = this.certificationForm.get('issuingBodyName');
+    this.issuingBodyLogoAbstractControl = this.certificationForm.get('issuingBodyLogo');
+    this.issuedDateAbstractControl = this.certificationForm.get('issuedDate');
+  }
   setControls(cert: Certification) {
     this.certNameAbstractControl?.setValue(cert.certName);
     this.certIdAbstractControl?.setValue(cert.certId);
@@ -224,11 +235,13 @@ export class EditCertificationShellComponent implements OnInit {
     this.certificationShellStore.dispatch(
       new CertificationActions.DeleteCertificationToDB()
     );
+    this.dialogRef.close();11111
   }
   resetChanges(value: string) {
     this.certificationShellStore.dispatch(
       new CertificationActions.ResetCurrentCertificationToOriginal()
     );
+
   }
 
   saveToDB(value: string) {
@@ -236,5 +249,6 @@ export class EditCertificationShellComponent implements OnInit {
     this.certificationShellStore.dispatch(
       new CertificationActions.UpdateCertificationToDB()
     );
+    this.dialogRef.close();
   }
 }

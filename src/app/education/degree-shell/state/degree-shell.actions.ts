@@ -40,6 +40,9 @@ export enum DegreeActionTypes {
   SET_ORIGINAL_DEGREE_from_DEGREE_EFFECTS = '[DEGREE] SET ORIGINAL DEGREES',
   SET_CURRENT_DEGREE_from_DEGREE_EFFECTS = '[DEGREE] SET CURRENT DEGREES',
 
+  // FROM EDUCATION COMPONENT SET CURRENT
+  SET_CURRENT_DEGREE_from_EDUCATION_CPT = '[DEGREE] SET CURRENT DEGREES FROM EDUCATION CPT',
+
   // SET FROM DEGREE EDIT SHELL (7)
   SET_CURRENT_DEGREE_ID_FROM_DEGREE_SHELL_EDIT_CPT = '[CURRENT DEGREE] SET DEGREE ID FROM DEGREE SHELL EDIT CPT',
   SET_CURRENT_DEGREE_PROJECTCREATOR_ID_FROM_DEGREE_SHELL_EDIT_CPT = '[CURRENT DEGREE] SET DEGREE PROJECT CREATOR ID FROM DEGREE SHELL EDIT CPT',
@@ -108,7 +111,11 @@ export class SetCurrentDegreeFromDegreeEffects implements Action {
   constructor(public payload: Degree) {}
 }
 
-
+// SET FROM DEGREE FROM EDUCATION CPT
+export class SetCurrentDegreeFromEducationCPT implements Action {
+  readonly type = DegreeActionTypes.SET_CURRENT_DEGREE_from_EDUCATION_CPT;
+  constructor(public payload: Degree) {}
+}
 
 // SET FROM DEGREE EDIT SHELL (9)
 export class SetCurrentDegreeIdFromDegreeShellEditCpt implements Action {
@@ -358,6 +365,10 @@ export type DegreeActions =
   | SetOriginalDegreeFromDegreeEffects
   | SetCurrentDegreeFromDegreeEffects
 
+
+  // FROM EDUCATION CPT (1)
+  | SetCurrentDegreeFromEducationCPT
+  
   // SET FROM DEGREE EDIT SHELL (7)
   | SetCurrentDegreeIdFromDegreeShellEditCpt
   | SetCurrentDegreeProjectCreatorIDFromDegreeShellEditCpt

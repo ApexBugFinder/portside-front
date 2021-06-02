@@ -11,7 +11,7 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 exports.__esModule = true;
-exports.reducer = exports.initialState = exports.adapter = exports.sortByDateStarted = exports.selectedDegreeId = void 0;
+exports.reducer = exports.initialState = exports.adapter = exports.sortByName = exports.sortByDateStarted = exports.selectedDegreeId = void 0;
 var entity_1 = require("@ngrx/entity");
 var store_1 = require("@ngrx/store");
 var DegreeActions = require("./degree.actions");
@@ -33,9 +33,22 @@ function sortByDateStarted(a, b) {
     }
 }
 exports.sortByDateStarted = sortByDateStarted;
+function sortByName(a, b) {
+    var compare = a.degreeName.localeCompare(b.degreeName);
+    if (compare > 1) {
+        return 1;
+    }
+    else if (compare < 1) {
+        return -1;
+    }
+    else {
+        return 0;
+    }
+}
+exports.sortByName = sortByName;
 exports.adapter = entity_1.createEntityAdapter({
     selectId: selectedDegreeId,
-    sortComparer: sortByDateStarted
+    sortComparer: sortByName
 });
 exports.initialState = exports.adapter.getInitialState({
     selectedDegreeId: '',

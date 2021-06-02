@@ -13,9 +13,10 @@ var operators_1 = require("rxjs/operators");
 var fromCertficationShell = require("../state");
 var CertificationActions = require("../state/certification-shell.actions");
 var EditCertificationShellComponent = /** @class */ (function () {
-    function EditCertificationShellComponent(fb, certificationShellStore) {
+    function EditCertificationShellComponent(fb, certificationShellStore, dialogRef) {
         this.fb = fb;
         this.certificationShellStore = certificationShellStore;
+        this.dialogRef = dialogRef;
         this.controllerClass = 'Certification';
         this.myCert$ = this.certificationShellStore.pipe(store_1.select(fromCertficationShell.getCurrentCertification));
         this.certificationForm = this.fb.group({
@@ -44,7 +45,16 @@ var EditCertificationShellComponent = /** @class */ (function () {
                 return console.log("Completed getting user's Current Certification from ngrx store in Education's Certification Edit Shell component");
             }
         });
+        this.initiateControls();
         this.monitorControlChanges();
+    };
+    EditCertificationShellComponent.prototype.initiateControls = function () {
+        this.certNameAbstractControl = this.certificationForm.get('certName');
+        this.certIdAbstractControl = this.certificationForm.get('certId');
+        this.isActiveAbstractControl = this.certificationForm.get('isActive');
+        this.issuingBodyNameAbstractControl = this.certificationForm.get('issuingBodyName');
+        this.issuingBodyLogoAbstractControl = this.certificationForm.get('issuingBodyLogo');
+        this.issuedDateAbstractControl = this.certificationForm.get('issuedDate');
     };
     EditCertificationShellComponent.prototype.setControls = function (cert) {
         var _a, _b, _c, _d, _e, _f;
@@ -147,6 +157,8 @@ var EditCertificationShellComponent = /** @class */ (function () {
     };
     EditCertificationShellComponent.prototype.deleteFromDB = function (value) {
         this.certificationShellStore.dispatch(new CertificationActions.DeleteCertificationToDB());
+        this.dialogRef.close();
+        11111;
     };
     EditCertificationShellComponent.prototype.resetChanges = function (value) {
         this.certificationShellStore.dispatch(new CertificationActions.ResetCurrentCertificationToOriginal());
@@ -154,6 +166,7 @@ var EditCertificationShellComponent = /** @class */ (function () {
     EditCertificationShellComponent.prototype.saveToDB = function (value) {
         console.log('go');
         this.certificationShellStore.dispatch(new CertificationActions.UpdateCertificationToDB());
+        this.dialogRef.close();
     };
     EditCertificationShellComponent = __decorate([
         core_1.Component({

@@ -26,12 +26,21 @@ export function sortByDateStarted(a: Degree, b: Degree): number {
     return 0;
   }
 }
-
+export function sortByName(a: Degree, b: Degree): number {
+  let compare = a.degreeName.localeCompare(b.degreeName);
+  if (compare > 1) {
+    return 1;
+  } else if (compare < 1) {
+    return -1;
+  } else {
+    return 0;
+  }
+}
 
 export const adapter: EntityAdapter<Degree> =
   createEntityAdapter<Degree>({
     selectId: selectedDegreeId,
-    sortComparer: sortByDateStarted,
+    sortComparer: sortByName,
   });
 
 

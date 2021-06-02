@@ -22,6 +22,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EditModalShellComponent } from 'src/app/experience/editModal/edit-modal-shell/edit-modal-shell.component';
 import { makeid } from 'src/app/helpers/helperFunctions';
 import { MakeGuid } from '../../helpers/make-guid';
+import * as fromShared from '../../shared/state';
 
 @Component({
   selector: 'app-experience',
@@ -29,6 +30,8 @@ import { MakeGuid } from '../../helpers/make-guid';
   styleUrls: ['./experience.component.scss']
 })
 export class ExperienceComponent implements OnInit {
+  userID$: Observable<string>;
+ private  userID: string;
   experienceData$: Observable<(Experience | undefined)[]>;
   experienceDataTotal$: Observable<Number>;
   currentExperience$: Observable<Experience>;
@@ -46,7 +49,9 @@ export class ExperienceComponent implements OnInit {
   constructor(private experienceService: ExperienceService,
     private experienceDataStore: Store<fromExperienceData.ExperienceDataState>,
     public dialog: MatDialog,
+    private sharedStore: Store<fromShared.SharedModuleState>,
     private experienceShellStore: Store<fromExperienceShell.ExperienceShellState>) {
+      this.userID$ = this.sharedStore.pipe(select(fromShared.getUserId));
     this.experienceData$ = this.experienceDataStore.pipe(select(fromExperienceData.selectAllExperiences));
     this.currentExperience$ = this.experienceShellStore.pipe(select(fromExperienceShell.getCurrentExperience));
     this.experienceDataTotal$ = this.experienceDataStore.pipe(select(fromExperienceData.selectExperiencesTotal));
@@ -69,6 +74,24 @@ export class ExperienceComponent implements OnInit {
       error: err => console.log('OOps sorry, error occured getting the user\'s current experience from store in Experiences component: ', err),
       complete: () => console.log('Completed getting user\'s Current Experiences from ngrx store in Experiences component')
     });
+
+     this.userID$.subscribe({
+       next: (value) => {
+         if (value) {
+           this.userID = value;
+         }
+       },
+       error: (err) =>
+         console.log(
+           "OOps sorry, error occured getting the user's ID from Shared State store in  Experience component:",
+           err
+         ),
+       complete: () =>
+         console.log(
+           "Completed getting user's ID ngrx Shared State store in Experience component"
+         ),
+     });
+
 this.experienceData$.subscribe({
     next: (value) => {
       this.experienceData = (value) as Experience[];
@@ -102,6 +125,7 @@ this.experienceData$.subscribe({
     let newExp: Experience = JSON.parse(JSON.stringify(defaultExperience));
     // CREATE  NEW ID WITH 'new-' PREFIX
     newExp.id = JSON.stringify((new  MakeGuid()).id);
+    newExp.projectCreatorID = this.userID;
     this.experienceShellStore.dispatch(new experienceShellActions.SetOriginalExperience(newExp));
     this.experienceShellStore.dispatch(new experienceShellActions.SaveExperienceToDB);
 

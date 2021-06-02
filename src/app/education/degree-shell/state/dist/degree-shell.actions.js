@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.ResetCurrentDegreeToOriginal = exports.DeleteDegreeToDBFail = exports.DeleteDegreeToDBSuccess = exports.DeleteDegreeToDB = exports.UpdateDegreeToDBFail = exports.UpdateDegreeToDBSuccess = exports.UpdateDegreeToDB = exports.SaveDegreeToDBFail = exports.SaveDegreeToDBSuccess = exports.SaveDegreeToDB = exports.LoadDegreesByProjectCreatorIDFromDBFail = exports.LoadDegreesByProjectCreatorIDFromDBSuccess = exports.LoadDegreesByProjectCreatorIDFromDB = exports.ClearCurrentDegreeIsGraduatedFromDegreeShellEditCpt = exports.ClearCurrentDegreeGraduationYrFromDegreeShellEditCpt = exports.ClearCurrentDegreeStateFromDegreeShellEdit = exports.ClearCurrentDegreeCityFromDegreeShellEdit = exports.ClearCurrentDegreeInstitutionFromDegreeShellEdit = exports.ClearCurrentDegreeMinorDegreeShellEdit = exports.ClearCurrentDegreeDegreeTypeFromDegreeShellEditCpt = exports.ClearCurrentDegreeDegreeNameFromDegreeShellEdit = exports.ClearCurrentDegreeProjectCreatorIDFromDegreeShellEdit = exports.ClearCurrentDegreeIdFromDegreeShellEdit = exports.ClearCurrentDegreeFromDegreeEffectsDelete = exports.ClearOriginalDegreeFromDegreeEffectsDelete = exports.ClearCurrentDegreeFromDegreeEffectsUpdate = exports.ClearOriginalDegreeFromDegreeEffectsUpdate = exports.ClearCurrentDegreeFromDegreeEffectsSave = exports.ClearOriginalDegreeFromDegreeEffectsSave = exports.SetCurrentDegreeIsGraduatedFromDegreeShellEditCpt = exports.SetCurrentDegreeGraduationYrFromDegreeShellEditCpt = exports.SetCurrentDegreeStateDegreeShellEditCpt = exports.SetCurrentDegreeCityFromDegreeShellEditCpt = exports.SetCurrentDegreeInstitutionFromDegreeShellEditCpt = exports.SetCurrentDegreeMinorFromDegreeShellEditCpt = exports.SetCurrentDegreeDegreeTypeFromDegreeShellEditCpt = exports.SetCurrentDegreeDegreeNameFromDegreeShellEditCpt = exports.SetCurrentDegreeProjectCreatorIDFromDegreeShellEditCpt = exports.SetCurrentDegreeIdFromDegreeShellEditCpt = exports.SetCurrentDegreeFromDegreeEffects = exports.SetOriginalDegreeFromDegreeEffects = exports.SetCurrentDegreeFromViewDegree = exports.SetOriginalDegreeFromViewDegree = exports.DegreeActionTypes = void 0;
+exports.ResetCurrentDegreeToOriginal = exports.DeleteDegreeToDBFail = exports.DeleteDegreeToDBSuccess = exports.DeleteDegreeToDB = exports.UpdateDegreeToDBFail = exports.UpdateDegreeToDBSuccess = exports.UpdateDegreeToDB = exports.SaveDegreeToDBFail = exports.SaveDegreeToDBSuccess = exports.SaveDegreeToDB = exports.LoadDegreesByProjectCreatorIDFromDBFail = exports.LoadDegreesByProjectCreatorIDFromDBSuccess = exports.LoadDegreesByProjectCreatorIDFromDB = exports.ClearCurrentDegreeIsGraduatedFromDegreeShellEditCpt = exports.ClearCurrentDegreeGraduationYrFromDegreeShellEditCpt = exports.ClearCurrentDegreeStateFromDegreeShellEdit = exports.ClearCurrentDegreeCityFromDegreeShellEdit = exports.ClearCurrentDegreeInstitutionFromDegreeShellEdit = exports.ClearCurrentDegreeMinorDegreeShellEdit = exports.ClearCurrentDegreeDegreeTypeFromDegreeShellEditCpt = exports.ClearCurrentDegreeDegreeNameFromDegreeShellEdit = exports.ClearCurrentDegreeProjectCreatorIDFromDegreeShellEdit = exports.ClearCurrentDegreeIdFromDegreeShellEdit = exports.ClearCurrentDegreeFromDegreeEffectsDelete = exports.ClearOriginalDegreeFromDegreeEffectsDelete = exports.ClearCurrentDegreeFromDegreeEffectsUpdate = exports.ClearOriginalDegreeFromDegreeEffectsUpdate = exports.ClearCurrentDegreeFromDegreeEffectsSave = exports.ClearOriginalDegreeFromDegreeEffectsSave = exports.SetCurrentDegreeIsGraduatedFromDegreeShellEditCpt = exports.SetCurrentDegreeGraduationYrFromDegreeShellEditCpt = exports.SetCurrentDegreeStateDegreeShellEditCpt = exports.SetCurrentDegreeCityFromDegreeShellEditCpt = exports.SetCurrentDegreeInstitutionFromDegreeShellEditCpt = exports.SetCurrentDegreeMinorFromDegreeShellEditCpt = exports.SetCurrentDegreeDegreeTypeFromDegreeShellEditCpt = exports.SetCurrentDegreeDegreeNameFromDegreeShellEditCpt = exports.SetCurrentDegreeProjectCreatorIDFromDegreeShellEditCpt = exports.SetCurrentDegreeIdFromDegreeShellEditCpt = exports.SetCurrentDegreeFromEducationCPT = exports.SetCurrentDegreeFromDegreeEffects = exports.SetOriginalDegreeFromDegreeEffects = exports.SetCurrentDegreeFromViewDegree = exports.SetOriginalDegreeFromViewDegree = exports.DegreeActionTypes = void 0;
 // ACTION ORIGINS
 // load from db: from PageShell Component
 // Save Update & Delete: from DegreeShellEdit Component acTIONbUTTONS
@@ -29,6 +29,8 @@ var DegreeActionTypes;
     // FROM VIEWDEGREE COMPONENT FROM DEGREEIFICAITON EFFECTS (2)
     DegreeActionTypes["SET_ORIGINAL_DEGREE_from_DEGREE_EFFECTS"] = "[DEGREE] SET ORIGINAL DEGREES";
     DegreeActionTypes["SET_CURRENT_DEGREE_from_DEGREE_EFFECTS"] = "[DEGREE] SET CURRENT DEGREES";
+    // FROM EDUCATION COMPONENT SET CURRENT
+    DegreeActionTypes["SET_CURRENT_DEGREE_from_EDUCATION_CPT"] = "[DEGREE] SET CURRENT DEGREES FROM EDUCATION CPT";
     // SET FROM DEGREE EDIT SHELL (7)
     DegreeActionTypes["SET_CURRENT_DEGREE_ID_FROM_DEGREE_SHELL_EDIT_CPT"] = "[CURRENT DEGREE] SET DEGREE ID FROM DEGREE SHELL EDIT CPT";
     DegreeActionTypes["SET_CURRENT_DEGREE_PROJECTCREATOR_ID_FROM_DEGREE_SHELL_EDIT_CPT"] = "[CURRENT DEGREE] SET DEGREE PROJECT CREATOR ID FROM DEGREE SHELL EDIT CPT";
@@ -97,6 +99,15 @@ var SetCurrentDegreeFromDegreeEffects = /** @class */ (function () {
     return SetCurrentDegreeFromDegreeEffects;
 }());
 exports.SetCurrentDegreeFromDegreeEffects = SetCurrentDegreeFromDegreeEffects;
+// SET FROM DEGREE FROM EDUCATION CPT
+var SetCurrentDegreeFromEducationCPT = /** @class */ (function () {
+    function SetCurrentDegreeFromEducationCPT(payload) {
+        this.payload = payload;
+        this.type = DegreeActionTypes.SET_CURRENT_DEGREE_from_EDUCATION_CPT;
+    }
+    return SetCurrentDegreeFromEducationCPT;
+}());
+exports.SetCurrentDegreeFromEducationCPT = SetCurrentDegreeFromEducationCPT;
 // SET FROM DEGREE EDIT SHELL (9)
 var SetCurrentDegreeIdFromDegreeShellEditCpt = /** @class */ (function () {
     function SetCurrentDegreeIdFromDegreeShellEditCpt(payload) {

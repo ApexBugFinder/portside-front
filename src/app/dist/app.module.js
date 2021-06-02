@@ -21,6 +21,7 @@ var store_1 = require("@ngrx/store");
 var effects_1 = require("@ngrx/effects");
 var store_devtools_1 = require("@ngrx/store-devtools");
 var environment_1 = require("src/environments/environment");
+var user_module_1 = require("./user/user.module");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -41,6 +42,7 @@ var AppModule = /** @class */ (function () {
                     logOnly: environment_1.environment.production
                 }),
                 pages_module_1.PagesModule,
+                user_module_1.UserModule
             ],
             exports: [header_component_1.HeaderComponent],
             // entryComponents: [ProjectCardComponent, EditProjectComponent],

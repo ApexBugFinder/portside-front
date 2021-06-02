@@ -12,8 +12,8 @@ export interface Certification {
 }
 
 export const defaultCert: Certification = {
-    id: '1234',
+    id: '',
     projectCreatorID: Constants.userID,
-    certName: 'Default Cert',
+    certName: '',
     issuedDate: new Date(2021, 4, 12)
 }

@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.ResetCurrentCertificationToOriginal = exports.DeleteCertificationToDBFail = exports.DeleteCertificationToDBSuccess = exports.DeleteCertificationToDB = exports.UpdateCertificationToDBFail = exports.UpdateCertificationToDBSuccess = exports.UpdateCertificationToDB = exports.SaveCertificationToDBFail = exports.SaveCertificationToDBSuccess = exports.SaveCertificationToDB = exports.LoadCertificationsByProjectCreatorIDFromDBFail = exports.LoadCertificationsByProjectCreatorIDFromDBSuccess = exports.LoadCertificationsByProjectCreatorIDFromDB = exports.ClearCurrentCertificationIssuedDateFromCertShellEdit = exports.ClearCurrentCertificationIssuingBodyLogoFromCertShellEdit = exports.ClearCurrentCertificationIssuingBodyNameFromCertShellEdit = exports.ClearCurrentCertificationIsActiveFromCertShellEdit = exports.ClearCurrentCertificationCertNameFromCertShellEdit = exports.ClearCurrentCertificationProjectCreatorIDFromCertShellEdit = exports.ClearCurrentCertificationIdFromCertShellEdit = exports.ClearCurrentCertificationFromCertEffectsDelete = exports.ClearOriginalCertificationFromCertEffectsDelete = exports.ClearCurrentCertificationFromCertEffectsUpdate = exports.ClearOriginalCertificationFromCertEffectsUpdate = exports.ClearCurrentCertificationFromCertEffectsSave = exports.ClearOriginalCertificationFromCertEffectsSave = exports.SetCurrentCertificationIssuedDateFromCertShellEditCpt = exports.SetCurrentCertificationIssuingBodyLogoFromCertShellEditCpt = exports.SetCurrentCertificationIssuingBodyNameFromCertShellEditCpt = exports.SetCurrentCertificationIsActiveFromCertShellEditCpt = exports.SetCurrentCertificationCertNameFromCertShellEditCpt = exports.SetCurrentCertificationProjectCreatorIDFromCertShellEditCpt = exports.SetCurrentCertificationIdFromCertShellEditCpt = exports.SetCurrentCertificationFromCertEffects = exports.SetOriginalCertificationFromCertEffects = exports.SetCurrentCertificationFromViewCert = exports.SetOriginalCertificationFromViewCert = exports.CertificationActionTypes = void 0;
+exports.ResetCurrentCertificationToOriginal = exports.DeleteCertificationToDBFail = exports.DeleteCertificationToDBSuccess = exports.DeleteCertificationToDB = exports.UpdateCertificationToDBFail = exports.UpdateCertificationToDBSuccess = exports.UpdateCertificationToDB = exports.SaveCertificationToDBFail = exports.SaveCertificationToDBSuccess = exports.SaveCertificationToDB = exports.LoadCertificationsByProjectCreatorIDFromDBFail = exports.LoadCertificationsByProjectCreatorIDFromDBSuccess = exports.LoadCertificationsByProjectCreatorIDFromDB = exports.ClearCurrentCertificationIssuedDateFromCertShellEdit = exports.ClearCurrentCertificationIssuingBodyLogoFromCertShellEdit = exports.ClearCurrentCertificationIssuingBodyNameFromCertShellEdit = exports.ClearCurrentCertificationIsActiveFromCertShellEdit = exports.ClearCurrentCertificationCertNameFromCertShellEdit = exports.ClearCurrentCertificationProjectCreatorIDFromCertShellEdit = exports.ClearCurrentCertificationIdFromCertShellEdit = exports.ClearCurrentCertificationFromCertEffectsDelete = exports.ClearOriginalCertificationFromCertEffectsDelete = exports.ClearCurrentCertificationFromCertEffectsUpdate = exports.ClearOriginalCertificationFromCertEffectsUpdate = exports.ClearCurrentCertificationFromCertEffectsSave = exports.ClearOriginalCertificationFromCertEffectsSave = exports.SetCurrentCertificationIssuedDateFromCertShellEditCpt = exports.SetCurrentCertificationIssuingBodyLogoFromCertShellEditCpt = exports.SetCurrentCertificationIssuingBodyNameFromCertShellEditCpt = exports.SetCurrentCertificationIsActiveFromCertShellEditCpt = exports.SetCurrentCertificationCertNameFromCertShellEditCpt = exports.SetCurrentCertificationProjectCreatorIDFromCertShellEditCpt = exports.SetCurrentCertificationIdFromCertShellEditCpt = exports.SetCurrentCertificationFromCertEffects = exports.SetOriginalCertificationFromCertEffects = exports.SetCurrentCertificationFromEducationCPT = exports.SetCurrentCertificationFromViewCert = exports.SetOriginalCertificationFromViewCert = exports.CertificationActionTypes = void 0;
 // ACTION ORIGINS
 // load from db: from PageShell Component
 // Save Update & Delete: from CertShellEdit Component acTIONbUTTONS
@@ -29,6 +29,9 @@ var CertificationActionTypes;
     // FROM VIEWCERT COMPONENT FROM CERTIFICAITON EFFECTS (2)
     CertificationActionTypes["SET_ORIGINAL_CERTIFICATION_from_CERT_EFFECTS"] = "[CERTIFICATION] SET ORIGINAL CERTIFICATIONS";
     CertificationActionTypes["SET_CURRENT_CERTIFICATION_from_CERT_EFFECTS"] = "[CERTIFICATION] SET CURRENT CERTIFICATIONS";
+    // FROM EDUCATION COMPONENT
+    CertificationActionTypes["SET_ORIGINAL_CERTIFICATION_from_EDUCATION_CPT"] = "[CERTIFICATION] SET ORIGINAL CERTIFICATIONS FROM EDUCATION COMPONENT";
+    CertificationActionTypes["SET_CURRENT_CERTIFICATION_from_EDUCATION_CPT"] = "[CERTIFICATION] SET CURRENT CERTIFICATIONS FROM EDUCATION COMPONENT";
     // SET FROM CERTIFICATION EDIT SHELL (7)
     CertificationActionTypes["SET_CURRENT_CERTIFICATION_ID_FROM_CERT_SHELL_EDIT_CPT"] = "[CURRENT CERTIFICATION] SET CERTIFICATION ID FROM CERTICATION SHELL EDIT CPT";
     CertificationActionTypes["SET_CURRENT_CERTIFICATION_PROJECTCREATOR_ID_FROM_CERT_SHELL_EDIT_CPT"] = "[CURRENT CERTIFICATION] SET CERTIFICATION PROJECT CREATOR ID FROM CERTICATION SHELL EDIT CPT";
@@ -74,6 +77,14 @@ var SetCurrentCertificationFromViewCert = /** @class */ (function () {
     return SetCurrentCertificationFromViewCert;
 }());
 exports.SetCurrentCertificationFromViewCert = SetCurrentCertificationFromViewCert;
+var SetCurrentCertificationFromEducationCPT = /** @class */ (function () {
+    function SetCurrentCertificationFromEducationCPT(payload) {
+        this.payload = payload;
+        this.type = CertificationActionTypes.SET_CURRENT_CERTIFICATION_from_EDUCATION_CPT;
+    }
+    return SetCurrentCertificationFromEducationCPT;
+}());
+exports.SetCurrentCertificationFromEducationCPT = SetCurrentCertificationFromEducationCPT;
 // FROM CERTIFCATION EFFECTS (2)
 var SetOriginalCertificationFromCertEffects = /** @class */ (function () {
     function SetOriginalCertificationFromCertEffects(payload) {

@@ -15,6 +15,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { ActionButtonsComponent } from './pages/action-buttons/action-buttons.component';
+import { UserModule } from './user/user.module';
 
 
 
@@ -36,6 +37,7 @@ import { ActionButtonsComponent } from './pages/action-buttons/action-buttons.co
 
 
     PagesModule,
+    UserModule
   ],
   exports: [HeaderComponent],
   // entryComponents: [ProjectCardComponent, EditProjectComponent],

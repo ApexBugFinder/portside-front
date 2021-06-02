@@ -9,6 +9,7 @@ import { ProjectRequirement } from './models/projectRequirement';
 import { Store, select } from '@ngrx/store';
 import * as fromProject from './state';
 import * as projectActions from './state/project.actions';
+import * as fromShare from '../shared/state';
 
 @Injectable({
   providedIn: 'root',
@@ -16,17 +17,22 @@ import * as projectActions from './state/project.actions';
 export class ProjectService {
   private ctlrName;
   private apiAddress;
-  private userID;
+  private userID:string;
   private hdrs: HttpHeaders;
   private apiRt;
   private clientRt;
-  
-  constructor(private http: HttpClient, private projectStore: Store<fromProject.State>) {
+
+  constructor (
+    private http: HttpClient,
+    private projectStore: Store<fromProject.State>,
+    private shareStore: Store<fromShare.SharedModuleState>
+    ) {
+      this.shareStore.pipe(select(fromShare.getUserId)).subscribe(value => this.userID = value);
     this.ctlrName = 'projects/';
     this.apiRt = Constants.apiRoot;
     this.apiAddress  = this.apiRt + this.ctlrName;
     this.hdrs = new HttpHeaders();
-    this.userID = Constants.userID;
+
     this.clientRt = Constants.clientRoot;
   }
 
@@ -53,8 +59,6 @@ this.hdrs = new HttpHeaders();
       timeout(2000),
       map((newProject: Project) => {
       console.log('New Project added to DB: ', newProject);
-      // Update NGRX state
-      this.projectStore.dispatch(projectActions.addProject({project: newProject}));
       return newProject;
     }));
   }
@@ -82,21 +86,21 @@ this.hdrs = new HttpHeaders();
         console.log('User\'s Projects Found:  ' + JSON.stringify(usersProjects) );
         // this.projectStore.dispatch(projectActions.addProjects({projects: usersProjects}));
         usersProjects.forEach(up => {up?.projectRequirements?.forEach((ij: ProjectRequirement) => {
-          
-          
+
+
           let p = JSON.stringify(ij.editState);
           console.log(p);
-          
+
             ij.stateHistory = [ij.editState as string];
-       
-          
+
+
           console.log(ij.stateHistory);
-          
+
         })
       });
-        
-     
-        
+
+
+
         return usersProjects;
       } ));
 
@@ -131,7 +135,7 @@ this.hdrs = new HttpHeaders()
 
 //  UPDATE PROJECT
 public updateItem(item: Project | undefined) : Observable<Project> {
-  
+
     const urlAddress = this.apiAddress + item?.id;
 
  const hdrs = new HttpHeaders()
@@ -141,7 +145,7 @@ public updateItem(item: Project | undefined) : Observable<Project> {
   .set('content-type', 'application/json');
 
   this.printServiceInfo(urlAddress, item, hdrs);
-  
+
     return this.http.put<Project>(
       urlAddress,
       item,
@@ -181,7 +185,7 @@ public deleteItem(id: string | undefined): Observable<Project> {
   }
 
   public printServiceInfo(address: string, payload: any, httpHrd: HttpHeaders){
-    
+
     console.log('urlAddress: ', address);
     console.log('HEADERS:', httpHrd);
     console.log('payload: ', payload);

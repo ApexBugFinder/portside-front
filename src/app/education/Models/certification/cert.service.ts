@@ -5,6 +5,9 @@ import { Observable, of, pipe} from 'rxjs';
 import { map, timeout } from 'rxjs/operators';
 import { Constants } from '../../../helpers/Constants';
 import { Certification  } from './certification';
+import * as fromShared from '../../../shared/state';
+import { Store, select} from '@ngrx/store';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,18 +15,20 @@ import { Certification  } from './certification';
 export class CertService {
   private ctlrName;
   private apiAddress;
-  private userID;
+  private userID: string;
   private hdrs: HttpHeaders;
   private apiRt;
   private clientRt;
-
-  constructor(private http: HttpClient) {
+  userID$: Observable<string>;
+  constructor(private http: HttpClient, private sharedStore: Store<fromShared.SharedModuleState>) {
     this.ctlrName = 'certifications/';
     this.apiRt = Constants.apiRoot;
     this.apiAddress = this.apiRt + this.ctlrName;
     this.hdrs = new HttpHeaders();
-    this.userID = Constants.userID;
+    this.userID = this.userID;
     this.clientRt = Constants.clientRoot;
+    this.userID$ = this.sharedStore.pipe(select(fromShared.getUserId));
+    this.userID$.subscribe(value => this.userID = value);
   }
 
 // CREATE CERTIFCATION
@@ -53,7 +58,7 @@ public createItem(item: Certification) : Observable<Certification> {
   // READ ALL CertificationS BY USER
 public readAll(id: string): Observable<Certification[]> {
 
-  const address = 'all/' + Constants.userID;
+  const address = 'all/' + this.userID;
   const urlAddress = this.apiAddress + address;
 
   this.hdrs = new HttpHeaders()
@@ -109,7 +114,7 @@ public updateItem(item: Certification) : Observable<Certification> {
 
 
   const urlAddress = this.apiAddress + item.id;
-  item.projectCreatorID = Constants.userID;
+  item.projectCreatorID = this.userID;
 
   this.hdrs = new HttpHeaders()
   .set('Access-Control-Allow-Origin',  [this.apiRt, this.apiAddress, this.clientRt])

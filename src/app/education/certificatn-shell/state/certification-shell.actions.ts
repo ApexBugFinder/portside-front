@@ -40,6 +40,10 @@ export enum CertificationActionTypes {
   SET_ORIGINAL_CERTIFICATION_from_CERT_EFFECTS = '[CERTIFICATION] SET ORIGINAL CERTIFICATIONS',
   SET_CURRENT_CERTIFICATION_from_CERT_EFFECTS = '[CERTIFICATION] SET CURRENT CERTIFICATIONS',
 
+  // FROM EDUCATION COMPONENT
+  SET_ORIGINAL_CERTIFICATION_from_EDUCATION_CPT = '[CERTIFICATION] SET ORIGINAL CERTIFICATIONS FROM EDUCATION COMPONENT',
+  SET_CURRENT_CERTIFICATION_from_EDUCATION_CPT = '[CERTIFICATION] SET CURRENT CERTIFICATIONS FROM EDUCATION COMPONENT',
+
   // SET FROM CERTIFICATION EDIT SHELL (7)
   SET_CURRENT_CERTIFICATION_ID_FROM_CERT_SHELL_EDIT_CPT = '[CURRENT CERTIFICATION] SET CERTIFICATION ID FROM CERTICATION SHELL EDIT CPT',
   SET_CURRENT_CERTIFICATION_PROJECTCREATOR_ID_FROM_CERT_SHELL_EDIT_CPT = '[CURRENT CERTIFICATION] SET CERTIFICATION PROJECT CREATOR ID FROM CERTICATION SHELL EDIT CPT',
@@ -89,6 +93,10 @@ export class SetCurrentCertificationFromViewCert implements Action {
   constructor(public payload: Certification) {}
 }
 
+export class SetCurrentCertificationFromEducationCPT implements Action {
+  readonly type = CertificationActionTypes.SET_CURRENT_CERTIFICATION_from_EDUCATION_CPT;
+  constructor(public payload: Certification) {}
+}
 
 // FROM CERTIFCATION EFFECTS (2)
 export class SetOriginalCertificationFromCertEffects implements Action {
@@ -245,7 +253,8 @@ export class LoadCertificationsByProjectCreatorIDFromDBFail implements Action {
 // SAVE (3)
 export class SaveCertificationToDB implements Action {
   readonly type =
-    CertificationActionTypes.SAVE_CERTIFICATION_TO_DB_from_CertShellEdit;
+    CertificationActionTypes.SAVE_CERTIFICATION_TO_DB_from_CertShellEdit
+    ;
 }
 
 export class SaveCertificationToDBSuccess implements Action {
@@ -313,6 +322,9 @@ export type CertificationActions =
   | SetOriginalCertificationFromCertEffects
   | SetCurrentCertificationFromCertEffects
 
+  // FROM EDUCATION COMPONENT
+  | SetCurrentCertificationFromEducationCPT
+  
   // SET FROM CERTICATION EDIT SHELL (7)
   | SetCurrentCertificationIdFromCertShellEditCpt
   | SetCurrentCertificationProjectCreatorIDFromCertShellEditCpt

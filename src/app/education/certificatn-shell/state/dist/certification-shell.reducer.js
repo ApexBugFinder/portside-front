@@ -32,11 +32,23 @@ function certificationReducer(state, action) {
     switch (action.type) {
         case certification_shell_actions_1.CertificationActionTypes.SET_ORIGINAL_CERTIFICATION_from_CERT_EFFECTS:
             return __assign(__assign({}, state), { originalCertification: action.payload, id: action.payload.id, projectCreatorID: action.payload.projectCreatorID, certName: action.payload.certName, certId: action.payload.certId, isActive: action.payload.isActive, issuingBody_Name: action.payload.issuingBody_Name, issuingBody_Logo: action.payload.issuingBody_Logo, issuedDate: action.payload.issuedDate });
-        case certification_shell_actions_1.CertificationActionTypes.SET_CURRENT_CERTIFICATION_from_CERT_EFFECTS:
-            return __assign(__assign({}, state), { id: action.payload.id, projectCreatorID: action.payload.projectCreatorID, certName: action.payload.certName, certId: action.payload.certId, isActive: action.payload.isActive, issuingBody_Name: action.payload.issuingBody_Name, issuingBody_Logo: action.payload.issuingBody_Logo, issuedDate: action.payload.issuedDate });
+        // case CertificationActionTypes.SET_CURRENT_CERTIFICATION_from_CERT_EFFECTS:
+        //   return {
+        //     ...state,
+        //    id: action.payload.id,
+        //     projectCreatorID: action.payload.projectCreatorID,
+        //     certName: action.payload.certName,
+        //     certId: action.payload.certId as string,
+        //     isActive: action.payload.isActive,
+        //     issuingBody_Name: action.payload.issuingBody_Name,
+        //     issuingBody_Logo: action.payload.issuingBody_Logo,
+        //     issuedDate: action.payload.issuedDate,
+        //   };
         case certification_shell_actions_1.CertificationActionTypes.SET_ORIGINAL_CERTIFICATION_from_VIEWCERT_COMPONENT:
             return __assign(__assign({}, state), { originalCertification: action.payload, id: action.payload.id, projectCreatorID: action.payload.projectCreatorID, certName: action.payload.certName, certId: action.payload.certId, isActive: action.payload.isActive, issuingBody_Name: action.payload.issuingBody_Name, issuingBody_Logo: action.payload.issuingBody_Logo, issuedDate: action.payload.issuedDate });
-        case certification_shell_actions_1.CertificationActionTypes.SET_CURRENT_CERTIFICATION_from_VIEWCERT_COMPONENT:
+        case certification_shell_actions_1.CertificationActionTypes.SET_CURRENT_CERTIFICATION_from_VIEWCERT_COMPONENT
+            || certification_shell_actions_1.CertificationActionTypes.SET_CURRENT_CERTIFICATION_from_CERT_EFFECTS
+            || certification_shell_actions_1.CertificationActionTypes.SET_CURRENT_CERTIFICATION_from_EDUCATION_CPT:
             return __assign(__assign({}, state), { id: action.payload.id, projectCreatorID: action.payload.projectCreatorID, certName: action.payload.certName, certId: action.payload.certId, isActive: action.payload.isActive, issuingBody_Name: action.payload.issuingBody_Name, issuingBody_Logo: action.payload.issuingBody_Logo, issuedDate: action.payload.issuedDate });
         case certification_shell_actions_1.CertificationActionTypes.SET_CURRENT_CERTIFICATION_ID_FROM_CERT_SHELL_EDIT_CPT:
             return __assign(__assign({}, state), { id: action.payload });
@@ -53,18 +65,66 @@ function certificationReducer(state, action) {
         case certification_shell_actions_1.CertificationActionTypes.SET_CURRENT_CERTIFICATION_ISSUED_DATE_FROM_CERT_SHELL_EDIT_CPT:
             return __assign(__assign({}, state), { issuedDate: action.payload });
         // CLEAR
-        case certification_shell_actions_1.CertificationActionTypes.CLEAR_ORIGINAL_CERTIFICATION_FROM_CERT_EFFECTS_SAVE:
+        case certification_shell_actions_1.CertificationActionTypes.CLEAR_ORIGINAL_CERTIFICATION_FROM_CERT_EFFECTS_SAVE
+            || certification_shell_actions_1.CertificationActionTypes.CLEAR_ORIGINAL_CERTIFICATION_FROM_CERT_EFFECTS_UPDATE
+            || certification_shell_actions_1.CertificationActionTypes.CLEAR_ORIGINAL_CERTIFICATION_FROM_CERT_EFFECTS_DELETE:
             return __assign(__assign({}, state), { originalCertification: initialState.originalCertification, id: initialState.id, projectCreatorID: initialState.projectCreatorID, certName: initialState.certName, certId: initialState.certId, isActive: initialState.isActive, issuingBody_Name: initialState.issuingBody_Name, issuingBody_Logo: initialState.issuingBody_Logo, issuedDate: initialState.issuedDate });
-        case certification_shell_actions_1.CertificationActionTypes.CLEAR_ORIGINAL_CERTIFICATION_FROM_CERT_EFFECTS_UPDATE:
+        // case CertificationActionTypes.CLEAR_ORIGINAL_CERTIFICATION_FROM_CERT_EFFECTS_UPDATE:
+        //   return {
+        //     ...state,
+        //     originalCertification: initialState.originalCertification,
+        //     id: initialState.id,
+        //     projectCreatorID: initialState.projectCreatorID,
+        //     certName: initialState.certName,
+        //     certId: initialState.certId,
+        //     isActive: initialState.isActive,
+        //     issuingBody_Name: initialState.issuingBody_Name,
+        //     issuingBody_Logo: initialState.issuingBody_Logo,
+        //     issuedDate: initialState.issuedDate,
+        //   };
+        // case CertificationActionTypes.CLEAR_ORIGINAL_CERTIFICATION_FROM_CERT_EFFECTS_DELETE:
+        //   return {
+        //     ...state,
+        //     originalCertification: initialState.originalCertification,
+        //     id: initialState.id,
+        //     projectCreatorID: initialState.projectCreatorID,
+        //     certName: initialState.certName,
+        //     certId: initialState.certId,
+        //     isActive: initialState.isActive,
+        //     issuingBody_Name: initialState.issuingBody_Name,
+        //     issuingBody_Logo: initialState.issuingBody_Logo,
+        //     issuedDate: initialState.issuedDate,
+        //   };
+        case certification_shell_actions_1.CertificationActionTypes.CLEAR_CURRENT_CERTIFICATION_FROM_CERT_EFFECTS_SAVE
+            || certification_shell_actions_1.CertificationActionTypes.CLEAR_CURRENT_CERTIFICATION_FROM_CERT_EFFECTS_UPDATE
+            || certification_shell_actions_1.CertificationActionTypes.CLEAR_CURRENT_CERTIFICATION_FROM_CERT_EFFECTS_DELETE:
             return __assign(__assign({}, state), { originalCertification: initialState.originalCertification, id: initialState.id, projectCreatorID: initialState.projectCreatorID, certName: initialState.certName, certId: initialState.certId, isActive: initialState.isActive, issuingBody_Name: initialState.issuingBody_Name, issuingBody_Logo: initialState.issuingBody_Logo, issuedDate: initialState.issuedDate });
-        case certification_shell_actions_1.CertificationActionTypes.CLEAR_ORIGINAL_CERTIFICATION_FROM_CERT_EFFECTS_DELETE:
-            return __assign(__assign({}, state), { originalCertification: initialState.originalCertification, id: initialState.id, projectCreatorID: initialState.projectCreatorID, certName: initialState.certName, certId: initialState.certId, isActive: initialState.isActive, issuingBody_Name: initialState.issuingBody_Name, issuingBody_Logo: initialState.issuingBody_Logo, issuedDate: initialState.issuedDate });
-        case certification_shell_actions_1.CertificationActionTypes.CLEAR_CURRENT_CERTIFICATION_FROM_CERT_EFFECTS_SAVE:
-            return __assign(__assign({}, state), { originalCertification: initialState.originalCertification, id: initialState.id, projectCreatorID: initialState.projectCreatorID, certName: initialState.certName, certId: initialState.certId, isActive: initialState.isActive, issuingBody_Name: initialState.issuingBody_Name, issuingBody_Logo: initialState.issuingBody_Logo, issuedDate: initialState.issuedDate });
-        case certification_shell_actions_1.CertificationActionTypes.CLEAR_CURRENT_CERTIFICATION_FROM_CERT_EFFECTS_UPDATE:
-            return __assign(__assign({}, state), { originalCertification: initialState.originalCertification, id: initialState.id, projectCreatorID: initialState.projectCreatorID, certName: initialState.certName, certId: initialState.certId, isActive: initialState.isActive, issuingBody_Name: initialState.issuingBody_Name, issuingBody_Logo: initialState.issuingBody_Logo, issuedDate: initialState.issuedDate });
-        case certification_shell_actions_1.CertificationActionTypes.CLEAR_CURRENT_CERTIFICATION_FROM_CERT_EFFECTS_DELETE:
-            return __assign(__assign({}, state), { originalCertification: initialState.originalCertification, id: initialState.id, projectCreatorID: initialState.projectCreatorID, certName: initialState.certName, certId: initialState.certId, isActive: initialState.isActive, issuingBody_Name: initialState.issuingBody_Name, issuingBody_Logo: initialState.issuingBody_Logo, issuedDate: initialState.issuedDate });
+        // case
+        //   return {
+        //     ...state,
+        //     originalCertification: initialState.originalCertification,
+        //     id: initialState.id,
+        //     projectCreatorID: initialState.projectCreatorID,
+        //     certName: initialState.certName,
+        //     certId: initialState.certId,
+        //     isActive: initialState.isActive,
+        //     issuingBody_Name: initialState.issuingBody_Name,
+        //     issuingBody_Logo: initialState.issuingBody_Logo,
+        //     issuedDate: initialState.issuedDate,
+        //   };
+        // case
+        //   return {
+        //     ...state,
+        //     originalCertification: initialState.originalCertification,
+        //     id: initialState.id,
+        //     projectCreatorID: initialState.projectCreatorID,
+        //     certName: initialState.certName,
+        //     certId: initialState.certId,
+        //     isActive: initialState.isActive,
+        //     issuingBody_Name: initialState.issuingBody_Name,
+        //     issuingBody_Logo: initialState.issuingBody_Logo,
+        //     issuedDate: initialState.issuedDate,
+        //   };
         case certification_shell_actions_1.CertificationActionTypes.CLEAR_CURRENT_CERTIFICATION_ID_FROM_CERT_SHELL_EDIT_CPT:
             return __assign(__assign({}, state), { id: initialState.id });
         case certification_shell_actions_1.CertificationActionTypes.CLEAR_CURRENT_CERTIFICATION_PROJECTCREATOR_ID_FROM_CERT_SHELL_EDIT_CPT:

@@ -1,0 +1,8 @@
+.title {
+  background-color: var(--accent2Color);
+  padding: 2px;
+}
+
+mat-dialog-content {
+  margin: 20px auto 10px auto;
+}

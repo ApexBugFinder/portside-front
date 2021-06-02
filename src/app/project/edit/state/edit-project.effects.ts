@@ -12,12 +12,12 @@ import * as fromEditProject from './';
 
 import { ProjectService } from '../../project.service';
 import { Project } from '../../models/project';
-import { merge, Observable, of } from "rxjs";
+import { merge, Observable, of, Subscription } from "rxjs";
 import { Update } from "@ngrx/entity";
 
 
 @Injectable()
-export class EditProjectEffects implements OnDestroy {
+export class EditProjectEffects  {
 
     editProject$: Observable<Project | undefined>;
     editProject: Project  | undefined;
@@ -27,17 +27,14 @@ export class EditProjectEffects implements OnDestroy {
             private projectStore: Store<fromProject.State>,
             private projectService: ProjectService) {
                 this.editProject$ = this.editProjectStore.pipe(select(fromEditProject.getEditProject));
+
                 this.editProject$.subscribe(value => this.editProject = value);
             }
-    ngOnDestroy(): void {
-        
-        throw new Error("Method not implemented.");
-    }
 
 
     SaveNewProject$ = createEffect(() => this.actions$.pipe(
         ofType(editProjectActions.EditProjectActionTypes.SAVE_EDITPROJECT_TO_DB),
-        mergeMap((action: editProjectActions.SaveEditProjectToDB) => 
+        mergeMap((action: editProjectActions.SaveEditProjectToDB) =>
             this.projectService.createItem(this.editProject)
                 .pipe(
                     tap(() => console.log(this.editProject)),
@@ -66,7 +63,7 @@ export class EditProjectEffects implements OnDestroy {
     DeleteProject$ = createEffect(() => this.actions$.pipe(
         ofType(editProjectActions.EditProjectActionTypes.DELETE_EDITPROJECT_TO_DB),
         tap(()=> console.log(this.editProject)),
-        mergeMap((action: editProjectActions.DeleteEditProjectToDB) => 
+        mergeMap((action: editProjectActions.DeleteEditProjectToDB) =>
              this.projectService.deleteItem(this.editProject?.id)
             // this.projectService.deleteItem(action.payload)
                 .pipe(
@@ -83,19 +80,19 @@ export class EditProjectEffects implements OnDestroy {
     LoadProjectsFromDB$ = createEffect(() => this.actions$.pipe(
         ofType(editProjectActions.EditProjectActionTypes.LOAD_PROJECTS_FROM_DB),
 
-        mergeMap((action: editProjectActions.LoadProjectsByProjectCreatorIDFromDB) => 
-        
+        mergeMap((action: editProjectActions.LoadProjectsByProjectCreatorIDFromDB) =>
+
         this.projectService.readAll(action.payload)
             .pipe(
                 tap((payload: Project[]) => console.log('NGRX EFFECT - LOad User Projects from DB return payload', payload)),
                 map((payload: Project[])=> {
                     this.projectStore.dispatch(projectActions.addProjects({projects: payload}));
-                    return new editProjectActions.LoadProjectsByProjectCreatorIDFromDBSuccess(payload)                        
-                    
+                    return new editProjectActions.LoadProjectsByProjectCreatorIDFromDBSuccess(payload)
+
                 }),
                 catchError(err => of(new editProjectActions.LoadProjectsByProjectCreatorIDFromDBFail(err)))
-                
+
             ))
     ));
-            
+
 }

@@ -16,17 +16,20 @@ var fromExperienceShell = require("../../experience/experience-shell/state");
 var experienceShellActions = require("../../experience/experience-shell/state/experience-shell.actions");
 var edit_modal_shell_component_1 = require("src/app/experience/editModal/edit-modal-shell/edit-modal-shell.component");
 var make_guid_1 = require("../../helpers/make-guid");
+var fromShared = require("../../shared/state");
 var ExperienceComponent = /** @class */ (function () {
-    function ExperienceComponent(experienceService, experienceDataStore, dialog, experienceShellStore) {
+    function ExperienceComponent(experienceService, experienceDataStore, dialog, sharedStore, experienceShellStore) {
         this.experienceService = experienceService;
         this.experienceDataStore = experienceDataStore;
         this.dialog = dialog;
+        this.sharedStore = sharedStore;
         this.experienceShellStore = experienceShellStore;
         this.first = false;
         this.focalPoint = 0;
         this.focusedAt = 0;
         this.faAnchor = free_solid_svg_icons_1.faAnchor;
         this.pageClass = "Experience";
+        this.userID$ = this.sharedStore.pipe(store_1.select(fromShared.getUserId));
         this.experienceData$ = this.experienceDataStore.pipe(store_1.select(fromExperienceData.selectAllExperiences));
         this.currentExperience$ = this.experienceShellStore.pipe(store_1.select(fromExperienceShell.getCurrentExperience));
         this.experienceDataTotal$ = this.experienceDataStore.pipe(store_1.select(fromExperienceData.selectExperiencesTotal));
@@ -47,6 +50,19 @@ var ExperienceComponent = /** @class */ (function () {
             },
             error: function (err) { return console.log('OOps sorry, error occured getting the user\'s current experience from store in Experiences component: ', err); },
             complete: function () { return console.log('Completed getting user\'s Current Experiences from ngrx store in Experiences component'); }
+        });
+        this.userID$.subscribe({
+            next: function (value) {
+                if (value) {
+                    _this.userID = value;
+                }
+            },
+            error: function (err) {
+                return console.log("OOps sorry, error occured getting the user's ID from Shared State store in  Experience component:", err);
+            },
+            complete: function () {
+                return console.log("Completed getting user's ID ngrx Shared State store in Experience component");
+            }
         });
         this.experienceData$.subscribe({
             next: function (value) {
@@ -74,6 +90,7 @@ var ExperienceComponent = /** @class */ (function () {
         var newExp = JSON.parse(JSON.stringify(experience_1.defaultExperience));
         // CREATE  NEW ID WITH 'new-' PREFIX
         newExp.id = JSON.stringify((new make_guid_1.MakeGuid()).id);
+        newExp.projectCreatorID = this.userID;
         this.experienceShellStore.dispatch(new experienceShellActions.SetOriginalExperience(newExp));
         this.experienceShellStore.dispatch(new experienceShellActions.SaveExperienceToDB);
         // OPEN DIALOG OF EDIT MODAL SHELL

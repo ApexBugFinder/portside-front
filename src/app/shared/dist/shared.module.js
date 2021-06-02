@@ -16,6 +16,11 @@ var router_1 = require("@angular/router");
 var http_1 = require("@angular/common/http");
 var forms_1 = require("@angular/forms");
 var edit_action_buttons_component_1 = require("./edit-action-buttons/edit-action-buttons.component");
+var store_1 = require("@ngrx/store");
+// import { sharedReducers } from './state';
+var shared_reducer_1 = require("./state/shared-reducer");
+var effects_1 = require("@ngrx/effects");
+var shared_effects_1 = require("./state/shared-effects");
 var SharedModule = /** @class */ (function () {
     function SharedModule() {
     }
@@ -31,6 +36,8 @@ var SharedModule = /** @class */ (function () {
                 forms_1.FormsModule,
                 forms_1.ReactiveFormsModule,
                 angular_fontawesome_1.FontAwesomeModule,
+                store_1.StoreModule.forFeature('sharedState', shared_reducer_1.sharedReducer),
+                effects_1.EffectsModule.forFeature([shared_effects_1.SharedEffects])
             ],
             exports: [
                 common_1.CommonModule,
