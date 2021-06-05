@@ -13,10 +13,12 @@ import { MakeGuid } from 'src/app/helpers/make-guid';
 // import NGRX
 import * as fromCertificationShell from '../../education/certificatn-shell/state';
 import * as certificationActions from '../../education/certificatn-shell/state/certification-shell.actions';
+import * as fromCertificaitonData from '../../education/Models/certification/state';
+
 
 import * as fromDegreeShell from '../../education/degree-shell/state';
 import * as degreeShellActions from '../../education/degree-shell/state/degree-shell.actions';
-
+import * as fromDegreeData from '../../education/Models/degree/state';
 import * as fromShared from '../../shared/state';
 @Component({
   selector: 'app-education',
@@ -25,13 +27,19 @@ import * as fromShared from '../../shared/state';
 })
 export class EducationComponent implements OnInit {
   pageClass= "Education";
+  degreeDataTotal$: Observable<number>;
+  certificationDataTotal$: Observable<number>;
   userID$: Observable<string>;
   userID: string;
   constructor(private dialog: MatDialog,
                         private degreeShellStore: Store<fromDegreeShell.DegreeShellState>,
                         private sharedStore: Store<fromShared.SharedModuleState>,
+                        private certificationDataStore: Store<fromCertificaitonData.CertificationDataState>,
+                        private degreeDataStore: Store<fromDegreeData.DegreeDataState>,
                         private certificationShellStore: Store<fromCertificationShell.CertificationShellState>) {
                           this.userID$ = this.sharedStore.pipe(select(fromShared.getUserId));
+                          this.certificationDataTotal$ = this.certificationDataStore.pipe(select(fromCertificaitonData.selectCertificationsTotal));
+                          this.degreeDataTotal$ = this.degreeDataStore.pipe(select(fromDegreeData.selectDegreesTotal));
                         }
 
   ngOnInit(): void {

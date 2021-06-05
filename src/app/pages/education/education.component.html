@@ -5,9 +5,9 @@
         </div>
         <div class="experienceContent">
 
-                <app-degree-shell></app-degree-shell>
+                <app-degree-shell *ngIf="(degreeDataTotal$|async)>0"></app-degree-shell>
 
-                <app-certificatn-shell></app-certificatn-shell>
+                <app-certificatn-shell *ngIf="(certificationDataTotal$|async)>0"></app-certificatn-shell>
 
 
         </div>
