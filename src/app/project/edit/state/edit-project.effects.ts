@@ -15,19 +15,22 @@ import { Project } from '../../models/project';
 import { merge, Observable, of, Subscription } from "rxjs";
 import { Update } from "@ngrx/entity";
 
+import * as fromShared from '../../../shared/state';
+
 
 @Injectable()
 export class EditProjectEffects  {
-
+    
     editProject$: Observable<Project | undefined>;
     editProject: Project  | undefined;
 
     constructor(private actions$: Actions,
             private editProjectStore: Store<fromEditProject.EditProjectState>,
+            private sharedStore: Store<fromShared.SharedState>,
             private projectStore: Store<fromProject.State>,
             private projectService: ProjectService) {
                 this.editProject$ = this.editProjectStore.pipe(select(fromEditProject.getEditProject));
-
+                
                 this.editProject$.subscribe(value => this.editProject = value);
             }
 
@@ -82,7 +85,7 @@ export class EditProjectEffects  {
 
         mergeMap((action: editProjectActions.LoadProjectsByProjectCreatorIDFromDB) =>
 
-        this.projectService.readAll(action.payload)
+        this.projectService.readAll()
             .pipe(
                 tap((payload: Project[]) => console.log('NGRX EFFECT - LOad User Projects from DB return payload', payload)),
                 map((payload: Project[])=> {

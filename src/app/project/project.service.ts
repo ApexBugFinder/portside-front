@@ -25,14 +25,13 @@ export class ProjectService {
   constructor (
     private http: HttpClient,
     private projectStore: Store<fromProject.State>,
-    private shareStore: Store<fromShare.SharedModuleState>
+    private shareStore: Store<fromShare.SharedState>
     ) {
       this.shareStore.pipe(select(fromShare.getUserId)).subscribe(value => this.userID = value);
     this.ctlrName = 'projects/';
     this.apiRt = Constants.apiRoot;
     this.apiAddress  = this.apiRt + this.ctlrName;
     this.hdrs = new HttpHeaders();
-
     this.clientRt = Constants.clientRoot;
   }
 
@@ -65,9 +64,9 @@ this.hdrs = new HttpHeaders();
 // CREATE LINKS
 
   // READ ALL PROJECTS BY USER
- public readAll(id: string | undefined): Observable<Project[]> {
+ public readAll(): Observable<Project[]> {
 
-    const address = 'all/' + Constants.userID;
+    const address = 'all/' + this.userID;
     const urlAddress = this.apiAddress + address;
 
     const hdrs = new HttpHeaders()
@@ -76,7 +75,7 @@ this.hdrs = new HttpHeaders();
   .set('content-type', 'application/json');
 
 
-    this.printServiceInfo(urlAddress, id, hdrs);
+    this.printServiceInfo(urlAddress, this.userID, hdrs);
     return this.http.get<Project[]>(
       urlAddress,
       { headers: hdrs })

@@ -1,0 +1,17 @@
+<div class="searchSection">
+    <form class="searchForm" id="searchFormId" [formGroup]="searchForm">
+      <div class="searchContainer">
+     
+          <div class="searchInput">
+            <input type="text" name="searchInputName" formControlName="searchInput" id="searchInputId">
+          </div>
+          
+          <div class="searchButtonContainer" (click)="searchWord()">
+
+            <fa-icon [icon]="faSearch" (click)="searchWord()" class="icon"></fa-icon>
+
+          </div>
+      
+      </div>
+    </form>
+  </div>

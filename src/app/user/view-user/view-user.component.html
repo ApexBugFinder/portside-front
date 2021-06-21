@@ -1,0 +1,49 @@
+<div class="profileContainer">
+    <!--  -->
+        <div class="profilePicContainer">
+           
+                <img [profilePic]="profilePic" class="profilePic" alt="">
+                    
+                
+            
+            <!-- <fa-icon [icon]="iconUser" class="userIcon"></fa-icon> -->
+        </div>
+      
+
+    <div class="profileInfoContainer">
+
+        <div class="infoContainer">
+            <div class="infoShell title">
+                 <h3>Profile</h3>
+                 <div class="spacer"></div>
+                <fa-icon [icon]="iconPen" class="iconPen"></fa-icon>
+                 
+            </div>
+           
+        </div>
+        <mat-divider></mat-divider>
+        <div class="infoContainer firstInfo">
+            <div class="infoShell">
+                <h3>Username:</h3>
+                <p>{{user.username}}</p>
+                <input class="editMode" type="text">
+            </div>
+        
+        </div>
+        <div class="infoContainer">
+            <div class="infoShell">
+                <h3>Projects:</h3>
+                <p>{{userstate.projects.length}}</p>
+            </div>
+        
+        </div>
+        
+        <div class="infoContainer infoButtons">
+            <div class="infoShell">
+               <button mat-raised-button>back</button>
+               <button mat-raised-button (click)="toProjects()">Projects</button>
+            </div>
+        
+        </div>
+    </div>
+</div>

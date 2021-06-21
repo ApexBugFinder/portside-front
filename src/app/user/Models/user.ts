@@ -1,17 +1,25 @@
-import { Certification } from "src/app/education/Models/certification/certification";
-import { Degree } from "src/app/education/Models/degree/degree";
-import { Experience } from "src/app/experience/Models/experience";
-import { Project } from "src/app/project/models/project";
+import { Certification } from "../../education/Models/certification/certification";
+import { Degree } from "../../education/Models/degree/degree";
+import { Experience } from "../../experience/Models/experience";
+import { Project } from "../../project/models/project";
 
 export interface User {
-  userId: string;
+  id: string;
   username: string;
+  email?: string;
+  userPicUrl?: string;
 }
 
 export interface UserState {
-  userId: string,
+  id: string,
   projects: Project[],
   experiences: Experience[],
-  Degrees: Degree[],
-  Certifications: Certification[]
+  degrees: Degree[],
+  certifications: Certification[],
+  username: '',
+  email: '', 
+  
+}
+export interface ViewUserMatDialogData {
+  user: UserState;
 }

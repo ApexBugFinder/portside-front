@@ -12,7 +12,7 @@ import * as fromCertificationEntityData from '../../Models/certification/state';
 import { merge, Observable, of } from 'rxjs';
 import { Certification } from '../../Models/certification/certification';
 import { CertService } from '../../Models/certification/cert.service';
-import { Constants } from 'src/app/helpers/Constants';
+import { Constants } from '../../../helpers/Constants';
 
 @Injectable()
 export class CertificationShellEffects {
@@ -61,7 +61,7 @@ export class CertificationShellEffects {
         (
           action: certificationShellActions.LoadCertificationsByProjectCreatorIDFromDB
         ) =>
-          this.certificationService.readAll(Constants.userID).pipe(
+          this.certificationService.readAll().pipe(
             tap((payload) =>
               console.log('NGRX EFFECT - READ ALL CERTIFICATIONS FROM DB')
             ),

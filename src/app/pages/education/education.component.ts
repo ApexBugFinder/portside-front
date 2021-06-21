@@ -20,6 +20,9 @@ import * as fromDegreeShell from '../../education/degree-shell/state';
 import * as degreeShellActions from '../../education/degree-shell/state/degree-shell.actions';
 import * as fromDegreeData from '../../education/Models/degree/state';
 import * as fromShared from '../../shared/state';
+
+import * as fromAuth from '../../auth/state';
+
 @Component({
   selector: 'app-education',
   templateUrl: './education.component.html',
@@ -31,13 +34,18 @@ export class EducationComponent implements OnInit {
   certificationDataTotal$: Observable<number>;
   userID$: Observable<string>;
   userID: string;
+  authenticatedUserID$: Observable<string>;
+  isAuthenticated$: Observable<boolean>;
   constructor(private dialog: MatDialog,
+                        private authStore: Store<fromAuth.State>,
                         private degreeShellStore: Store<fromDegreeShell.DegreeShellState>,
-                        private sharedStore: Store<fromShared.SharedModuleState>,
+                        private sharedStore: Store<fromShared.SharedState>,
                         private certificationDataStore: Store<fromCertificaitonData.CertificationDataState>,
                         private degreeDataStore: Store<fromDegreeData.DegreeDataState>,
                         private certificationShellStore: Store<fromCertificationShell.CertificationShellState>) {
                           this.userID$ = this.sharedStore.pipe(select(fromShared.getUserId));
+                          this.authenticatedUserID$  = this.authStore.pipe(select(fromAuth.getAuthenticatedUserId));
+                          this.isAuthenticated$ = this.authStore.pipe(select(fromAuth.getIsAuthenticated));
                           this.certificationDataTotal$ = this.certificationDataStore.pipe(select(fromCertificaitonData.selectCertificationsTotal));
                           this.degreeDataTotal$ = this.degreeDataStore.pipe(select(fromDegreeData.selectDegreesTotal));
                         }

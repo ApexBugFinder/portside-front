@@ -2,24 +2,40 @@
   display: flex;
   flex-direction: column;
   row-gap: 30px;
-  align-items: center;
-  justify-content: space-around;
-  margin: 20vh auto;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 7vh 10%;
+
+  .searchbar {
+    margin: auto;
+  }
+ 
+
 
   .quoteSection{
-    font-family: felt-tip-roman;
+    position: relative;
+    align-self: flex-end;
+    margin-right: 10%;
+    width: 40%;
+    font-family: felt-tip-roman;    
     display: flex;
     flex-direction: column;
     row-gap: 5vh;
+    opacity: 0.3;
 
     .quote {
       font-family: felt-tip-roman, sans-serif;
       font-size: 30px;
+      margin-right: 10%;
     }
     .quoteAuthor {
-      margin:auto;
+      margin:auto 10% auto auto;
       font-size: 18px;
+
     }
+  }
+  .results {
+    width: 100%;
   }
 
 }

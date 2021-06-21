@@ -13,6 +13,9 @@ import { StoreModule } from '@ngrx/store';
 import { sharedReducer } from './state/shared-reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { SharedEffects } from './state/shared-effects';
+import { AuthModule } from '../auth/auth.module';
+import { sharedReducers } from '.';
+import { ImageModule } from '../image/image.module';
 
 
 
@@ -24,11 +27,14 @@ import { SharedEffects } from './state/shared-effects';
     FlexLayoutModule,
     RouterModule,
     HttpClientModule,
-    FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    StoreModule.forFeature('sharedState', sharedReducer),
-    EffectsModule.forFeature([SharedEffects])
+    FormsModule,
+    AuthModule,
+    StoreModule.forFeature('shared', sharedReducers),
+    EffectsModule.forFeature([SharedEffects]),
+    ImageModule
+    
   ],
   exports : [
     CommonModule,
@@ -39,7 +45,10 @@ import { SharedEffects } from './state/shared-effects';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    EditActionButtonsComponent
+    AuthModule,
+    ImageModule,
+    EditActionButtonsComponent,
+
 
   ]
 })

@@ -7,9 +7,13 @@ import { UserState } from 'src/app/user/Models/user';
    SET_USER_ID = '[SHARED EFFECTS] SET USER ID FROM SHARE EFFECTS',
    SET_USERNAME = '[USER COMPONENT] SET USERNAME FROM USER COMPONENT',
 
-   LOAD_USERSTATE = '[SHARED EFFECTS] LOAD USER STATE FROM USER COMPONENT',
-   LOAD_USERSTATE_SUCCESS = '[SHARED EFFECTS] LOAD USER STATE FROM USER COMPONENT====> SUCCESS',
-   LOAD_USERSTATE_FAIL = '[SHARED EFFECTS] LOAD USER STATE FROM USER COMPONENT====> FAIL',
+   LOAD_USERSTATE = '[SHARED EFFECTS] LOAD USER STATE FROM USER COMPONENT By Username',
+   LOAD_USERSTATE_SUCCESS = '[SHARED EFFECTS] LOAD USER STATE FROM USER COMPONENT  By Username====> SUCCESS',
+   LOAD_USERSTATE_FAIL = '[SHARED EFFECTS] LOAD USER STATE FROM USER COMPONENT By Username====> FAIL',
+   
+   LOAD_USERSTATE_ByID = '[SHARED EFFECTS] LOAD USER STATE FROM USER COMPONENT By UserID',
+   LOAD_USERSTATE_ByID_SUCCESS = '[SHARED EFFECTS] LOAD USER STATE FROM USER COMPONENT  By UserID====> SUCCESS',
+   LOAD_USERSTATE_ByID_FAIL = '[SHARED EFFECTS] LOAD USER STATE FROM USER COMPONENT By UserID====> FAIL',
    CLEAR_USER_ID = '[AUTH MODULE] CLEAR USER ID FROM AUTH MODULE',
  }
 
@@ -40,9 +44,26 @@ import { UserState } from 'src/app/user/Models/user';
    constructor(public payload: string) {}
  }
 
+
+ export class LoadUserStateById implements Action {
+  readonly type = SharedActionTypes.LOAD_USERSTATE_ByID;
+  constructor(public payload: string) {}
+}
+export class LoadUserStateByIdSuccess implements Action {
+  readonly type = SharedActionTypes.LOAD_USERSTATE_ByID_SUCCESS;
+  constructor(public payload: string) {}
+}
+
+export class LoadUserStateByIdFail implements Action {
+  readonly type = SharedActionTypes.LOAD_USERSTATE_ByID_FAIL;
+  constructor(public payload: string) {}
+}
 export type SharedActions = SetUserId
                                             | SetUsername
                                             | LoadUserState
                                             | LoadUserStateSuccess
                                             | LoadUserStateFail
+                                            | LoadUserStateById
+                                            | LoadUserStateByIdSuccess
+                                            | LoadUserStateByIdFail
 ;

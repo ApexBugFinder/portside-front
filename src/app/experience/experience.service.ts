@@ -6,6 +6,9 @@ import { map, timeout } from 'rxjs/operators';
 import { Constants } from '../helpers/Constants';
 import { Experience } from './Models/experience';
 
+import { Store, select } from '@ngrx/store';
+import * as fromShared from '../shared/state';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,17 +16,23 @@ import { Experience } from './Models/experience';
 export class ExperienceService {
   private ctlrName;
   private apiAddress;
-  private userID;
+  private userID: string;
   private hdrs: HttpHeaders;
   private apiRt;
   private clientRt;
+  private userID$: Observable<string>;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private userStateStore: Store<fromShared.SharedState>
+    ) {
     this.ctlrName = 'Experiences/';
     this.apiRt = Constants.apiRoot;
     this.apiAddress = this.apiRt + this.ctlrName;
     this.hdrs = new HttpHeaders();
-    this.userID = Constants.userID;
+    this.userStateStore
+      .pipe(select(fromShared.getUserId))
+        .subscribe((id:string) => this.userID = id);
     this.clientRt = Constants.clientRoot;
 
   }
@@ -55,7 +64,7 @@ export class ExperienceService {
 
      // READ ALL ExperienceS BY USER
 
-public readAll(id: string): Observable<Experience[]> {
+public readAll(): Observable<Experience[]> {
 
       const address = 'all/' + this.userID;
       const urlAddress = this.apiAddress + address;
@@ -66,7 +75,7 @@ public readAll(id: string): Observable<Experience[]> {
       .set('content-type', 'application/json');
 
 
-      this.printServiceInfo(urlAddress, id, this.hdrs);
+      this.printServiceInfo(urlAddress, this.userID, this.hdrs);
       return this.http.get<Experience[]>(
         urlAddress,
         { headers: this.hdrs })

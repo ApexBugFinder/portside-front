@@ -16,6 +16,15 @@
     <mat-list class="header-nav-list">
       <mat-list-item
       class="header-nav-list-item"
+      routerLink="pages/home">
+
+          <h3>Home</h3>
+
+
+      </mat-list-item>
+
+      <mat-list-item
+      class="header-nav-list-item"
       routerLink="pages/projects">
 
           <h3>Projects</h3>
@@ -39,7 +48,13 @@ Education
 
       <mat-list-item class="header-nav-list-item">
         <h3>
-              <fa-icon [icon]="fakey"></fa-icon>
+              <fa-icon [icon]="fakey"
+              *ngIf="!(isAuth$|async)"
+              routerLink="pages/editMode"></fa-icon>
+              <fa-icon [icon]="faDoor"
+              *ngIf="(isAuth$|async)"
+              (click)="logout()"
+              ></fa-icon>
         </h3>
       </mat-list-item>
     </mat-list>

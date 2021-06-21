@@ -2,7 +2,7 @@ import { createSelector } from '@ngrx/store';
 import { selectDegreeEntityDataState, selectDegreeShellState  } from '../../state';
 import * as fromRoot from '../../../state/app.state';
 import * as fromDegreeShell from './degree-shell.reducer';
-import * as fromDegreesRoot from '../../Models/certification/state/cerfication.reducer';
+import * as fromDegreesRoot from '../../Models/degree/state/degree.reducer';
 
 
 export interface DegreeShellState extends fromDegreesRoot.State {

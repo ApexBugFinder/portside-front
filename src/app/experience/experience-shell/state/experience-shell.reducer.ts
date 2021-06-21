@@ -22,7 +22,7 @@ export interface ExperienceShellState {
 const initialState: ExperienceShellState = {
     originalExperience: defaultExperience,
     id: '',
-    projectCreatorID: Constants.userID,
+    projectCreatorID: '',
     company: '',
     title: '',
     logoUrl: '',

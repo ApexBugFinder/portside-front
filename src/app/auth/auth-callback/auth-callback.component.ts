@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppUser } from '../../user/models/user';
+// import { AppUser } from '../../user/models/user';
 import { AuthService } from '../auth.service';
 import { WebStorageStateStore, UserManager } from 'oidc-client';
 import { Router } from '@angular/router';
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import * as authActions from '../state/auth.actions';
 import { AuthState } from '../state/auth.reducer';
 import { Store } from '@ngrx/store';
-// import { Constants } from 'src/app/Constants';
+import { Constants } from 'src/app/helpers/Constants';
 // import * as userActions from '../../user/state/user.actions';
 // import { UserState } from '../../user/state/user.reducer';
 
@@ -18,7 +18,7 @@ import { Store } from '@ngrx/store';
 })
 export class AuthCallbackComponent implements OnInit {
 
-  private appUser: AppUser;
+  // private appUser: AppUser;
 
   private userWebStore: WebStorageStateStore;
   private manager: UserManager = new UserManager(Constants.getClientSettings);

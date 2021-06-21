@@ -1,0 +1,22 @@
+mat-card{
+    border:none;
+}
+.result-card {
+    width: 250px;
+    background-color: transparent;
+    border:none;
+    display: flex;
+    flex-direction: column;
+    margin:0 auto;
+    row-gap:10px;
+    .userPhoto{
+        border-radius: 250px;
+    }
+    .username {
+        align-self: center;
+        
+            -webkit-text-stroke: 1px var(--accent3Color);
+            -webkit-text-fill-color: black;
+          
+    }
+}

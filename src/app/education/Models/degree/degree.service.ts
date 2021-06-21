@@ -5,24 +5,28 @@ import { Observable, of, pipe} from 'rxjs';
 import { map, timeout } from 'rxjs/operators';
 import { Constants } from '../../../helpers/Constants';
 import { Degree } from './degree';
+import * as fromShared from '../../../shared/state';
+import { Store, select} from '@ngrx/store';
 @Injectable({
   providedIn: 'root'
 })
 export class DegreeService {
   private ctlrName;
   private apiAddress;
-  private userID;
+  private userID:string;
   private hdrs: HttpHeaders;
   private apiRt;
   private clientRt;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+    private sharedStore: Store<fromShared.SharedState>) {
     this.ctlrName = 'Degrees/';
     this.apiRt = Constants.apiRoot;
     this.apiAddress = this.apiRt + this.ctlrName;
     this.hdrs = new HttpHeaders();
-    this.userID = Constants.userID;
     this.clientRt = Constants.clientRoot;
+    this.sharedStore.pipe(select(fromShared.getUserId))
+        .subscribe((id:string) => this.userID = id);
    }
 
 
@@ -53,7 +57,7 @@ export class DegreeService {
 
      // READ ALL DegreeS BY USER
 
-public readAll(id: string): Observable<Degree[]> {
+public readAllByUser(): Observable<Degree[]> {
 
       const address = 'all/' + this.userID;
       const urlAddress = this.apiAddress + address;
@@ -64,7 +68,7 @@ public readAll(id: string): Observable<Degree[]> {
       .set('content-type', 'application/json');
 
 
-      this.printServiceInfo(urlAddress, id, this.hdrs);
+      this.printServiceInfo(urlAddress, this.userID, this.hdrs);
       return this.http.get<Degree[]>(
         urlAddress,
         { headers: this.hdrs })
@@ -111,7 +115,7 @@ public updateItem(item: Degree) : Observable<Degree> {
 
 
   const urlAddress = this.apiAddress + item.id;
-  item.projectCreatorID = Constants.userID;
+  item.projectCreatorID = this.userID;
 
   this.hdrs = new HttpHeaders()
   .set('Access-Control-Allow-Origin',  [this.apiRt, this.apiAddress, this.clientRt])

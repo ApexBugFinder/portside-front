@@ -23,6 +23,7 @@ import { EditModalShellComponent } from 'src/app/experience/editModal/edit-modal
 import { makeid } from 'src/app/helpers/helperFunctions';
 import { MakeGuid } from '../../helpers/make-guid';
 import * as fromShared from '../../shared/state';
+import * as fromAuth from '../../auth/state';
 
 @Component({
   selector: 'app-experience',
@@ -46,15 +47,23 @@ export class ExperienceComponent implements OnInit {
   focusedAt: number = 0;
   faAnchor = faAnchor;
   pageClass= "Experience";
+
+  authenticatedUserID$: Observable<string>;
+  isAuthenticated$: Observable<boolean>;
+  isAuthenticated: boolean;
+
   constructor(private experienceService: ExperienceService,
     private experienceDataStore: Store<fromExperienceData.ExperienceDataState>,
     public dialog: MatDialog,
-    private sharedStore: Store<fromShared.SharedModuleState>,
+    private authStore: Store<fromAuth.State>,
+    private sharedStore: Store<fromShared.SharedState>,
     private experienceShellStore: Store<fromExperienceShell.ExperienceShellState>) {
       this.userID$ = this.sharedStore.pipe(select(fromShared.getUserId));
     this.experienceData$ = this.experienceDataStore.pipe(select(fromExperienceData.selectAllExperiences));
     this.currentExperience$ = this.experienceShellStore.pipe(select(fromExperienceShell.getCurrentExperience));
     this.experienceDataTotal$ = this.experienceDataStore.pipe(select(fromExperienceData.selectExperiencesTotal));
+    this.isAuthenticated$ = this.authStore.pipe(select(fromAuth.getIsAuthenticated));
+    this.authenticatedUserID$ = this.authStore.pipe(select(fromAuth.getAuthenticatedUserId));
   }
 
 
@@ -91,7 +100,22 @@ export class ExperienceComponent implements OnInit {
            "Completed getting user's ID ngrx Shared State store in Experience component"
          ),
      });
-
+     this.isAuthenticated$.subscribe({
+      next: (value:boolean) => {
+        
+          this.isAuthenticated = value;
+        
+      },
+      error: (err) =>
+        console.log(
+          "OOps sorry, error occured getting the user's isAuthenticated from Auth State store in  Experience component:",
+          err
+        ),
+      complete: () =>
+        console.log(
+          "Completed getting user's isAuthenticated ngrx Auth State store in Experience component"
+        ),
+    });
 this.experienceData$.subscribe({
     next: (value) => {
       this.experienceData = (value) as Experience[];

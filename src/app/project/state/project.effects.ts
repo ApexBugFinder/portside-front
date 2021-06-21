@@ -12,8 +12,5 @@ export class ProjectEffects {
             private actions$: Actions) {}
 
 
-    // LoadProjectForProjectCreator$ = createEffect(() => this.actions$.pipe(
-    //     ofType(projectActions.loadProjectsFromDB),
-    //     mergeMap((action: projectActions.loadProjectsFromDB())))
-    // ))
+
 }

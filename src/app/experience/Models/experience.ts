@@ -19,7 +19,7 @@ export interface Experience {
 
 export const defaultExperience: Experience = {
     id: 'new',
-    projectCreatorID: Constants.userID,
+    projectCreatorID: '',
     company: 'default company',
     title: 'Default Title',
     logoUrl: '',

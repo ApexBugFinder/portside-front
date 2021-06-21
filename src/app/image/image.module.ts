@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 import { ImgSrcDirective } from './img-src.directive';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ShowNoShowDirective } from './show-no-show.directive';
+import { ProfilePicDirective } from './profile-pic.directive';
 
 
 
@@ -21,7 +22,8 @@ import { ShowNoShowDirective } from './show-no-show.directive';
   declarations: [
     ImageGetterComponent,
     ImgSrcDirective,
-    ShowNoShowDirective
+    ShowNoShowDirective,
+    ProfilePicDirective
   ],
   imports: [
     CommonModule,
@@ -36,7 +38,8 @@ import { ShowNoShowDirective } from './show-no-show.directive';
   ],
   exports: [
     ImageGetterComponent,
-    ImgSrcDirective
+    ImgSrcDirective,
+    ProfilePicDirective
   ]
 
   

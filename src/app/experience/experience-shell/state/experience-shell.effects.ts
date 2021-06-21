@@ -15,20 +15,23 @@ import { ExperienceService } from '../../experience.service';
 import { Constants } from 'src/app/helpers/Constants';
 import { ExperienceComponent } from 'src/app/pages/experience/experience.component';
 import { Update } from '@ngrx/entity';
-import { UpdateNum } from '@ngrx/entity/src/models';
-import { ThrowStmt } from '@angular/compiler';
+import * as fromShared from '../../../shared/state';
+
+
 
 @Injectable()
 export class ExperienceShellEffects {
     currentExperience$: Observable<Experience | undefined>;
     currentExperience: Experience | undefined ;
-
+    userID$: Observable<string>;
+    userID: string;
     experienceData$: Observable<(Experience | undefined) []>;
     experienceData: (Experience | undefined) [];
     experienceDataIds$: Observable<string []>;
     experienceDataIds: string [];
 
     constructor(private actions$: Actions,
+        private sharedStore: Store<fromShared.SharedState>,
         private experienceShellStore: Store<fromExperienceShell.ExperienceShellState>,
         private experienceEntityDataStore: Store<fromExperienceEntityData.ExperienceDataState>,
         private experienceService: ExperienceService) {
@@ -36,6 +39,8 @@ export class ExperienceShellEffects {
             this.experienceData$.subscribe((i: (Experience | undefined)[]) => {
                 this.experienceData = i;
             });
+            this.sharedStore.pipe(select(fromShared.getUserId))
+                .subscribe((id:string)=> this.userID=id);
             this.currentExperience$ = this.experienceShellStore.pipe(select(fromExperienceShell.getCurrentExperience));
             this.currentExperience$.subscribe(value => this.currentExperience = value);
             this.experienceDataIds$ = this.experienceEntityDataStore.pipe(select(fromExperienceEntityData.selectExperienceIds));
@@ -47,7 +52,7 @@ export class ExperienceShellEffects {
     LoadExperiences$ = createEffect(() => this.actions$.pipe(
         ofType(experienceShellActions.ExperienceActionTypes.LOAD_EXPERIENCES_FROM_DB),
         mergeMap((action: experienceShellActions.LoadExperiencesByProjectCreatorIDFromDB) =>
-            this.experienceService.readAll(Constants.userID)
+            this.experienceService.readAll()
                 .pipe(
                     tap(payload => console.log('NGRX EFFECT - READ ALL EXPERIENCES FROM DB')),
                     map((payload: Experience[]) => {

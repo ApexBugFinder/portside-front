@@ -27,7 +27,7 @@ export class SharedEffects {
   userName: string;
   constructor(
     private actions$: Actions,
-    private shareStore: Store<fromShared.SharedModuleState>,
+    private shareStore: Store<fromShared.SharedState>,
     private projectStore: Store<fromProjectData.ProjectModuleState>,
     private experienceStore: Store<fromExperienceData.ExperienceDataState>,
     private certDataStore: Store<fromCertData.CertificationDataState>,
@@ -42,18 +42,70 @@ GetUserState$ = createEffect(() => this.actions$.pipe(
   mergeMap((action: sharedActions.LoadUserState) =>
     this.userService.getUserInfo(action.payload)
     .pipe(
-      tap((payload: UserState) => console.log(payload)),
+      // tap((payload: UserState) => console.log(payload)),
       tap((userState: UserState) => {
-if (userState.userId != null) {
-        this.projectStore.dispatch(projectDataActions.loadProjects({projects: userState.projects}));
-       this.degreeDataStore.dispatch(degreeDataActions.loadDegrees({Degrees: userState.Degrees}));
-        this.certDataStore.dispatch(certDataActions.loadCertifications({Certifications: userState.Certifications}));
-        this.experienceStore.dispatch(experienceDataActions.loadExperiences({experiences: userState.experiences}));
+if (userState.id != null) {
+  console.log(userState);
+      
 }
       }),
-      map((userState: UserState) => (new sharedActions.LoadUserStateSuccess(userState.userId))),
+      map((userState: UserState) => {
+      if(userState.id != '') {
+          console.log(userState.certifications);
+              
+        this.shareStore.dispatch(new sharedActions.SetUserId(userState.id));
+        this.shareStore.dispatch(new sharedActions.SetUsername(userState.username));
+        this.projectStore.dispatch(projectDataActions.clearProjects());
+        this.projectStore.dispatch(projectDataActions.addProjects({projects: userState.projects}));
+        this.degreeDataStore.dispatch(degreeDataActions.clearDegrees());
+       this.degreeDataStore.dispatch(degreeDataActions.addDegrees({Degrees: userState.degrees}));
+       this.certDataStore.dispatch(certDataActions.clearCertifications());
+        this.certDataStore.dispatch(certDataActions.addCertifications({Certifications: userState.certifications}));
+        this.experienceStore.dispatch(experienceDataActions.clearExperiences());
+        this.experienceStore.dispatch(experienceDataActions.addExperiences({experiences: userState.experiences}));
+      }
+        return new sharedActions.LoadUserStateSuccess(userState.id);  
+      },
       catchError(err => of (new sharedActions.LoadUserStateFail(err)))
     ))
 
-))
+)));
+
+
+
+GetUserStateById$ = createEffect(() => this.actions$.pipe(
+  ofType(sharedActions.SharedActionTypes.LOAD_USERSTATE_ByID),
+  mergeMap((action: sharedActions.LoadUserStateById) =>
+    this.userService.getUserById(action.payload)
+    .pipe(
+      // tap((payload: UserState) => console.log(payload)),
+      tap((userState: UserState) => {
+if (userState.id != null) {
+  console.log(userState);
+      
 }
+      }),
+      map((userState: UserState) => {
+      if(userState.id != '') {
+          console.log(userState.certifications);
+              
+        this.shareStore.dispatch(new sharedActions.SetUserId(userState.id));
+        this.shareStore.dispatch(new sharedActions.SetUsername(userState.username));
+        this.projectStore.dispatch(projectDataActions.clearProjects());
+        this.projectStore.dispatch(projectDataActions.addProjects({projects: userState.projects}));
+        this.degreeDataStore.dispatch(degreeDataActions.clearDegrees());
+       this.degreeDataStore.dispatch(degreeDataActions.addDegrees({Degrees: userState.degrees}));
+       this.certDataStore.dispatch(certDataActions.clearCertifications());
+        this.certDataStore.dispatch(certDataActions.addCertifications({Certifications: userState.certifications}));
+        this.experienceStore.dispatch(experienceDataActions.clearExperiences());
+        this.experienceStore.dispatch(experienceDataActions.addExperiences({experiences: userState.experiences}));
+      }
+        return new sharedActions.LoadUserStateByIdSuccess(userState.id);  
+      },
+      catchError(err => of (new sharedActions.LoadUserStateByIdFail(err)))
+    ))
+
+)));
+    
+    }
+

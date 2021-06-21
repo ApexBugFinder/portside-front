@@ -16,7 +16,7 @@ export interface Degree {
 }
 
 export const defaultDegree: Degree = {
-    id: '1234',
-    projectCreatorID: Constants.userID,
+    id: '',
+    projectCreatorID: '',
     degreeName: 'Default Degree'
 }

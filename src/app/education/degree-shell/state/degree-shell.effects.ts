@@ -12,7 +12,7 @@ import * as fromDegreeEntityData from '../../Models/degree/state';
 import { merge, Observable, of } from 'rxjs';
 import { Degree } from '../../Models/degree/degree';
 import { DegreeService } from '../../Models/degree/degree.service';
-import { Constants } from 'src/app/helpers/Constants';
+import { Constants } from '../../../helpers/Constants';
 
 @Injectable()
 export class DegreeShellEffects {
@@ -61,7 +61,7 @@ export class DegreeShellEffects {
         (
           action: degreeShellActions.LoadDegreesByProjectCreatorIDFromDB
         ) =>
-          this.degreeService.readAll(Constants.userID).pipe(
+          this.degreeService.readAllByUser().pipe(
             tap((payload) =>
               console.log('NGRX EFFECT - READ ALL DEGREES FROM DB')
             ),

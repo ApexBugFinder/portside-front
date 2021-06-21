@@ -20,7 +20,7 @@ export class CertService {
   private apiRt;
   private clientRt;
   userID$: Observable<string>;
-  constructor(private http: HttpClient, private sharedStore: Store<fromShared.SharedModuleState>) {
+  constructor(private http: HttpClient, private sharedStore: Store<fromShared.SharedState>) {
     this.ctlrName = 'certifications/';
     this.apiRt = Constants.apiRoot;
     this.apiAddress = this.apiRt + this.ctlrName;
@@ -56,7 +56,7 @@ public createItem(item: Certification) : Observable<Certification> {
 
 }
   // READ ALL CertificationS BY USER
-public readAll(id: string): Observable<Certification[]> {
+public readAll(): Observable<Certification[]> {
 
   const address = 'all/' + this.userID;
   const urlAddress = this.apiAddress + address;
@@ -67,7 +67,7 @@ public readAll(id: string): Observable<Certification[]> {
   .set('content-type', 'application/json');
 
 
-  this.printServiceInfo(urlAddress, id, this.hdrs);
+  this.printServiceInfo(urlAddress, this.userID, this.hdrs);
   return this.http.get<Certification[]>(
     urlAddress,
     { headers: this.hdrs })

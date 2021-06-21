@@ -1,14 +1,19 @@
 import * as fromShared from '../state/shared-reducer';
 import * as fromRoot from '../../state/app.state';
+import * as fromUserData from '../userData/state/userData.reducer';
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
-export interface SharedModuleState  {
-  sharedState: fromShared.SharedState
+import * as fromSharedRoot from '../index';
+
+
+export interface SharedState  {
+  sharedState: fromShared.SharedState;
+
 }
 
 
 export interface State extends fromRoot.State
  {
- sharedState: SharedModuleState
+ sharedState: SharedState
  }
 
 
@@ -16,17 +21,22 @@ export const selectSharedModuleState = createFeatureSelector<fromShared.SharedSt
 
 
  export const getUserId = createSelector(
-   selectSharedModuleState,
+   fromSharedRoot.selectSharedState,
    state => state.userID
  );
 
+ export const getDefaultProfilePic = createSelector(
+   fromSharedRoot.selectSharedState,
+   state => state.defaultProfilePic
+ );
+ 
  export const getIsLoading = createSelector(
-   selectSharedModuleState,
+  fromSharedRoot.selectSharedState,
    state => state.isLoading
  );
 
  export const getUsername = createSelector(
-   selectSharedModuleState,
+  fromSharedRoot.selectSharedState, 
    state => state.username
  );
 

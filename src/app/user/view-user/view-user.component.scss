@@ -1,0 +1,105 @@
+.profileContainer {
+    display:flex;
+    flex-direction:row;
+    column-gap: 20px;
+    width:100%;
+    margin:auto;
+    justify-content: flex-start;
+    align-items: flex-start;
+    .profilePicContainer{
+        width: 200px;
+        margin:auto;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        justify-items: center;
+        .profilePic {
+            position: relative;
+            align-self: center;
+            width: 150px;
+            height: 150px;
+            border: none;
+            box-shadow: none;
+            visibility: hidden;
+           
+        }
+       
+        .profilePic:before {
+            width: 150px;
+            height: 150px;
+            box-shadow: none;
+            align-self: center;
+            background-repeat: no-repeat;
+            border: none;
+            content: '';
+            position: absolute;
+            visibility: visible; 
+            
+            background-image: url('https://firebasestorage.googleapis.com/v0/b/portfolio-a7105.appspot.com/o/defaults%2Fuser%2FIcon%20ionic-md-person.svg?alt=media&token=de900d75-57db-4d92-b0db-3ccd1bdf6c04');
+        }
+        img.profilePic:not([src]) {
+            visibility: hidden;
+            
+        }
+        fa-icon.userIcon {
+           font-size: 150px;
+            width: auto;
+       
+            margin:auto;
+        }
+    }
+    .divider {
+        height: 80%;
+
+    }
+    .profileInfoContainer {
+        width: 400px;
+       
+        .infoContainer {
+            width: 85%;
+            margin:auto;
+            
+            .infoShell {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                column-gap: 30px;
+                align-items: center;
+                margin: 10px 0;
+                h2 {
+                margin-bottom: 0px;
+                }
+                h3{
+                    margin:0;
+                }
+                p {
+                    margin: 0;
+                }
+
+            } 
+            .infoShell.title {
+                justify-content: space-between;
+                width: 100%;
+                .iconPen {
+                    margin-right: 20px;
+                    justify-self: flex-end;
+                }
+            }
+        }
+        .infoContainer.firstInfo {
+            margin-top:20px;
+            
+        }
+        .infoContainer.infoContainer.infoButtons {
+            width: 100%;
+        }
+        .infoContainer.infoButtons .infoShell {
+            margin-top: 40px;
+            column-gap: 50px;
+        }
+       
+    }
+    .editMode {
+        visibility: hidden;
+    }
+}

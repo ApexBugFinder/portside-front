@@ -4,12 +4,13 @@ import { Directive, DoCheck, ElementRef, HostBinding, Input, OnInit, Renderer2 }
   selector: '[appImgSrc]'
 })
 export class ImgSrcDirective implements DoCheck{
-
+  
   @Input() appImgSrc: string;
   @HostBinding('src') src: string;
   constructor(private el: ElementRef, private renderer: Renderer2) {
     console.log('from Directive: ', this.appImgSrc);
     this.el.nativeElement.style.backgroundImage = this.appImgSrc;
+    ;
    }
   ngDoCheck(): void {
     if (this.appImgSrc) {

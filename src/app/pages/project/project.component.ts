@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
-import { Constants } from 'src/app/helpers/Constants';
+
 import { defaultProject, Project } from 'src/app/project/models/project';
 import { ProjectService } from 'src/app/project/project.service';
 import {
@@ -20,6 +20,8 @@ import * as fromEditProject from '../../project/edit/state/edit-project.reducer'
 import * as editProjectActions from '../../project/edit/state/edit-project.actions';
 import { Observable } from 'rxjs';
 import { Dictionary } from '@ngrx/entity';
+import * as fromAuth from '../../auth/state';
+import * as fromShared from '../../shared/state';
 
 
 @Component({
@@ -33,34 +35,46 @@ export class ProjectComponent implements OnInit {
   loadProj: Promise<Project[]>;
   pageClass = 'Project';
   userProjects$: Observable<(Project | undefined)[]>;
+  userID$: Observable<string>;
+  authenticatedUserID$: Observable<string>;
+  isAuthenticated$: Observable<boolean>;
+  isAuthenticated: boolean;
 
   constructor(
     private projectService: ProjectService,
     private editProjectStore: Store<fromEditProject.EditProjectState>,
     private projectStore: Store<fromProject.State>,
+    private authStore: Store<fromAuth.State>,
+    private sharedStore: Store<fromShared.SharedState>,
     public dialog: MatDialog
   ) {
     console.log(this.myProjects);
     this.userProjects$ = this.projectStore.pipe(
       select(fromProject.selectAllProjects)
     );
+    this.isAuthenticated$ = this.authStore.pipe(select(fromAuth.getIsAuthenticated));
+    this.authenticatedUserID$ = this.authStore.pipe(select(fromAuth.getAuthenticatedUserId));
+    this.userID$ = this.sharedStore.pipe(select(fromShared.getUserId));
   }
 
   ngOnInit(): void {
-    // this.projectService.readAll(Constants.userID).subscribe({
-    //   next: (value) => {
-    //     this.myProjects = (value);
-    //     if (!value) {
-    //       this.myProjects.push(defaultProject);
-    //     }
+    this.isAuthenticated$.subscribe({
+      next: (value) => {
+        this.isAuthenticated = value;
 
-    //     console.log('my projects in observable on project component', value);
-    //    return value;
-    //    },
-    //   error: err => console.log('OOps sorry, error occured getting the user\'s projects from store in project component: ', err),
-    //   complete: () => console.log('Completed getting user\'s projects from ngrx store in project component')
-
-    // });
+        console.log('User isAuthenticated on project component', value);
+        return value;
+      },
+      error: (err) =>
+        console.log(
+          "OOps sorry, error occured getting the user's isAuthenticated from Authstore in project component: ",
+          err
+        ),
+      complete: () =>
+        console.log(
+          "Completed getting user's isAuthenticated from ngrx Authstore in project component"
+        ),
+    });
     this.userProjects$.subscribe({
       next: (value) => {
         this.myProjects = value;

@@ -4,7 +4,8 @@ export interface SharedState {
   isLoading: boolean;
   userID: string;
   username: string;
-  error: string
+  error: string;
+  defaultProfilePic: string;
 }
 
 const initialState: SharedState = {
@@ -12,6 +13,7 @@ const initialState: SharedState = {
   userID: '',
   username: '',
  error: '',
+ defaultProfilePic: 'https://firebasestorage.googleapis.com/v0/b/portfolio-a7105.appspot.com/o/defaults%2Fuser%2FIcon%20ionic-md-person.svg?alt=media&token=de900d75-57db-4d92-b0db-3ccd1bdf6c04',
 }
 
 

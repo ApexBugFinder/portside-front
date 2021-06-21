@@ -10,8 +10,8 @@ import * as fromCertificationShell from '../../education/certificatn-shell/state
 import * as certificationShellActions from '../../education/certificatn-shell/state/certification-shell.actions';
 import * as fromDegreeShell from '../../education/degree-shell/state/degree-shell.reducer';
 import * as degreeShellActions from '../../education/degree-shell/state/degree-shell.actions';
-import { Constants } from 'src/app/helpers/Constants';
-import { ExperienceService } from 'src/app/experience/experience.service';
+import * as fromShared from '../../shared/state';
+
 
 @Component({
   selector: 'app-page-shell',
@@ -19,22 +19,23 @@ import { ExperienceService } from 'src/app/experience/experience.service';
   styleUrls: ['./page-shell.component.scss']
 })
 export class PageShellComponent implements OnInit {
-  private readonly userID: string = Constants.userID;
+  private userID: string = '';
   userProject$: Observable<Project[]>
   constructor( private editProjectStore: Store<fromEditProject.EditProjectState>,
     private certicationShellStore: Store<fromCertificationShell.CertificationShellState>,
     private degreeShellStore: Store<fromDegreeShell.DegreeShellState>,
-    private experienceShellStore: Store<fromExperienceShell.ExperienceShellState>) {
+    private experienceShellStore: Store<fromExperienceShell.ExperienceShellState>,
+    private sharedStore: Store<fromShared.SharedState>) {
+    
+    this.sharedStore.pipe(select(fromShared.getUserId)).subscribe((id:string)=> this.userID = id);
 
-    this.editProjectStore.dispatch(new editProjectActions.LoadProjectsByProjectCreatorIDFromDB(this.userID));
-    this.experienceShellStore.dispatch(new experienceShellActions.LoadExperiencesByProjectCreatorIDFromDB(this.userID));
-    this.degreeShellStore.dispatch(new degreeShellActions.LoadDegreesByProjectCreatorIDFromDB(this.userID));
-    this.certicationShellStore.dispatch(new certificationShellActions.LoadCertificationsByProjectCreatorIDFromDB(this.userID));
-
+  
+    
 
   }
 
   ngOnInit(): void {
+    
   }
 
 }
