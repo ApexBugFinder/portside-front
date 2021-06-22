@@ -12,10 +12,11 @@ import * as experienceShellActions from '../../experience-shell/state/experience
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { editState } from 'src/app/shared/models/shared';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { Update } from '@ngrx/entity';
-import { ThisReceiver } from '@angular/compiler';
+
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import * as fromShared from '../../../shared/state';
+import * as fromAuth from '../../../auth/state';
 
 @Component({
   selector: 'app-edit-modal-shell',
@@ -51,6 +52,12 @@ export class EditModalShellComponent implements OnInit {
   myExperienceForm: FormGroup;
   currentExp$: Observable<Experience | undefined>;
   currentExp: Experience|undefined;
+  viewUserId$: Observable<string>;
+  userBeingViewedId: string;
+  authenticatedUserId$: Observable<string>;
+  authenticatedUserId: string;
+  authenticated$: Observable<boolean>;
+  auth: boolean;
 
 
   // ABSTRACTCONTROLS
@@ -68,9 +75,14 @@ export class EditModalShellComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<EditModalShellComponent>,
     private router: Router,
+    private sharedStore: Store<fromShared.SharedState>,
+    private authStore: Store<fromAuth.State>,
     private experienceDataStore: Store<fromExperienceShell.ExperienceShellState>,
     private experienceEntityStore: Store<fromExperienceEntityData.ExperienceDataState>,
     private fb: FormBuilder) {
+    this.authenticated$ = this.authStore.pipe(select(fromAuth.getIsAuthenticated));
+    this.authenticatedUserId$ = this.authStore.pipe(select(fromAuth.getAuthenticatedUserId));
+    this.viewUserId$ = this.sharedStore.pipe(select(fromShared.getUserId));
     this.originalExp$ = this.experienceDataStore.pipe(select(fromExperienceShell.getOrginalExperience));
     this.currentExp$ = this.experienceDataStore.pipe(select(fromExperienceShell.getCurrentExperience));
     this.company$ = this.experienceDataStore.pipe(select(fromExperienceShell.getCurrentExperienceCompany));
@@ -102,10 +114,65 @@ export class EditModalShellComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.authenticated$.subscribe({
+      next: (value: boolean) => {
+        if (value) {
+          console.log(value);
+          this.auth = value;
+        }
+      },
+      error: (err) =>
+        console.log(
+          "OOps sorry, error occured getting the current user's authentication from Auth ngrx store in Experience's Edit Shell component: ",
+          err
+        ),
+      complete: () =>
+        console.log(
+          "Completed getting current user's authentication from Auth ngrx store in Experience's Edit Shell component"
+        ),
+    });
+
+    this.authenticatedUserId$.subscribe({
+      next: (value: string) => {
+        if (value) {
+          console.log(value);
+          this.authenticatedUserId = value;
+        }
+      },
+      error: (err) =>
+        console.log(
+          "OOps sorry, error occured getting the current user's authenticated UserId from Auth ngrx store in Experience's Edit Shell component: ",
+          err
+        ),
+      complete: () =>
+        console.log(
+          "Completed getting current user's authenticated UserId from Auth ngrx store in  Experience's Edit Shell component"
+        ),
+    });
+
+
+    this.viewUserId$.subscribe({
+      next: (value: string) => {
+        if (value) {
+          console.log(value);
+          this.userBeingViewedId = value;  
+        }
+      },
+      error: (err) =>
+        console.log(
+          "OOps sorry, error occured getting the user being view UserId from Shared ngrx store in Experience's Edit Shell component: ",
+          err
+        ),
+      complete: () =>
+        console.log(
+          "Completed getting the user being viewed UserId from Shared ngrx store in  Experience's Edit Shell component"
+        ),
+    });
+
     this.company$.subscribe({
       next: (value: string) => this.company = value,
       error: err => console.log('OOps sorry, error occured getting the user\'s current experience Company Name from store in Experience\'s Edit Shell component: ', err),
-      complete: () => console.log('Completed getting user\'s Current Experience Company Name from ngrx store in Experience\'s Edit Shell component')
+      complete: () => console.log('Completed getting user\'s Current Experience Company Name from ngrx store in Experiences Edit Shell component')
     });
     this.title$.subscribe({
       next: (value: string) => this.title = value,
@@ -278,6 +345,7 @@ closeDialog() {
 saveToDB() {
 
 
+  if ((this.userBeingViewedId == this.authenticatedUserId) && this.auth) {
 
     // UPDATE DB IF UPDATING
     this.experienceDataStore.dispatch(new experienceShellActions.UpdateExperienceToDB());
@@ -285,15 +353,17 @@ saveToDB() {
 
 
 
-
+  }
   // CLOSE DIALOG
   this.closeDialog();
   this.router.navigateByUrl('pages/experiences');
+
 }
 
 deleteFromDB() {
-
-    this.experienceDataStore.dispatch(new experienceShellActions.DeleteExperienceToDB())
+  if ((this.userBeingViewedId == this.authenticatedUserId) && this.auth) {
+    this.experienceDataStore.dispatch(new experienceShellActions.DeleteExperienceToDB());
+  }
     // CLOSE DIALOG
    this.closeDialog();
 

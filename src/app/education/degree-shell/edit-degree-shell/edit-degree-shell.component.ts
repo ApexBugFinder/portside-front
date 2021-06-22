@@ -5,7 +5,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-
+import * as fromShared from '../../../shared/state';
+import * as fromAuth from '../../../auth/state';
 // Models
 import {Degree } from '../../Models/degree/degree';
 
@@ -31,7 +32,16 @@ export class EditDegreeShellComponent implements OnInit {
 
   //  NGRX Observables
   myDegree$: Observable<Degree>;
+  viewUserId$: Observable<string>;
+  userBeingViewedId: string;
+  authenticatedUserId$: Observable<string>;
+  authenticatedUserId: string;
+  authenticated$: Observable<boolean>;
+  auth: boolean;
+
   constructor(private fb: FormBuilder,
+    private sharedStore: Store<fromShared.SharedState>,
+    private authStore: Store<fromAuth.State>,
     private degreeShellStore: Store<fromDegreeShell.DegreeShellState>,
     private dialogRef: MatDialogRef<EditDegreeShellComponent>)
    {
@@ -45,6 +55,9 @@ export class EditDegreeShellComponent implements OnInit {
       graduationYear: [''],
       isGraduated: [false],
     });
+    this.authenticated$ = this.authStore.pipe(select(fromAuth.getIsAuthenticated));
+    this.authenticatedUserId$ = this.authStore.pipe(select(fromAuth.getAuthenticatedUserId));
+    this.viewUserId$ = this.sharedStore.pipe(select(fromShared.getUserId));
     this.myDegree$ = this.degreeShellStore.pipe(select(fromDegreeShell.getCurrentDegree));
   }
 
@@ -258,20 +271,27 @@ this.degreeNameAbstractControl?.valueChanges.pipe(
   }
 
   saveToDB(value: string) {
-    if (value == 'Save Current')
-    this.degreeShellStore.dispatch(new degreeActions.UpdateDegreeToDB());
+    if (value == 'Save Current' && (this.userBeingViewedId == this.authenticatedUserId) && this.auth) {
+this.degreeShellStore.dispatch(new degreeActions.UpdateDegreeToDB());
     this.dialogRef.close();
+   
+   
+    }
+    
 
   }
 
   resetChanges(value: string) {
-    if (value == 'Reset Current')
+    if (value == 'Reset Current' && (this.userBeingViewedId == this.authenticatedUserId) && this.auth)
     this.degreeShellStore.dispatch(new degreeActions.ResetCurrentDegreeToOriginal());
 
   }
   deleteFromDB(value: string) {
-    if (value == 'Delete Current')
+    if (value == 'Delete Current' && (this.userBeingViewedId == this.authenticatedUserId) && this.auth) {
     this.degreeShellStore.dispatch(new degreeActions.DeleteDegreeToDB());
     this.dialogRef.close();
+
+    }
+   
   }
 }

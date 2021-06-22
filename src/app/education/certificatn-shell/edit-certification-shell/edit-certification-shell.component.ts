@@ -7,6 +7,8 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Certification } from '../../Models/certification/certification';
 import * as fromCertficationShell from '../state';
 import * as CertificationActions from '../state/certification-shell.actions';
+import * as fromShared from '../../../shared/state';
+import * as fromAuth from '../../../auth/state';
 @Component({
   selector: 'app-edit-certification-shell',
   templateUrl: './edit-certification-shell.component.html',
@@ -16,6 +18,13 @@ export class EditCertificationShellComponent implements OnInit {
   certificationForm: FormGroup;
   myCert$: Observable<Certification>;
   myCert: Certification;
+  viewUserId$: Observable<string>;
+  userBeingViewedId: string;
+  authenticatedUserId$: Observable<string>;
+  authenticatedUserId: string;
+  authenticated$: Observable<boolean>;
+  auth: boolean;
+
   certNameAbstractControl: AbstractControl | null;
   certIdAbstractControl: AbstractControl | null;
   isActiveAbstractControl: AbstractControl | null;
@@ -25,9 +34,14 @@ export class EditCertificationShellComponent implements OnInit {
   controllerClass: string = 'Certification';
   constructor(
     private fb: FormBuilder,
+    private sharedStore: Store<fromShared.SharedState>,
+    private authStore: Store<fromAuth.State>,
     private certificationShellStore: Store<fromCertficationShell.CertificationShellState>,
     private dialogRef: MatDialogRef<EditCertificationShellComponent>
   ) {
+    this.authenticated$ = this.authStore.pipe(select(fromAuth.getIsAuthenticated));
+    this.authenticatedUserId$ = this.authStore.pipe(select(fromAuth.getAuthenticatedUserId));
+    this.viewUserId$ = this.sharedStore.pipe(select(fromShared.getUserId));
     this.myCert$ = this.certificationShellStore.pipe(
       select(fromCertficationShell.getCurrentCertification)
     );
@@ -58,6 +72,65 @@ export class EditCertificationShellComponent implements OnInit {
       complete: () =>
         console.log(
           "Completed getting user's Current Certification from ngrx store in Education's Certification Edit Shell component"
+        ),
+    });
+
+
+    this.authenticated$.subscribe({
+      next: (value: boolean) => {
+        if (value) {
+          console.log(value);
+          this.auth = value;
+          
+        }
+      },
+      error: (err) =>
+        console.log(
+          "OOps sorry, error occured getting the current user's authentication from Auth ngrx store in Education's Certification Edit Shell component: ",
+          err
+        ),
+      complete: () =>
+        console.log(
+          "Completed getting current user's authentication from Auth ngrx store in Education's Certification Edit Shell component"
+        ),
+    });
+
+    this.authenticatedUserId$.subscribe({
+      next: (value: string) => {
+        if (value) {
+          console.log(value);
+          this.authenticatedUserId = value;
+          
+        }
+      },
+      error: (err) =>
+        console.log(
+          "OOps sorry, error occured getting the current user's authenticated UserId from Auth ngrx store in Education's Certification Edit Shell component: ",
+          err
+        ),
+      complete: () =>
+        console.log(
+          "Completed getting current user's authenticated UserId from Auth ngrx store in Education's Certification Edit Shell component"
+        ),
+    });
+
+
+    this.viewUserId$.subscribe({
+      next: (value: string) => {
+        if (value) {
+          console.log(value);
+          this.userBeingViewedId = value;
+          
+        }
+      },
+      error: (err) =>
+        console.log(
+          "OOps sorry, error occured getting the user being view UserId from Shared ngrx store in Education's Certification Edit Shell component: ",
+          err
+        ),
+      complete: () =>
+        console.log(
+          "Completed getting the user being viewed UserId from Shared ngrx store in Education's Certification Edit Shell component"
         ),
     });
     this.initiateControls();
@@ -232,10 +305,12 @@ export class EditCertificationShellComponent implements OnInit {
   }
 
     deleteFromDB(value: string) {
+      if ((this.userBeingViewedId == this.authenticatedUserId) && this.auth) {
     this.certificationShellStore.dispatch(
       new CertificationActions.DeleteCertificationToDB()
     );
-    this.dialogRef.close();11111
+    this.dialogRef.close();
+      }
   }
   resetChanges(value: string) {
     this.certificationShellStore.dispatch(
@@ -245,10 +320,13 @@ export class EditCertificationShellComponent implements OnInit {
   }
 
   saveToDB(value: string) {
-    console.log('go');
-    this.certificationShellStore.dispatch(
+    
+    if ((this.userBeingViewedId == this.authenticatedUserId) && this.auth) {
+      this.certificationShellStore.dispatch(
       new CertificationActions.UpdateCertificationToDB()
     );
     this.dialogRef.close();
+    }
+    
   }
 }
