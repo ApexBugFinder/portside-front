@@ -17,8 +17,18 @@ export interface UserState {
   degrees: Degree[],
   certifications: Certification[],
   username: '',
-  email: '', 
-  
+  email: '',
+
+}
+export const defaultUserState: UserState = {
+  id: '',
+  projects: [],
+  experiences: [],
+  degrees: [],
+  certifications: [],
+  username: '',
+  email: ''
+
 }
 export interface ViewUserMatDialogData {
   user: UserState;

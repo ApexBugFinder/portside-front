@@ -9,8 +9,21 @@ exports.__esModule = true;
 exports.AppRoutingModule = void 0;
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var view_profile_component_1 = require("./user/view-profile/view-profile.component");
 var routes = [
     { path: '', redirectTo: 'pages', pathMatch: 'full' },
+    // {path: 'users', redirectTo: 'users', pathMatch: 'full'},
+    // { path: '**', redirectTo: 'pages', pathMatch:'full'}
+    {
+        path: 'view-profile',
+        component: view_profile_component_1.ViewProfileComponent,
+        outlet: 'profile'
+    },
+    {
+        path: 'edit-profile',
+        component: EditProfileComponent,
+        outlet: 'profile'
+    },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {

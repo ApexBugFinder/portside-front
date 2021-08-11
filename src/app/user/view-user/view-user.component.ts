@@ -18,7 +18,7 @@ import * as CertDataActions from '../../education/Models/certification/state/cer
 import * as fromDegreeData from '../../education/Models/degree/state';
 import * as DegreeDataActions from '../../education/Models/degree/state/degree.actions';
 
-import { faUser, faPen } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faPen, faEye } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 
 import { User } from '../../user/Models/user';
@@ -35,14 +35,15 @@ export class ViewUserComponent implements OnInit {
   errorPic = 'gs://portfolio-a7105.appspot.com/defaults/user/Icon ionic-md-person.svg';
   iconUser = faUser;
   iconPen = faPen;
-  user: User;
+  iconEye = faEye;
+  user: UserState;
   userState$: Observable<(UserState|undefined)[]>;
   userstate: (UserState);
   editMode: boolean = false;
   sun= ''
   profilePic = 'https://firebasestorage.googleapis.com/v0/b/portfolio-a7105.appspot.com/o/users%2FD8D32EA4-5F9D-4BE9-9535-AB69C3F0A112%2FCertification%2F2F72FA2B-C7DE-4DF3-ABAA-5BE1BC1DA233%2FIssuing%20Body%20Logo?alt=media&token=5c74552a-4cb7-4b88-ad1d-d6d584dec31dhttps://firebasestorage.googleapis.com/v0/b/portfolio-a7105.appspot.com/o/users%2FD8D32EA4-5F9D-4BE9-9535-AB69C3F0A112%2FCertification%2F2F72FA2B-C7DE-4DF3-ABAA-5BE1BC1DA233%2FIssuing%20Body%20Logo?alt=media&token=5c74552a-4cb7-4b88-ad1d-d6d584dec31d';
-  
-  
+
+
 
   constructor(
     private dialogRef: MatDialogRef<ViewUserComponent>,
@@ -56,13 +57,14 @@ export class ViewUserComponent implements OnInit {
   ) {
 
    this.userState$ = this.sharedDataStore.pipe(select(fromSharedData.selectAllUsers));
-  
+
    }
 
   ngOnInit(): void {
     console.log(this.data);
     this.user = this.data.user;
     this.sharedDataStore.dispatch(SharedDataActions.selectUser({UserId: this.user.id}));
+    this.router.navigate([{outlets: {'profile': 'view-profile'}}]);
     this.userState$.subscribe({
       next: (value: (UserState|undefined)[])=> {
         if (value.length>0){
@@ -71,7 +73,7 @@ export class ViewUserComponent implements OnInit {
       }
     })
 
-    
+
   }
 
   toProjects() {
@@ -91,6 +93,10 @@ export class ViewUserComponent implements OnInit {
     this.dialogRef.close();
   }
 
- 
+toggleEdit() {
+  this.editMode = !this.editMode;
+
+  
+}
 
 }

@@ -1,49 +1,36 @@
 <div class="profileContainer">
     <!--  -->
         <div class="profilePicContainer">
-           
+
                 <img [profilePic]="profilePic" class="profilePic" alt="">
-                    
-                
-            
+
+
+
             <!-- <fa-icon [icon]="iconUser" class="userIcon"></fa-icon> -->
         </div>
-      
+
 
     <div class="profileInfoContainer">
 
         <div class="infoContainer">
             <div class="infoShell title">
-                 <h3>Profile</h3>
+              <div class="titleHeading">
+                <p>Profile</p>
+              </div>
+
                  <div class="spacer"></div>
-                <fa-icon [icon]="iconPen" class="iconPen"></fa-icon>
-                 
+                <fa-icon [icon]="iconPen" class="iconPen" *ngIf="!editMode" [routerLink]="[{outlets: {'profile':['edit-profile']}}]" (click)="toggleEdit()"></fa-icon>
+                <fa-icon [icon]="iconEye" *ngIf="editMode"class="iconEye" [routerLink]="[{outlets: {'profile':['view-profile']}}]"  (click)="toggleEdit()"></fa-icon>
+
             </div>
-           
+
         </div>
         <mat-divider></mat-divider>
-        <div class="infoContainer firstInfo">
-            <div class="infoShell">
-                <h3>Username:</h3>
-                <p>{{user.username}}</p>
-                <input class="editMode" type="text">
-            </div>
-        
+
+        <div class="infoContainer routerWrapper">
+<router-outlet name="profile" class="routerInput"></router-outlet>
         </div>
-        <div class="infoContainer">
-            <div class="infoShell">
-                <h3>Projects:</h3>
-                <p>{{userstate.projects.length}}</p>
-            </div>
-        
-        </div>
-        
-        <div class="infoContainer infoButtons">
-            <div class="infoShell">
-               <button mat-raised-button>back</button>
-               <button mat-raised-button (click)="toProjects()">Projects</button>
-            </div>
-        
-        </div>
+
+      <app-profile-buttons></app-profile-buttons>
     </div>
 </div>
