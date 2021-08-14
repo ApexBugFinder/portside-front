@@ -1,19 +1,37 @@
  <div class="divContainer">
 
 
+<form [formGroup]="editProfileForm">
+
 
  <div class="infoContainer firstInfo">
             <div class="infoShell">
-                <h3>Username:</h3>
-                <!-- <p>{{userToView.username}}</p> -->
-              <input type="text">
+              <mat-form-field>
+                  <mat-label>Username</mat-label>
+                  <input
+                      placeholder="Username"
+                      id="usernameId"
+                      matInput
+                      formControlName="username"
+                      type="text">
+              </mat-form-field>
+
+
+
             </div>
 
 </div>
 
 <div class="infoContainer">
             <div class="infoShell">
-
+            <mat-form-field>
+                  <mat-label>Email</mat-label>
+                  <input type="text"
+                      matInput
+                      placeholder="one@example.com"
+                      id="emailId"
+                      formControlName="email">
+            </mat-form-field>
 
             </div>
  </div>
@@ -21,7 +39,8 @@
 
  <div class="infoContainer">
    <div class="infoShell">
-      <fa-icon [icon]="iconSave" class="saveIcon"></fa-icon>
+     
    </div>
  </div>
+ </form>
  </div>

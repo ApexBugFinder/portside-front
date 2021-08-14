@@ -46,13 +46,13 @@ GetUserState$ = createEffect(() => this.actions$.pipe(
       tap((userState: UserState) => {
 if (userState.id != null) {
   console.log(userState);
-      
+
 }
       }),
       map((userState: UserState) => {
       if(userState.id != '') {
           console.log(userState.certifications);
-              
+
         this.shareStore.dispatch(new sharedActions.SetUserId(userState.id));
         this.shareStore.dispatch(new sharedActions.SetUsername(userState.username));
         this.projectStore.dispatch(projectDataActions.clearProjects());
@@ -64,7 +64,7 @@ if (userState.id != null) {
         this.experienceStore.dispatch(experienceDataActions.clearExperiences());
         this.experienceStore.dispatch(experienceDataActions.addExperiences({experiences: userState.experiences}));
       }
-        return new sharedActions.LoadUserStateSuccess(userState.id);  
+        return new sharedActions.LoadUserStateSuccess(userState.id);
       },
       catchError(err => of (new sharedActions.LoadUserStateFail(err)))
     ))
@@ -82,13 +82,13 @@ GetUserStateById$ = createEffect(() => this.actions$.pipe(
       tap((userState: UserState) => {
 if (userState.id != null) {
   console.log(userState);
-      
+
 }
       }),
       map((userState: UserState) => {
       if(userState.id != '') {
           console.log(userState.certifications);
-              
+
         this.shareStore.dispatch(new sharedActions.SetUserId(userState.id));
         this.shareStore.dispatch(new sharedActions.SetUsername(userState.username));
         this.projectStore.dispatch(projectDataActions.clearProjects());
@@ -100,12 +100,12 @@ if (userState.id != null) {
         this.experienceStore.dispatch(experienceDataActions.clearExperiences());
         this.experienceStore.dispatch(experienceDataActions.addExperiences({experiences: userState.experiences}));
       }
-        return new sharedActions.LoadUserStateByIdSuccess(userState.id);  
+        return new sharedActions.LoadUserStateByIdSuccess(userState.id);
       },
       catchError(err => of (new sharedActions.LoadUserStateByIdFail(err)))
     ))
 
 )));
-    
+
     }
 

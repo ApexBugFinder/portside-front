@@ -1,27 +1,28 @@
+import { ɵangular_packages_platform_browser_dynamic_platform_browser_dynamic_a } from '@angular/platform-browser-dynamic';
 import { User } from 'oidc-client';
 import { UserActionTypes, UsersActions } from './user.actions';
 
 export interface UserState {
-    error: string;
-    userId: string;
-    username: string;
-    email?: string;
-
-
+  error: string;
+  id: string;
+  username: string;
+  email: string;
+  userPicUrl: string;
 };
 
 const initialState: UserState = {
-    error: '',
-    userId: '',
-    username: '',
-    email: ''
+  error: '',
+  id: '',
+  username: '',
+  email: '',
+  userPicUrl: '',
 };
 
 export function userReducer(state = initialState, action: UsersActions): UserState {
     switch (action.type) {
 
         // LOAD EFFECTS
-        case UserActionTypes.LOAD_USER_STATE_FAIL: 
+        case UserActionTypes.LOAD_USER_STATE_FAIL:
             return {
                 ...state,
                 error: action.payload
@@ -32,10 +33,11 @@ export function userReducer(state = initialState, action: UsersActions): UserSta
             return {
                 ...state,
                 username: action.payload.username,
-                userId: action.payload.id,
-                email: action.payload.email
+                id: action.payload.id,
+                email: action.payload.email,
+                userPicUrl: action.payload.userPicUrl
             };
-        
+
         case UserActionTypes.SET_USERSTATE_EMAIL:
             return {
                 ...state,
@@ -44,7 +46,7 @@ export function userReducer(state = initialState, action: UsersActions): UserSta
         case UserActionTypes.SET_USERSTATE_USERID:
             return {
                 ...state,
-                userId: action.payload
+                id: action.payload
             };
         case UserActionTypes.SET_USERSTATE_USERNAME:
             return {
@@ -56,7 +58,7 @@ export function userReducer(state = initialState, action: UsersActions): UserSta
         case UserActionTypes.CLEAR_USERSTATE_CURRENT_AUTH_USER:
             return {
                 ...state,
-                userId: '',
+                id: '',
                 username: '',
                 email: ''
             };
@@ -65,18 +67,27 @@ export function userReducer(state = initialState, action: UsersActions): UserSta
                 ...state,
                 email: ''
             };
-        case UserActionTypes.CLEAR_USERSTATE_USERID: 
+        case UserActionTypes.CLEAR_USERSTATE_USERID:
             return {
                 ...state,
-                userId: ''
+                id: ''
             };
         case UserActionTypes.CLEAR_USERSTATE_USERNAME:
             return {
                 ...state,
                 username: ''
             };
-        
-        default: 
+        case UserActionTypes.SET_USERSTATE_PROFILE_URL:
+          return {
+            ...state,
+            userPicUrl: action.payload
+          };
+        case UserActionTypes.CLEAR_USERSTATE_PROFILE_URL:
+          return {
+            ...state,
+            userPicUrl: '',
+          };
+        default:
             return {
             ...state
         };

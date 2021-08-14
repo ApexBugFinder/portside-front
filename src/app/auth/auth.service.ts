@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserManager, UserManagerSettings, User, WebStorageStateStore } from 'oidc-client';
+import { UserManager, User, WebStorageStateStore } from 'oidc-client';
 // import { AppUser } from '../user/models/user';
 import { Constants } from '../helpers/Constants';
 import { throwError } from 'rxjs';
@@ -15,13 +15,13 @@ import * as sharedActions from '../shared/state/shared-actions';
 // PROJECT DATA STORE
 import * as fromProjectData from '../project/state';
 import * as projectDataActions from '../project/state/project.actions';
-// EXPERIENCE DATA STORE 
+// EXPERIENCE DATA STORE
 import * as fromExperiencesData from '../experience/state';
 import * as experienceDataActions from '../experience/state/experience.actions';
-// CERTIFICATION DATA STORE 
+// CERTIFICATION DATA STORE
 import * as fromCertificationData from '../education/Models/certification/state';
 import * as certificaitonDataActions from '../education/Models/certification/state/certification.actions';
-// DEGREE DATA STORE 
+// DEGREE DATA STORE
 import * as fromDegreeData from '../education/Models/degree/state';
 import * as degreeDataActions from '../education/Models/degree/state/degree.actions';
 
@@ -43,7 +43,9 @@ export class AuthService {
               private degreeDataStore: Store<fromDegreeData.DegreeDataState>,
               private sharedStore: Store<fromShared.SharedState>,
             ) {
-
+    this.userWebStore = new WebStorageStateStore({
+      store: window.localStorage,
+    });
   }
 
   isLoggedIn(): boolean {
@@ -59,6 +61,7 @@ export class AuthService {
 
   getAuthorizationHeaderValue(): string {
     return `${this.userOidc.token_type} ${this.userOidc.access_token}`;
+    //  return `${this.userOidc.access_token}`;
   }
 
   startAuthentication(): Promise<void> {
@@ -74,7 +77,7 @@ export class AuthService {
           this.authStore.dispatch(new authActions.SetAuthorizedUserId(useraa.profile.sub));
           this.authStore.dispatch(new authActions.SetAuthenticated());
           const userID = JSON.stringify(useraa.profile.sub);
-
+          // this.userWebStore.set(`user:${Constants.authority}:portfolio`, `${useraa.access_token}`);
           this.sharedStore.dispatch(new sharedActions.LoadUserStateById(useraa.profile.sub));
         });
     // THIS MIGHT BE THE SPOT TO HANDLE SETAUTHENTICATED USER
@@ -110,7 +113,7 @@ export class AuthService {
     // this.experienceDataStore.dispatch(experienceDataActions.clearExperiences());
     // this.certificationDataStore.dispatch(certificaitonDataActions.clearCertifications());
     // this.degreeDataStore.dispatch(degreeDataActions.clearDegrees());
-    this.userWebStore.remove(`user:${Constants.authority}:recipeant2019`);
+    this.userWebStore.remove(`user:${Constants.authority}:portfoliofront`);
 
     this.manager.clearStaleState();
     this.manager.removeUser();

@@ -7,18 +7,18 @@ import * as fromShared from '../shared/state';
   selector: '[profilePic]'
 })
 export class ProfilePicDirective implements DoCheck{
-  
+
   @Input() profilePic: string;
   defaultPic =  '';
 //   'https://firebasestorage.googleapis.com/v0/b/portfolio-a7105.appspot.com/o/defaults%2Fuser%2FIcon%20ionic-md-person.svg?alt=media&token=de900d75-57db-4d92-b0db-3ccd1bdf6c04';
   defaultPic$: Observable<string>;
   @HostBinding('src') src: string;
   constructor(
-      private el: ElementRef, 
+      private el: ElementRef,
         private renderer: Renderer2,
         private sharedStore: Store<fromShared.SharedState>) {
 
-    console.log('from Directive: ', this.profilePic);
+    // console.log('from Directive: ', this.profilePic);
     this.el.nativeElement.style.backgroundImage = this.profilePic;
     this.sharedStore.pipe(select(fromShared.getDefaultProfilePic))
         .subscribe(value => this.defaultPic = value);
@@ -27,19 +27,19 @@ export class ProfilePicDirective implements DoCheck{
     if (this.profilePic) {
     //   this.src = this.profilePic;
       this.setSource(this.profilePic);
-      console.log('img src directive url: \n', this.src);
-      console.log('default pic is: \n', this.defaultPic);
+      // console.log('img src directive url: \n', this.src);
+      // console.log('default pic is: \n', this.defaultPic);
       this.el.nativeElement.style.visibility = 'visible';
       if(this.src == this.defaultPic) {
-          
+
         console.log('src is equalto defaultPic');
-       
+
       }
-   
+
     } else {
-    
+
     this.el.nativeElement.style.display = 'none';
-   
+
     }
   }
 
@@ -51,9 +51,9 @@ export class ProfilePicDirective implements DoCheck{
      this.el.nativeElement.style.visibility = 'hidden';
      if (this.src != this.defaultPic){
          console.log('changing pic to default');
-        this.profilePic = this.defaultPic; 
+        this.profilePic = this.defaultPic;
      }
-     
+
      console.log(this.src);
      //   this.el.nativeElement.style.border = 'none';
     //   this.el.nativeElement.style.boxShadow = 'none';

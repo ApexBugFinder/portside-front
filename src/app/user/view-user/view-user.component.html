@@ -2,11 +2,16 @@
     <!--  -->
         <div class="profilePicContainer">
 
-                <img [profilePic]="profilePic" class="profilePic" alt="">
+                <img [profilePic]="userToView.userPicUrl?userToView.userPicUrl:profilePic" class="profilePic" alt="">
 
+                 <app-image-getter *ngIf="editMode"
+                                [Title]="'Profile Image'" [docID]="user.id" [projectCreatorID]="user.id"
+                                [typeOfClass]="getClass()" (mediaRtUrl)="processNewLogoUrlRt($event)"
+                                [preview]="user.userPicUrl? user.userPicUrl: profilePic"
+                                class="logoGetter" >
+                            </app-image-getter>
 
-
-            <!-- <fa-icon [icon]="iconUser" class="userIcon"></fa-icon> -->
+            <!-- -->
         </div>
 
 
@@ -21,7 +26,7 @@
                  <div class="spacer"></div>
                 <fa-icon [icon]="iconPen" class="iconPen" *ngIf="!editMode" [routerLink]="[{outlets: {'profile':['edit-profile']}}]" (click)="toggleEdit()"></fa-icon>
                 <fa-icon [icon]="iconEye" *ngIf="editMode"class="iconEye" [routerLink]="[{outlets: {'profile':['view-profile']}}]"  (click)="toggleEdit()"></fa-icon>
-
+                <fa-icon [icon]="iconUser" class="userIcon" *ngIf="userCanSave()" (click)="saveProfile()"></fa-icon>
             </div>
 
         </div>
@@ -31,6 +36,6 @@
 <router-outlet name="profile" class="routerInput"></router-outlet>
         </div>
 
-      <app-profile-buttons></app-profile-buttons>
+      <app-profile-buttons [inputEventKey]="eventKey" (back)="toBack($event)" (toProject)="toProjects($event)" ></app-profile-buttons>
     </div>
 </div>

@@ -25,12 +25,25 @@ export function sharedReducer (state = initialState, action: SharedActions): Sha
        ...state,
        userID: action.payload
      };
+     case SharedActionTypes.SET_USERNAME:
+       return {
+         ...state,
+         username: action.payload
+       };
+
+
+
      case SharedActionTypes.LOAD_USERSTATE_FAIL:
        return {
          ...state,
          error: action.payload
        };
+       case SharedActionTypes.LOAD_USERSTATE_ByID_FAIL:
+         return {
+           ...state,
+           error: action.payload
+         };
      default:
        return state;
-   }
+   };
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+
 import { ViewUserComponent } from '../view-user/view-user.component';
 
 @Component({
@@ -8,12 +9,20 @@ import { ViewUserComponent } from '../view-user/view-user.component';
   styleUrls: ['./profile-buttons.component.scss'],
 })
 export class ProfileButtonsComponent implements OnInit {
+
+  @Output() back: EventEmitter<string> = new EventEmitter<string>() ;
+  @Output() toProject: EventEmitter<string> = new EventEmitter<string>();
+  @Input() inputEventKey: string;
   constructor(private dialogRef: MatDialogRef<ViewUserComponent>) {}
 
   ngOnInit(): void {}
 
   toBack() {
-    this.dialogRef.close();
+    console.log(this.inputEventKey);
+    this.back.emit(this.inputEventKey);
   }
-  toProjects() {}
+  toProjects() {
+    console.log('hello');
+    this.toProject.emit(this.inputEventKey);
+  }
 }

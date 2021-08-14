@@ -72,7 +72,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "portfolio-front:build"
+            "browserTarget": "portfolio-front:build",
+            "sslKey": "./src/assets/ssl/host.key",
+            "sslCert": "./src/assets/ssl/host.cert"
           },
           "configurations": {
             "production": {

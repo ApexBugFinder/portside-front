@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, 
-  RouterStateSnapshot, 
+import { ActivatedRouteSnapshot,
+  RouterStateSnapshot,
   Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 
@@ -18,11 +18,11 @@ import * as UserActions from '../user/state/user.actions';
 export class AuthGuardService {
 
   private appUser: User;
-  
+
   constructor(private authService: AuthService,
     private authStore: Store<fromAuth.State>,
     private userStateStore: Store<fromUser.UserState>,
-    
+
     private router: Router,
     ) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
@@ -33,7 +33,8 @@ export class AuthGuardService {
       this.appUser = {
         id: myClaims.sub,
         username: myClaims.username,
-        email: myClaims.email
+        email: myClaims.email,
+        userPicUrl: ''
       };
 
       this.authenticated(this.appUser);
@@ -56,12 +57,12 @@ export class AuthGuardService {
     return true;
   }
   notAuthenticated() {
-   
+
     this.authStore.dispatch(new authActions.ClearAuthorizedUserId());
     this.authStore.dispatch(new authActions.SetNotAuthenticated());
     this.userStateStore.dispatch(new UserActions.ClearCurrentUser());
-   
-  
+
+
     this.authService.logout();
   }
 

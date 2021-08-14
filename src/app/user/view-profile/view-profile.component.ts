@@ -5,7 +5,7 @@ import {UserState, User, defaultUserState } from '../Models/user';
 import { Store, select } from '@ngrx/store';
 import { selectCurrentUserId } from '../searchbar-results/state';
 import { Observable } from 'rxjs';
-
+import { MakeGuid } from '../../helpers/make-guid';
 
 @Component({
   selector: 'app-view-profile',
@@ -15,8 +15,10 @@ import { Observable } from 'rxjs';
 
 export class ViewProfileComponent implements OnInit {
   private userID$: Observable<string>;
+
   userToView: UserState = JSON.parse(JSON.stringify(defaultUserState));
   constructor(
+
     private sharedStateStore: Store<fromSharedState.SharedState>,
     private sharedDataStore: Store<fromSharedData.SharedUserDataState>
   ) {

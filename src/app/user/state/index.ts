@@ -14,7 +14,7 @@ export interface UserState extends fromUserRoot.State {
 
 export const getUserId = createSelector(
     fromUserRoot.selectUserState,
-    state => state.userId
+    state => state.id
 );
 
 export const getUsername = createSelector(
@@ -27,14 +27,19 @@ export const getUserEmailAddress = createSelector(
     state => state.email
 );
 
+export const getProfilePicUrl = createSelector(
+  fromUserRoot.selectUserState,
+  state => state.userPicUrl
+);
 export const getCurrentUserInfo = createSelector(
     fromUserRoot.selectUserState,
     state => {
         return {
             username: state.username,
             email: state.email,
-            userId: state.userId
+            id: state.id,
+            userPicUrl: state.userPicUrl
         };
         }
-    
+
 );

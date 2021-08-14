@@ -16,7 +16,7 @@ export function selectedUserId(a: UserState): string {
 
 
 export function sortByUserName(a: UserState, b: UserState): number {
- 
+
   if ( a.username > b.username) {
     return 1;
   } else if (a.username < b.username) {
@@ -27,7 +27,7 @@ export function sortByUserName(a: UserState, b: UserState): number {
 }
 
 export function sortByUserId(a: UserState, b: UserState): number {
-  
+
    if (a.id > b.id) {
      return 1;
    } else if (a.id < b.id) {
@@ -91,7 +91,7 @@ export const adapter: EntityAdapter<UserState> =
         return adapter.removeMany(predicate, state);
       }
     ),
-    
+
     on(searchBarResultsActions.loadUsers, (state, { Users }) => {
       return adapter.setAll(Users, state);
     }),

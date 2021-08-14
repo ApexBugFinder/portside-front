@@ -81,7 +81,7 @@ export class EditCertificationShellComponent implements OnInit {
         if (value) {
           console.log(value);
           this.auth = value;
-          
+
         }
       },
       error: (err) =>
@@ -100,7 +100,7 @@ export class EditCertificationShellComponent implements OnInit {
         if (value) {
           console.log(value);
           this.authenticatedUserId = value;
-          
+
         }
       },
       error: (err) =>
@@ -120,7 +120,7 @@ export class EditCertificationShellComponent implements OnInit {
         if (value) {
           console.log(value);
           this.userBeingViewedId = value;
-          
+
         }
       },
       error: (err) =>
@@ -320,13 +320,13 @@ export class EditCertificationShellComponent implements OnInit {
   }
 
   saveToDB(value: string) {
-    
+
     if ((this.userBeingViewedId == this.authenticatedUserId) && this.auth) {
       this.certificationShellStore.dispatch(
       new CertificationActions.UpdateCertificationToDB()
     );
     this.dialogRef.close();
     }
-    
+
   }
 }

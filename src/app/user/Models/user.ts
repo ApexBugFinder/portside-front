@@ -6,8 +6,8 @@ import { Project } from "../../project/models/project";
 export interface User {
   id: string;
   username: string;
-  email?: string;
-  userPicUrl?: string;
+  email: string;
+  userPicUrl: string;
 }
 
 export interface UserState {
@@ -16,8 +16,9 @@ export interface UserState {
   experiences: Experience[],
   degrees: Degree[],
   certifications: Certification[],
-  username: '',
-  email: '',
+  username: string,
+  email: string,
+  userPicUrl: string
 
 }
 export const defaultUserState: UserState = {
@@ -27,7 +28,8 @@ export const defaultUserState: UserState = {
   degrees: [],
   certifications: [],
   username: '',
-  email: ''
+  email: '',
+  userPicUrl: ''
 
 }
 export interface ViewUserMatDialogData {
