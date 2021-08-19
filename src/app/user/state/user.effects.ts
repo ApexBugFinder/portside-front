@@ -122,7 +122,7 @@ export class UserEffects{
                let b: UserState = JSON.parse(JSON.stringify(this.myUserState));
                 b.username = payload.username;
                 b.email = payload.username;
-
+                
                 this.userDataStore.dispatch(UserSharedDataActions.upsertUser({UserState: b}));
             }
               return new UserActions.UpdateUserSuccess(payload);

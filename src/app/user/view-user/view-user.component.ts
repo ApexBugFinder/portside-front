@@ -6,6 +6,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserState, ViewUserMatDialogData } from '../Models/user';
 
+import * as fromAuth from '../../auth/state';
+
 import * as fromSharedData from '../../shared/userData/state';
 import * as SharedDataActions from '../../shared/userData/state/userData.actions';
 
@@ -37,6 +39,7 @@ import { MakeGuid } from 'src/app/helpers/make-guid';
   styleUrls: ['./view-user.component.scss'],
 })
 export class ViewUserComponent implements OnInit {
+  isAuth$: Observable<boolean>;
   user$ :Observable<User>;
   userToView: User;
   errorPic =
@@ -63,12 +66,14 @@ export class ViewUserComponent implements OnInit {
     private certDataStore: Store<fromCertData.CertificationDataState>,
     private degreeDataStore: Store<fromDegreeData.DegreeDataState>,
     private sharedDataStore: Store<fromSharedData.SharedUserDataState>,
-    private userStore: Store<fromUserState.UserState>
+    private userStore: Store<fromUserState.UserState>,
+    private authStore: Store<fromAuth.State>
   ) {
     this.user$ = this.userStore.pipe(select(fromUserState.getCurrentUserInfo));
     this.userState$ = this.sharedDataStore.pipe(
       select(fromSharedData.selectAllUsers)
     );
+    this.isAuth$ = this.authStore.pipe(select(fromAuth.getIsAuthenticated));
   }
 
   ngOnInit(): void {

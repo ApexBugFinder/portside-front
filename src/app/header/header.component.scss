@@ -1,18 +1,64 @@
+@import '../../assets/css/mixins.scss';
 .headerContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
   height: 80px;
-
+overflow: visible;
+z-index: 10;
 
   .headerTitle {
+    display: flex;
+    flex-direction: row;
     margin: auto 0 auto 8%;
+
+
+
+     .siteLogo {
+      display: flex;
+      flex-direction: column;
+       z-index: 1;
+       top: 10px;
+       width: 80px;
+       height: 80px;
+       background-image: url('../../assets/images/svg/SVG/SaveButton.svg');
+       background-size: 60px;
+       background-position: center center;
+
+
+       background-repeat: no-repeat;
+       .sL {
+      margin:auto auto;
+       height: 50px;
+       width: 50px;
+       z-index: 20;
+
+    }
+     }
+    .img {
+      height: 50px;
+      width: 50px;
+      z-index: 100;
+    }
+
+    // .siteLogo {
+
+
+    //   // height: 100%;
+    // }
     h1.title {
-      margin: auto;
+      margin-top: auto;
+      margin-bottom: auto;
+      margin-left: -30px;
+      margin-right: 0px;
       font-family: suburban, sans-serif;
       font-weight: 300;
       font-size: 55px;
+      z-index: 50;
+      .spTitle {
+        font-size: 70px;
+      }
     }
   }
 
@@ -20,21 +66,70 @@
 
   .headerNavBar {
     margin: auto 8% auto 0;
-    .header-nav-list {
-      list-style: none;
+    overflow: visible;
+    font-size: 18px;
+   mat-list.header-nav-list {
+    z-index: 10;
+    list-style: none;
       width: 600px;
       display: flex;
       flex-direction: row;
+      overflow: visible;
+
+      .mat-list-item-content {
+        overflow: visible;
+
+      }
+      .sunClass{
+         content: "";
+
+         z-index: 5;
+
+
+          font-size: 20px;
+          height: 80px;justify-content: center;
+          justify-self: center;
+          align-content: center;
+
+      }
+.sunClass::after {
+  content: '';
+  z-index: 5;
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+   position: absolute;
+   top: 0px;
+   left: 0px;
+  background-image: url('../../assets/images/SVGs/risingSun.svg');
+ background-repeat: no-repeat;
+ background-position-x: center;
+ background-position-y: center;
+ background-size: 60px;
+@include fade-in();
+// @include fade-out();
+  overflow-y: visible;
+  margin-bottom: 0px;
+
+  // width: inherit;
+}
 
     .header-nav-list-item {
         margin: auto auto auto auto;
         width: auto;
         display: inline-block;
-
+        overflow-y: visible;
+        transition: opacity 2s linear;
       }
       h3 {
+        margin: auto auto;
         font-family: suburban, sans-serif;
-        font-size: 18px;
+        font-size: inherit;
+        overflow: visible;
+        z-index: 100;
+      }
+      .headerIcon {
+        font-size: 12px;
       }
     }
   }

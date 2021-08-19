@@ -77,7 +77,13 @@ export class ProjectComponent implements OnInit {
     });
     this.userProjects$.subscribe({
       next: (value) => {
-        this.myProjects = value;
+        if (this.isAuthenticated) {
+          this.myProjects = value;
+        }
+        else {
+          this.myProjects = value.filter(i => i?.published == true);
+        }
+
 
         console.log('my projects in observable on project component', value);
         return value;

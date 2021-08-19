@@ -12,7 +12,8 @@ import * as fromDegreeData from '../../education/Models/degree/state';
 import * as degreeDataActions from '../../education/Models/degree/state/degree.actions';
 import * as fromCertData from '../../education/Models/certification/state';
 import * as  certDataActions from '../../education/Models/certification/state/certification.actions';
-
+import * as fromSharedData from '../userData/state';
+import * as sharedDataActions from '../userData/state/userData.actions';
 
 
 import { Observable, of } from "rxjs";
@@ -32,6 +33,7 @@ export class SharedEffects {
     private experienceStore: Store<fromExperienceData.ExperienceDataState>,
     private certDataStore: Store<fromCertData.CertificationDataState>,
     private degreeDataStore: Store<fromDegreeData.DegreeDataState>,
+    private sharedDataStore: Store<fromSharedData.SharedUserDataState>,
     private userService: UserService) {
       this.shareStore.pipe(select(fromShared.getUsername))
            .subscribe((value: string) => this.userName = value);
@@ -52,7 +54,11 @@ if (userState.id != null) {
       map((userState: UserState) => {
       if(userState.id != '') {
           console.log(userState.certifications);
-
+          let myUsers: UserState[] = [];
+          myUsers.push(userState);
+     this.sharedDataStore.dispatch(
+       sharedDataActions.upsertUsers({ Users: myUsers })
+     );
         this.shareStore.dispatch(new sharedActions.SetUserId(userState.id));
         this.shareStore.dispatch(new sharedActions.SetUsername(userState.username));
         this.projectStore.dispatch(projectDataActions.clearProjects());
@@ -89,8 +95,14 @@ if (userState.id != null) {
       if(userState.id != '') {
           console.log(userState.certifications);
 
+            let myUsers: UserState[] = [];
+            myUsers.push(userState);
+            this.sharedDataStore.dispatch(
+              sharedDataActions.upsertUsers({ Users: myUsers })
+            );
         this.shareStore.dispatch(new sharedActions.SetUserId(userState.id));
         this.shareStore.dispatch(new sharedActions.SetUsername(userState.username));
+        this.shareStore.dispatch(new sharedActions.SetUserProfilePic(userState.userPicUrl));
         this.projectStore.dispatch(projectDataActions.clearProjects());
         this.projectStore.dispatch(projectDataActions.addProjects({projects: userState.projects}));
         this.degreeDataStore.dispatch(degreeDataActions.clearDegrees());

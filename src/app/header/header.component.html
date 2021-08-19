@@ -1,8 +1,12 @@
 <div class="headerContainer">
   <div class="headerTitle">
+    <div class="siteLogo">
+       <img  class="sL" src="../../assets/images/svg/SVG/PorfolioLogo2.svg" alt="">
+    </div>
+
     <h1 class="title" routerLink="pages/home">
 
-        Portfolio
+       <span class="spTitle">P</span>ortfolio
 
     </h1>
   </div>
@@ -16,6 +20,7 @@
     <mat-list class="header-nav-list">
       <mat-list-item
       class="header-nav-list-item"
+      routerLinkActive="sunClass"
       routerLink="pages/home">
 
           <h3>Home</h3>
@@ -25,6 +30,7 @@
 
       <mat-list-item
       class="header-nav-list-item"
+       routerLinkActive="sunClass"
       routerLink="pages/projects">
 
           <h3>Projects</h3>
@@ -34,12 +40,14 @@
 
       <mat-list-item
       class="header-nav-list-item"
+       routerLinkActive="sunClass"
       routerLink="pages/experiences">
        <h3> Experience </h3>
       </mat-list-item>
 
       <mat-list-item
       class="header-nav-list-item"
+       routerLinkActive="sunClass"
       routerLink="pages/education">
         <h3>
 Education
@@ -49,9 +57,11 @@ Education
       <mat-list-item class="header-nav-list-item">
         <h3>
               <fa-icon [icon]="fakey"
+              class="headerIcon"
               *ngIf="!(isAuth$|async)"
               routerLink="pages/editMode"></fa-icon>
               <fa-icon [icon]="faDoor"
+              class="headerIcon"
               *ngIf="(isAuth$|async)"
               (click)="logout()"
               ></fa-icon>

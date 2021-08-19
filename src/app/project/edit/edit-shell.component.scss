@@ -1,57 +1,54 @@
-mat-dialog-container {
-    padding: 0;
-    margin: 0;
-    width: 976px;
-  }
-  
-  mat-dialog-content {
-    padding: 0;
-    margin: 0;
-    width: 976px;
-    overflow-x: hidden;
-  }
-  
+
+
   .mat-dialog-content {
-    width: 976px;
+    width: 600px;
     overflow-x: hidden;
   }
   .viewProjectContainer {
     height: auto;
-    padding: 0;
+    padding: 0;padding-right: 20px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     margin: auto;
-    row-gap: 40px;
+    row-gap: 10px;
     font-family: futura-pt,
       sans-serif;
-  
+
   }
-  
+
   .bannerContainer {
-    height: 330px;
-    width: 976px;
+    height: 240px;
+    width: 600px;
     display: flex;
     flex-direction: column;
     align-self: space-between;
-    justify-content: center;
+    justify-content: flex-start;
     top: 0px;
-    padding: 0;
-    //background-image: url('../../../assets/images/pngs/techDoc_banner_large.png');
-    background-size: 976px 330px;
-  
+    padding: 0px 0px;
+    background-size: 600px;
+    background-repeat: no-repeat;
+
   }
   .bannerContent {
-    width: 95%;
-    height: 100%;
-    margin: auto auto;
+    width: 560px;
+    height: 240px;
+    margin: auto auto auto 0px;
     display: flex;
     flex-direction: column;
-  
+    padding: 0 0px;
+    align-items: center;
     justify-content: space-between;
-  }
+    app-icons-section {
+      width: 100%;
+      align-self: flex-end;
+      justify-self: flex-start;
+
+      font-size: 12px;
+    }
+
 
   .imgUploadContainer {
     display: flex;
@@ -64,72 +61,79 @@ mat-dialog-container {
     }
     .uploadLabel {
       font-size: 16px;
-    
+
     }
     .uploadSection {
       display:flex;
       flex-direction: column;
       row-gap: 20px;
-    
-    
-    
+
+
+
     }
-    
+
     .bannUploadContainer {
       display:flex;
       flex-direction: row;
     }
-    
 
+
+  }
   }
   .contentSection {
     width: 80%;
-  
+
   }
-  
-  h4 {
-    font-size: 20px;
-    font-family: futura-pt, sans-serif;
-    font-weight: 500;
-  }
-  
-  .titleContainer {
-    display: flex;
-    flex-direction: column;
-    column-gap: 40px;
-  
-  }
-  
-  .titleHeading {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    column-gap: 30px;
-    align-items:  center;
-    justify-content: flex-start;
-  
-    h4.title {
+
+  // h4 {
+  //   font-size: 20px;
+  //   font-family: futura-pt, sans-serif;
+  //   font-weight: 500;
+  // }
+
+
+
+    .title {
+          font-family: futura-pt,
+          sans-serif;
+          font-weight: 500;
+          font-size:16px;
       margin: 0;
+      color: var(--primaryColor);
     }
   .titleInputData {
     width: 80%;
-    margin: 0 0 0 13px;
+    margin: 0 0 0 10px;
     line-height: 2rem;
-    border: 0.5px solid lightgrey;
+    font-size: 12px;
+     font-family: futura-pt;
+
     justify-self: center;
   }
-  
-  
+
+
+  // }
+  .requirementsTitleContainer {
+    .requirementsTitle {
+     mat-label.title {
+        font-size: 12px;
+      }
+    }
   }
-  
 .descriptionContent {
     display: flex;
     flex-direction: column;
     justify-content: center;
   .descriptionTextInput {
-   margin: auto;
+
     width: 80%;
+    margin: 0 0 0 10px;
+    font-size: 12px;
+    font-family: futura-pt;
     line-height: 2rem;
-    border: 0.5px solid lightgrey;
+
   }
+
+
+
 }

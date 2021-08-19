@@ -25,18 +25,22 @@ export const selectSharedModuleState = createFeatureSelector<fromShared.SharedSt
    state => state.userID
  );
 
+ export const getUserProfilePic = createSelector(
+   fromSharedRoot.selectSharedState,
+  state => state.profilePic
+ );
  export const getDefaultProfilePic = createSelector(
    fromSharedRoot.selectSharedState,
    state => state.defaultProfilePic
  );
- 
+
  export const getIsLoading = createSelector(
   fromSharedRoot.selectSharedState,
    state => state.isLoading
  );
 
  export const getUsername = createSelector(
-  fromSharedRoot.selectSharedState, 
+  fromSharedRoot.selectSharedState,
    state => state.username
  );
 

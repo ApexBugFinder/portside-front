@@ -1,0 +1,15 @@
+<div class="container3" *ngIf="authUserId$|async">
+  <div class="container4">
+    <div class="picContainer">
+      <img [profilePic]="(authUserData?.userPicUrl)||(defaultProfilePic$|async)" class="pic"alt="" (click)="viewProfile()">
+    </div>
+  </div>
+</div>
+
+<div class="container1" *ngIf="userId$|async">
+  <div class="container2">
+    <div class="picContainer">
+      <img [profilePic]="(userData?.userPicUrl)||(defaultProfilePic$|async)" class="pic"alt="" (click)="viewProfile()">
+    </div>
+  </div>
+</div>

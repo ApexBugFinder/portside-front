@@ -18,6 +18,7 @@ import { ViewUserComponent } from './view-user/view-user.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ProfileButtonsComponent } from './profile-buttons/profile-buttons.component';
+import { LoggedInProfileComponent } from './logged-in-profile/logged-in-profile.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ProfileButtonsComponent } from './profile-buttons/profile-buttons.compo
     ViewProfileComponent,
     EditProfileComponent,
     ProfileButtonsComponent,
+    LoggedInProfileComponent,
   ],
   imports: [
     CommonModule,
@@ -39,7 +41,7 @@ import { ProfileButtonsComponent } from './profile-buttons/profile-buttons.compo
   ],
   entryComponents: [ViewUserComponent],
 
-  exports: [SearchbarComponent, SearchbarResultsComponent],
+  exports: [SearchbarComponent, SearchbarResultsComponent, LoggedInProfileComponent],
   providers: [{ provide: 'USER_SERVICE', useValue: UserService }],
   // bootstrap: [ViewUserComponent],
 })

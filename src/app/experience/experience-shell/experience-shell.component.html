@@ -1,4 +1,7 @@
 <div class="experienceContainer" *ngIf="currentExperience$|async">
+  <div class="infoWrapper">
+
+
     <div class="infoContainer">
         <div class="infoContent">
             <div class="infoTitle">Company:</div>
@@ -16,19 +19,31 @@
     <div class="infoContainer">
         <div class="infoContent">
             <div class="infoTitle">Title:</div>
-            <div class="infoData">{{ (currentExperience$ | async).title }}</div>
+            <div class="infoData">
+                  <div class="dataContainer">
+                        {{ (currentExperience$ | async).title }}
+                  </div>
+              </div>
         </div>
     </div>
     <div class="infoContainer">
         <div class="infoContent">
             <div class="infoTitle">Duration:</div>
-            <div class="infoData">{{(currentExperience$ | async).started | date }} - {{(currentExperience$ | async).completed  | date }}</div>
+            <div class="infoData">
+              <div class="dataContainer">
+                {{(currentExperience$ | async).started | date }} - {{(currentExperience$ | async).completed  | date }}
+              </div>
+              </div>
         </div>
     </div>
     <div class="infoContainer">
         <div class="infoContent">
             <div class="infoTitle">Location:</div>
-            <div class="infoData">{{(currentExperience$ | async).city }}, {{(currentExperience$|async).state}}</div>
+            <div class="infoData">
+              <div class="dataContainer">
+                {{(currentExperience$ | async).city }}, {{(currentExperience$|async).state}}
+              </div>
+              </div>
         </div>
     </div>
     <div class="infoContainer">
@@ -62,5 +77,5 @@
 
         </div>
     </div>
-
+  </div>
 </div>

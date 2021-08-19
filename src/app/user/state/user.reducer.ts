@@ -87,6 +87,14 @@ export function userReducer(state = initialState, action: UsersActions): UserSta
             ...state,
             userPicUrl: '',
           };
+          case UserActionTypes.UPDATE_USER_SUCCESS:
+            return {
+              ...state,
+              id: action.payload.id,
+              username: action.payload.username,
+              userPicUrl: action.payload.userPicUrl
+
+            }
         default:
             return {
             ...state

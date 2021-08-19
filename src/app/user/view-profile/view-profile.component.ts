@@ -15,7 +15,7 @@ import { MakeGuid } from '../../helpers/make-guid';
 
 export class ViewProfileComponent implements OnInit {
   private userID$: Observable<string>;
-
+  private userData$: Observable<(UserState|undefined)[]>;
   userToView: UserState = JSON.parse(JSON.stringify(defaultUserState));
   constructor(
 
@@ -23,21 +23,40 @@ export class ViewProfileComponent implements OnInit {
     private sharedDataStore: Store<fromSharedData.SharedUserDataState>
   ) {
     this.userID$ = this.sharedStateStore.pipe(select(fromSharedState.getUserId));
+    this.userData$ =      this.sharedDataStore.pipe(select(fromSharedData.selectAllUsers));
   }
 
   ngOnInit(): void {
-    this.userID$.subscribe({next: (usrId: string)=> {
-      if (usrId) {
-        this.sharedDataStore.pipe(select(fromSharedData.selectAllUsers)).subscribe({next: (users: (UserState|undefined) [])=>{
-          if (users) {
-          let found =  users.filter(i => i?.id === usrId)[0];
-          if(found)
-            this.userToView = JSON.parse(JSON.stringify(found));
-          }
-        }})
-      }
-    },
-  error: () => {},
-  complete: () => {}})
+    this.userID$.subscribe({
+      next: (usrId: string) => {
+        if (usrId) {
+          this.userData$.subscribe({
+            next: (users: (UserState | undefined)[]) => {
+              if (users) {
+                let found = users.filter((i) => i?.id === usrId)[0];
+                if (found) this.userToView = JSON.parse(JSON.stringify(found));
+              }
+            },
+            error: (err) =>
+              console.log(
+                "OOps sorry, error occured getting a User's Data from the SharedData store View Profile component: ",
+                err
+              ),
+            complete: () =>
+              console.log(
+                "Completed getting a User's Information from the shared data store View Profile component"
+              ),
+          });
+        }
+      },
+      error: (err) =>
+        console.log(
+          "OOps sorry, error occured getting a User's ID from the Shared store View Profile component: "
+        ),
+      complete: () =>
+        console.log(
+          "Completed getting a User's Information from the shared data store View Profile component"
+        ),
+    });
   }
 }

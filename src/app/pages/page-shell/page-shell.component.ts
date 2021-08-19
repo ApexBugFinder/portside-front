@@ -20,22 +20,23 @@ import * as fromShared from '../../shared/state';
 })
 export class PageShellComponent implements OnInit {
   private userID: string = '';
+  isAuth$: Observable<boolean>;
   userProject$: Observable<Project[]>
   constructor( private editProjectStore: Store<fromEditProject.EditProjectState>,
     private certicationShellStore: Store<fromCertificationShell.CertificationShellState>,
     private degreeShellStore: Store<fromDegreeShell.DegreeShellState>,
     private experienceShellStore: Store<fromExperienceShell.ExperienceShellState>,
     private sharedStore: Store<fromShared.SharedState>) {
-    
+
     this.sharedStore.pipe(select(fromShared.getUserId)).subscribe((id:string)=> this.userID = id);
 
-  
-    
+
+
 
   }
 
   ngOnInit(): void {
-    
+
   }
 
 }

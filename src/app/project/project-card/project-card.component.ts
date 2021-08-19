@@ -27,7 +27,7 @@ export class ProjectCardComponent implements OnInit, AfterViewInit {
       console.log(this.project);
   }
   ngAfterViewInit(): void {
-  
+
 
   }
 
@@ -40,10 +40,10 @@ export class ProjectCardComponent implements OnInit, AfterViewInit {
     // this.project.projectRequirements.forEach(ij => {
     //   let p = JSON.stringify(ij.editState);
     //   console.log(p);
-      
+
     //     ij.stateHistory = [ij.editState]
-   
-      
+
+
     //   console.log(ij.stateHistory);
     // });
     console.log('HELLO: ', this.project);
@@ -51,7 +51,7 @@ export class ProjectCardComponent implements OnInit, AfterViewInit {
 
     this.editProjectStore.dispatch(new editProjectActions.SetOriginalProject(this.project));
     const dialogRef = this.dialog.open(ViewProjectComponent, {
-      width: '980px',
+      width: '600px',
       data: {project: this.project},
       panelClass: 'custom-modalbox'
     });

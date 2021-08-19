@@ -18,18 +18,18 @@
           <div class="projectStatusContainer">
             <div class="projectStatus">
               <div class="statusData">
-                <p>Date Started:</p>
-                <p>{{ viewProjectStore?.started |  date: 'MM/yyyy' }}</p>
+                <p>Started:</p>
+                <p *ngIf="viewProjectStore?.started">{{ viewProjectStore?.started |  date: 'MM/yyyy' }}</p>
               </div>
 
               <div class="statusData">
-                <p>Date Completed:</p>
-                <p>{{ viewProjectStore?.completed | date: 'MM/yyyy' }}</p>
+                <p>Completed:</p>
+                <p *ngIf="viewProjectStore?.completed">{{ viewProjectStore?.completed | date: 'MM/yyyy' }}</p>
               </div>
-
+              <div class="spacer"></div>
               <div class="statusData">
                 <p>Published:</p>
-                
+
                <div class="publishedIconContainer">
                  <i class="far fa-lightbulb projectPublished"></i>
                </div>
@@ -42,57 +42,71 @@
       <div class="contentSection">
         <div class="titleContatiner">
           <div class="titleHeading">
-            <h4 class="title">Title:</h4>
-            <p class="titleData">{{ viewProjectStore?.projectName }}</p>
+            <h4 class="title">Title</h4>
+            <p class="data">{{ viewProjectStore?.projectName }}</p>
           </div>
           </div>
         </div>
         <div class="contentSection">
-          <div class="descriptionTitleContainer">
-            <div class="descriptionTitle">
-              <h4>Project Description</h4>
-            </div>
-          </div>
+          <!-- <div class="descriptionTitleContainer">
+            <div class="descriptionTitle"> -->
+              <h4 class="title">Project Description</h4>
+            <!-- </div>
+          </div> -->
 
           <div class="descriptionContent">
-            <p>
+            <p class="data">
              {{ viewProjectStore?.description}}
+             ddddddddddddddddddddddddddddddddd ddddddddddddddddddddddddddddddddddd dddddddddddddddddddddddddddddddd
             </p>
           </div>
         </div>
 
         <div class="contentSection">
-          <div class="requirementsTitleContainer">
-            <div class="requirementsTitle">
-              <h4>Project Requirements</h4>
-            </div>
-          </div>
 
-          <mat-list>
-            
+          <h4 class="title">Project Requirements</h4>
+
+          <mat-list class="data">
+
 
             <mat-list-item *ngFor="let req of viewProjectStore?.projectRequirements">
               <div class="matListItemContent">
                 <div class="editAndReq">
                   <div class="reqContainer">
-                   
+                    <span class="reqIcon">&#8226;</span>
                     <p class="req">
                       {{ req.requirement }}
                     </p>
                   </div>
                 </div>
 
-              
+
               </div>
             </mat-list-item>
           </mat-list>
         </div>
 
         <div class="contentSection">
-          <div class="tagTitle">
-            <h4>Languages & Platforms</h4>
-          </div>
-          <button mat-button class="tag" >html</button>
+         <h4 class="title">My Contributions</h4>
+
+              <mat-list class="data">
+
+
+            <mat-list-item *ngFor="let req of viewProjectStore?.projectRequirements">
+              <div class="matListItemContent">
+                <div class="editAndReq">
+                  <div class="reqContainer">
+                    <span class="reqIcon">&#8226;</span>
+                    <p class="req">
+                      {{ req.requirement }}
+                    </p>
+                  </div>
+                </div>
+
+
+              </div>
+            </mat-list-item>
+          </mat-list>
         </div>
 
     </div>

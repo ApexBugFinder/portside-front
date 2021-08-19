@@ -2,7 +2,10 @@
 .contentContainer {
   overflow: visible;
   height: 100%;
-
+.header {
+  overflow: visible;
+  z-index: 20;
+}
 .routerContent {
       z-index: 15;
       opacity: 1;

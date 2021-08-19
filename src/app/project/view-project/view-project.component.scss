@@ -1,16 +1,6 @@
-mat-dialog-container {
-  padding: 0;
-  margin: 0;
-  width: 976px;
-}
-mat-dialog-content {
-  padding: 0;
-  margin:0;
-  width: 976px;
-overflow-x: hidden;
-}
+
 .mat-dialog-content {
-  width: 976px;
+  width: 600px;
   overflow-x: hidden;
 }
 .viewProjectContainer {
@@ -29,42 +19,78 @@ height: auto;
 }
 
 .bannerContainer {
-height: 330px;
-  width: 976px;
+height: 240px;
+  width: 600px;
+
   display: flex;
   flex-direction:column;
   align-self: space-between;
-  justify-content: center;
+  justify-content: flex-start;
 top: 0px;
-padding: 0;
+padding: 0px 0px;
+background-repeat: no-repeat;
+background-size: 600px;
 
-background-size: 976px 330px;
 
-}
 .bannerContent {
-  width: 95%;
-  height: 100%;
-  margin: auto auto;
+  width: 540px;
+  height: 240px;
+  margin: auto auto auto 20px;
   display:flex;
   flex-direction: column;
+  padding: 0% 20px;
+  align-items: center;
 
   justify-content: space-between;
+.iconsContainer {
+  align-self: flex-end;
+  justify-self: flex-start;
+  width: 20%;
+  margin-top: 10px;
+  margin-right: 20px;
 
+  .icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 40px;
+    align-items: flex-start;
+    font-size: 12px;
+
+    .fa-github {
+      margin: auto;
+    }
+
+    .ng-fa-icon {
+      margin: auto;
+    }
+
+    p.icon {
+      margin: auto;
+    }
+  }
+}
+}
 .projectStatusContainer {
-  width: 80%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   justify-self: flex-end;
-  justify-content: flex-end;
-  margin-left: 20px;
+  justify-content: space-between;
+  margin-left: 0px;
+
 }
 
 .projectStatus {
   display: flex;
   flex-direction: row;
   column-gap: 30px;
-  width: 70%;
+  width: 100%;
   justify-self: flex-end;
+  .spacer {
+    width: auto;
+    margin: auto;
+  }
 }
 
 .statusData {
@@ -72,65 +98,49 @@ background-size: 976px 330px;
   flex-direction: row;
   width: auto;
   column-gap: 30px;
+  p {
+    font-size: 12px;
+  }
 }
 
 
 }
-.iconsContainer {
-  align-self: flex-end;
-width: 20%;
-margin-top: 20px;
-margin-right: 10px;
-.icons {
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-column-gap:  40px;
-align-items: flex-start;
-.fa-github{
-  margin: auto;
-}
-.ng-fa-icon {
-  margin: auto;
-}
-p.icon {
-  margin: auto;
-}
-}
-}
+
 .contentSection {
   width: 80%;
-
+  // display: flex;
+  // flex-direction: column;
+  // row-gap: 10px;;
 }
- h4 {
-   font-size: 20px;
+ h4.title {
+   font-size: 12px;
    font-family: futura-pt, sans-serif;
-  font-weight: 500;
+  font-weight: 600;
+  margin: 0 0 0 0;
+  color: var(--accent1Color);
  }
-
+.data {
+      margin: 0 0 0 10px;
+}
  .titleContainer {
    display: flex;
    flex-direction: column; column-gap: 40px;
-
+  margin: 10px;
 }
 .titleHeading {
   display: flex;
   flex-direction: row;
   width: 40%;
-  align-items: flex-end;
+  align-items: center;
   justify-content: flex-start;
-
-  h4 {
-    margin: 0;
+  .data {
+    margin-left: 20px;
   }
 }
-.title {
-
+.requirementsTitleContainer {
+  margin: 10px 0;
 }
-  .titleData {
 
-    margin: 0 0 0 5vw;
-  }
   mat-list {
 
 
@@ -138,9 +148,9 @@ p.icon {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
-    margin: auto;
+    margin: auto 0 auto 0;
     padding: auto;
   }
 mat-list-item {
@@ -152,10 +162,10 @@ margin: auto;
 justify-self: flex-start;
 .req {
   font-family: futura-pt, sans-serif;
-  margin-left: 30px;
+  margin-left: 0px;
 }
   .reqIcon {
-
+      margin: 0px 5px;
   }
   .reqIconEdit {
     color: red;
@@ -186,6 +196,9 @@ justify-self: flex-start;
   width: 100%;
   display: flex;
   flex-direction: row;
+  p.req {
+
+  }
 }
 .projectPublished {
 color: yellow;

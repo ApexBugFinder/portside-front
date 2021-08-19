@@ -24,8 +24,8 @@
               </div>
 
                  <div class="spacer"></div>
-                <fa-icon [icon]="iconPen" class="iconPen" *ngIf="!editMode" [routerLink]="[{outlets: {'profile':['edit-profile']}}]" (click)="toggleEdit()"></fa-icon>
-                <fa-icon [icon]="iconEye" *ngIf="editMode"class="iconEye" [routerLink]="[{outlets: {'profile':['view-profile']}}]"  (click)="toggleEdit()"></fa-icon>
+                <fa-icon [icon]="iconPen" class="iconPen" *ngIf="(isAuth$|async) && !editMode" [routerLink]="[{outlets: {'profile':['edit-profile']}}]" (click)="toggleEdit()"></fa-icon>
+                <fa-icon [icon]="iconEye" *ngIf="(isAuth$|async) && editMode"class="iconEye" [routerLink]="[{outlets: {'profile':['view-profile']}}]"  (click)="toggleEdit()"></fa-icon>
                 <fa-icon [icon]="iconUser" class="userIcon" *ngIf="userCanSave()" (click)="saveProfile()"></fa-icon>
             </div>
 

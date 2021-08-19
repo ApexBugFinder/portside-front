@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, DoCheck, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { User, UserState, ViewUserMatDialogData } from '../../Models/user';
 import { ViewUserComponent } from '../../view-user/view-user.component';
@@ -13,7 +13,7 @@ import * as sharedActions from '../../../shared/state/shared-actions';
   styleUrls: ['./result.component.scss']
 })
 export class ResultComponent implements OnInit {
- 
+
   @Input() user: UserState;
   userData: User;
   constructor(
@@ -23,18 +23,19 @@ export class ResultComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.user);
-    
+
     console.log(this.user.username);
   }
   viewUser() {
     this.sharedStore.dispatch(new sharedActions.SetUserId(this.user.id));
-    
+    this.sharedStore.dispatch(new sharedActions.SetUserProfilePic(this.user.userPicUrl));
+
 
     let myData: ViewUserMatDialogData = {
       user: this.user
     };
     const dialogRef= this.dialog.open(ViewUserComponent, {
-      data: myData, 
+      data: myData,
       width: 'auto',
       panelClass: 'custom-modalbox2'
     });

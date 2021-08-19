@@ -3,7 +3,7 @@
         <form [formGroup]="myProjectForm" class="myProjectFormClass">
             <div class="viewProjectContainer">
 
-           
+
             <div class="bannerContainer"
             [ngStyle]="{ 'background-image': 'url(&quot;' + (projectBanner$ | async) + '&quot; )' }">
                 <div class="bannerContent">
@@ -11,37 +11,37 @@
                     <!-- ICONS SECTION -->
                     <!-- ICONS INPUT: PROJECT LINKS -->
                     <!-- ICONS OUTPUT: gitLink & siteLink -->
-                    <app-icons-section 
+                    <app-icons-section
                     (closeDialog)="closeDialog($event)"
                     [editMode]="editMode"
-                    
-                
+
+
                     ></app-icons-section>
 
                     <!-- IMAGE UPLOAD SECTIONS -->
                     <div class="imgUploadSection">
                         <div class="imgUploadContainer">
-                          <app-image-getter [Title]="'Small Banner'" 
+                          <app-image-getter [Title]="'Small Banner'"
                             [docID]="projectID$ | async"
-                            [projectCreatorID]="projectCreatorID$ | async" 
+                            [projectCreatorID]="projectCreatorID$ | async"
                             [typeOfClass]="getClass()"
-                            
+
                             (mediaRtUrl)="processNewSmallBannerRt($event)">
                           </app-image-getter>
-                          
-                          <app-image-getter [Title]="'Big Banner'" 
+
+                          <app-image-getter [Title]="'Big Banner'"
                           [docID]="projectID$ | async"
                           [projectCreatorID]="projectCreatorID$ | async"
-                          
+
                           [typeOfClass]="getClass()"
                           (mediaRtUrl)="processNewBannerRt($event)"></app-image-getter>
-          
-                         
-                         
-                      
-                          
+
+
+
+
+
                         </div>
-                    </div> 
+                    </div>
 
 
                     <app-project-status-section></app-project-status-section>
@@ -49,59 +49,67 @@
                 </div>
             </div>
             <div class="contentSection">
-                <div class="titleContatiner">
-                  <div class="titleHeading">
-                    <h4 class="title">Title:</h4>
-      
-                    <input
-                      type="text"
-                      formControlName="projectName"
-                      id="projectNameId"
-                      class="titleInputData"
-                    />
-                  </div>
-                </div>
+
+                    <mat-form-field>
+                        <mat-label class="title">Title</mat-label>
+                        <input
+                          type="text"
+                          matInput
+                          formControlName="projectName"
+                          id="projectNameId"
+                          class="titleInputData"
+                        />
+                      </mat-form-field>
+
+
+
+
             </div>
-            
+
             <div class="contentSection">
-                <div class="descriptionTitleContainer">
-                  <div class="descriptionTitle">
-                    <h4>Project Description</h4>
-                  </div>
-                </div>
-      
-                <div class="descriptionContent">
-                  <input
+
+                  <mat-form-field class="descriptionContent">
+                    <mat-label class="title">Project Description</mat-label>
+
+                  <textarea
                     type="textarea"
+                    matInput
                     formControlName="description"
                     id="descriptionId"
                     class="descriptionTextInput"
-                  />
-                </div>
+                  ></textarea>
+
+                  </mat-form-field>
+
+
+
+
             </div>
 
             <div class="contentSection">
                 <div class="requirementsTitleContainer">
                   <div class="requirementsTitle">
-                    <h4>Project Requirements</h4>
+
+                   <mat-label class="title">Project Requirements</mat-label>
                   </div>
                 </div>
 
             <app-display-requirements></app-display-requirements>
-      
 
 
-            </div> 
+
+            </div>
 
             <div class="contentSection">
               <app-action-buttons (closeDialog)="closeDialog($event)" ></app-action-buttons>
             </div>
-            
-            
-          
+
+
+
           </div> <!--  closes viewProjectContainer  -->
         </form>
-         
+
     </div>
 </div>
+
 

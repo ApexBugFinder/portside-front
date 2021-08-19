@@ -1,6 +1,6 @@
 <div class="sectionContainer">
-       <app-action-buttons 
-       [myClass]="pageClass" 
+       <app-action-buttons class="addProjectsContainer"
+       [myClass]="pageClass"
        *ngIf="(isAuthenticated && (userID$|async)==(authenticatedUserID$|async))"
        (addClassSignal)="createProject()"></app-action-buttons>
 

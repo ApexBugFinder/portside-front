@@ -33,7 +33,7 @@ export class ViewProjectComponent implements OnInit, AfterViewInit {
     private editProjectStore: Store<fromEditProject.EditProjectState>,
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<ViewProjectComponent>,
-    
+
   ) {
     this.bkImg = '../../../assets/images/pngs/techDoc_banner_large.png';
 
@@ -44,11 +44,11 @@ export class ViewProjectComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-  
+
     this.viewProject$.subscribe({
       next: (value: Project   | undefined) => {
         this.viewProjectStore = value as Project;
-        
+
         console.log('my projects in observable on viewProject component', value);
        return value;
        },
@@ -58,14 +58,14 @@ export class ViewProjectComponent implements OnInit, AfterViewInit {
     console.log('PROJECT: \n', this.viewProjectStore);
    }
   editProject(): void {
-    
+
     this.dialogRef.close();
-    
-  
-  
+
+
+
     this.dialog.open(EditShellComponent, {
-      width: '980px',
-     
+      width: '600px',
+
       panelClass: 'custom-modalbox'
     })
   }
@@ -84,7 +84,7 @@ export class ViewProjectComponent implements OnInit, AfterViewInit {
     url += getGitLink;
       window.open(url, '_blank');
     }
-    
+
 
   }
   goToSite() {

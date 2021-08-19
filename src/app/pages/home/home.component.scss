@@ -3,39 +3,42 @@
   flex-direction: column;
   row-gap: 30px;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-end;
   margin: 7vh 10%;
-
+  width: 80%;
   .searchbar {
-    margin: auto;
+    align-self: flex-end;
+    justify-content: flex-end;
   }
- 
+
 
 
   .quoteSection{
     position: relative;
     align-self: flex-end;
-    margin-right: 10%;
-    width: 40%;
-    font-family: felt-tip-roman;    
+    margin: auto 0;
+    width: 30%;
+    font-family: felt-tip-roman;
     display: flex;
     flex-direction: column;
-    row-gap: 5vh;
+    row-gap: 2vh;
     opacity: 0.3;
 
     .quote {
       font-family: felt-tip-roman, sans-serif;
-      font-size: 30px;
-      margin-right: 10%;
+      font-size: 20px;
+      margin-right: 5%;
     }
     .quoteAuthor {
       margin:auto 10% auto auto;
-      font-size: 18px;
+      font-size: 14px;
 
     }
   }
   .results {
-    width: 100%;
+    margin: auto 0 auto auto;
+
+    width: 80%;
   }
 
 }
