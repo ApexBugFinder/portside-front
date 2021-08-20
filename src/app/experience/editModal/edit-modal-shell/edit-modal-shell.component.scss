@@ -1,28 +1,29 @@
 mat-dialog-container {
     padding: 0;
     margin: 0;
-    width: 100%;
+    width: 900px;
 }
 mat-dialog-content {
     padding: 0;
     margin: 0;
-    width: 100%;
+    width: 900px;
     overflow-x: hidden;
 
 }
 
 .shellContainer {
-    width: 940px;
-    padding: 20px;
+    width: 860px;
+    padding: 0px;
     margin: 0;
     align-content:space-between;
+    overflow:hidden;
     .shellContent {
-        width: 940px;
+        width: 860px;
         display: flex;
         flex-direction: column;
         row-gap: 20px;
         justify-content: center;
-
+        overflow: hidden;
         .header {
             width: 90%;
             margin: auto;
@@ -116,11 +117,17 @@ mat-dialog-content {
             padding: 5px 5px;
         }
         .infoLabel {
-            width: 150px;
-            align-items: center;
-            margin: auto 0;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin: auto auto;
             font-size: 9px;
             color: #707070;
+            .origDate {
+              color: var(--primaryColor);
+            }
         }
         mat-form-field.addRole {
             width: 100%;
@@ -137,12 +144,14 @@ mat-dialog-content {
         // .infoLabel.addRole {
           input {
             padding: 5px 5px;
+
           }
         // }
         .infoData {
             align-items: center;
             margin: 0;
             justify-content: flex-start;
+            font-size: 12px;
         }
 
         .dataContainer{
@@ -204,21 +213,29 @@ mat-dialog-content {
         }
         .infoData.roles {
             width: 100%;
+            padding: 10px;
         }
         .roleContainer .roleContent {
             display: flex;
-            flex-direction: row;
-            column-gap: 10px;
+            flex-direction: column;
+            row-gap: 10px;
             width: 100%;
+            padding: 0px 0;
            justify-content: space-around;
-           align-items: flex-end;
+           align-items: flex-start;
 
+        }
+        .label-wrapper.addRole{
+          margin: 0 0 20px 0;
+        }
+        .addRole.infoData {
+          padding: 10px;
         }
         .addRoleTitle {
             width: 20%;
             display: flex;
             flex-direction: column;
-            padding-top: 8px;
+            padding: 0px 0px 20px 0;
         }
         .addRoleHeader {
             font-size: 9px;
@@ -230,7 +247,7 @@ mat-dialog-content {
             flex-direction: column;
             padding-top: 8px;
         }
-        textarea#roleTitleId {
+        input#roleTitleId {
             width: 100%;
             background-color:#ecebeb2d;
             opacity: .7;
@@ -246,12 +263,16 @@ mat-dialog-content {
             width: auto;
         }
         .addRoleButton {
-
+            align-self: flex-end;
+            margin-right: 30px;
+            margin-bottom: 20px;
             justify-self: flex-end;
         }
     }
 }
-
+.infoSection.first {
+  margin-top: 40px;
+}
 
 .actionButtonsSection {
     width: 100%;
@@ -259,7 +280,7 @@ mat-dialog-content {
     justify-self: flex-end;
     .actionButtonContainer {
         width: 70%;
-        margin: auto;
+        margin: auto auto 20px auto;
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
@@ -271,7 +292,18 @@ mat-dialog-content {
             color: white;
         }
         .deleteButton {
-            background-color: var(--accent3Color);
+            // background-color: var(--accent3Color);
+            background-color: transparent;
+            border: none;
+            color: darkred;
+            border-radius: 10px;
+            line-height: 2.5em;;
+            text-shadow:5px 5px 15px 5px #000000;
+        }
+        .deleteButton:hover {
+          // -webkit-box-shadow: 5px 5px 15px 5px #000000;
+          // box-shadow: 5px 5px 15px 5px #000000;
+            text-shadow:5px 5px 15px #000000;
         }
 
         .saveButton {
@@ -284,7 +316,7 @@ mat-dialog-content {
         border: 1px solid var(--accent3Color);
         }
         .actionButton {
-            border-radius: 20px;
+            // border-radius: 20px;
         }
     }
 }

@@ -1,7 +1,7 @@
 <div class="shellContainer">
   <div class="shellContent">
-    <div class="certHeading">
-      <h4>Certifications</h4>
+    <div class="heading">
+      <h4 class="title">Certifications</h4>
     </div>
     <div class="certContainer" *ngFor="let cert of (myCerts$|async)">
         <app-view-cert [myCert]="cert"></app-view-cert>

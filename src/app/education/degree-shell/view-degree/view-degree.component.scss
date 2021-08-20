@@ -3,7 +3,7 @@
   .shellContent {
     display: grid;
 
-    grid-template-columns:  30px 30px 100px 300px;
+    grid-template-columns:  30px 30px 100px 250px;
     grid-template-rows: 40px 30px 30px  30px;
     grid-template-areas:
     "a b c c"
@@ -32,6 +32,9 @@
     justify-content: space-between;
     margin:0px;
     padding: 0px;
+    span.heading {
+      color: var(--accent1Color);
+    }
     p {
       margin:0;
       padding: 0;
@@ -39,12 +42,14 @@
   }
   .minorHeading {
     grid-area: d;
+    color: var(--accent1Color);
   }
   .minorData {
     grid-area: e;
   }
   .institutionHeading {
     grid-area: f;
+      color: var(--accent1Color);
   }
   .institutionData  {
     grid-area: g;
@@ -52,7 +57,7 @@
 
   .locationHeading {
     grid-area: h;
-
+    color: var(--accent1Color);
   }
   .locationData {
     grid-area: i;

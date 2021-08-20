@@ -3,7 +3,11 @@
   <div class="componentContent">
 
     <div class="buttonContainer">
- <button mat-raised-button class="expControllerBttn" (click)="previousExperience()">Prev</button>
+ <button  class="expControllerBttn" (click)="previousExperience()"
+   matRipple
+    [matRippleColor]="myColor"
+    [matRippleUnbounded]="unbounded"
+    [matRippleCentered]="centered">Prev</button>
     </div>
 <div class="labelContainer">
 <mat-label class="controllerData">{{focusedAt + 1}}</mat-label>
@@ -19,7 +23,12 @@
 <mat-label class="controllerData">{{experienceDataTotal}}</mat-label>
 </div>
     <div class="buttonContainer">
-<button mat-raised-button class="expControllerBttn" (click)="nextExperience()">Next</button>
+
+<button  class="expControllerBttn" (click)="nextExperience()"
+    matRipple
+    [matRippleColor]="myColor"
+    [matRippleUnbounded]="unbounded"
+    [matRippleCentered]="centered">Next</button>
     </div>
 
 

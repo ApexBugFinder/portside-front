@@ -12,7 +12,7 @@ justify-content: flex-start;
     "p a a a a a a a a a"  //CERTNAME
     "b b ba h h bf f f f f "  //  ISSUED & VALID
     "c c ca ca l l l l l  l" // CERT ID
-    "d d da da da n n  n n n"  // ISSUING BODY
+    "d d da da n n n  n n n"  // ISSUING BODY
     ;
 
     grid-template-columns: 30px 30px 50px 50px 50px 50px 50px 50px 50px 200px;
@@ -26,6 +26,7 @@ justify-content: flex-start;
   }
   .shellContent > .certName {
     grid-area: a;
+    margin: 10px;
     p{
         color: var(--accent3Color);
         width:fit-content;
@@ -36,18 +37,21 @@ justify-content: flex-start;
 
 .issuedHeading {
 grid-area: ba;
+color: var(--accent1Color);
 }
 .issuedData {
   grid-area: h;
 }
 .validHeading {
   grid-area: bf;
+  color: var(--accent1Color);
 }
 .validData {
 grid-area: f;
 }
 .certIdHeading {
   grid-area: ca;
+  color: var(--accent1Color);
 }
 .certIdData {
   grid-area: l;
@@ -56,6 +60,7 @@ grid-area: f;
   grid-area: da;
   align-items: center;
   vertical-align: center;
+    color: var(--accent1Color);
 }
 .issuingBodyingData{
   grid-area: n;
@@ -71,7 +76,7 @@ column-gap: 10px;
 .isb-Name {
   text-align: center;
   align-self: center;
-  
+
 }
 }
 }

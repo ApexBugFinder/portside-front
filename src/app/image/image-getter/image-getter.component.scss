@@ -48,8 +48,9 @@
     }
   }
   .thumb {
-
+    display:none;
     border:none;
+    visibility: hidden;
   }
 
 
@@ -61,13 +62,7 @@
     margin-top: auto;
     margin-bottom: auto;
 
-  //   input#file-upload-button {
-  //      border: 1px solid var(--accent2Color);
-  //     border-radius: 20px;
-  // // -webkit-box-shadow: 5px 5px 15px 8px rgba(149, 188, 211, 0.57);
-  // // box-shadow: 5px 5px 15px 8px rgba(149, 188, 211, 0.57);
 
-  //    }
      input[type="file"] {
        display: none;
      }

@@ -40,8 +40,19 @@ export class ExperienceControllerComponent implements OnInit {
   experienceDataTotal: number;
   experienceShellCurrentExperience$: Observable<Experience | undefined>;
   currentExperience: Experience | undefined;
+  myColor: string = '';
+  unbounded: boolean = false;
 
+//   .myColor {
+//       //  < !-- --primaryColor: #BA2BD2;
+//       //  --secondaryColor: #707070;
+//       //  --accent1Color: #4B304F;
+//       //  --accent2Color: #95bcd3;
+//       //  --accent3Color: #85801C;
+//       //  --folderColor: #57B3A1;
+//       //  -->
 
+// }
   //  Actions
   // *********
   // I need to set the current experience for the experience Shell ☑️
@@ -69,10 +80,12 @@ export class ExperienceControllerComponent implements OnInit {
     this.experienceShellCurrentExperience$ = this.experienceShellStore.pipe(
       select(fromExperienceShell.getCurrentExperience)
     );
-
+      this.myColor = 'rgb(75, 48, 79, 0.6)';
+      this.unbounded = false;
   }
 
   ngOnInit(): void {
+    console.log(this.myColor);
     // EXPERIENCE_DATA []
     this.experienceData$.subscribe({
       next: (value: (Experience | undefined)[]) => {

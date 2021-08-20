@@ -7,24 +7,11 @@
                     <div class="header">
                         <p>Edit Experiences</p>
                     <mat-divider class="mat-devider"></mat-divider>
-                   <div class="headerAction">
-                       <div class="headerActionContainer">
-                           <div class="experienceSlider">
-                               <div class="experienceSliderContainer">
-                                   <p>&lt;</p>
-                                   <p>1</p>
-                                   <p>of</p>
-                                   <p>3</p>
-                                   <p>&gt;</p>
-                               </div>
-                           </div>
-                            <button class="addExperiencesButton">Add Experiences</button>
-                       </div>
 
-                   </div>
+
                     </div>
 
-                    <div class="infoSection">
+                    <div class="infoSection first">
                         <div class="infoContainer">
 
  <div class="info">
@@ -83,29 +70,35 @@
 
                                 <mat-form-field class="infoContainer">
                                     <div class="label-wrapper">
-                                        <mat-label class="infoLabel">Started</mat-label>
+                                        <mat-label class="infoLabel">Started
+                                          <span class="origDate">{{ origStart }}</span>
+                                        </mat-label>
+
                                     </div>
 
                                     <div class="infoData">
                                         <div class="dataContainer">
 
-                                            <input type="date" matInput placeholder="" name="started" id="staredId"
+                                             <input type="date" matInput placeholder="" value="{{origStart}}" name="started" id="staredId"
                                                 formControlName="started">
-                                          {{started | date: 'MM/dd/YYYY'}}
+
                                         </div>
 
                                     </div>
                                 </mat-form-field>
                                 <mat-form-field class=infoContainer>
                                     <div class="label-wrapper">
-                                        <mat-label class="infoLabel">Completed</mat-label>
+                                        <mat-label class="infoLabel">Completed
+                                          <span class="origDate">{{origComplete}}</span>
+                                        </mat-label>
                                     </div>
 
                                     <div class="infoData">
                                         <div class="dataContainer">
 
-                                            <input type="date" matInput placeholder="{{completed}}" name="completed" id="completedId"
-                                                formControlName="completed">
+                                            <input type="date" matInput placeholder="{{origComplete}}" name="completed" id="completedId"
+                                                value={{origComplete}}
+                                                 formControlName="completed">
 
                                         </div>
 
@@ -125,7 +118,7 @@
                                 <div class="infoData">
                                     <div class="dataContainer">
 
-                                        <input matInput placeholder="{{city}}" name="city" id="cityId" formControlName="city">
+                                        <input matInput placeholder="{{city }}" name="city" id="cityId"  formControlName="city">
 
                                     </div>
 
@@ -211,14 +204,14 @@
                                         <div class="roleContent">
                                             <div class="addRoletitle">
                                                 <mat-label class="addRoleHeader">Title</mat-label>
-                                                <textarea type="text" matInput class="roleTitle" placeholder="Title" formControlName="myTitle" id="roleTitleId" name="roleTitle"></textarea>
+                                                <input type="text" matInput class="roleTitle" placeholder="" formControlName="myTitle" id="roleTitleId" name="roleTitle"/>
 
                                             </div>
                                             <div class="addRoleDescription">
                                                 <mat-label class="addRoleHeader">
                                                     Description
                                                 </mat-label>
-                                                <textarea matInput placeholder="Description" type="text"class="roleMyRole" formControlName="myRole" id="roleMyRoleId" name="roleMyRole"></textarea>
+                                                <textarea matInput placeholder="" type="text"class="roleMyRole" formControlName="myRole" id="roleMyRoleId" name="roleMyRole"></textarea>
                                             </div>
                                             <div class="spacer"></div>
 
@@ -237,8 +230,10 @@
                 </div>
                 <div class="actionButtonsSection">
                         <div class="actionButtonContainer">
-                            <button mat-raised-button class="actionButton deleteButton" 
-                            
+                            <!-- <button mat-raised-button class="actionButton deleteButton"
+
+                            (click)="deleteFromDB()">Delete</button> -->
+                             <button class="actionButton deleteButton"
                             (click)="deleteFromDB()">Delete</button>
                             <button mat-raised-button class="actionButton resetButton" (click)="resetChanges()">Reset</button>
                             <button mat-raised-button class="actionButton saveButton" (click)="saveToDB()">Save</button>

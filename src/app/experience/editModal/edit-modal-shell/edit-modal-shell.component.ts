@@ -17,6 +17,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import * as fromShared from '../../../shared/state';
 import * as fromAuth from '../../../auth/state';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-edit-modal-shell',
@@ -58,7 +59,9 @@ export class EditModalShellComponent implements OnInit {
   authenticatedUserId: string;
   authenticated$: Observable<boolean>;
   auth: boolean;
-
+  setOrig: boolean = false;
+  origStart: string;
+  origComplete: string;
 
   // ABSTRACTCONTROLS
   companyAbstractControl: AbstractControl | null;
@@ -96,6 +99,7 @@ export class EditModalShellComponent implements OnInit {
     this.id$ = this.experienceDataStore.pipe(select(fromExperienceShell.getCurrentExperienceId));
     this.projectCreatorID$ = this.experienceDataStore.pipe(select(fromExperienceShell.getCurrentExperienceProjectCreator));
 
+
     this.myExperienceForm = this.fb.group({
       id: [''],
       company: [''],
@@ -113,7 +117,7 @@ export class EditModalShellComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+   this.initiateControls();
     this.authenticated$.subscribe({
       next: (value: boolean) => {
         if (value) {
@@ -155,7 +159,7 @@ export class EditModalShellComponent implements OnInit {
       next: (value: string) => {
         if (value) {
           console.log(value);
-          this.userBeingViewedId = value;  
+          this.userBeingViewedId = value;
         }
       },
       error: (err) =>
@@ -170,44 +174,160 @@ export class EditModalShellComponent implements OnInit {
     });
 
     this.company$.subscribe({
-      next: (value: string) => this.company = value,
-      error: err => console.log('OOps sorry, error occured getting the user\'s current experience Company Name from store in Experience\'s Edit Shell component: ', err),
-      complete: () => console.log('Completed getting user\'s Current Experience Company Name from ngrx store in Experiences Edit Shell component')
+      next: (value: string) => {
+        if (value) {
+          this.company = value;
+          this.companyAbstractControl?.setValue(this.company);
+        }
+      },
+      error: (err) =>
+        console.log(
+          "OOps sorry, error occured getting the user's current experience Company Name from store in Experience's Edit Shell component: ",
+          err
+        ),
+      complete: () =>
+        console.log(
+          "Completed getting user's Current Experience Company Name from ngrx store in Experiences Edit Shell component"
+        ),
     });
     this.title$.subscribe({
-      next: (value: string) => this.title = value,
+      next: (value: string) => {
+        if (value) {
+          this.title = value;
+          this.titleAbstractControl?.setValue(this.title);
+        }
+      },
       error: err => console.log('OOps sorry, error occured getting the user\'s current experience job Title from store in Experience\'s Edit Shell component: ', err),
       complete: () => console.log('Completed getting user\'s Current Experience job Title from ngrx store in Experience\'s Edit Shell component')
     });
     this.started$.subscribe({
-      next: (value: Date) => this.started = value,
-      error: err => console.log('OOps sorry, error occured getting the user\'s current experience Start Date from store in Experience\'s Edit Shell component: ', err),
-      complete: () => console.log('Completed getting user\'s Current Experience Start Date from ngrx store in Experience\'s Edit Shell component')
+      next: (value: Date) => {
+        if (value) {
+          this.started = value;
+          let star = JSON.parse(JSON.stringify(value));
+          let myStarter = new Date(star);
+          console.log(
+            'START DATE: ',
+            value.toLocaleString('en-US', {
+              month: 'numeric',
+              day: 'numeric',
+              year: 'numeric'
+            })
+          );
+          this.started = myStarter;
+          this.origStart = myStarter.toLocaleString('en-US', {
+              month: 'numeric',
+              day: 'numeric',
+              year: 'numeric'
+            })
+          ;
+          this.startedAbstractControl?.setValue(this.origStart)
+        }
+      },
+      error: (err) =>
+        console.log(
+          "OOps sorry, error occured getting the user's current experience Start Date from store in Experience's Edit Shell component: ",
+          err
+        ),
+      complete: () =>
+        console.log(
+          "Completed getting user's Current Experience Start Date from ngrx store in Experience's Edit Shell component"
+        ),
     });
     this.completed$.subscribe({
-      next: (value: Date) => this.completed = value,
-      error: err => console.log('OOps sorry, error occured getting the user\'s current experience Complete Date from store in Experience\'s Edit Shell component: ', err),
-      complete: () => console.log('Completed getting user\'s Current Experience Complete Date from ngrx store in Experience\'s Edit Shell component')
+      next: (value: Date) => {
+        if (value) {
+
+          let star = JSON.parse(JSON.stringify(value));
+          let myStarter = new Date(star);
+          console.log(
+            'START DATE: ',
+            value.toLocaleString('en-US', {
+              month: 'numeric',
+              day: 'numeric',
+              year: 'numeric',
+            })
+          );
+          this.completed = myStarter;
+          this.origComplete = myStarter.toLocaleString('en-US', {
+            month: 'numeric',
+            day: 'numeric',
+            year: 'numeric',
+          });
+          this.startedAbstractControl?.setValue(this.origComplete);
+        }
+      },
+      error: (err) =>
+        console.log(
+          "OOps sorry, error occured getting the user's current experience Complete Date from store in Experience's Edit Shell component: ",
+          err
+        ),
+      complete: () =>
+        console.log(
+          "Completed getting user's Current Experience Complete Date from ngrx store in Experience's Edit Shell component"
+        ),
     });
     this.city$.subscribe({
-      next: (value: string | undefined) => this.city = value,
+      next: (value: string | undefined) => {
+        if(value){
+          this.city = value;
+          this.cityAbstractControl?.setValue(this.city);
+        }
+
+      },
       error: err => console.log('OOps sorry, error occured getting the user\'s current experience\'s City from store in Experience\'s Edit Shell component: ', err),
       complete: () => console.log('Completed getting user\'s Current Experience\'s City from ngrx store in Experience\'s Edit Shell component')
     });
     this.state$.subscribe({
-      next: (value: string | undefined) => this.state = value,
-      error: err => console.log('OOps sorry, error occured getting the user\'s current experience\'s State from store in Experience\'s Edit Shell component: ', err),
-      complete: () => console.log('Completed getting user\'s Current Experience\'s State from ngrx store in Experience\'s Edit Shell component')
+      next: (value: string | undefined) => {
+        if (value) {
+          this.state = value;
+          this.stateAbstractControl?.setValue(this.state);
+        }
+      },
+      error: (err) =>
+        console.log(
+          "OOps sorry, error occured getting the user's current experience's State from store in Experience's Edit Shell component: ",
+          err
+        ),
+      complete: () =>
+        console.log(
+          "Completed getting user's Current Experience's State from ngrx store in Experience's Edit Shell component"
+        ),
     });
     this.roles$.subscribe({
-      next: (value: Role[] | undefined) => this.roles = value,
-      error: err => console.log('OOps sorry, error occured getting the user\'s current experience\'s State from store in Experience\'s Edit Shell component: ', err),
-      complete: () => console.log('Completed getting user\'s Current Experience\'s State from ngrx store in Experience\'s Edit Shell component')
+      next: (value: Role[] | undefined) => {
+        if (value) {
+          this.roles = value;
+          this.rolesAbstractControl?.setValue(this.roles);
+        }
+      },
+      error: (err) =>
+        console.log(
+          "OOps sorry, error occured getting the user's current experience's State from store in Experience's Edit Shell component: ",
+          err
+        ),
+      complete: () =>
+        console.log(
+          "Completed getting user's Current Experience's State from ngrx store in Experience's Edit Shell component"
+        ),
     });
     this.logoUrl$.subscribe({
-      next: (value: string) => this.logoUrl = value,
-      error: err => console.log('OOps sorry, error occured getting the user\'s current experience logo Url from store in Experience\'s Edit Shell component: ', err),
-      complete: () => console.log('Completed getting user\'s Current Experience logo Url from ngrx store in Experience\'s Edit Shell component')
+      next: (value: string) => {
+        if (value) {
+          this.logoUrl = value;
+          this.logoUrlAbstractControl?.setValue(this.logoUrl);
+        }
+      },
+      error: (err) =>
+        console.log(
+          "OOps sorry, error occured getting the user's current experience logo Url from store in Experience's Edit Shell component: ",
+          err
+        ),
+      complete: () =>
+        console.log(
+          "Completed getting user's Current Experience logo Url from ngrx store in Experience's Edit Shell component"
+        ),
     });
     this.id$.subscribe({
       next: (value: string) => this.experienceID = value,
@@ -222,7 +342,12 @@ export class EditModalShellComponent implements OnInit {
     this.currentExp$.subscribe({
       next: (value: Experience|undefined) => {
         if(value?.id !== '') {
+
           this.currentExp = value;
+          if (!this.setOrig) {
+            this.experienceDataStore.dispatch(new experienceShellActions.SetOriginalExperience(value as Experience));
+            this.setOrig = true;
+          }
         }
       },
       error: err => console.log('OOps sorry, error occured getting the user\'s original experience from store in Experience\'s Edit Shell component: ', err),
@@ -233,8 +358,9 @@ export class EditModalShellComponent implements OnInit {
       error: err => console.log('OOps sorry, error occured getting the user\'s current experience project Creator ID from store in Experience\'s Edit Shell component: ', err),
       complete: () => console.log('Completed getting user\'s Current Experience project CreatorID from ngrx store in Experience\'s Edit Shell component')
     });
-    this.initiateControls();
-    this.resetControls();
+
+
+
     this.monitorForControlChanges();
   }
 
@@ -349,14 +475,19 @@ saveToDB() {
 
     // UPDATE DB IF UPDATING
     this.experienceDataStore.dispatch(new experienceShellActions.UpdateExperienceToDB());
-
-
-
-
-  }
   // CLOSE DIALOG
-  this.closeDialog();
+ this.closeDialog();
   this.router.navigateByUrl('pages/experiences');
+
+
+  } else {
+
+    //  this.resetChanges();
+     this.closeDialog();
+     this.router.navigateByUrl('pages/experiences');
+  }
+
+
 
 }
 
@@ -387,8 +518,9 @@ deleteFromDB() {
   resetControls() {
 
     this.companyAbstractControl?.setValue(this.company);
+
     this.titleAbstractControl?.setValue(this.title);
-    this.startedAbstractControl?.setValue(this.started);
+    this.startedAbstractControl?.setValue(this.started.toISOString().substring(0,10));
     this.completedAbstractControl?.setValue(this.completed);
     this.cityAbstractControl?.setValue(this.city);
     this.stateAbstractControl?.setValue(this.state);

@@ -13,12 +13,15 @@ import { EditCertificationShellComponent } from '../edit-certification-shell/edi
 })
 export class ViewCertComponent implements OnInit {
 @Input() myCert: Certification;
+testDate: Date;
   constructor(
     private certificationShellStore: Store<fromCertificationShell.CertificationShellState>,
     private dialog: MatDialog,
   ) {  }
 
   ngOnInit(): void {
+    this.testDate = new Date();
+    this.testDate.setFullYear(2019, 8, 2);
   }
 
   editCert() {
@@ -30,7 +33,7 @@ export class ViewCertComponent implements OnInit {
 
     // start edit dialog
     const dialogRef = this.dialog.open(EditCertificationShellComponent, {
-      
+
       panelClass: 'custom-modalbox2'
     });
 
