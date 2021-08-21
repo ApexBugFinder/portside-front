@@ -4,7 +4,7 @@
     <form action="" [formGroup]="certificationForm">
       <div class="shellContainer">
 
-          <div class="certContainer">
+          <div class="certContent">
 
 
             <div class="header">
@@ -14,98 +14,116 @@
 
           <div class="infoSection" id="certNameSection">
             <div class="infoContainer">
-              <div class="label-wrapper">
-              <mat-label for="certNameInputId" id="certNameLabelId">
-                Certification Name:
-              </mat-label >
-            </div>
+
+              <div class="certInfo">
+                <div class="certName">
+                    <div class="label-wrapper">
+                      <mat-label for="certNameInputId" id="certNameLabelId">
+                            Certification Name:
+                      </mat-label >
+                    </div>
               <mat-form-field>
                 <input
                   type="text"
                   matInput
                   formControlName="certName"
-                   placeholder="{{myCert.certName}}"
+                  placeholder="{{myCert.certName}}"
                   id="certNameInputId"
                 />
               </mat-form-field>
+              </div>
+              <div class="certID">
+                          <div class="label-wrapper">
+                                <mat-label for="certIDInputId" id="certIDLabelId"
+                                      >Certification ID#:
+                                </mat-label>
+                          </div>
+                          <mat-form-field>
+                                <input
+                                  type="text"
+                                  matInput
+                                  formControlName="certId"
+                                  placeholder="{{myCert.certId }}"
+                                  id="certIDInputId"
+                                />
+                            </mat-form-field>
+              </div>
+
+              </div>
+
+
             </div>
           </div>
 
           <div class="infoSection">
             <div class="infoContainer">
+              <div class="issuingBodyContainer">
+                <div class="name">
+                      <div class="label-wrapper">
 
-              <div class="label-wrapper">
-              <mat-label for="certIDInputId" id="certIDLabelId"
-                  >Certification ID#:
-                </mat-label>
+
+                            <mat-label
+                                for="certIssuingBodyNameId"
+                                id="certIssuingBodyNameLabelId"
+                                >Issuing Body:
+                            </mat-label>
+
+
+                      </div>
+                      <mat-form-field>
+
+                                  <input
+                                    type="text"
+                                    matInput
+                                    placeholder="{{myCert.issuingBody_Name}}"
+
+                                    formControlName="issuingBodyName"
+                                    id="certIssuingBodyNameInputId"
+                                  />
+                      </mat-form-field>
                 </div>
-                <mat-form-field>
 
-                <input
-                  type="text"
-                  matInput
-                  formControlName="certId"
-                   placeholder="{{myCert.certId }}"
-                  id="certIDInputId"
-                />
-              </mat-form-field>
+                <div class="logo">
+                      <app-image-getter [Title]="'Issuing Body Logo'" [docID]="myCert.id" [projectCreatorID]="myCert.projectCreatorID"
+                                                      [typeOfClass]="getClass()" (mediaRtUrl)="processNewLogoUrlRt($event)"
+                                                      [preview]="myCert.issuingBody_Logo"
+                                                      class="logoGetter" >
+                                                  </app-image-getter>
+                </div>
+              </div>
+
             </div>
           </div>
 
           <div class="infoSection">
-            <div class="infoContainer isActiveContainer">
+            <div class="infoContainer">
+              <div class="isActiveContainer">
+
 
               <div class="label-wrapper">
               <mat-label for="certIsActiveInputId" id="certIsActiveLabelId">
-                    Is Active:
+                    IsActive
                 </mat-label >
-                </div>
-                <button mat-raised-buton class="activeButton" >{{myCert.isActive}}</button>
+              </div>
+
+                <div class="slideToggleDiv">
+                   <mat-slide-toggle id="activeSlideToggleId"
+                   (color)="myColor"
+                   (change)="isCertActive($event)"
+                   [checked]="(myCert$|async).isActive">
+                        <p id="activeButtonId" class="activeButton">
+                    <span class="certIsActive" *ngIf="myCert.isActive==true">Active</span>
+                    <span class="certIsNotActive" *ngIf="myCert.isActive==false">Not Active</span></p>
+                </mat-slide-toggle>
+
+              </div>
+
+
+             </div>
             </div>
           </div>
 
-          <div class="infoSection">
-            <div class="infoContainer">
-
-
-
-
-              <div class="label-wrapper">
-
-
-              <mat-label
-                  for="certIssuingBodyNameId"
-                  id="certIssuingBodyNameLabelId"
-                  >Issuing Body: </mat-label>
-
-
-                </div>
-              <mat-form-field>
-
-                <input
-                  type="text"
-                  matInput
-                  placeholder="{{myCert.issuingBody_Name}}"
-
-                  formControlName="issuingBodyName"
-                  id="certIssuingBodyNameInputId"
-                />
-              </mat-form-field>
-            </div>
-          </div>
-
-            <div class="infoSection">
-            <div class="infoContainer">
-
-              <app-image-getter [Title]="'Issuing Body Logo'" [docID]="myCert.id" [projectCreatorID]="myCert.projectCreatorID"
-                                [typeOfClass]="getClass()" (mediaRtUrl)="processNewLogoUrlRt($event)"
-                                [preview]="myCert.issuingBody_Logo"
-                                class="logoGetter" >
-                            </app-image-getter>
-
-
-            </div>
-          </div>
+     
 </div>
 
            <app-edit-action-buttons

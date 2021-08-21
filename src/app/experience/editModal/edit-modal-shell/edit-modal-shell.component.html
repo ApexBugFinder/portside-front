@@ -230,15 +230,10 @@
                 </div>
                 <div class="actionButtonsSection">
                         <div class="actionButtonContainer">
-                            <!-- <button mat-raised-button class="actionButton deleteButton"
 
-                            (click)="deleteFromDB()">Delete</button> -->
-                             <button class="actionButton deleteButton"
-                            (click)="deleteFromDB()">Delete</button>
-                            <button mat-raised-button class="actionButton resetButton" (click)="resetChanges()">Reset</button>
-                            <button mat-raised-button class="actionButton saveButton" (click)="saveToDB()">Save</button>
-
+                        <app-edit-action-buttons (save)="saveToDB()" (reset)="resetChanges()" (delete)="deleteFromDB()"></app-edit-action-buttons>
                         </div>
+
                 </div>
             </div>
 

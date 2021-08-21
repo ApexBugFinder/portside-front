@@ -6,7 +6,29 @@
     align-items: center;
     justify-content: center;
     column-gap: 20px;
+    .deleteButton {
 
+      background-color: transparent;
+      border: none;
+      color: darkred;
+      border-radius: 10px;
+      line-height: 2.5em;
+      ;
+      text-shadow: 5px 5px 15px 5px #000000;
+    }
+
+    .deleteButton:hover {
+
+      text-shadow: 5px 5px 15px #000000;
+    }
+    .resetButton {
+        background-color: transparent;
+        border: none;
+        color: darkgreen;
+        border-radius: 10px;
+        line-height: 2.5em;
+        text-shadow: 5px 5px 15px 5px #000000;
+    }
     .saveButton {
       background-color: var(--accent2Color);
       border: 1px solid var(--secondaryColor);

@@ -1,4 +1,59 @@
+@use 'sass:map';
+// @use '~@angular/material' as mat;
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$portfolio-front-primary: mat-palette($mat-purple);
+$portfolio-front-secondary: mat-palette($mat-amber, A200, A100, A400);
+$portfolio-front-accent: mat-palette($mat-blue, A200, A100, A400);
+  $special-primary: mat-palette($mat-blue);
+  $special-accent: mat-palette($mat-amber, A200, A100, A400);
+  $special-theme: mat-light-theme((
+    color: (
+      primary: $special-primary,
+      accent: $special-accent
+    )
+  ));
+// The warn palette is optional (defaults to red).
+$portfolio-front-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$portfolio-front-theme: mat-light-theme((
+  color: (
+    primary: $portfolio-front-primary,
+
+    accent: $portfolio-front-accent,
+    warn: $portfolio-front-warn,
+  )
+));
+
+.custom-style {
+
+
+  @include angular-material-theme($special-theme);
+
+}
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($portfolio-front-theme);
+@include mat-core-color($portfolio-front-theme);
+@include mat-core-theme($portfolio-front-theme);
+@include mat-button-theme($portfolio-front-theme);
+
 /* You can add global styles to this file, and also import other style files */
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; padding: 0;}
@@ -103,7 +158,7 @@ padding: 0 20px;
    padding: 0;
    overflow-x: hidden;
    margin: 0;
-
+  border-left: 10px blue solid;
 
   //  border: 3px solid black;
 mat-dialog-container {
@@ -111,6 +166,7 @@ mat-dialog-container {
   overflow-x: hidden;
   padding: 0;
   width: 100%;
+
 
 }
 mat-dialog-content {
@@ -121,7 +177,7 @@ mat-dialog-content {
   margin: auto;
   width: 100%;
   overflow-x: hidden;
-   background-color: transparent;
+   background-color: white;
 
   .shellContainer {
     width: 560px;
@@ -135,7 +191,9 @@ mat-dialog-content {
 //  }
 }
 
-
+ .certIsActive {
+   color: var(--accent1Color);
+ }
 .showLogo {
   display:block;
 }
@@ -149,3 +207,6 @@ mat-dialog-content {
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

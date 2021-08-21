@@ -54,7 +54,7 @@ export enum DegreeActionTypes {
   SET_CURRENT_DEGREE_GRADUATION_YR_FROM_DEGREE_SHELL_EDIT_CPT = '[CURRENT DEGREE] SET DEGREE GRADUATION YEAR FROM DEGREE SHELL EDIT CPT',
   SET_CURRENT_DEGREE_isGRADUATED_FROM_DEGREE_SHELL_EDIT_CPT = '[CURRENT DEGREE] SET DEGREE IS GRADUATED FROM DEGREE SHELL EDIT CPT',
   SET_CURRENT_DEGREE_DEGREE_TYPE_FROM_DEGREE_SHELL_EDIT_CPT = '[CURRENT DEGREE] SET DEGREE TYPE FROM DEGREE SHELL EDIT CPT',
-
+  SET_CURRENT_DEGREE_INSTITUTION_LOGO_FROM_DEGREE_SHELL_EDIT_CPT = '[CURRENT DEGREE] SET INSTITUTION LOGO FROM DEGREE SHELL EDIT CPT',
   // CLEAR FROM EFFECTS -SAVE UPDATE DELETE (6)
   CLEAR_ORIGINAL_DEGREE_FROM_DEGREE_EFFECTS_SAVE = '[DEGREE] LEAR ORIGINAL DEGREES FROM DEGREE EFFECTS SAVE',
   CLEAR_CURRENT_DEGREE_FROM_DEGREE_EFFECTS_SAVE = '[DEGREE] CLEAR CURRENT DEGREES FROM DEGREE EFFECTS SAVE',
@@ -76,6 +76,7 @@ export enum DegreeActionTypes {
   CLEAR_CURRENT_DEGREE_GRADUATION_YR_FROM_DEGREE_SHELL_EDIT_CPT = '[CURRENT DEGREE] CLEAR DEGREE GRADUATION YEAR FROM DEGREE SHELL EDIT CPT',
   CLEAR_CURRENT_DEGREE_isGRADUATED_FROM_DEGREE_SHELL_EDIT_CPT = '[CURRENT DEGREE] CLEAR DEGREE IS GRADUATED FROM DEGREE SHELL EDIT CPT',
   CLEAR_CURRENT_DEGREE_DEGREE_TYPE_FROM_DEGREE_SHELL_EDIT_CPT = '[CURRENT DEGREE] CLEAR DEGREE DEGREE TYPE FROM DEGREE SHELL EDIT CPT',
+  CLEAR_CURRENT_DEGREE_INSTITUTION_LOGO_FROM_DEGREE_SHELL_EDIT_CPT = '[CURRENT DEGREE] CLEAR INSTITUTION LOGO FROM DEGREE SHELL EDIT CPT',
   // UPDATE (1)
 
   RESET_CURRENT_DEGREE_FROM_DEGREE_SHELL_EDIT_CPT = '[CURRENT DEGREE] RESETS CURRENT DEGREE BACK TO ORIGINAL PROJECT FROM DEGREE SHELL EDIT CPT',
@@ -174,6 +175,13 @@ export class SetCurrentDegreeIsGraduatedFromDegreeShellEditCpt
   constructor(public payload: boolean) {}
 }
 
+export class SetCurrentDegreeInstitutionLogoFromDegreeShellEditCpt
+  implements Action
+  {
+    readonly type =
+        DegreeActionTypes.SET_CURRENT_DEGREE_INSTITUTION_LOGO_FROM_DEGREE_SHELL_EDIT_CPT;
+    constructor(public payload: string) {}
+  }
 
 
 
@@ -206,7 +214,9 @@ export class ClearCurrentDegreeFromDegreeEffectsDelete implements Action {
   readonly type = DegreeActionTypes.CLEAR_CURRENT_DEGREE_FROM_DEGREE_EFFECTS_DELETE;
 }
 
-
+export class ClearCurrentDegreeInstitutionLogoFromDegreeShellEdit implements Action {
+  readonly type = DegreeActionTypes.CLEAR_CURRENT_DEGREE_INSTITUTION_LOGO_FROM_DEGREE_SHELL_EDIT_CPT;
+}
 
 
 
@@ -244,6 +254,7 @@ export class ClearCurrentDegreeInstitutionFromDegreeShellEdit implements Action 
     readonly type = DegreeActionTypes.CLEAR_CURRENT_DEGREE_INSTITUTION_FROM_DEGREE_SHELL_EDIT_CPT;
 
 }
+
 
 export class ClearCurrentDegreeCityFromDegreeShellEdit implements Action {
     readonly type = DegreeActionTypes.CLEAR_CURRENT_DEGREE_CITY_FROM_DEGREE_SHELL_EDIT_CPT;
@@ -368,7 +379,7 @@ export type DegreeActions =
 
   // FROM EDUCATION CPT (1)
   | SetCurrentDegreeFromEducationCPT
-  
+
   // SET FROM DEGREE EDIT SHELL (7)
   | SetCurrentDegreeIdFromDegreeShellEditCpt
   | SetCurrentDegreeProjectCreatorIDFromDegreeShellEditCpt
@@ -380,6 +391,7 @@ export type DegreeActions =
   | SetCurrentDegreeStateDegreeShellEditCpt
   | SetCurrentDegreeIsGraduatedFromDegreeShellEditCpt
   | SetCurrentDegreeGraduationYrFromDegreeShellEditCpt
+  | SetCurrentDegreeInstitutionLogoFromDegreeShellEditCpt
 
   // CLEAR FROM CERT EDIT ShELL (7)
   | ClearCurrentDegreeIdFromDegreeShellEdit
@@ -392,7 +404,9 @@ export type DegreeActions =
   | ClearCurrentDegreeStateFromDegreeShellEdit
   | ClearCurrentDegreeIsGraduatedFromDegreeShellEditCpt
   | ClearCurrentDegreeGraduationYrFromDegreeShellEditCpt
+  | ClearCurrentDegreeInstitutionLogoFromDegreeShellEdit
   | ResetCurrentDegreeToOriginal
+
 
   // CLEAR FROM EFFECTS SAVE UPDATE DELETE LOAD (6)
   | ClearOriginalDegreeFromDegreeEffectsSave

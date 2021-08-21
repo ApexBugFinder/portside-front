@@ -1,0 +1,21 @@
+// @use '~@angular/material'as mat;
+// @include mat.core();
+
+
+// $my-palette: mat.$blue-palette;
+// $my-primary: mat.define-pallete(mat.$blue-palette, 100);
+// $my-secondary: mat.define-pallete(mat.$purple50-pallete, 800);
+// $my-warn: mat.define-pallete(mat.$red)
+// $theming-material-components-primary: mat-pallete( mat.$blue-pallete, 100);
+// $theming-material-components-accent: mat-palette(mat.$purple50-pallete, 800, 200, 900);
+// $theming-material-components-warn: mat-palette(mat.$red-pallete);
+
+// $theming-material-components-theme: mat-light-theme
+// (
+//   $theming-material-components-primary,
+//   $theming-material-components-accent,
+//   $theming-material-components-warn
+// );
+// @include angular-material-theme($theming-material-components-theme);
+
+

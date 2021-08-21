@@ -1,5 +1,5 @@
 import { createSelector } from '@ngrx/store';
-import { selectDegreeEntityDataState, selectDegreeShellState  } from '../../state';
+import { selectDegreeShellState  } from '../../state';
 import * as fromRoot from '../../../state/app.state';
 import * as fromDegreeShell from './degree-shell.reducer';
 import * as fromDegreesRoot from '../../Models/degree/state/degree.reducer';
@@ -25,6 +25,7 @@ export const getCurrentDegree = createSelector(
           degreeName: state.degreeName as string,
           minor: state.minor,
           institution: state.institution,
+          institutionLogo: state.institutionLogo,
           city: state.city,
           state: state.state,
           graduationYear: state.graduationYear,
@@ -61,6 +62,11 @@ export const getCurrentDegreeMinor = createSelector(
 export const getCurrentDegreeInstitution = createSelector(
     selectDegreeShellState,
     state => state.institution
+);
+
+export const getCurrentDegreeInstitutionLogo = createSelector(
+  selectDegreeShellState,
+  (state) => state.institutionLogo
 );
 
 export const getCurrentDegreeCity = createSelector(

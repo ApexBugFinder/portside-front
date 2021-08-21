@@ -12,7 +12,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatRippleModule } from '@angular/material/core';
-
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
 
   imports: [
@@ -28,7 +29,9 @@ import { MatRippleModule } from '@angular/material/core';
     MatInputModule,
     MatTableModule,
     MatCardModule,
-    MatRippleModule
+    MatRippleModule,
+    MatSlideToggleModule,
+    MatSelectModule,
 
   ],
   exports: [
@@ -44,7 +47,9 @@ import { MatRippleModule } from '@angular/material/core';
     MatInputModule,
     MatTableModule,
     MatCardModule,
-    MatRippleModule
+    MatRippleModule,
+    MatSlideToggleModule,
+    MatSelectModule
   ]
 })
 export class MaterialModule { }

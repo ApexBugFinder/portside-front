@@ -1,3 +1,4 @@
+@import '~@angular/material/theming';
 
 
 .shellContainer {
@@ -15,21 +16,24 @@
 
 .header {
   width: 100%;
-  margin: auto;
+  margin: auto auto 20px auto;
   font-size: 12px;
   font-family: furtura-pt;
-  padding: 5px;
+  padding: 0px;
   color: var(--secondaryColor);
-
+  .headerText {
+    margin-left: 20px;
+  }
 
 }
- .degreeContainer {
-  margin: 0px 10px;
+ .degreeContent {
+  margin: 30px 10px;
 
   justify-self: center;
-  width: 90%;
+  width: 80%;
   display: flex;
   flex-direction: column;
+  row-gap: 30px;
 
   justify-content: flex-end;
   align-self: center;
@@ -39,7 +43,8 @@
 
 
     .infoSection {
-      margin: 15px auto;
+
+      margin: 0px auto;
       justify-self: space-between;
       width: 100%;
 
@@ -48,14 +53,16 @@
 
         .label-wrapper {
                   width: 50%;
-                  background-color: var(--accent2Color);
+                  // background-color: var(--accent2Color);
+                  background-color: transparent;
                   height: 20px;
-                  padding: 4px 8px;
+                  padding: 4px 0px;
 
                   mat-label {
 
                     height: 20px;
-                    background-color: var(--accent2Color);
+                    // background-color: var(--accent2Color);
+                     background-color: transparent;
                     margin: 0;
                     font-size: 9px;
                     color: var(--secondaryColor);
@@ -67,14 +74,89 @@
           padding: 4px 0px;
         }
 
+        .institutionContainer {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            column-gap: 30px;
+             justify-content: space-between;
+             align-content: space-between;
+        }
+        .locationContainer {
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          column-gap: 30px;
+       justify-content: space-between;
+       align-content: space-between;
+
+        }
+           .degreeContainer {
+             width: 100%;
+             margin:0;
+             display: flex;
+             flex-direction: row;
+             column-gap: 30px;
+             justify-content: space-between;
+             align-content: space-between;
+            .degree {
+              display: flex;
+              flex-direction: column;
+              row-gap: 10px;
+              justify-content: space-between;
+              height: 100%;
+              mat-form-field {
+                padding: auto;
+              }
+            }
+           }
+        .graduationContainer {
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          column-gap: 30px;
+          justify-content: space-between;
+          align-content: space-between;
+          .graduated {
+            width: 150px;
+            display: flex;
+            flex-direction: column;
+            row-gap: 20px;
+            justify-content: space-between;
+            height: 100%;
+
+            mat-slide-toggle {
+              margin: auto 10px;
+              height: 100%;
+            }
+          }
+        }
+      }
+      .infoContainer.minor{
+      .label-wrapper {
+        width: 50%;
+      }
+      mat-form-field {
+        width: 50%;
+      }
       }
     }
 }
 app-edit-action-buttons {
-  margin-top: 40px;
+  margin-top: 30px;
   display: flex;
   flex-direction: row;
   column-gap: 30px;
   justify-content: space-evenly;
 }
+}
+.custom-style {
+  $special-primary: mat-palette($mat-blue, 200);
+  $special-accent: mat-palette($mat-amber, A200, A100, A400);
+  $special-theme: mat-light-theme((color: (primary: $special-primary,
+          accent: $special-accent)));
+
+  @include angular-material-theme($special-theme);
+
+
 }

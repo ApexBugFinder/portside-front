@@ -1,9 +1,15 @@
+mat-dialog-container {
+  padding: 0px;
 
+mat-dialog-content {
+  background-color: white;
+}
+  }
 .shellContainer {
 
 
 
-  padding: 10px;
+  padding: 10px 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,51 +36,61 @@
 
 
 
-.certContainer {
-  margin: 0px 10px;
+.certContent {
+ margin: 30px 10px;
 
-  justify-self: center;
-width: 90%;
-  display: flex;
-  flex-direction: column;
+ justify-self: center;
+ width: 80%;
+ display: flex;
+ flex-direction: column;
+ row-gap: 30px;
 
-  justify-content: flex-end;
-  align-self: center;
-  overflow-x: hidden;
+ justify-content: flex-end;
+ align-self: center;
+ overflow-x: hidden;
 
 
   .infoSection{
-    margin: 15px auto;
+    margin: 0px auto;
 
     justify-self: space-between;
     width: 100%;
 
 
     .infoContainer {
-      justify-content: space-between;
+
       width: 100%;
 
       .label-wrapper {
           width: 50%;
-          background-color: var(--accent2Color);
+
           height: 20px;
-          padding: 4px 8px;
+          padding: 4px 0px;
 
       mat-label {
 
         height: 20px;
-        background-color: var(--accent2Color);
+
         margin: 0;
         font-size: 9px;
         color: var(--secondaryColor);
       }
 
   }
+  .certInfo,
+  .issuingBodyContainer {
+          display: flex;
+          flex-direction: row;
+          column-gap: 30px;
+          justify-content: space-between;
+          width: 100%;
+        }
   mat-form-field {
         margin: 0px;
         width: 100%;
         padding: 4px 0px;
       }
+
    .infoSection#certNameSection {
      margin-top: 20px 0;
      padding: 20px;
@@ -82,16 +98,32 @@ width: 90%;
 
       .isActiveContainer {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-between;
+        row-gap: 10px;
+        .slideToggleDiv {
+          display: flex;
+          flex-direction: row;
+          column-gap: 10px;
+          width: 200px;
+          mat-slide-toggle {
+             margin: auto 10px;
+             height: 100%;
+           }
+
+           p.activeButton {
+                margin: 10px 20px;
+
+            }
+        }
+
+
       }
 
     }
   }
 }
-.activeButton {
-  margin: 10px 20px;
-}
+
 
 
 .logoGetter {
@@ -101,11 +133,18 @@ width: 90%;
 }
 
 app-edit-action-buttons {
-  margin-top: 40px;
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
   column-gap: 30px;
-  justify-content: space-evenly;
+  justify-content:flex-end;
 }
 }
 
+ .certIsActive {
+   color: var(--accent3Color);
+ }
+.certIsNotActive
+ {
+   color: var(--secondaryColor);
+ }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Store, select  } from '@ngrx/store';
@@ -9,6 +9,8 @@ import * as fromCertficationShell from '../state';
 import * as CertificationActions from '../state/certification-shell.actions';
 import * as fromShared from '../../../shared/state';
 import * as fromAuth from '../../../auth/state';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { ThemePalette } from '@angular/material/core';
 @Component({
   selector: 'app-edit-certification-shell',
   templateUrl: './edit-certification-shell.component.html',
@@ -24,7 +26,7 @@ export class EditCertificationShellComponent implements OnInit {
   authenticatedUserId: string;
   authenticated$: Observable<boolean>;
   auth: boolean;
-
+  origValues: boolean= true;
   certNameAbstractControl: AbstractControl | null;
   certIdAbstractControl: AbstractControl | null;
   isActiveAbstractControl: AbstractControl | null;
@@ -32,10 +34,12 @@ export class EditCertificationShellComponent implements OnInit {
   issuingBodyLogoAbstractControl: AbstractControl | null;
   issuedDateAbstractControl: AbstractControl | null;
   controllerClass: string = 'Certification';
+  myColor: ThemePalette = 'primary';
   constructor(
     private fb: FormBuilder,
     private sharedStore: Store<fromShared.SharedState>,
     private authStore: Store<fromAuth.State>,
+    private renderer: Renderer2,
     private certificationShellStore: Store<fromCertficationShell.CertificationShellState>,
     private dialogRef: MatDialogRef<EditCertificationShellComponent>
   ) {
@@ -62,6 +66,7 @@ export class EditCertificationShellComponent implements OnInit {
           console.log(value);
           this.myCert = value;
           this.setControls(value);
+
         }
       },
       error: (err) =>
@@ -207,7 +212,8 @@ export class EditCertificationShellComponent implements OnInit {
       .pipe(debounceTime(500), distinctUntilChanged())
       .subscribe({
         next: (value: boolean | null) => {
-          if (value) {
+          if (value != null) {
+            console.log('CHANGE FROM ABSTRACT', value);
             this.certificationShellStore.dispatch(
               new CertificationActions.SetCurrentCertificationIsActiveFromCertShellEditCpt(
                 value
@@ -326,6 +332,22 @@ export class EditCertificationShellComponent implements OnInit {
       new CertificationActions.UpdateCertificationToDB()
     );
     this.dialogRef.close();
+    }
+
+  }
+
+  isCertActive(event: MatSlideToggleChange) {
+    console.log('HELLO');;
+    let Ctl = document.getElementById('activeSlideToggleId');
+    if (event.checked) {
+       this.isActiveAbstractControl?.setValue(true);
+console.log('HELLO ADD CLASS');
+     this.renderer.addClass(Ctl, 'certIsActive');
+
+    } else if (!event.checked){
+       this.isActiveAbstractControl?.setValue(false);
+      console.log('HELLO REMOVE CLASS');
+      this.renderer.removeClass(Ctl, 'certIsActive');
     }
 
   }

@@ -4,6 +4,7 @@ import * as fromDegreeShell from './degree-shell.reducer';
 import * as fromDegreeRoot from '../../state';
 
 import { DegreeActionTypes, DegreeActions  } from './degree-shell.actions';
+import { act } from "@ngrx/effects";
 
 export interface DegreeShellState {
   originalDegree: Degree | undefined;
@@ -13,6 +14,7 @@ export interface DegreeShellState {
   degreeType?: string;
   minor?: string;
   institution?: string;
+  institutionLogo?: string;
   city?: string;
   state?: string;
   graduationYear?: Date;
@@ -41,6 +43,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           degreeType: action.payload.degreeType,
           minor: action.payload.minor,
           institution: action.payload.institution,
+          institutionLogo: action.payload.institutionLogo,
           city: action.payload.city,
           state: action.payload.state,
           graduationYear: action.payload.graduationYear,
@@ -55,6 +58,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           degreeType: action.payload.degreeType,
           minor: action.payload.minor,
           institution: action.payload.institution,
+          institutionLogo: action.payload.institutionLogo,
           city: action.payload.city,
           state: action.payload.state,
           graduationYear: action.payload.graduationYear,
@@ -70,6 +74,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           degreeType: action.payload.degreeType,
           minor: action.payload.minor,
           institution: action.payload.institution,
+          institutionLogo: action.payload.institutionLogo,
           city: action.payload.city,
           state: action.payload.state,
           graduationYear: action.payload.graduationYear,
@@ -84,6 +89,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           degreeType: action.payload.degreeType,
           minor: action.payload.minor,
           institution: action.payload.institution,
+          institutionLogo: action.payload.institutionLogo,
           city: action.payload.city,
           state: action.payload.state,
           graduationYear: action.payload.graduationYear,
@@ -119,6 +125,11 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           ...state,
           institution: action.payload,
         };
+        case DegreeActionTypes.SET_CURRENT_DEGREE_INSTITUTION_LOGO_FROM_DEGREE_SHELL_EDIT_CPT:
+          return {
+            ...state,
+            institutionLogo: action.payload
+          };
       case DegreeActionTypes.SET_CURRENT_DEGREE_CITY_FROM_DEGREE_SHELL_EDIT_CPT:
         return {
           ...state,
@@ -239,6 +250,11 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           ...state,
           institution: initialState.institution,
         };
+        case DegreeActionTypes.CLEAR_CURRENT_DEGREE_INSTITUTION_LOGO_FROM_DEGREE_SHELL_EDIT_CPT:
+          return {
+            ...state,
+            institutionLogo: ''
+          };
       case DegreeActionTypes.CLEAR_CURRENT_DEGREE_CITY_FROM_DEGREE_SHELL_EDIT_CPT:
         return {
           ...state,
@@ -270,6 +286,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           degreeName: state.originalDegree?.degreeName as string,
           minor: state.originalDegree?.minor,
           institution: state.originalDegree?.institution,
+          institutionLogo: state.originalDegree?.institutionLogo,
           city: state.originalDegree?.city,
           state: state.originalDegree?.state,
           graduationYear: state.originalDegree?.graduationYear,
@@ -289,6 +306,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
             degreeType: action.payload[0].degreeType,
             minor: action.payload[0].minor,
             institution: action.payload[0].institution,
+            institutionLogo: action.payload[0].institutionLogo,
             city: action.payload[0].city,
             state: action.payload[0].state,
             graduationYear: action.payload[0].graduationYear,
@@ -317,6 +335,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           degreeType: action.payload.degreeType,
           minor: action.payload.minor,
           institution: action.payload.institution as string,
+          institutionLogo: action.payload.institutionLogo as string,
           city: action.payload.city,
           state: action.payload.state,
           graduationYear: action.payload.graduationYear,
@@ -339,6 +358,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           degreeType: action.payload.degreeType,
           minor: action.payload.minor,
           institution: action.payload.institution as string,
+          institutionLogo: action.payload.institutionLogo as string,
           city: action.payload.city,
           state: action.payload.state,
           graduationYear: action.payload.graduationYear,
@@ -360,6 +380,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           degreeType: action.payload.degreeType,
           minor: action.payload.minor,
           institution: action.payload.institution as string,
+          institutionLogo: action.payload.institutionLogo as string,
           city: action.payload.city,
           state: action.payload.state,
           graduationYear: action.payload.graduationYear,

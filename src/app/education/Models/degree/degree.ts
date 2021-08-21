@@ -6,6 +6,7 @@ export interface Degree {
     degreeName: string;
     degreeType?: string;
     minor?: string;
+    institutionLogo?: string;
     institution?: string;
     city?: string;
     state?: string;
@@ -20,3 +21,8 @@ export const defaultDegree: Degree = {
     projectCreatorID: '',
     degreeName: 'Default Degree'
 }
+ export interface DegreeType
+ {
+   value: string;
+   viewValue: string;
+ }
