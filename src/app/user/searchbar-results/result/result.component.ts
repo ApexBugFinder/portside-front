@@ -5,6 +5,7 @@ import { ViewUserComponent } from '../../view-user/view-user.component';
 import * as fromShared from '../../../shared/state';
 import { Store, select } from '@ngrx/store';
 import * as sharedActions from '../../../shared/state/shared-actions';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -16,10 +17,13 @@ export class ResultComponent implements OnInit {
 
   @Input() user: UserState;
   userData: User;
+  profilePic$: Observable<string>;
   constructor(
     public dialog:MatDialog,
     private sharedStore: Store<fromShared.SharedState>
-    ) { }
+    ) {
+      this.profilePic$ = this.sharedStore.pipe(select(fromShared.getDefaultProfilePic));
+    }
 
   ngOnInit(): void {
     console.log(this.user);

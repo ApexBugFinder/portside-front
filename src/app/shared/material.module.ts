@@ -14,6 +14,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatRippleModule } from '@angular/material/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
 @NgModule({
 
   imports: [
@@ -32,6 +33,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatRippleModule,
     MatSlideToggleModule,
     MatSelectModule,
+    MatTooltipModule
 
   ],
   exports: [
@@ -49,7 +51,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatCardModule,
     MatRippleModule,
     MatSlideToggleModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTooltipModule
   ]
 })
 export class MaterialModule { }

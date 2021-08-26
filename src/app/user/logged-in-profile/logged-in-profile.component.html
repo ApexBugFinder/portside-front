@@ -1,15 +1,54 @@
-<div class="container3" *ngIf="authUserId$|async">
+
+
+  <div class="container3" *ngIf="authUserId$|async">
   <div class="container4">
     <div class="picContainer">
-      <img [profilePic]="(authUserData?.userPicUrl)||(defaultProfilePic$|async)" class="pic"alt="" (click)="viewProfile()">
+      <img [profilePic]="(authUserData?.userPicUrl)||(defaultProfilePic$|async)" class="pic"alt="" (click)="viewAuthProfile()">
     </div>
   </div>
 </div>
 
-<div class="container1" *ngIf="userId$|async">
+<div class="container0">
+
+
+<div class="container1" *ngIf="userId$|async" id="container1Id">
+  <div class="menu" id="menuId">
+  <p class="menuItem home" routerLink="home" id="homeId">
+    <span><fa-icon [icon]="faHomeIcon" class="icon homeIcon" matTooltip="Home"></fa-icon></span></p>
+
+  <span class="menuItem  projects" routerLink="projects" id="projectId">
+      <span><fa-icon [icon]="faProjectsIcon"  class="icon projectIcon" matTooltip="View Projects"></fa-icon></span>
+      <span class="projectText">
+          Projects
+      </span>
+    </span>
+
+  <span class="menuItem experiences" routerLink="experiences" id="experiencesId">
+        <span><fa-icon [icon]="faExperiencesIcon"  class="icon experienceIcon" matTooltip="View Experiences"></fa-icon></span>
+      <span class="experienceText">
+          Experiences
+      </span>
+    </span>
+
+    <span class="menuItem education" routerLink="education" id="educationId">
+          <span><fa-icon [icon]="faEducationIcon"  class="icon educationIcon" matTooltip="View Education"></fa-icon></span>
+          <span class="educationText">
+              Education
+          </span>
+    </span>
+    <span class="menuItem login" routerLink="editMode" id="loginId">
+      <span class="loginText">
+          SignIn
+      </span>
+      <span><fa-icon [icon]="faKeyIcon"  class="icon loginIcon" matTooltip="Sign In"></fa-icon></span></span>
+
+  </div>
   <div class="container2">
+
+
     <div class="picContainer">
       <img [profilePic]="(userData?.userPicUrl)||(defaultProfilePic$|async)" class="pic"alt="" (click)="viewProfile()">
     </div>
   </div>
+</div>
 </div>

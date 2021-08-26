@@ -14,18 +14,7 @@
      border: solid 1px #eee0e056;
 
 
-.header {
-  width: 100%;
-  margin: auto auto 20px auto;
-  font-size: 12px;
-  font-family: furtura-pt;
-  padding: 0px;
-  color: var(--secondaryColor);
-  .headerText {
-    margin-left: 20px;
-  }
 
-}
  .degreeContent {
   margin: 30px 10px;
 
@@ -39,7 +28,18 @@
   align-self: center;
   overflow-x: hidden;
 
+.header {
+  width: 100%;
+  margin: auto auto 20px auto;
+  font-size: 12px;
+  font-family: furtura-pt;
+  padding: 0px;
+  color: var(--secondaryColor);
+  .headerText {
+    margin-left: 20px;
+  }
 
+}
 
 
     .infoSection {

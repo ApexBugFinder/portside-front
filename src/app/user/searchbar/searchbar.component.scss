@@ -2,7 +2,7 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-   
+
     align-self: flex-start;
     justify-content: flex-start;
     .searchForm {
@@ -20,15 +20,15 @@
     justify-content: center;
     align-items: center;
       .searchInput{
-        
+
         input[type='text']#searchInputId {
-      border:none;
-      border-bottom: 1px black solid;
+      // border:none;
+      // border-bottom: 1px black solid;
       width: 200px;
       background-color: transparent;
     }
       }
-    
+
     .searchButtonContainer{
       display:flex;
       margin: 0 0 0 0;
@@ -42,6 +42,9 @@
      background-color: var(--accent2Color);
 
     }
+    .searchButtonContainer:hover {
+      border: 2px solid var(--accent3Color);
+    }
   }
-    
+
   }

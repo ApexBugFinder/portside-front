@@ -1,5 +1,5 @@
-<div class="profileContainer">
-    <!--  -->
+<div class="profileContainer" mat-dialog-content>
+
         <div class="profilePicContainer">
 
                 <img [profilePic]="userToView.userPicUrl?userToView.userPicUrl:profilePic" class="profilePic" alt="">
@@ -11,7 +11,7 @@
                                 class="logoGetter" >
                             </app-image-getter>
 
-            <!-- -->
+
         </div>
 
 
@@ -31,11 +31,22 @@
 
         </div>
         <mat-divider></mat-divider>
+         <app-profile-buttons [inputEventKey]="eventKey"
+         (back)="toBack($event)"
+         (toProjects)="toProjects($event)"
+         (toExperiences)="toExperiences($event)"
+         (toEducation)="toEducation($event)"
+          ></app-profile-buttons>
 
         <div class="infoContainer routerWrapper">
 <router-outlet name="profile" class="routerInput"></router-outlet>
         </div>
 
-      <app-profile-buttons [inputEventKey]="eventKey" (back)="toBack($event)" (toProject)="toProjects($event)" ></app-profile-buttons>
+
     </div>
 </div>
+
+
+
+
+

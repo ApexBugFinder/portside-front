@@ -1,17 +1,20 @@
 <div class="searchSection">
-    <form class="searchForm" id="searchFormId" [formGroup]="searchForm">
+    <form class="searchForm" id="searchFormId" [formGroup]="searchForm" (ngSubmit)="searchWord()">
       <div class="searchContainer">
-     
+
           <div class="searchInput">
-            <input type="text" name="searchInputName" formControlName="searchInput" id="searchInputId">
+            <mat-form-field>
+                <input matInput type="text" name="searchInputName" formControlName="searchInput" id="searchInputId">
+            </mat-form-field>
+
           </div>
-          
+
           <div class="searchButtonContainer" (click)="searchWord()">
 
             <fa-icon [icon]="faSearch" (click)="searchWord()" class="icon"></fa-icon>
 
           </div>
-      
+
       </div>
     </form>
   </div>

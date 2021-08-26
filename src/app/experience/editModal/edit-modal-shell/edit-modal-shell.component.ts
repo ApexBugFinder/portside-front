@@ -11,7 +11,7 @@ import { Role } from '../../Models/role';
 import * as experienceShellActions from '../../experience-shell/state/experience-shell.actions';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { editState } from 'src/app/shared/models/shared';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -27,6 +27,7 @@ import { DatePipe } from '@angular/common';
 export class EditModalShellComponent implements OnInit {
 
   faTrash = faTrash;
+  faAdd = faPlusCircle;
   readonly classe: string = 'Experiences';
   originalExp$: Observable<Experience | undefined>;
   originalExp: Experience | undefined;

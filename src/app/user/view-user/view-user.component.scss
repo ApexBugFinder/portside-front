@@ -1,10 +1,16 @@
+mat-dialog-container {
+  overflow: hidden;
+  width: 560px;
+}
 .profileContainer {
-    display:flex;
 
+    display:flex;
+    overflow: hidden;
     flex-direction:row;
     column-gap: 20px;
-    width:100%;
-    margin:auto;
+    width:560px;
+    overflow-x: hidden;
+    margin:0;
     justify-content: flex-start;
     align-items: flex-start;
     .profilePicContainer{
@@ -75,6 +81,8 @@
    width: 100%;
   .titleHeading {
     width: 80%;
+    font-family: futura-pt;
+    font-size: 16px;
   }
   .spacer {
     width: auto;
@@ -95,7 +103,7 @@
  }
     }
     app-profile-buttons {
-      margin-top: 20px;
+      margin-top: 0px;
     }
   }
 }

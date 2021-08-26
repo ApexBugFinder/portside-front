@@ -9,8 +9,13 @@ mat-card{
     flex-direction: column;
     margin:0 auto;
     row-gap:10px;
+    padding: 8px;
     .userPhoto{
+      align-self: center;
         border-radius: 10px;
+        max-width: 150px;
+        max-height: 150px;
+
     }
     .username {
         align-self: center;

@@ -2,12 +2,20 @@
 
     <div mat-dialog-content>
         <form action="" class="myExperienceForm" [formGroup]="myExperienceForm" >
-            <div class="shellContainer">
-                <div class="shellContent">
-                    <div class="header">
-                        <p>Edit Experiences</p>
-                    <mat-divider class="mat-devider"></mat-divider>
 
+
+            <div class="shellContainer">
+
+                <div class="shellContent">
+
+                    <div class="header">
+
+                      <div class="headerText">
+                          <p>Edit Experiences</p>
+                      </div>
+
+
+ <mat-divider class="mat-devider"></mat-divider>
 
                     </div>
 
@@ -51,7 +59,8 @@
 
                     <div class="infoSection">
                         <div class="infoContainer dateAndTitle">
-                            <mat-form-field class="title">
+                          <div class="title">
+                         <mat-form-field>
                                 <div class="label-wrapper">
                                     <mat-label class="infoLabel">Title</mat-label>
                                 </div>
@@ -65,10 +74,12 @@
 
                                 </div>
                             </mat-form-field>
+                          </div>
+
                             <div class="duration">
 
 
-                                <mat-form-field class="infoContainer">
+                                <mat-form-field >
                                     <div class="label-wrapper">
                                         <mat-label class="infoLabel">Started
                                           <span class="origDate">{{ origStart }}</span>
@@ -86,7 +97,7 @@
 
                                     </div>
                                 </mat-form-field>
-                                <mat-form-field class=infoContainer>
+                                <mat-form-field >
                                     <div class="label-wrapper">
                                         <mat-label class="infoLabel">Completed
                                           <span class="origDate">{{origComplete}}</span>
@@ -194,17 +205,20 @@
                     </div>
                     <div class="infoSection">
                         <div class="infoContainer">
-                            <mat-form-field class="addRole">
+                            <div class="addRoleContainer">
+                              <div class="addRoleInfo">
+                                <mat-form-field class="addRole">
                                 <div class="label-wrapper addRole">
                                     <mat-label class="infoLabel">Add Role:</mat-label>
+
                                 </div>
 
                                 <div class="infoData">
                                     <div class="roleContainer">
                                         <div class="roleContent">
-                                            <div class="addRoletitle">
+                                            <div class="addRoleTitle">
                                                 <mat-label class="addRoleHeader">Title</mat-label>
-                                                <input type="text" matInput class="roleTitle" placeholder="" formControlName="myTitle" id="roleTitleId" name="roleTitle"/>
+                                                <input type="text" matInput class="addRoleTitle" placeholder="" formControlName="myTitle" id="roleTitleId" name="roleTitle"/>
 
                                             </div>
                                             <div class="addRoleDescription">
@@ -213,15 +227,22 @@
                                                 </mat-label>
                                                 <textarea matInput placeholder="" type="text"class="roleMyRole" formControlName="myRole" id="roleMyRoleId" name="roleMyRole"></textarea>
                                             </div>
-                                            <div class="spacer"></div>
 
-                                            <button class="addRoleButton" mat-raised-button (click)="addRole()">Add</button>
+
+
                                         </div>
 
                                     </div>
 
                                 </div>
                             </mat-form-field>
+
+                          </div>
+                              <div class="addRoleButton">
+                                   <fa-icon (click)="addRole()" [icon]="faAdd"></fa-icon>
+                              </div>
+                            </div>
+
 
                         </div>
                     </div>

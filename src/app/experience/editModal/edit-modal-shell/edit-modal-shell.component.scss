@@ -1,77 +1,115 @@
-mat-dialog-container {
-    padding: 0;
-    margin: 0;
-    width: 900px;
-}
-mat-dialog-content {
-    padding: 0;
-    margin: 0;
-    width: 900px;
-    overflow-x: hidden;
+// mat-dialog-container {
+//     padding: 0;
+//     margin: 0;
+//     width: auto;
+//     overflow: visible;
+// }
+// mat-dialog-content {
+//     padding: 0;
+//     margin: 0;
+//     width: 900px;
+//     overflow-x: hidden;
 
-}
+// }
 
 .shellContainer {
-    width: 860px;
+  padding: 0 10px 30px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  scroll-behavior: auto;
+  overflow: visible;
+  width: 560px;
+  margin: 0 auto;
+  overflow-y: visible;
+  align-content: space-between;
+  border: solid 1px #eee0e056;
+  font-family: furtura-pt;
+//  .siteLogo {
+//    display: flex;
+//    flex-direction: column;
+//    position: relative;
+
+
+//    z-index: 1;
+//    margin-top: -10px;
+//    margin-left: -40px;
+//    width: 80px;
+//    height: 80px;
+//    background-image: url('../../../../assets/images/svg/SVG/SaveButton.svg');
+//    background-size: 60px;
+//    background-position: center center;
+//    padding: auto auto;
+
+//    background-repeat: no-repeat;
+
+//    .sL {
+//      margin: auto auto;
+//      height: 50px;
+//      width: 50px;
+//      z-index: 20;
+
+//    }
+//    span.pee{
+//      font-family: surburban;
+//    }
+//  }
+  .shellContent {
+      margin: 30px 10px;
+      overflow:visible;
+
+  justify-self: center;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+
+  justify-content: flex-end;
+  align-self: center;
+  overflow-x: hidden;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    column-gap: 10px;
+    width: 100%;
+    margin: 0 auto 0px auto;
+    align-items: flex-start;
+    font-size: 12px;
+    font-family: furtura-pt;
     padding: 0px;
-    margin: 0;
-    align-content:space-between;
-    overflow:hidden;
-    .shellContent {
-        width: 860px;
-        display: flex;
-        flex-direction: column;
-        row-gap: 20px;
-        justify-content: center;
-        overflow: hidden;
-        .header {
-            width: 90%;
-            margin: auto;
+    color: var(--secondaryColor);
+ .headerText {
+      margin-left: 0px;
+      vertical-align: center;
+      .headerTextFirst {
+        font-family: suburban;
+        font-size: 40px;
+      }
+      }
 
-
-        }
     }
-}
 
-.mat-divider {
-    border-top-color: var(--secondaryColor);
-    width: 100%;
-    margin: auto;
-}
-.headerAction {
-    width: 100%;
-    margin: 10px auto;
-    .headerActionContainer {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-    }
-}
-.addExperiencesButton {
-    border: none;
-    justify-self: flex-end;
 
-    float: right;
-}
-.experienceSlider {
-    width: 250px;
-    .experienceSliderContainer{
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        column-gap: 20px;
+ .mat-devider {
+   width: 100%;
+    margin: 0px 0 0 auto;
+    color: var(--secondaryColor);
     }
-}
+
+
+
 
 .infoSection {
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
 
     .infoContainer{
         display: flex;
         flex-direction: row;
-        column-gap: 50px;
-        justify-content: flex-start;
+        column-gap: 40px;
+        justify-content: space-between;
         padding: 0 auto;
         align-content: flex-start;
         margin-top: 0;
@@ -84,37 +122,30 @@ mat-dialog-content {
           padding-top: 0;
           border-bottom: 1px black solid;
         }
-        .infoContainer.dateAndTitle {
-            column-gap: 50px;
+       .infoContainer.dateAndTitle {
+         display: flex;
+         flex-direction: row;
+            justify-content: space-between;
 
-        }
-        mat-form-field.infoContainer {
-            margin: 0;
-            padding:0;
-            align-self: flex-start;
-            vertical-align: top;
-            height: 100%;
-            div.mat-form-field-label-wrapper {
-              padding: 0;
-            }
-            mat-label.infoLabel {
-              margin-top: 0;
-              padding-top: 0;
-            }
-        }
-        mat-form-field.title {
-            width: 253px;
-        }
+
+.duration {
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+
+}
+          }
+
         .mat-form-field-label-wrapper {
             width: 100%;
             padding-top:0;
         }
         .label-wrapper {
             width: 100%;
-            background-color: var(--accent2Color);
+            background-color: transparent;
             line-height: 0.9em;
             margin: 0px 0 8px 0;
-            padding: 5px 5px;
+            padding: 5px 0px;
         }
         .infoLabel {
             width: 100%;
@@ -141,12 +172,12 @@ mat-dialog-content {
             width: 100%;
             margin-top: 10px;
         }
-        // .infoLabel.addRole {
+
           input {
             padding: 5px 5px;
 
           }
-        // }
+
         .infoData {
             align-items: center;
             margin: 0;
@@ -225,14 +256,26 @@ mat-dialog-content {
            align-items: flex-start;
 
         }
-        .label-wrapper.addRole{
-          margin: 0 0 20px 0;
+
+        .addRoleContainer {
+          display: flex;
+          flex-direction: row;
+          column-gap: 30px;
+          width: 100%;
+          .addRoleInfo {
+            width: 80%;
+            .label-wrapper.addRole{
+            margin: 0 0 20px 0;
+            mat-form-field.addRole {
+              width: 100%;
+            }
         }
+
         .addRole.infoData {
           padding: 10px;
         }
         .addRoleTitle {
-            width: 20%;
+
             display: flex;
             flex-direction: column;
             padding: 0px 0px 20px 0;
@@ -242,23 +285,29 @@ mat-dialog-content {
             color: #707070;
         }
         .addRoleDescription {
-            width: 40%;
+            width: 100%;
             display: flex;
             flex-direction: column;
             padding-top: 8px;
         }
+          }
+          .addRoleButton {
+
+          }
+        }
+
         input#roleTitleId {
             width: 100%;
             background-color:#ecebeb2d;
             opacity: .7;
             border-bottom: var(--primaryColor) 1px solid;
         }
-        textarea#roleMyRoleId {
-            width: 100%;
-            background-color:#ecebeb2d;
-            opacity: .7;
-            border-bottom: var(--primaryColor) 1px solid;
-        }
+        // textarea#roleMyRoleId {
+        //     width: 100%;
+        //     background-color:#ecebeb2d;
+        //     opacity: .7;
+        //     border-bottom: var(--primaryColor) 1px solid;
+        // }
         .spacer{
             width: auto;
         }
@@ -267,6 +316,10 @@ mat-dialog-content {
             margin-right: 30px;
             margin-bottom: 20px;
             justify-self: flex-end;
+            border: none;
+            background-color: white;
+            color: var(--accent1Color);
+            font-size: 25px;
         }
     }
 }
@@ -275,55 +328,24 @@ mat-dialog-content {
 }
 
 .actionButtonsSection {
-    width: 100%;
+  display:flex;
+  flex-direction: column;
+
+  width: 100%;
     margin-top: 30px;
-    justify-self: flex-end;
+    justify-content: flex-end;
     .actionButtonContainer {
         width: 70%;
-        margin: auto auto 20px auto;
+        margin: auto 0 20px auto;
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
-        align-items: center;
+        align-items: flex-end;
         column-gap: 30px;
 
-        .resetButton {
-            background-color: var(--accent3Color);
-            color: white;
-        }
-        .deleteButton {
-            // background-color: var(--accent3Color);
-            background-color: transparent;
-            border: none;
-            color: darkred;
-            border-radius: 10px;
-            line-height: 2.5em;;
-            text-shadow:5px 5px 15px 5px #000000;
-        }
-        .deleteButton:hover {
-          // -webkit-box-shadow: 5px 5px 15px 5px #000000;
-          // box-shadow: 5px 5px 15px 5px #000000;
-            text-shadow:5px 5px 15px #000000;
-        }
 
-        .saveButton {
-            background-color: var(--accent2Color);
-
-        }
-
-        .publishButton {
-        background-color: var(--accent1Color);
-        border: 1px solid var(--accent3Color);
-        }
-        .actionButton {
-            // border-radius: 20px;
-        }
     }
 }
 
-.duration {
-    display: flex;
-    flex-direction: row;
-    column-gap: 20px;
 
 }

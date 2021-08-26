@@ -1,71 +1,225 @@
-.container1
- {
-  margin-top: -20px;
-   padding: 10px;
-  //  border: black 1px solid;
-  //  border-radius: 50%;
-    background-image: url('../../../assets/images/svg/SVG/SaveButton.svg');
+@import "../../../assets/css/mixins.scss";
+:root {
+  --homeTop: 90px;
+  --distTop: 50px;
+}
+.container0 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .container1 {
+    margin-top: 150px;
+    padding: 10px;
+    position: fixed;
+    width: 120px;
+    height: 120px;
+
+    align-items: center;
+    //  border: black 1px solid;
+    //  border-radius: 50%;
+    background-image: url("../../../assets/images/svg/SVG/SaveButton.svg");
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: center;
-.container2
- {
-  //  border-radius: 50%;
-  padding: 10px;
-  // border: black 2px solid;
-  overflow: hidden;
-  .picContainer {
-    display: flex;
-    margin: auto;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    .pic {
+    .menu {
+      position: fixed;
+      margin-top: -50px;
+      .menuItem {
+        color: var(--accent1Color);
+      }
+      .menuItem:hover {
+        color: #d4a32f;
+        .loginIcon, .educationIcon,  .experienceIcon, .projectIcon, .homeIcon{
+          color: var(--accent1Color);
+        }
+       .loginText, .projectText, .experienceText, .educationText {
+        // visibility: visible;
+        opacity: 1;  text-shadow: 5px 5px 5px 5px #000000;
+       }
+      }
+      .home {
+        top: 17px;
+        left: 50px;
+        position: relative;
+        transform: rotate(0deg);
+      }
+
+      .login {
+       top: 20px;
+       position: relative;
+       left: -340px;
+        transform: rotate(33deg);
+        .loginText {
+             @include fade-out();
+        }
+
+      }
+      .projects {
+        position: relative;
+        top: 23px;
+        left: 124px;
+        transform: rotate(-33deg);
+
+        .projectText {
+          @include fade-out();
+        }
+      }
+      .experiences {
+        position: relative;
+        top: 121px;
+        left: 36px;
+        transform: rotate(33deg);
+        .experienceText {
+          @include fade-out();
+        }
+      }
+
+      .education {
+       position: relative;
+       top: 155px;
+       transform: rotate(45deg);
+       left: -130px;
+        .educationIcon {
+          position: relative;
+          top: 0px;
+          left: -5px;
+          margin-right: 0px;
+          transform: rotate(-90deg);
+        }
+        .educationText {
+          transform: rotate(-90deg);
+          @include fade-out();
+        }
+      }
+    }
+    .container2 {
+      margin-top: auto;
+      position: fixed;
       overflow: hidden;
+      width: 120px;
+      .picContainer {
+        position: fixed;
+        display: flex;
+        margin: auto auto;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        width: 120px;
+        height: 120px;
+        .pic {
+          margin: auto auto;
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          overflow: hidden;
+        }
+      }
     }
   }
- }
-
- }
-
- .container3 {
-   width: 50px;
-   height: 50px;
-   display: flex;
-
-   margin: auto 0px;
-   justify-content: flex-start;
-   align-items: flex-start;
-     padding: 0px;
-     border: black 1px solid;
-     border-radius: 50%;
-     background-color: rgba(0, 0, 255, 0.3);
-   .container4 {
-     width: 40px;
-     height: 40px;
-     margin: auto;
+}
+  .container3 {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    overflow: hidden;
+    margin: auto 0px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0px;
+    border: black 1px solid;
     border-radius: 50%;
-justify-content: center;
-justify-self: center;
-align-self: center;
-align-items: center;
+    background-color: rgba(149, 188, 211, 0.4);
+    .container4 {
+      width: 40px;
+      height: 40px;
+      margin: auto;
+      border-radius: 50%;
+      justify-content: center;
+      justify-self: center;
+      align-self: center;
+      align-items: center;
       padding: 0px;
       border: black 2px solid;
       overflow: hidden;
-     .picContainer {
- display: flex;
- margin: auto;
-justify-content: center;
-align-self: center;
-align-content: center;
- overflow: hidden;
+      .picContainer {
+        display: flex;
+        margin: auto;
+        justify-content: center;
+        align-self: center;
+        align-content: center;
+        overflow: hidden;
 
- img.pic {
-   width: 40px;
-   height: 50px;
+        img.pic {
+          max-width: 45px;
+          max-height: 45px;
+        }
+      }
+    }
+  }
 
- }
-     }
-   }
- }
+.icon {
+  color: #d4a32f;
+  margin: 0 5px;
+}
+.loggedInHome {
+      top: 145px !important;
+      left: 222px;
+      position: fixed;
+      transform: rotate(0deg);
+    }
 
+    // .menu.login {
+    //   top: 170px;
+    //   position: fixed;
+    //   left: 115px;
+    //   transform: rotate(33deg);
+
+    //   .loginText {
+    //     @include fade-out();
+    //   }
+
+    // }
+
+    // .projects {
+    //   position: fixed;
+    //   top: 122px;
+    //   left: 300px;
+    //   transform: rotate(-33deg);
+
+    //   .projectText {
+    //     @include fade-out();
+    //   }
+    // }
+
+    // .experiences {
+    //   position: fixed;
+    //   top: 232px;
+    //   left: 294px;
+    //   transform: rotate(33deg);
+
+    //   .experienceText {
+    //     @include fade-out();
+    //   }
+    // }
+
+    // .education {
+    //   position: fixed;
+    //   top: 305px;
+    //   transform: rotate(90deg);
+    //   left: 205px;
+
+    //   .educationIcon {
+    //     position: fixed;
+    //     top: 0px;
+    //     left: -20px;
+    //     margin-right: 20px;
+    //     transform: rotate(-90deg);
+    //   }
+
+    //   .educationText {
+    //     @include fade-out();
+    //   }
+    // }
+// }

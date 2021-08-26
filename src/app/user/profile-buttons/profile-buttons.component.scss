@@ -3,5 +3,12 @@
   flex-direction: row;
   width: 100%;
   justify-content: space-around;
-  margin-top: 30px;
+  margin-top: 10px;
+
+  .iconLink {
+    color: var(--accent2Color);
+  }
+  .iconLink:hover {
+    color: var(--accent3Color);filter: drop-shadow(0 0 0.2rem var(--accent3Color));
+  }
 }

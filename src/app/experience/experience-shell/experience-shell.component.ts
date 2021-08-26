@@ -42,8 +42,8 @@ export class ExperienceShellComponent implements OnInit {
 
   editExperience() {
     const dialogRef = this.dialog.open(EditModalShellComponent, {
-      width: '900px',
-      panelClass: 'custom-modalbox3'
+
+      panelClass: 'custom-modalbox2'
     });
   }
 

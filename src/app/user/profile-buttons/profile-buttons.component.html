@@ -1,7 +1,26 @@
  <div class="infoContainer">
+                <fa-icon
+                [icon]="faBack"
+                (click)="toBack()"
+                class="iconLink" matTooltip="Back"></fa-icon>
 
-               <button mat-raised-button (click)="toBack()">back</button>
-               <button mat-raised-button (click)="toProjects()">Projects</button>
+                <fa-icon
+                [icon]="faProjects"
+                (click)="toProjectsPage()"
+                class="iconLink" matTooltip="View Projects"></fa-icon>
+
+                <fa-icon
+                [icon]="faExperience"
+                class="iconLink"
+                matTooltip="View Experiences"
+                (click)="toExperiencesPage()"></fa-icon>
+
+                <fa-icon
+                [icon]="faEducation"
+                class="iconLink"
+                matTooltip="View Education"
+                (click)="toEducationPage()"></fa-icon>
+
 
 
         </div>

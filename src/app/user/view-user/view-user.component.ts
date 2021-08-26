@@ -117,9 +117,8 @@ export class ViewUserComponent implements OnInit {
       this.dialogRef.close();
     }
   }
-  toProjects(key: string) {
-    console.log('HELLO');
-    if (key === this.eventKey) {
+  loadProfile() {
+
       this.projectStore.dispatch(projectDataActions.clearProjects());
       this.projectStore.dispatch(
         projectDataActions.addProjects({ projects: this.data.user.projects })
@@ -144,7 +143,26 @@ export class ViewUserComponent implements OnInit {
         DegreeDataActions.addDegrees({ Degrees: this.data.user.degrees })
       );
 
+}
+  toProjects(key: string) {
+    console.log('HELLO');
+   if (key === this.eventKey) {
+      this.loadProfile();
       this.router.navigate(['pages/projects']);
+      this.dialogRef.close();
+    }
+  }
+  toExperiences(key: string) {
+     if (key === this.eventKey) {
+       this.loadProfile();
+       this.router.navigate(['pages/experiences']);
+       this.dialogRef.close();
+     }
+  }
+  toEducation(key: string) {
+    if (key === this.eventKey) {
+      this.loadProfile();
+      this.router.navigate(['pages/education']);
       this.dialogRef.close();
     }
   }

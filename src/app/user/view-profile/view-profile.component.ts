@@ -12,18 +12,23 @@ import { MakeGuid } from '../../helpers/make-guid';
   templateUrl: './view-profile.component.html',
   styleUrls: ['./view-profile.component.scss'],
 })
-
 export class ViewProfileComponent implements OnInit {
   private userID$: Observable<string>;
-  private userData$: Observable<(UserState|undefined)[]>;
+  totalEducation: number;
+  totalExperiences: number = 0;
+  private userData$: Observable<(UserState | undefined)[]>;
   userToView: UserState = JSON.parse(JSON.stringify(defaultUserState));
-  constructor(
 
+  constructor(
     private sharedStateStore: Store<fromSharedState.SharedState>,
     private sharedDataStore: Store<fromSharedData.SharedUserDataState>
   ) {
-    this.userID$ = this.sharedStateStore.pipe(select(fromSharedState.getUserId));
-    this.userData$ =      this.sharedDataStore.pipe(select(fromSharedData.selectAllUsers));
+    this.userID$ = this.sharedStateStore.pipe(
+      select(fromSharedState.getUserId)
+    );
+    this.userData$ = this.sharedDataStore.pipe(
+      select(fromSharedData.selectAllUsers)
+    );
   }
 
   ngOnInit(): void {
@@ -34,7 +39,11 @@ export class ViewProfileComponent implements OnInit {
             next: (users: (UserState | undefined)[]) => {
               if (users) {
                 let found = users.filter((i) => i?.id === usrId)[0];
-                if (found) this.userToView = JSON.parse(JSON.stringify(found));
+                if (found) {
+                  this.userToView = JSON.parse(JSON.stringify(found));
+                  this.calculateExperiences();
+
+                }
               }
             },
             error: (err) =>
@@ -59,4 +68,15 @@ export class ViewProfileComponent implements OnInit {
         ),
     });
   }
+
+  calculateExperiences() {
+    this.userToView.experiences.forEach((i) => {
+    let diff = (i.completed?.getDate() as number) - (i.started?.getDate() as number);
+    this.totalExperiences += diff / (1000 * 60 * 60 * 24 *365);
+    });
+    return this.totalExperiences;
+  }
+
+
+
 }
