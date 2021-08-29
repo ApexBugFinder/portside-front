@@ -1,4 +1,6 @@
-.homeSection{
+
+ @media (min-width: 600px) {
+ .homeSection{
   display: flex;
   flex-direction: column;
   row-gap: 30px;
@@ -13,20 +15,22 @@
 
 
 
+
+
   .quoteSection{
     position: relative;
     align-self: flex-end;
-    margin: auto 0;
+    margin: -20px 0 auto 0;
     width: 30%;
     font-family: felt-tip-roman;
     display: flex;
     flex-direction: column;
-    row-gap: 2vh;
+    row-gap: .5vw;
     opacity: 0.3;
 
     .quote {
       font-family: felt-tip-roman, sans-serif;
-      font-size: 20px;
+      font-size: min(max(1.2vw, 16px), 12px);
       margin-right: 5%;
     }
     .quoteAuthor {
@@ -35,11 +39,67 @@
 
     }
   }
+
+  }
   .results {
     margin: auto 0 auto auto;
 
     width: 80%;
   }
 
-}
 
+ }
+ @media (max-width: 600px) {
+   .homeSection {
+     display: flex;
+     flex-direction: column;
+     row-gap: 30px;
+     align-items: flex-start;
+     justify-content: flex-end;
+     margin: 12vh 10%;
+     min-width: 440px;
+
+     .searchbar {
+       align-self: flex-end;
+       justify-content: flex-end;
+       margin:0 0;
+     }
+
+
+
+
+
+     .quoteSection {
+       position: relative;
+       align-self: flex-end;
+       margin: -20px 0 auto 0;
+       width: 50%;
+       font-family: felt-tip-roman;
+       display: flex;
+       flex-direction: column;
+       row-gap: .5vw;
+       opacity: 0.3;
+
+       .quote {
+         font-family: felt-tip-roman, sans-serif;
+         font-size: min(max(1.2vw, 16px), 12px);
+         margin-right: 5%;
+       }
+
+       .quoteAuthor {
+         margin: auto 10% auto auto;
+         font-size: 14px;
+
+       }
+     }
+
+   }
+
+   .results {
+     margin: auto 0 auto auto;
+
+     width: 80%;
+   }
+
+
+ }

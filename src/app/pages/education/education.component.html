@@ -1,12 +1,12 @@
 <div class="shellContainer">
     <div class="shellContent">
         <div class="actionButtons">
-            <app-action-buttons 
-            [myClass]="pageClass" 
+            <app-action-buttons
+            [myClass]="pageClass"
             *ngIf="(isAuthenticated$|async) && (userID == (authenticatedUserID$|async))"
             (addClassSignal)="createEducation()"></app-action-buttons>
         </div>
-        <div class="experienceContent">
+        <div class="educationContent">
 
                 <app-degree-shell *ngIf="((degreeDataTotal$|async)>0)"></app-degree-shell>
 

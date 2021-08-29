@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import {
   faArrowCircleLeft,
   faUserGraduate,
+  faDoorOpen,
   faHistory,
   faBriefcase,
   faUser,
@@ -39,6 +40,7 @@ export class LoggedInProfileComponent implements OnInit, DoCheck {
   userToView: User;
   // AUTHENTICATED USER
   authUserId$: Observable<string>;
+  auth$: Observable<boolean>;
   authUserData: UserState | undefined;
   authUser: User;
   private authUserId: string;
@@ -50,6 +52,7 @@ export class LoggedInProfileComponent implements OnInit, DoCheck {
   faExperiencesIcon = faHistory;
   faHomeIcon = faHome;
   faKeyIcon = faKey;
+  faDoor = faDoorOpen;
 
   constructor(
     private authStore: Store<fromAuth.State>,
@@ -62,7 +65,9 @@ export class LoggedInProfileComponent implements OnInit, DoCheck {
     this.authUserId$ = this.authStore.pipe(
       select(fromAuth.getAuthenticatedUserId)
     );
-
+      this.auth$ = this.authStore.pipe(
+        select(fromAuth.getIsAuthenticated)
+      );
     this.userName$ = this.sharedUser.pipe(select(fromShared.getUsername));
 
     this.userId$ = this.sharedUser.pipe(select(fromShared.getUserId));
@@ -200,8 +205,8 @@ export class LoggedInProfileComponent implements OnInit, DoCheck {
   viewAuthProfile() {
     this.userStore.dispatch(new userActions.SetCurrentUser(this.authUser));
     this.sharedUser.dispatch(new sharedActions.SetUserId(this.authUser.id));
-    // this.sharedUser.dispatch(new sharedActions.SetUsername(this.authUserData?.username as string));
-    // this.sharedUser.dispatch(new sharedActions.SetUserProfilePic(this.authUserData?.userPicUrl as string));
+    this.sharedUser.dispatch(new sharedActions.SetUsername(this.authUserData?.username as string));
+    this.sharedUser.dispatch(new sharedActions.SetUserProfilePic(this.authUserData?.userPicUrl as string));
     this.userData = JSON.parse(JSON.stringify(this.authUserData));
    let myData: ViewUserMatDialogData = {
      user: this.authUserData as UserState,

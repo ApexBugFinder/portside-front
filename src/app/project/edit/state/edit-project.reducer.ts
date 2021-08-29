@@ -15,7 +15,7 @@ export interface EditProjectState {
     completed?: Date;
     description?: string;
     banner?: string;
-    smallBanner?: string;
+    // smallBanner?: string;
     published?: boolean;
     projectRequirements?: ProjectRequirement[ ];
     projectLinks?: ProjectLink[];
@@ -32,12 +32,12 @@ const initialState: EditProjectState = {
     completed: new Date(2021, 0o1, 0o1),
     description: '1234',
     banner: '1234',
-    smallBanner: '1234',
+
     published: false,
     projectRequirements: [defaultProjectRequirement],
     projectLinks: [defaultProjectLink],
     error: ''
-    
+
 
 
 }
@@ -56,11 +56,11 @@ export function editProjectReducer(state = initialState, action: EditProjectActi
                 completed: action.payload.completed,
                 description: action.payload.description,
                 banner: action.payload.banner,
-                smallBanner: action.payload.smallBanner,
+                // smallBanner: action.payload.smallBanner,
                 published: action.payload.published,
                 projectRequirements: action.payload.projectRequirements,
                 projectLinks: action.payload.projectLinks
-                
+
 
 
             };
@@ -74,12 +74,12 @@ export function editProjectReducer(state = initialState, action: EditProjectActi
                 completed: action.payload.completed,
                 description: action.payload.description,
                 banner: action.payload.banner,
-                smallBanner: action.payload.smallBanner,
+                // smallBanner: action.payload.smallBanner,
                 published: action.payload.published,
                 projectRequirements: action.payload.projectRequirements,
                 projectLinks: action.payload.projectLinks
-            };    
-       
+            };
+
         case EditProjectActionTypes.SET_EDITPROJECT_ID:
             return {
                 ...state,
@@ -115,11 +115,11 @@ export function editProjectReducer(state = initialState, action: EditProjectActi
                 ...state,
                 banner: action.payload
             };
-        case EditProjectActionTypes.SET_EDITPROJECT_SMALL_BANNER:
-            return {
-                ...state,
-                smallBanner: action.payload
-            };
+        // case EditProjectActionTypes.SET_EDITPROJECT_SMALL_BANNER:
+        //     return {
+        //         ...state,
+        //         smallBanner: action.payload
+        //     };
         case EditProjectActionTypes.SET_EDITPROJECT_PUBLISHED:
             return {
                 ...state,
@@ -135,7 +135,7 @@ export function editProjectReducer(state = initialState, action: EditProjectActi
                 ...state,
                 projectLinks: action.payload
             };
-        
+
 
 
 
@@ -170,11 +170,11 @@ export function editProjectReducer(state = initialState, action: EditProjectActi
                 ...state,
                 banner: action.payload
             };
-        case EditProjectActionTypes.UPDATE_EDITPROJECT_SMALL_BANNER:
-            return {
-                ...state,
-                smallBanner: action.payload
-            };
+        // case EditProjectActionTypes.UPDATE_EDITPROJECT_SMALL_BANNER:
+        //     return {
+        //         ...state,
+        //         smallBanner: action.payload
+        //     };
         case EditProjectActionTypes.UPDATE_EDITPROJECT_PUBLISHED:
             return {
                 ...state,
@@ -190,7 +190,7 @@ export function editProjectReducer(state = initialState, action: EditProjectActi
                 ...state,
                 projectLinks: action.payload
             };
-        
+
 
 
 
@@ -231,11 +231,11 @@ export function editProjectReducer(state = initialState, action: EditProjectActi
                 ...state,
                 banner: initialState.banner
             };
-        case EditProjectActionTypes.CLEAR_EDITPROJECT_SMALL_BANNER:
-            return {
-                ...state,
-                smallBanner: initialState.smallBanner
-            };
+        // case EditProjectActionTypes.CLEAR_EDITPROJECT_SMALL_BANNER:
+        //     return {
+        //         ...state,
+        //         smallBanner: initialState.smallBanner
+        //     };
         case EditProjectActionTypes.CLEAR_EDITPROJECT_PUBLISHED:
             return {
                 ...state,
@@ -251,7 +251,7 @@ export function editProjectReducer(state = initialState, action: EditProjectActi
                 ...state,
                 projectLinks: initialState.projectLinks
             };
-        
+
 
         case EditProjectActionTypes.RESET_EDIT_PROJECT:
             return {
@@ -262,7 +262,7 @@ export function editProjectReducer(state = initialState, action: EditProjectActi
                 completed: state.originalProject?.completed,
                 description: state.originalProject?.description,
                 banner: state.originalProject?.banner,
-                smallBanner: state.originalProject?.smallBanner,
+                // smallBanner: state.originalProject?.smallBanner,
                 published: state.originalProject?.published,
                 projectRequirements: state.originalProject?.projectRequirements,
                 projectLinks: state.originalProject?.projectLinks
@@ -290,7 +290,7 @@ export function editProjectReducer(state = initialState, action: EditProjectActi
                 completed: action.payload.completed,
                 description: action.payload.description,
                 banner: action.payload.banner,
-                smallBanner: action.payload.smallBanner,
+                // smallBanner: action.payload.smallBanner,
                 published: action.payload.published,
                 projectRequirements: action.payload.projectRequirements,
                 projectLinks: action.payload.projectLinks
@@ -302,7 +302,7 @@ export function editProjectReducer(state = initialState, action: EditProjectActi
             };
         case EditProjectActionTypes.UPDATE_EDITPROJECT_TO_DB_SUCCESS:
             return {
-               
+
                 ...state,
                 originalProject: action.payload,
                 id: action.payload.id,
@@ -312,18 +312,18 @@ export function editProjectReducer(state = initialState, action: EditProjectActi
                 completed: action.payload.completed,
                 description: action.payload.description,
                 banner: action.payload.banner,
-                smallBanner: action.payload.smallBanner,
+                // smallBanner: action.payload.smallBanner,
                 published: action.payload.published,
                 projectRequirements: action.payload.projectRequirements,
                 projectLinks: action.payload.projectLinks
             };
-        
+
         case EditProjectActionTypes.UPDATE_EDITPROJECT_TO_DB_FAIL:
             return {
                 ...state,
                 error: action.payload
             };
-        default: 
+        default:
             return state;
     }
 }

@@ -9,9 +9,16 @@
     flex-direction: row;
     width: 100%;
   .profile {
-    margin: 30px 10%;
+    margin: 30px 10% 30px 10%;
     width: 200px;
     position: fixed;
+  }
+  @media screen and (max-width: 600px) {
+    .profile  {
+      margin: 100px 10% 30px 10%;
+      width: 200px;
+      position: fixed;
+    }
   }
   .routerCont {
     justify-self: flex-end;

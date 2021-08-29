@@ -1,7 +1,7 @@
 .projectCardContainer {
-  width: 15vw;
-  height: 10vw;
-  border-radius: 29px;
+  width: 150px;
+  height: 100px;
+  border-radius: 5px;
   background-color: #f2f1f1;
 
   border: 1px solid #95bcd3;
@@ -9,35 +9,51 @@
 box-shadow: 0px 3px 6px rgba(0,0,0,0.32);
 display: flex;
 flex-direction: column;
-row-gap: 10%;
+row-gap: 0;
 
-justify-content: center;
+
+justify-content: flex-start;
 align-items: center;
+.topBorder {
+  height: 10px;
+  background-color: var(--accent1Color);
+  width: 102%;
+
+}
   .bannerContainer{
     width:100%;
     display:flex;
     flex-direction: column;
     overflow: hidden;
-    align-items: center;
+    align-items: flex-start;
 
 
   .projectBanner {
     width: 105%;
     align-self: center;
   }
+
+  }
   .titleContainer {
-    width:auto;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0;
-    align-self: center;
+    margin: auto;
+
+
 
     p.title {
-      font-family:  futura-pt, sans-serif;
+      font-family: futura-pt, sans-serif;
       font-weight: 300;
-      font-size: 3vw;
+      font-size: 16px;
       color: #707070;
-      text-align: center;
+      justify-self: center;
+      margin: auto auto;
+
+
     }
-  }  }
+  }
 }

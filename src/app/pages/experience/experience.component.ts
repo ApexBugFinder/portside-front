@@ -102,9 +102,9 @@ export class ExperienceComponent implements OnInit {
      });
      this.isAuthenticated$.subscribe({
       next: (value:boolean) => {
-        
+
           this.isAuthenticated = value;
-        
+
       },
       error: (err) =>
         console.log(
@@ -162,8 +162,8 @@ this.experienceData$.subscribe({
 
     // OPEN DIALOG OF EDIT MODAL SHELL
     const dialogRef = this.dialog.open(EditModalShellComponent, {
-      width: '980px',
-      panelClass: 'custom-modalbox'
+      width: '550px',
+      panelClass: 'custom-modalbox2'
     });
   }
 

@@ -2,9 +2,17 @@
 .contentContainer {
   overflow: visible;
   height: 100%;
-.header {
+@media screen and (min-width: 600px) {
+  .header {
   overflow: visible;
   z-index: 20;
+}
+}
+@media screen and (max-width: 600px) {
+  .header {
+    overflow: visible;
+    z-index: 5;
+  }
 }
 .routerContent {
       z-index: 15;

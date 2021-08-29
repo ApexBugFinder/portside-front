@@ -8,7 +8,11 @@
 
 
             <div class="header">
-              <p>Edit Certification</p>
+              <div class="headerText">
+                <p>Edit Certification</p>
+                <fa-icon [icon]="faClose" class="closeIcon" (click)="closeDialog()"></fa-icon>
+              </div>
+
               <mat-divider></mat-divider>
           </div>
 
@@ -123,7 +127,7 @@
             </div>
           </div>
 
-     
+
 </div>
 
            <app-edit-action-buttons

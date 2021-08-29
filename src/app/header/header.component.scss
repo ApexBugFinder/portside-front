@@ -1,4 +1,7 @@
 @import '../../assets/css/mixins.scss';
+
+
+
 .headerContainer {
   display: flex;
   flex-direction: row;
@@ -54,7 +57,7 @@ z-index: 10;
       margin-right: 0px;
       font-family: suburban, sans-serif;
       font-weight: 300;
-      font-size: 55px;
+      font-size: 4vw;
       z-index: 50;
       .spTitle {
         font-size: 70px;
@@ -67,11 +70,11 @@ z-index: 10;
   .headerNavBar {
     margin: auto 8% auto 0;
     overflow: visible;
-    font-size: 18px;
+    font-size: 1vw;
    mat-list.header-nav-list {
     z-index: 10;
     list-style: none;
-      width: 600px;
+      width: 60%;
       display: flex;
       flex-direction: row;
       overflow: visible;
@@ -105,10 +108,10 @@ z-index: 10;
  background-repeat: no-repeat;
  background-position-x: center;
  background-position-y: center;
- background-size: 60px;
+ background-size: 100%;
 @include fade-in();
 // @include fade-out();
-  overflow-y: visible;
+  overflow: visible;
   margin-bottom: 0px;
 
   // width: inherit;
@@ -124,13 +127,69 @@ z-index: 10;
       h3 {
         margin: auto auto;
         font-family: suburban, sans-serif;
-        font-size: inherit;
+        font-size: 1.5vw;
         overflow: visible;
         z-index: 100;
       }
       .headerIcon {
         font-size: 12px;
       }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .headerContainer {
+    position: fixed;
+    top: 0px;
+    z-index: 5;
+  }
+  .headerTitle {
+      display: flex;
+      flex-direction: row;
+      margin: auto 0 auto 8%;
+
+
+
+      .siteLogo {
+        display: flex;
+        flex-direction: column;
+        z-index: 1;
+        top: 10px;
+        width: 80px;
+        height: 80px;
+        background-image: url('../../assets/images/svg/SVG/SaveButton.svg');
+        background-size: 60px;
+        background-position: center center;
+
+
+        background-repeat: no-repeat;
+
+        .sL {
+          margin: auto auto;
+          height: 50px;
+          width: 50px;
+          z-index: 20;
+
+        }
+      }
+
+      .img {
+        height: 50px;
+        width: 50px;
+        z-index: 100;
+      }
+    }
+  .headerNavBar {
+    display:flex;
+    .header-nav-list-item.nav {
+      display: none;
+      visibility: hidden;
+    }
+    .header-nav-list-item h3.auth {
+      display:  block;
+      float:right;
+      position: fixed;
     }
   }
 }

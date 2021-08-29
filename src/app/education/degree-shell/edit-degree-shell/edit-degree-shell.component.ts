@@ -8,6 +8,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import * as fromShared from '../../../shared/state';
 import * as fromAuth from '../../../auth/state';
 import { ThemePalette } from '@angular/material/core';
+import { faTimesCircle} from '@fortawesome/free-solid-svg-icons';
 // Models
 import {Degree, DegreeType } from '../../Models/degree/degree';
 
@@ -25,6 +26,7 @@ export type Theme = 'primary' | 'secondary' | 'accent' | 'warn' | undefined;
 })
 export class EditDegreeShellComponent implements OnInit {
   degreeForm: FormGroup;
+  faClose = faTimesCircle;
   // ABSTRACTS
   degreeNameAbstractControl: AbstractControl | null;
   degreeTypeAbstractControl: AbstractControl | null;
@@ -336,5 +338,9 @@ export class EditDegreeShellComponent implements OnInit {
         );
 
 
+
+  }
+  closeDialog() {
+    this.dialogRef.close();
   }
 }

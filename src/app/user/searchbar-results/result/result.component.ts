@@ -1,5 +1,5 @@
 import { Component, DoCheck, Input, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { User, UserState, ViewUserMatDialogData } from '../../Models/user';
 import { ViewUserComponent } from '../../view-user/view-user.component';
 import * as fromShared from '../../../shared/state';
@@ -14,7 +14,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./result.component.scss']
 })
 export class ResultComponent implements OnInit {
-
+  private innerWidth: number;
   @Input() user: UserState;
   userData: User;
   profilePic$: Observable<string>;
@@ -26,6 +26,7 @@ export class ResultComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.innerWidth = window.innerWidth;
     console.log(this.user);
 
     console.log(this.user.username);
@@ -33,16 +34,30 @@ export class ResultComponent implements OnInit {
   viewUser() {
     this.sharedStore.dispatch(new sharedActions.SetUserId(this.user.id));
     this.sharedStore.dispatch(new sharedActions.SetUserProfilePic(this.user.userPicUrl));
+    let panelSize = '600px';
+    let config: MatDialogConfig;
 
 
     let myData: ViewUserMatDialogData = {
       user: this.user
     };
-    const dialogRef= this.dialog.open(ViewUserComponent, {
+     if (this.innerWidth < 600) {
+      config =  {
+      width: panelSize,
+      panelClass: 'custom-modalbox2',
       data: myData,
-      width: 'auto',
-      panelClass: 'custom-modalbox2'
-    });
+      hasBackdrop: true
+      }
+    } else {
+      config = {
+        width: panelSize,
+        panelClass: 'custom-modalbox2',
+        data: myData,
+        hasBackdrop: true,
+      };
+    }
+
+    const dialogRef= this.dialog.open(ViewUserComponent, config);
   }
 
 }

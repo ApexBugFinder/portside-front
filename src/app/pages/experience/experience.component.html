@@ -8,8 +8,9 @@
 
                 <app-experience-controller ></app-experience-controller>
 
-                <app-action-buttons 
-                [myClass]="pageClass" 
+                <app-action-buttons
+                [myClass]="pageClass"
+                class="appButtons"
                 *ngIf="(isAuthenticated && (userID$|async)==(authenticatedUserID$|async))"
                 (addClassSignal)="createExperience()"></app-action-buttons>
 

@@ -33,7 +33,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
   styleUrls: ['./edit-shell.component.scss']
 })
 export class EditShellComponent implements OnInit {
-  
+
   projectID$: Observable<string  | undefined>;
   projectIDStore: string   | undefined;
   projectCreatorID$: Observable<string  | undefined>;
@@ -70,7 +70,7 @@ export class EditShellComponent implements OnInit {
     bannerAbstractControl: AbstractControl | null;
     publishedAbstractControl: AbstractControl | null;
     projectLinkAbstractControl: AbstractControl | null;
-    smallBannerAbstractControl: AbstractControl | null; 
+    smallBannerAbstractControl: AbstractControl | null;
 
   constructor(
     public dialogRef: MatDialogRef<EditShellComponent>,
@@ -87,8 +87,8 @@ export class EditShellComponent implements OnInit {
     this.projectName$ = this.editProjectStore.pipe(select(fromEditProject.getEditProjectProjectName));
     this.projectDescription$ = this.editProjectStore.pipe(select(fromEditProject.getEditProjectDescription));
     this.projectBanner$ = this.editProjectStore.pipe(select(fromEditProject.getEditProjectBigBanner));
-    
-    
+
+
     this.myProjectForm = this.fb.group({
       id: ['', [Validators.required]],
       projectName: [''],
@@ -102,7 +102,7 @@ export class EditShellComponent implements OnInit {
       projectLinks: [[]],
       reqEditState:['']
     });
- 
+
 
    }
 
@@ -145,8 +145,8 @@ this.monitorForControlChanges();
   initControls(): void {
     this.idAbstractControl = this.myProjectForm.get('id');
     this.projectNameAbstractControl = this.myProjectForm.get('projectName');
-    
-    
+
+
     this.descriptionAbstractControl = this.myProjectForm.get('description');
     this.bannerAbstractControl = this.myProjectForm.get('banner');
     this.smallBannerAbstractControl = this.myProjectForm.get('smallBanner');
@@ -183,7 +183,7 @@ this.monitorForControlChanges();
     });
     this.smallBannerAbstractControl?.valueChanges.subscribe({
       next: value => {
-      
+
       },
       error: err => console.log('OOOps, there was an error while changing the value of your smallbanner url: ', err),
       complete: () =>  console.log('Completed updating smallbanner url')
@@ -194,8 +194,8 @@ this.monitorForControlChanges();
     this.projectNameAbstractControl?.setValue(this.projectNameStore);
     this.descriptionAbstractControl?.setValue(this.projectDescriptionStore);
     this.bannerAbstractControl?.setValue(this.projectBannerStore);
-    
-    
+
+
   }
 
 
@@ -212,32 +212,32 @@ this.monitorForControlChanges();
       }
     }
 
-    
+
 
     // IMAGES
     // ==================================================
-    processNewSmallBannerRt(returnUrl: string) {
-      // set ngrx store
-      this.editProjectStore.dispatch(new edipProjectActions.SetEditProjectSmallBanner(returnUrl));
+    // processNewSmallBannerRt(returnUrl: string) {
+    //   // set ngrx store
+    //   this.editProjectStore.dispatch(new edipProjectActions.SetEditProjectSmallBanner(returnUrl));
 
-      /// TODO: might not need these below
-     
-      this.smallBannerAbstractControl?.setValue(returnUrl);
-      
-    }
-    
+    //   /// TODO: might not need these below
+
+    //   this.smallBannerAbstractControl?.setValue(returnUrl);
+
+    // }
+
     processNewBannerRt(returnUrl: string) {
       console.log('REached RT process', returnUrl);
 
       this.editProjectStore.dispatch(new edipProjectActions.SetEditProjectBigBanner(returnUrl));
 
-   
+
       this.bannerAbstractControl?.setValue(returnUrl);
-     
+
     }
 
 
-    
+
 
 
 

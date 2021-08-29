@@ -1,6 +1,14 @@
 
 
   <div class="container3" *ngIf="authUserId$|async">
+    <!-- <div class="authMenu">
+      <span class="menuItem auth" *ngIf="auth$|async">
+        <span>
+          <fa-icon [icon]="faDoor" matTooltip="Sign Out" class="icon authIcon"></fa-icon>
+        </span>
+        <span class="authText">Sign Out</span>
+      </span>
+    </div> -->
   <div class="container4">
     <div class="picContainer">
       <img [profilePic]="(authUserData?.userPicUrl)||(defaultProfilePic$|async)" class="pic"alt="" (click)="viewAuthProfile()">
@@ -36,7 +44,7 @@
               Education
           </span>
     </span>
-    <span class="menuItem login" routerLink="editMode" id="loginId">
+    <span class="menuItem login" routerLink="editMode" id="loginId" *ngIf="!(auth$|async)">
       <span class="loginText">
           SignIn
       </span>

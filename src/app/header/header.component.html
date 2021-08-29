@@ -15,11 +15,13 @@
   <div class="spacer"></div>
 
 
+<div class="menuSandwich">
 
+</div>
   <div class="headerNavBar">
     <mat-list class="header-nav-list">
       <mat-list-item
-      class="header-nav-list-item"
+      class="header-nav-list-item nav"
       routerLinkActive="sunClass"
       routerLink="pages/home">
 
@@ -29,7 +31,7 @@
       </mat-list-item>
 
       <mat-list-item
-      class="header-nav-list-item"
+      class="header-nav-list-item nav"
        routerLinkActive="sunClass"
       routerLink="pages/projects">
 
@@ -39,14 +41,14 @@
       </mat-list-item>
 
       <mat-list-item
-      class="header-nav-list-item"
+      class="header-nav-list-item nav"
        routerLinkActive="sunClass"
       routerLink="pages/experiences">
        <h3> Experience </h3>
       </mat-list-item>
 
       <mat-list-item
-      class="header-nav-list-item"
+      class="header-nav-list-item nav"
        routerLinkActive="sunClass"
       routerLink="pages/education">
         <h3>
@@ -55,7 +57,7 @@ Education
       </mat-list-item>
 
       <mat-list-item class="header-nav-list-item">
-        <h3>
+        <h3 class="auth">
               <fa-icon [icon]="fakey"
               class="headerIcon"
               *ngIf="!(isAuth$|async)"

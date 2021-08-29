@@ -15,7 +15,7 @@ mat-dialog-content {
   justify-content: center;
   scroll-behavior:auto;
   overflow-x: hidden;
-  width: 560px;
+  width: 500px;
   margin: auto;
   align-content: space-between;
   border: solid 1px #eee0e056;
@@ -27,9 +27,21 @@ mat-dialog-content {
        margin: auto;
        font-size: 12px;
        font-family: furtura-pt;
-       padding: 5px;
+       padding: 0px;
        color: var(--secondaryColor);
+        .headerText {
+          padding: auto 10px auto 0;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
 
+          .closeIcon {
+            color: var(--accent1Color);
+          }
+          .closeIcon:hover {
+            color: var(--primaryColor);
+          }
+        }
 
       }
 
@@ -73,7 +85,7 @@ mat-dialog-content {
 
         margin: 0;
         font-size: 9px;
-        color: var(--secondaryColor);
+        color: var(--primaryColor);
       }
 
   }

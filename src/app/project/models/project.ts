@@ -10,7 +10,7 @@ export interface Project {
   completed?: Date;
   description?: string;
   banner?: string;
-  smallBanner?: string;
+  // smallBanner?: string;
   published?: boolean;
   projectRequirements?: ProjectRequirement[] | undefined;
   projectLinks?: ProjectLink[] | undefined;
@@ -27,7 +27,7 @@ export const defaultProject: Project = {
   started: new Date(2021, 0o1, 0o1),
   completed: new Date(2021, 0o2, 0o1),
   description: 'Default Project',
-  smallBanner: '',
+  // smallBanner: '',
   banner: '',
   published: false,
   projectRequirements: [],

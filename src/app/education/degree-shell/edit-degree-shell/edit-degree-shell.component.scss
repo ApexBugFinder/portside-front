@@ -8,7 +8,7 @@
   justify-content: center;
   scroll-behavior:auto;
   overflow-x: hidden;
-  width: 560px;
+  width: 500px;
   margin: auto;
   align-content: space-between;
      border: solid 1px #eee0e056;
@@ -30,13 +30,23 @@
 
 .header {
   width: 100%;
-  margin: auto auto 20px auto;
+  margin: auto;
   font-size: 12px;
   font-family: furtura-pt;
   padding: 0px;
   color: var(--secondaryColor);
+
   .headerText {
-    margin-left: 20px;
+      padding: auto 10px auto 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .closeIcon {
+        color: var(--accent1Color);
+      }
+      .closeIcon:hover{
+        color: var(--primaryColor);
+      }
   }
 
 }
@@ -65,7 +75,7 @@
                      background-color: transparent;
                     margin: 0;
                     font-size: 9px;
-                    color: var(--secondaryColor);
+                    color: var(--primaryColor);
                   }
         }
         mat-form-field {

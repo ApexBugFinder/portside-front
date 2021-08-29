@@ -1,5 +1,7 @@
 .shellContainer {
   width: 100%;
+  font-size: 12px;
+  font-family: futura-pt;
   .shellContent {
     display: grid;
 
@@ -32,8 +34,10 @@
     justify-content: space-between;
     margin:0px;
     padding: 0px;
+    max-width: 200px;
     span.heading {
       color: var(--accent1Color);
+
     }
     p {
       margin:0;

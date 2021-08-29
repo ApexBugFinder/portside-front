@@ -48,10 +48,10 @@ export const getEditProjectBigBanner = createSelector (
     selectProjectModuleState,
     state => state.editProject.banner
 );
-export const getEditProjectSmallBanner = createSelector (
-    selectProjectModuleState,
-    state => state.editProject.smallBanner
-);
+// export const getEditProjectSmallBanner = createSelector (
+//     selectProjectModuleState,
+//     state => state.editProject.smallBanner
+// );
 export const getEditProjectIsPublished = createSelector (
     selectProjectModuleState,
     state => state.editProject.published
@@ -68,7 +68,7 @@ export const getEditProjectProjectLinks = createSelector (
 export const getEditProject = createSelector (
     selectProjectModuleState,
     state => {
-     return {   
+     return {
         id: state.editProject.id,
         projectCreatorID: state.editProject.projectCreatorID,
         projectName: state.editProject.projectName,
@@ -76,10 +76,10 @@ export const getEditProject = createSelector (
         started: state.editProject.started,
         completed: state.editProject.completed,
         banner: state.editProject.banner,
-        smallBanner: state.editProject.smallBanner,
+        // smallBanner: state.editProject.smallBanner,
         published: state.editProject.published,
         projectLinks: state.editProject.projectLinks,
         projectRequirements: state.editProject.projectRequirements
      }
-    } 
+    }
 );

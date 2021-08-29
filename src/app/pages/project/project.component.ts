@@ -81,7 +81,8 @@ export class ProjectComponent implements OnInit {
           this.myProjects = value;
         }
         else {
-          this.myProjects = value.filter(i => i?.published == true);
+          // this.myProjects = value.filter(i => i?.published == true);
+          this.myProjects = value;
         }
 
 

@@ -11,12 +11,14 @@ import * as fromShared from '../../../shared/state';
 import * as fromAuth from '../../../auth/state';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { ThemePalette } from '@angular/material/core';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-edit-certification-shell',
   templateUrl: './edit-certification-shell.component.html',
   styleUrls: ['./edit-certification-shell.component.scss'],
 })
 export class EditCertificationShellComponent implements OnInit {
+  faClose = faTimesCircle;
   certificationForm: FormGroup;
   myCert$: Observable<Certification>;
   myCert: Certification;
@@ -350,5 +352,8 @@ console.log('HELLO ADD CLASS');
       this.renderer.removeClass(Ctl, 'certIsActive');
     }
 
+  }
+  closeDialog() {
+    this.dialogRef.close();
   }
 }
