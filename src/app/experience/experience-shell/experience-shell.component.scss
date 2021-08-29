@@ -1,17 +1,19 @@
+@media screen and (min-width: 601px) {
+
 .experienceContainer{
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: flext-end;
+    justify-content: center;
     row-gap: 40px;
-    margin: 60px 0 0 100px;
+    margin: 60px auto 0 0;
     .infoWrapper {
       display: flex;
       flex-direction: column;
       row-gap:20px;
-      justify-self:  flex-end;
-      justify-content: flex-end;
-      align-items: flex-end;
+
+      justify-content: flex-start;
+      align-items: center;
 
     }
     .infoContainer {
@@ -30,7 +32,7 @@
         color: #707070;
 
         .infoTitle {
-            width: 140px;
+            width: 100px;
             color: var(--accent1Color);
             font-family: futura-pt;
             font-weight: 500;
@@ -39,7 +41,7 @@
         }
         .infoData {
             .dataContainer {
-                width: 400px;
+                width:400px;
                 display: flex;
                 flex-direction:column;
                 row-gap: 20px;
@@ -91,3 +93,109 @@
  .showLogo {
                     display:block;
                 }
+ }
+@media screen and (max-width: 600px) {
+  .experienceContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flext-end;
+    row-gap: 40px;
+    margin: 60px 0 0 100px;
+
+    .infoWrapper {
+      display: flex;
+      flex-direction: column;
+      row-gap: 20px;
+      justify-self: flex-end;
+      justify-content: flex-start;
+      align-items: flex-end; margin-right: 30px;
+
+    }
+
+    .infoContainer {
+      justify-content: flex-start;
+      font-family: futura-pt, bio-sans, sans-serif;
+      font-weight: 200;
+      font-style: normal;
+      font-size: 14px;
+
+
+
+      .infoContent {
+        display: flex;
+        flex-direction: row;
+        column-gap: 20px;
+        color: black;
+        font-family: futura-pt;
+        font-weight: 500;
+        .infoTitle {
+          width: 100px;
+          color: var(--accent1Color);
+          font-family: futura-pt;
+          font-weight: 500;
+          font-size: 18px;
+          align-self: flex-start;
+        }
+
+        .infoData {
+          .dataContainer {
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            row-gap: 20px;
+
+            .companyContainer {
+              display: flex;
+              flex-direction: row;
+              column-gap: 10px;
+              align-items: center;
+              justify-content: flex-start;
+
+              .logo {
+                width: 50px;
+                display: none;
+                justify-content: center;
+              }
+
+            }
+          }
+
+          .editContainer {
+            display: flex;
+            flex-direction: row;
+            column-gap: 20px;
+            font-family: futura-pt;
+            font-size: 22px;
+
+            button.editButton {
+              border: 1px solid var(--secondaryColor);
+              font-family: futura-pt;
+
+              background-color: transparent;
+            }
+
+            button.editButton:hover {
+              color: var(--secondaryColor);
+              border: var(--accent1Color) solid 1px;
+            }
+          }
+        }
+      }
+    }
+
+    .edit {
+      margin-top: 20px;
+      align-self: center;
+    }
+  }
+
+
+  .addClassIcon {
+    color: darkblue;
+  }
+
+  .showLogo {
+    display: block;
+  }
+}

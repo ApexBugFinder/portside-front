@@ -7,18 +7,19 @@
     row-gap: 20px;
     justify-content: flex-end;
     margin: auto;
-
-    .actionButtons {
-      z-index: 100;
+  .actionButtons {
+    z-index: 100;
     height: 60px;
     width: 100%;
 
+       @media screen and (min-width: 601px) {
     .actionButtonsContainer {
        display: flex;
        flex-direction: row;
        column-gap: 10px;
        justify-content: flex-end;
        width: 100%;
+       margin-top: 0px;
        margin-left: 20px;
        button.gapper {
            background-color: transparentize($color: #95bcd3, $amount: 0.5);
@@ -26,6 +27,8 @@
         font-family: futura-pt;
         border: #707070 1px solid;
        }
+
+
         .experienceCtroller {
 
 
@@ -54,14 +57,65 @@
                     }
             }
     }
+  }
+}
+    @media screen and (max-width: 600px) {
+          .actionButtonsContainer {
+            display: flex;
+            flex-direction: row;
+            column-gap: 10px;
+            justify-content: flex-end;
+            width: 100%;
+            margin-top: 60px;
+            margin-left: 20px;
+
+            button.gapper {
+              background-color: transparentize($color: #95bcd3, $amount: 0.5);
+              //    background-color: var(--accent2Color);
+              font-family: futura-pt;
+              border: #707070 1px solid;
+            }
+
+      .experienceCtroller {
+
+
+        margin-top: 0px;
+        font-family: bio-sans, sans-serif;
+        font-weight: 200;
+        font-style: normal;
+        font-size: 18px;
+        margin: 20px 0 20px 0;
+
+        .experienceControllerContent {
+          display: flex;
+          flex-direction: row;
+          column-gap: 20px;
+          margin: auto;
+          justify-self: flex-start;
+
+          fa-icon.anchorIcon {
+            align-self: center;
+            font-size: 30px;
+          }
+
+          p {
+            vertical-align: center;
+            justify-self: center;
+            align-self: center;
+            margin: auto;
+          }
+        }
+      }
+    }
+   }
     app-action-buttons{
         width: 30%;
     }
 
 
-    }
 
-}
+
+  }
 
 .experienceContent {
 
@@ -72,7 +126,9 @@
     justify-self:  flex-end;
     justify-content: flex-end;
     align-items: flex-start;
-
+  .experienceShell {
+    width: 100%;
+  }
 
 
 }
