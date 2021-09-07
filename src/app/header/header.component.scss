@@ -25,23 +25,23 @@ z-index: 10;
        top: 10px;
        width: 80px;
        height: 80px;
-       background-image: url('../../assets/images/svg/SVG/SaveButton.svg');
-       background-size: 60px;
+       background-image: url('../../assets/images/svg/SVG/SaveButton2.svg');
+       background-size: 64px;
        background-position: center center;
 
 
        background-repeat: no-repeat;
        .sL {
       margin:auto auto;
-       height: 50px;
-       width: 50px;
+       height: 54px;
+       width: 54px;
        z-index: 20;
 
     }
      }
     .img {
-      height: 50px;
-      width: 50px;
+      height: 64px;
+      width: 64px;
       z-index: 100;
     }
 
@@ -57,10 +57,11 @@ z-index: 10;
       margin-right: 0px;
       font-family: suburban, sans-serif;
       font-weight: 300;
-      font-size: 4vw;
+      font-size: 45px;
       z-index: 50;
       .spTitle {
         font-size: 70px;
+        margin-right: -5px;
       }
     }
   }
