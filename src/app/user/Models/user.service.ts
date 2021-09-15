@@ -40,6 +40,7 @@ export class UserService {
       .set('Access-Control-Allow-Methods', ['GET'])
       .set('content-type', 'application/json');
     const address = this.apiAddress + 'username/' + userName;
+  console.log('HELLO', this.clientRt);
     printServiceInfo(address, userName, this.hdrs);
     return this.http.get<UserState>(address, { headers: this.hdrs }).pipe(
       timeout(2000),
@@ -68,7 +69,7 @@ const address = this.apiAddress + 'userID/' + userId;
       .set('Authorization', this.authService.getAuthorizationHeaderValue())
       .set('Access-Control-Allow-Methods', ['GET', 'POST', 'PUT'])
       .set('content-type', 'application/json');
-
+  console.log('HELLO', this.clientRt);
     printServiceInfo(address, userId, this.hdrs);
     return this.http.get<UserState>(address, { headers: this.hdrs }).pipe(
       timeout(2000),
@@ -94,6 +95,7 @@ const address = this.apiAddress + 'userID/' + userId;
       .set('content-type', 'application/json');
     // Address needs to be updated, and the backend endpoint needs to be
     // created
+    console.log('HELLO', this.clientRt);
     const address = this.apiAddress + 'search/';
 
     printServiceInfo(address, keyword, this.hdrs);
