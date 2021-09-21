@@ -28,6 +28,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+
             "aot": true,
             "assets": [
               "src/favicon.ico",
@@ -73,6 +74,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "portfolio-front:build",
+             "proxyConfig": "./proxy.conf.json",
             "sslKey": "./src/assets/ssl/host.key",
             "sslCert": "./src/assets/ssl/host.cert"
           },

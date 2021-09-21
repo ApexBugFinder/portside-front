@@ -1,14 +1,11 @@
 import { UserManagerSettings, WebStorageStateStore } from 'oidc-client';
 
 export class Constants {
-  // LINUX
-  //
-
   public static authority = 'http://198.211.29.93:8000';
 
   public static clientRoot = 'https://198.211.29.93';
 
-  public static apiRoot = 'https://198.211.29.93:55004/api/';
+  public static apiRoot = 'https://198.211.29.93:8085/api/';
 
   public static getClientSettings: UserManagerSettings = {
     authority: Constants.authority,
