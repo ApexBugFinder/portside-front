@@ -6,6 +6,8 @@ import * as UserActions from './user.actions';
 import * as fromAuth from '../../auth/state';
 import * as fromUser from './';
 import {User, UserState } from '../Models/user';
+import * as fromShared from '../../shared/state/';
+import * as SharedActions from '../../shared/state/shared-actions';
 import * as UserSharedData from '../../shared/userData/state';
 import * as UserSharedDataActions from '../../shared/userData/state/userData.actions';
 
@@ -22,6 +24,7 @@ export class UserEffects{
         private userService: UserService,
         private userStateStore: Store<fromUser.UserState>,
         private authStateStore: Store<fromAuth.State>,
+        private sharedStore : Store<fromShared.SharedState>,
         private userDataStore: Store<UserSharedData.SharedUserDataState>
     ) {
         this.authStateStore.pipe(select(fromAuth.getAuthenticatedUserId))
@@ -96,8 +99,10 @@ export class UserEffects{
                     ),
                     map(
                         (payload: UserState) => {
-
-                        return new UserActions.LoadUserStateSuccess();
+                          this.sharedStore.dispatch(new SharedActions.SetUserId(payload.id));
+                          this.sharedStore.dispatch(new SharedActions.SetUserProfilePic(payload.userPicUrl));
+                          this.sharedStore.dispatch(new SharedActions.SetUsername(payload.username));
+                        return new UserActions.LoadUserStateSuccess(payload);
                     }),
                     catchError((err)=>
                         of(
@@ -122,7 +127,7 @@ export class UserEffects{
                let b: UserState = JSON.parse(JSON.stringify(this.myUserState));
                 b.username = payload.username;
                 b.email = payload.username;
-                
+
                 this.userDataStore.dispatch(UserSharedDataActions.upsertUser({UserState: b}));
             }
               return new UserActions.UpdateUserSuccess(payload);

@@ -2,11 +2,12 @@
   width: 100%;
   font-size: 12px;
   font-family: futura-pt;
+  margin-bottom: 20px;
   .shellContent {
     display: grid;
 
     grid-template-columns:  30px 30px 100px 250px;
-    grid-template-rows: 40px 30px 30px  30px;
+    grid-template-rows: auto auto 40px  20px;
     grid-template-areas:
     "a b c c"
     "a b d e"
@@ -24,7 +25,7 @@
     grid-area: c;
     position: relative;
     margin: 10px;
-
+    text-decoration: underline;
 
   }
   .degreeNameContainer {
@@ -50,15 +51,37 @@
   }
   .minorData {
     grid-area: e;
+    width: 150px;
+    overflow-wrap: anywhere;
+    height: auto;
   }
   .institutionHeading {
     grid-area: f;
       color: var(--accent1Color);
+      align-self: center;
   }
   .institutionData  {
     grid-area: g;
-  }
+    align-self: center;
+    .inst-dataContainer {
+      display: flex;
+      flex-direction: row;
+      column-gap: 10px;
+      justify-content: flex-start;
+      .inst-logo {
+        max-width: 100px;
+        align-self: center;
+        justify-self: center;
+      }
+      .inst-Name {
+        text-align: left;
+        align-self: center;
+        overflow-wrap: anywhere;
+        width: 95px;
 
+      }
+  }
+  }
   .locationHeading {
     grid-area: h;
     color: var(--accent1Color);

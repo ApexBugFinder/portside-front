@@ -37,13 +37,14 @@ export class UserService {
         this.apiAddress,
         this.clientRt,
       ])
+      .set('Accept', 'application/json')
       .set('Access-Control-Allow-Methods', ['GET'])
-      .set('content-type', 'application/json');
+      .set('content-type', 'application/json;charset=utf-8');
     const address = this.apiAddress + 'username/' + userName;
   console.log('HELLO', this.clientRt);
     printServiceInfo(address, userName, this.hdrs);
     return this.http.get<UserState>(address, { headers: this.hdrs }).pipe(
-      timeout(2000),
+      timeout(10000),
       map((userState: UserState) => {
         console.log("User's Info: ", userState);
         return userState;
@@ -51,28 +52,23 @@ export class UserService {
     );
   }
   public getUserById(userId: string): Observable<UserState> {
-
-
-
-
-
-
-
+console.log('userID: ', userId);
 const address = this.apiAddress + 'userID/' + userId;
     this.hdrs = new HttpHeaders()
-      .set('Access-Control-Allow-Origin', [
+      .set("Access-Control-Allow-Origin", [
         this.apiRt,
         this.apiAddress,
         Constants.authority,
         this.clientRt,
       ])
-      .set('Authorization', this.authService.getAuthorizationHeaderValue())
-      .set('Access-Control-Allow-Methods', ['GET', 'POST', 'PUT'])
-      .set('content-type', 'application/json');
+      .set("Accept", "application/json")
+      .set("Authorization", this.authService.getAuthorizationHeaderValue())
+      .set("Access-Control-Allow-Methods", ["GET", "POST", "PUT"])
+      .set("content-type", "application/json");
   console.log('HELLO', this.clientRt);
     printServiceInfo(address, userId, this.hdrs);
     return this.http.get<UserState>(address, { headers: this.hdrs }).pipe(
-      timeout(2000),
+      timeout(30000),
       map((userState: UserState) => {
         console.log("User's Info: ", userState);
         return userState;
@@ -91,6 +87,7 @@ const address = this.apiAddress + 'userID/' + userId;
         this.apiAddress,
         this.clientRt,
       ])
+      .set('Accept', 'application/json')
       .set('Access-Control-Allow-Methods', ['PUT', 'GET', 'POST'])
       .set('content-type', 'application/json');
     // Address needs to be updated, and the backend endpoint needs to be
@@ -105,7 +102,7 @@ const address = this.apiAddress + 'userID/' + userId;
         headers: this.hdrs,
       })
       .pipe(
-        timeout(2000),
+        timeout(16000),
         map((users: UserState[]) => {
           console.log("User's Info: ", users);
           return users;
@@ -114,16 +111,17 @@ const address = this.apiAddress + 'userID/' + userId;
   }
   public updateUserInfo(user: User): Observable<User> {
     this.hdrs = new HttpHeaders()
-      .set('Access-Control-Allow-Origin', [
+      .set("Access-Control-Allow-Origin", [
         this.apiRt,
         this.apiAddress,
         this.clientRt,
       ])
-      .set('Access-Control-Allow-Methods', ['PUT', 'GET', 'POST'])
-      .set('content-type', 'application/json');
-    const address = this.apiAddress + user.id;
+      .set("Access-Control-Allow-Methods", ["PUT", "GET", "POST"])
+      .set("Accept", "application/json")
+      .set("content-type", "application/json");
+    const address = this.apiAddress + 'update/' + user.id;
     return this.http.put<User>(address, user, { headers: this.hdrs }).pipe(
-      timeout(2000),
+      timeout(12000),
       map((user: User) => {
         console.log('User Updated to: ', user);
         return user;

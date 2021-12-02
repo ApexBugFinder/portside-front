@@ -29,7 +29,8 @@
         display: flex;
         flex-direction: row;
         column-gap: 30px;
-        color: #707070;
+        color: black;
+        align-items: center;
 
         .infoTitle {
             width: 100px;
@@ -57,26 +58,36 @@
                      display: none;
                     justify-content: center;
                 }
-
-            }   }
-            .editContainer {
-                display: flex;
-                flex-direction: row;
-                column-gap: 20px;
-                font-family: futura-pt;
-                font-size: 22px;
-
-                button.editButton {
-                    border: 1px solid var(--secondaryColor);
-                    font-family: futura-pt;
-
-                    background-color:transparent;
+                .name {
+                  color: var(--accent3Color);
+                  font-size: 30px;
                 }
-                button.editButton:hover {
-                    color: var(--secondaryColor);
-                   border: var(--accent1Color) solid 1px;
-                }
+
             }
+             .myRoleTextArea {
+            background-color: transparent;
+            height: auto;
+            margin: 0 0  0 30px;
+          }
+          }
+            // .editContainer {
+            //     display: flex;
+            //     flex-direction: row;
+            //     column-gap: 20px;
+            //     font-family: futura-pt;
+            //     font-size: 22px;
+
+            //     button.editButton {
+            //         border: 1px solid var(--secondaryColor);
+            //         font-family: futura-pt;
+
+            //         background-color:transparent;
+            //     }
+            //     button.editButton:hover {
+            //         color: var(--secondaryColor);
+            //        border: var(--accent1Color) solid 1px;
+            //     }
+            // }
         }
     }
     }
@@ -160,7 +171,10 @@
 
             }
           }
-
+          .myRoleTextArea {
+            background-color: transparent;
+            height: auto;
+          }
           .editContainer {
             display: flex;
             flex-direction: row;

@@ -21,24 +21,24 @@
 
 <div class="container1" *ngIf="userId$|async" id="container1Id">
   <div class="menu" id="menuId">
-  <p class="menuItem home" routerLink="home" id="homeId">
+  <p class="menuItem home"  (click)="tohome()"id="homeId">
     <span><fa-icon [icon]="faHomeIcon" class="icon homeIcon" matTooltip="Home"></fa-icon></span></p>
 
-  <span class="menuItem  projects" routerLink="projects" id="projectId">
+  <span class="menuItem  projects" (click)="toprojects()" id="projectId">
       <span><fa-icon [icon]="faProjectsIcon"  class="icon projectIcon" matTooltip="View Projects"></fa-icon></span>
       <span class="projectText">
           Projects
       </span>
     </span>
 
-  <span class="menuItem experiences" routerLink="experiences" id="experiencesId">
+  <span class="menuItem experiences" (click)="toexperiences()" id="experiencesId">
         <span><fa-icon [icon]="faExperiencesIcon"  class="icon experienceIcon" matTooltip="View Experiences"></fa-icon></span>
       <span class="experienceText">
           Experiences
       </span>
     </span>
 
-    <span class="menuItem education" routerLink="education" id="educationId">
+    <span class="menuItem education" (click)="toeducation()" id="educationId">
           <span><fa-icon [icon]="faEducationIcon"  class="icon educationIcon" matTooltip="View Education"></fa-icon></span>
           <span class="educationText">
               Education
@@ -55,7 +55,7 @@
 
 
     <div class="picContainer">
-      <img [profilePic]="(userData?.userPicUrl)||(defaultProfilePic$|async)" class="pic"alt="" (click)="viewProfile()">
+      <img [profilePic]="(userData?.userPicUrl)||(defaultProfilePic$|async)" class="pic"alt="" (click)="toviewprofile()">
     </div>
   </div>
 </div>

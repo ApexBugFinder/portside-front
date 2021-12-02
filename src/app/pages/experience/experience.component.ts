@@ -20,10 +20,15 @@ import {first, takeUntil, distinctUntilChanged } from 'rxjs/operators';
 
 import { MatDialog } from '@angular/material/dialog';
 import { EditModalShellComponent } from 'src/app/experience/editModal/edit-modal-shell/edit-modal-shell.component';
-import { makeid } from 'src/app/helpers/helperFunctions';
+import { isMobile, makeid } from 'src/app/helpers/helperFunctions';
 import { MakeGuid } from '../../helpers/make-guid';
 import * as fromShared from '../../shared/state';
+import * as SharedActions from '../../shared/state/shared-actions';
 import * as fromAuth from '../../auth/state';
+
+
+
+
 
 @Component({
   selector: 'app-experience',
@@ -31,6 +36,8 @@ import * as fromAuth from '../../auth/state';
   styleUrls: ['./experience.component.scss']
 })
 export class ExperienceComponent implements OnInit {
+
+  loggedInMenuOpen$: Observable<boolean>;
   userID$: Observable<string>;
  private  userID: string;
   experienceData$: Observable<(Experience | undefined)[]>;
@@ -57,8 +64,11 @@ export class ExperienceComponent implements OnInit {
     public dialog: MatDialog,
     private authStore: Store<fromAuth.State>,
     private sharedStore: Store<fromShared.SharedState>,
+
     private experienceShellStore: Store<fromExperienceShell.ExperienceShellState>) {
-      this.userID$ = this.sharedStore.pipe(select(fromShared.getUserId));
+
+    this.loggedInMenuOpen$ = this.sharedStore.pipe(select(fromShared.getSideMenuState));
+    this.userID$ = this.sharedStore.pipe(select(fromShared.getUserId));
     this.experienceData$ = this.experienceDataStore.pipe(select(fromExperienceData.selectAllExperiences));
     this.currentExperience$ = this.experienceShellStore.pipe(select(fromExperienceShell.getCurrentExperience));
     this.experienceDataTotal$ = this.experienceDataStore.pipe(select(fromExperienceData.selectExperiencesTotal));
@@ -69,7 +79,9 @@ export class ExperienceComponent implements OnInit {
 
 
   ngOnInit(): void {
+
     this.pageClass = 'Experience';
+   
     this.currentExperience$.subscribe({
       next: (value: Experience) => {
         this.currentExperience = value;
@@ -88,6 +100,7 @@ export class ExperienceComponent implements OnInit {
        next: (value) => {
          if (value) {
            this.userID = value;
+           this.experienceShellStore.dispatch(new experienceShellActions.LoadExperiencesByProjectCreatorIDFromDB(this.userID));
          }
        },
        error: (err) =>

@@ -309,6 +309,7 @@ export class LoadDegreesByProjectCreatorIDFromDBFail implements Action {
 export class SaveDegreeToDB implements Action {
   readonly type =
     DegreeActionTypes.SAVE_DEGREE_TO_DB_from_DegreeShellEdit;
+    constructor(public payload: Degree) {}
 }
 
 export class SaveDegreeToDBSuccess implements Action {
@@ -327,6 +328,7 @@ export class SaveDegreeToDBFail implements Action {
 export class UpdateDegreeToDB implements Action {
   readonly type =
     DegreeActionTypes.UPDATE_DEGREE_TO_DB_from_DegreeShellEdit;
+  
 }
 
 export class UpdateDegreeToDBSuccess implements Action {

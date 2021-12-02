@@ -8,6 +8,7 @@ export interface UserState {
   username: string;
   email: string;
   userPicUrl: string;
+
 };
 
 const initialState: UserState = {
@@ -16,18 +17,28 @@ const initialState: UserState = {
   username: '',
   email: '',
   userPicUrl: '',
+
 };
 
 export function userReducer(state = initialState, action: UsersActions): UserState {
     switch (action.type) {
-
+  
         // LOAD EFFECTS
         case UserActionTypes.LOAD_USER_STATE_FAIL:
             return {
                 ...state,
                 error: action.payload
             };
+        case UserActionTypes.LOAD_USER_STATE_SUCCESS:
+            return {
+                ...state,
+                id: action.payload.id,
+                username: action.payload.username,
+                userPicUrl: action.payload.userPicUrl,
+                email: action.payload.email
 
+
+            }
         // SET
         case UserActionTypes.SET_USERSTATE_CURRENT_AUTH_USER:
             return {

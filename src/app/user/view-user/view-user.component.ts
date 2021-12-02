@@ -78,6 +78,7 @@ export class ViewUserComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.data);
+    
     this.user = JSON.parse(JSON.stringify(this.data.user));
 
     this.userStore.dispatch(new UserActions.SetCurrentUser(this.user));
@@ -195,5 +196,6 @@ export class ViewUserComponent implements OnInit {
 
   saveProfile() {
     this.userStore.dispatch(new UserActions.UpdateUser());
+    this.editMode = true;
   }
 }

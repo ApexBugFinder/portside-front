@@ -1,22 +1,29 @@
 <div class="iconsSection">
   <div class="iconsContainer">
     <div class="icons">
-      <fa-icon [icon]="faEdit" *ngIf="editMode != true"></fa-icon>
-      <i (click)="displayGitLinkEditor()" class="fab fa-github"></i>
+      <fa-icon [icon]="faEdit" class="icon" *ngIf="editMode != true"></fa-icon>
 
-      <fa-icon (click)="displaySiteLinkEditor()" [icon]="faEye"></fa-icon>
-      <span class="icon" (click)="closeOnClick()">X</span>
+      <i class="fab fa-gitlab icon" (click)="displayGitLinkEditor()"></i>
+
+      <i class="far fa-eye icon" (click)="displaySiteLinkEditor()"></i>
+      <i class="far fa-times-circle icon"  (click)="closeOnClick()"  ></i>
+
       </div>
-      <app-git-link *ngIf="linkEditor == linkView.GIT" 
-      [gitLink]="GitLink"
+
+      <app-git-link *ngIf="linkEditor =='git'"
+      [gitLinks]="GitLink"
       (newGitToSave)="newGitLinkToProcess($event)"
       (closeGitEditor)="linkViewTogglerClicked($event)"></app-git-link>
-  
-  <app-site-link *ngIf="linkEditor == linkView.SITE" 
+
+  <app-site-link *ngIf="linkEditor == 'site' "
     [siteLink]="SiteLink"
     (newSiteToSave)="newSiteLinkToProcess($event)"
   (closeSiteEditor)="linkViewTogglerClicked($event)"></app-site-link>
-    
+
   </div>
 
 </div>
+
+<!-- <fa-icon (click)="displaySiteLinkEditor()" class="icon" [icon]="faEye"></fa-icon> -->
+  <!-- <i (click)="displayGitLinkEditor()" class="fab fa-github icon"></i> -->
+  <!-- <fa-icon (click)="closeOnClick()"  class="icon" [icon]="faTimesCircle"></fa-icon> -->

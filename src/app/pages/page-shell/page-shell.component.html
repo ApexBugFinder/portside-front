@@ -1,7 +1,7 @@
 <mat-drawer-container class="pageShell">
   <div class="container">
-    <app-logged-in-profile class="profile"></app-logged-in-profile>
-    <div class="routerCont">
+    <app-logged-in-profile class="profile" *ngIf="isSideMenuOpen"></app-logged-in-profile>
+    <div class="routerCont" id="routerContent1Id" [ngClass]="{ blurEffect: isSideMenuOpen }">
 <router-outlet class=""></router-outlet>
     </div>
 

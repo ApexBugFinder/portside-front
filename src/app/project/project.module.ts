@@ -4,7 +4,7 @@ import { ProjectCardComponent } from './project-card/project-card.component';
 import { ViewProjectComponent } from './view-project/view-project.component';
 
 
-import { ProjectService } from './project.service';
+import { ProjectService } from './services/project.service';
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../shared/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -24,13 +24,14 @@ import { DisplayRequirementsComponent } from './edit/display-requirements/displa
 import { EffectsModule } from '@ngrx/effects';
 import { EditProjectEffects } from './edit/state/edit-project.effects';
 
+
 @NgModule({
   declarations: [
     ProjectCardComponent,
     ViewProjectComponent,
 
 
-    
+
     InputRequirementsComponent,
     GitLinkComponent,
     SiteLinkComponent,
@@ -39,21 +40,23 @@ import { EditProjectEffects } from './edit/state/edit-project.effects';
     ProjectStatusSectionComponent,
     ActionButtonsComponent,
     DisplayRequirementsComponent,
-   
+
 
 
   ],
   imports: [
-    SharedModule, 
+    SharedModule,
+
     StoreModule.forFeature('projects', projectReducers),
     EffectsModule.forFeature([EditProjectEffects, ]),
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
     ImageModule ],
  entryComponents: [ViewProjectComponent, EditShellComponent],
   exports: [
     ProjectCardComponent,
     ViewProjectComponent,
-   
+
+
 
   ],
   providers: [

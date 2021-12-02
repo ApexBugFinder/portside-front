@@ -1,34 +1,77 @@
 .siteLinkContainer {
-    width: 95%;
-    display: flex;
-    flex-direction: row;
+    width: 450px;
+    background: #FFF;
+    border: lightgrey 1px solid;
+    border-radius: 0 0 0% 0%;
+    margin-left: -250px;
+
+    padding-right: 20px;
+mat-list.linksSaved {
+     display: flex;
+    flex-direction: column;
+    column-gap: 30px;
     justify-content: flex-end;
     align-items: center;
+    mat-label {
+        color: var(--primaryColor);
+        font-family: furtura-pt, sans-serif;
+    }
+    .siteLink {
+    display: flex;
+    flex-direction: row;
+    font-size: 9px;
+    font-family: futura-pt, sans-serif;
     column-gap: 30px;
-    padding-right: 20px;
-}
-.siteInput {
-    background-color: transparent;
-    border-top: none;
-    border-bottom: 1px black solid;
-    border-left: none;
-    border-right: none;
-    width: 200px;
 
+    .link {
+        width: 80px;
+        .gitInput {
+            background-color: white;
+            width: 80px;
+        }
+    }
+    .title {
+        width: 80px;
+         .gitInput {
+            background-color: white;
+            width: 80px;
+
+        }
+    }
+    .siteActionIcon {
+        font-size: 12px;
+    }
+    }
+}
+}
+
+
+mat-list-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 30px;
+    .mat-list-item-content {
+        column-gap:30px;
+    }
+    mat-form-field.formfieldInput {
+        margin-right: 20px;
+    }
 }
 
 .siteSave {
     background-color: var(--accent2Color);
     border: white 2px solid;
-    border-radius: 20px;
-    height: 30px;
+    border-radius: 12px;
+    height: 25px;
+
     padding: 0px 10px 0px 10px;
     text-align: center;
     vertical-align: center;
-    font-size: 12px;
+    font-size: 9px;
     line-height: 20px;
 }
-.siteLabel {
+.gitLabel {
     justify-self: center;
     align-self: center;
 }

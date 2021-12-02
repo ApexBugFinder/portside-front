@@ -1,29 +1,77 @@
 <div mat-dialog-container>
   <div mat-dialog-content>
     <div class="viewProjectContainer">
-      <div class="bannerContainer" [ngStyle]="{ 'background-image':  'url(&quot;' + viewProjectStore?.banner + '&quot; )'}" >
+      <div class="bannerContainer" [ngStyle]="{ 'background-image':  'url(&quot;' + bannerLink + '&quot; )'}" >
         <div class="bannerContent">
 
 
           <div class="iconsContainer">
-            <div class="icons">
-              <fa-icon [icon]="faEdit" (click)="editProject()"></fa-icon>
-              <i class="fab fa-github" (click)="gotToGitRepo()"></i>
+            <div class="icons" >
+                <button mat-button  (click)="editProject()" *ngIf="(userAuthenticated$|async) && ((userAuthenticatedID$|async)==(userViewedID$ |async)) ">
+                     <i class="far fa-edit icon"></i>
+                </button>
+                 <button mat-button [matMenuTriggerFor]="gitLinks">
+                  <i class="fab fa-gitlab icon"></i>
+                </button>
+                <button mat-button [matMenuTriggerFor]="siteLinks">
+                  <fa-icon [icon]="faEye" class="icon"></fa-icon>
+                </button>
+                 <button mat-button (click)="closeProject()">
 
+                  <i class="far fa-times-circle icon" ></i>
 
-              <fa-icon [icon]="faEye" (click)="goToSite()"></fa-icon>
-              <p  class="icon" (click)="closeProject()">X</p>
+                </button>
             </div>
+            <!-- <mat-menu #iconsMenu="matMenu" class="mat-menu-panel">
+                <button mat-button  (click)="editProject()">
+                       <fa-icon [icon]="faEdit"></fa-icon>
+                </button>
+                <button mat-button [matMenuTriggerFor]="gitLinks">
+                  <i class="fab fa-gitlab"></i>
+                </button>
+                <button mat-button (click)="closeProject()">
+                  <fa-icon [icon]="faClose" ></fa-icon>
+                </button>
+            </mat-menu> -->
+
+            <mat-menu #gitLinks="matMenu" class="mat-menu-panel">
+              <div  *ngFor="let link of viewProjectStore?.projectLinks" >
+                    <button  mat-menu-item class="gitLinkMenuItem"  *ngIf="link.service === 'git' && link.id !== null" (click)="gotToGitRepo(link)" >
+
+                              <span class="gitLinkTitle">{{link.title}}</span>
+
+
+
+
+                    </button>
+
+              </div>
+
+            </mat-menu>
+
+             <mat-menu #siteLinks="matMenu" class="mat-menu-panel">
+               <div *ngFor="let site of viewProjectStore?.projectLinks;" >
+              <button  mat-menu-item class="gitLinkMenuItem" *ngIf="site.service === 'site' && site.id !== null" (click)="goToSite(site)" >
+
+                              <span class="gitLinkTitle">{{site.title}}</span>
+              </button>
+               </div>
+
+            </mat-menu>
+
+
           </div>
+
+
           <div class="projectStatusContainer">
             <div class="projectStatus">
               <div class="statusData">
-                <p>Started:</p>
+                <p class="titleHeading">Started:</p>
                 <p *ngIf="viewProjectStore?.started">{{ viewProjectStore?.started |  date: 'MM/yyyy' }}</p>
               </div>
 
               <div class="statusData">
-                <p>Completed:</p>
+                <p class="titleHeading">Completed:</p>
                 <p *ngIf="viewProjectStore?.completed">{{ viewProjectStore?.completed | date: 'MM/yyyy' }}</p>
               </div>
               <div class="spacer"></div>
@@ -39,7 +87,7 @@
           </div>
         </div>
       </div>
-      <div class="contentSection">
+      <div class="contentSection first">
         <div class="titleContatiner">
           <div class="titleHeading">
             <h4 class="title">Title</h4>
@@ -48,16 +96,16 @@
           </div>
         </div>
         <div class="contentSection">
-          <!-- <div class="descriptionTitleContainer">
-            <div class="descriptionTitle"> -->
+          <div class="descriptionTitleContainer">
+            <div class="descriptionTitle">
               <h4 class="title">Project Description</h4>
-            <!-- </div>
-          </div> -->
+            </div>
+          </div>
 
           <div class="descriptionContent">
             <p class="data">
              {{ viewProjectStore?.description}}
-             ddddddddddddddddddddddddddddddddd ddddddddddddddddddddddddddddddddddd dddddddddddddddddddddddddddddddd
+
             </p>
           </div>
         </div>
@@ -69,8 +117,8 @@
           <mat-list class="data">
 
 
-            <mat-list-item *ngFor="let req of viewProjectStore?.projectRequirements">
-              <div class="matListItemContent">
+            <mat-list-item *ngFor="let req of viewProjectStore?.projectRequirements" class="reqItem">
+              <div  *ngIf="req.id != null || req.requirement != null" class="matListItemContent">
                 <div class="editAndReq">
                   <div class="reqContainer">
                     <span class="reqIcon">&#8226;</span>
@@ -86,7 +134,7 @@
           </mat-list>
         </div>
 
-        <div class="contentSection">
+        <!-- <div class="contentSection">
          <h4 class="title">My Contributions</h4>
 
               <mat-list class="data">
@@ -107,7 +155,7 @@
               </div>
             </mat-list-item>
           </mat-list>
-        </div>
+        </div> -->
 
     </div>
   </div>

@@ -12,7 +12,7 @@ export interface DegreeShellState {
   projectCreatorID: string;
   degreeName: string;
   degreeType?: string;
-  minor?: string;
+  minors?: string;
   institution?: string;
   institutionLogo?: string;
   city?: string;
@@ -41,7 +41,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           projectCreatorID: action.payload.projectCreatorID,
           degreeName: action.payload.degreeName,
           degreeType: action.payload.degreeType,
-          minor: action.payload.minor,
+          minors: action.payload.minors,
           institution: action.payload.institution,
           institutionLogo: action.payload.institutionLogo,
           city: action.payload.city,
@@ -56,7 +56,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           projectCreatorID: action.payload.projectCreatorID,
           degreeName: action.payload.degreeName,
           degreeType: action.payload.degreeType,
-          minor: action.payload.minor,
+          minors: action.payload.minors,
           institution: action.payload.institution,
           institutionLogo: action.payload.institutionLogo,
           city: action.payload.city,
@@ -72,7 +72,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           projectCreatorID: action.payload.projectCreatorID,
           degreeName: action.payload.degreeName,
           degreeType: action.payload.degreeType,
-          minor: action.payload.minor,
+          minors: action.payload.minors,
           institution: action.payload.institution,
           institutionLogo: action.payload.institutionLogo,
           city: action.payload.city,
@@ -87,7 +87,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           projectCreatorID: action.payload.projectCreatorID,
           degreeName: action.payload.degreeName,
           degreeType: action.payload.degreeType,
-          minor: action.payload.minor,
+          minors: action.payload.minors,
           institution: action.payload.institution,
           institutionLogo: action.payload.institutionLogo,
           city: action.payload.city,
@@ -118,7 +118,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
       case DegreeActionTypes.SET_CURRENT_DEGREE_MINOR_FROM_DEGREE_SHELL_EDIT_CPT:
         return {
           ...state,
-          minor: action.payload,
+          minors: action.payload,
         };
       case DegreeActionTypes.SET_CURRENT_DEGREE_INSTITUTION_FROM_DEGREE_SHELL_EDIT_CPT:
         return {
@@ -159,7 +159,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           id: initialState.id,
           projectCreatorID: initialState.projectCreatorID,
           degreeName: initialState.degreeName,
-          minor: initialState.minor,
+          minors: initialState.minors,
           institution: initialState.institution,
           city: initialState.city,
           state: initialState.state,
@@ -171,7 +171,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           id: initialState.id,
           projectCreatorID: initialState.projectCreatorID,
           degreeName: initialState.degreeName,
-          minor: initialState.minor,
+          minors: initialState.minors,
           institution: initialState.institution,
           city: initialState.city,
           state: initialState.state,
@@ -183,7 +183,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           id: initialState.id,
           projectCreatorID: initialState.projectCreatorID,
           degreeName: initialState.degreeName,
-          minor: initialState.minor,
+          minors: initialState.minors,
           institution: initialState.institution,
           city: initialState.city,
           state: initialState.state,
@@ -195,7 +195,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           id: initialState.id,
           projectCreatorID: initialState.projectCreatorID,
           degreeName: initialState.degreeName,
-          minor: initialState.minor,
+          minors: initialState.minors,
           institution: initialState.institution,
           city: initialState.city,
           state: initialState.state,
@@ -207,7 +207,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           id: initialState.id,
           projectCreatorID: initialState.projectCreatorID,
           degreeName: initialState.degreeName,
-          minor: initialState.minor,
+          minors: initialState.minors,
           institution: initialState.institution,
           city: initialState.city,
           state: initialState.state,
@@ -219,7 +219,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           id: initialState.id,
           projectCreatorID: initialState.projectCreatorID,
           degreeName: initialState.degreeName,
-          minor: initialState.minor,
+          minors: initialState.minors,
           institution: initialState.institution,
           city: initialState.city,
           state: initialState.state,
@@ -243,7 +243,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
       case DegreeActionTypes.CLEAR_CURRENT_DEGREE_MINOR_FROM_DEGREE_SHELL_EDIT_CPT:
         return {
           ...state,
-          minor: initialState.minor,
+          minors: initialState.minors,
         };
       case DegreeActionTypes.CLEAR_CURRENT_DEGREE_INSTITUTION_FROM_DEGREE_SHELL_EDIT_CPT:
         return {
@@ -284,7 +284,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           id: state.originalDegree?.id as string,
           projectCreatorID: state.originalDegree?.projectCreatorID as string,
           degreeName: state.originalDegree?.degreeName as string,
-          minor: state.originalDegree?.minor,
+          minors: state.originalDegree?.minors,
           institution: state.originalDegree?.institution,
           institutionLogo: state.originalDegree?.institutionLogo,
           city: state.originalDegree?.city,
@@ -304,7 +304,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
             projectCreatorID: action.payload[0].projectCreatorID,
             degreeName: action.payload[0].degreeName as string,
             degreeType: action.payload[0].degreeType,
-            minor: action.payload[0].minor,
+            minors: action.payload[0].minors,
             institution: action.payload[0].institution,
             institutionLogo: action.payload[0].institutionLogo,
             city: action.payload[0].city,
@@ -333,7 +333,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           projectCreatorID: action.payload.projectCreatorID,
           degreeName: action.payload.degreeName as string,
           degreeType: action.payload.degreeType,
-          minor: action.payload.minor,
+          minors: action.payload.minors,
           institution: action.payload.institution as string,
           institutionLogo: action.payload.institutionLogo as string,
           city: action.payload.city,
@@ -356,7 +356,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           projectCreatorID: action.payload.projectCreatorID,
           degreeName: action.payload.degreeName as string,
           degreeType: action.payload.degreeType,
-          minor: action.payload.minor,
+          minors: action.payload.minors,
           institution: action.payload.institution as string,
           institutionLogo: action.payload.institutionLogo as string,
           city: action.payload.city,
@@ -378,7 +378,7 @@ export function degreeReducer(state = initialState, action: DegreeActions): Degr
           projectCreatorID: action.payload.projectCreatorID,
           degreeName: action.payload.degreeName as string,
           degreeType: action.payload.degreeType,
-          minor: action.payload.minor,
+          minors: action.payload.minors,
           institution: action.payload.institution as string,
           institutionLogo: action.payload.institutionLogo as string,
           city: action.payload.city,

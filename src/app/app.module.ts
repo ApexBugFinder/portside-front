@@ -17,11 +17,12 @@ import { environment } from 'src/environments/environment';
 import { ActionButtonsComponent } from './pages/action-buttons/action-buttons.component';
 import { UserModule } from './user/user.module';
 import { AuthService } from './auth/auth.service';
+import { HeaderMenuComponent } from './header/header-menu/header-menu.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [AppComponent, HeaderComponent, HeaderMenuComponent],
   imports: [
     BrowserModule,
     RouterModule,
@@ -40,12 +41,12 @@ import { AuthService } from './auth/auth.service';
     PagesModule,
     UserModule
   ],
-  exports: [HeaderComponent],
+  exports: [HeaderComponent, HeaderMenuComponent],
   // entryComponents: [ProjectCardComponent, EditProjectComponent],
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
     { provide: 'AUTH_SERVICE', useValue: AuthService },
   ],
   bootstrap: [AppComponent],
-}) 
+})
 export class AppModule {}

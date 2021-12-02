@@ -59,12 +59,12 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "3kb",
+                  "maximumError": "70kb"
                 }
               ]
             }
@@ -74,9 +74,8 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "portfolio-front:build",
-             "proxyConfig": "./proxy.conf.json",
-            "sslKey": "./src/assets/ssl/host.key",
-            "sslCert": "./src/assets/ssl/host.cert"
+             "proxyConfig": "./proxy.conf.json"
+
           },
           "configurations": {
             "production": {

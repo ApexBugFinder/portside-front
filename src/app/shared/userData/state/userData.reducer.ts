@@ -15,7 +15,7 @@ export function selectedUserId(a: UserState): string {
 }
 
 
-export function sortByUserName(a: UserState, b: UserState): number {
+export function sortByUserName(a: UserState, b: UserState): number{
 
   if ( a.username > b.username) {
     return 1;
@@ -54,6 +54,7 @@ export const adapter: EntityAdapter<UserState> =
     on(searchBarResultsActions.addUser, (state, { UserState }) => {
       return adapter.addOne(UserState, state);
     }),
+
 
     on(searchBarResultsActions.setUser, (state, { UserState }) => {
       return adapter.setOne(UserState, state);
@@ -98,7 +99,14 @@ export const adapter: EntityAdapter<UserState> =
 
     on(searchBarResultsActions.clearUsers, (state) => {
       return adapter.removeAll({ ...state, selectedUserId: '' });
-    })
+    }),
+    on (searchBarResultsActions.selectUser,
+      (state, {UserId}) => {
+        return {
+          ...state,
+          selectedUserId: UserId
+        }
+      })
   );
   export function reducer(state: State | undefined, action: Action) {
     return userReducer(state, action);

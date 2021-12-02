@@ -5,12 +5,15 @@ import {
   faMinusCircle,
   faEye,
   faLightbulb,
+  faTimesCircle
+
 } from '@fortawesome/free-solid-svg-icons';
 import { Store, select } from '@ngrx/store';
 import * as fromEditProject from '../../edit/state';
 import * as edipProjectActions from '../../edit/state/edit-project.actions';
 import { Observable } from 'rxjs';
 import { ProjectCardComponent } from '../../project-card/project-card.component';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-icons-section',
@@ -23,26 +26,29 @@ export class IconsSectionComponent implements OnInit {
   faDelete = faMinusCircle;
   faEdit = faPenSquare;
   faPublished = faLightbulb;
+  faTimesCircle = faTimesCircle;
 
   @Input() editMode: boolean;
+  @Output() openMenu: EventEmitter<boolean> = new EventEmitter<boolean>();
+  menuOpen: boolean = false;
 
   // LINKS
-  GitLink: ProjectLink;
-  SiteLink: ProjectLink;
+  GitLink: ProjectLink[];
+  SiteLink: ProjectLink[];
 
-  
-  linkView = linkview;
+
+  linkView: linkview;
   linkEditor: linkview;
-  
+
   projectLinks$: Observable<ProjectLink[]  | undefined>;
   projectLinksStore: ProjectLink[]  | undefined;
   projectID$: Observable<string  | undefined> ;
   projectIDStore: string  | undefined;
   projectCreatorID$: Observable<string  | undefined>;
   projectCreatorIDStore: string  | undefined;
-  
+
   @Output() closeDialog: EventEmitter<string> = new EventEmitter<string>();
-  
+
   constructor(private editProjectStore: Store<fromEditProject.EditProjectState>) {
     this.projectLinks$ = this.editProjectStore.pipe(select(fromEditProject.getEditProjectProjectLinks));
     this.projectID$ = this.editProjectStore.pipe(select(fromEditProject.getEditProjectId));
@@ -50,7 +56,7 @@ export class IconsSectionComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    
+
     this.projectLinks$.subscribe({
       next: links => {
         this.initializeLinks(links);
@@ -77,21 +83,40 @@ export class IconsSectionComponent implements OnInit {
      if(message === linkview.NONE) {
        this.linkEditor = linkview.NONE;
      }
-    
-    
+
+
   }
   // DISPLAY GIT LINK EDITOR WHEN ICON IS CLICKED
   displayGitLinkEditor() {
+
     this.linkEditor= this.linkEditor == linkview.GIT? linkview.NONE: linkview.GIT;
+    if (this.linkEditor == linkview.GIT) {
+      this.menuOpen = true;
+      this.openMenu.emit(this.menuOpen);
+    } else {
+      this.menuOpen = false;
+      this.openMenu.emit(this.menuOpen);
+    }
+
   }
   // DISPLAY SITE LINK EDITOR WHEN ICON IS CLICKED
   displaySiteLinkEditor() {
+
     this.linkEditor = this.linkEditor == linkview.SITE? linkview.NONE: linkview.SITE;
+    if (this.linkEditor == linkview.SITE) {
+      this.menuOpen = true;
+      this.openMenu.emit(this.menuOpen);
+    } else {
+      this.menuOpen = false;
+      this.openMenu.emit(this.menuOpen);
+    }
   }
-   
+
   closeOnClick() {
     console.log('close process begins');
     let message = "closeDialog";
+    this.menuOpen = false;
+    this.openMenu.emit(this.menuOpen);
     this.closeDialog.emit(message);
   }
 
@@ -122,46 +147,19 @@ export class IconsSectionComponent implements OnInit {
     console.log(myProjectLinks);
     myProjectLinks?.forEach(uu => {
       if (uu.service == 'git') {
-        this.GitLink = uu;
+        this.GitLink.push(uu);
       }
       if (uu.service =='site') {
-        this.SiteLink = uu
+        this.SiteLink.push(uu);
       }
-  
+
     });
-    if (myProjectLinks?.filter(i=> i.service =='git').length == 0){
-      let newGitLink: ProjectLink = {
-        id: '',
-        projectID: this.projectIDStore as string,
-        service: 'git',
-        link: ''
-  
-      };
-      this.GitLink = newGitLink;
-      if (myProjectLinks.length === 0 || myProjectLinks === null) {
-        myProjectLinks = [];
-        myProjectLinks.push(newGitLink);
-      }
-      myProjectLinks.push(newGitLink);
+
+
+
     }
-    if (myProjectLinks?.filter(i => i.service == 'site').length == 0) {
-      let newSiteLink: ProjectLink = {
-        id: '',
-        projectID: this.projectIDStore as string,
-        service: 'site',
-        link: ''
-      };
-      this.SiteLink = newSiteLink;
-      if (myProjectLinks.length === 0 || myProjectLinks === null) {
-        myProjectLinks = [];
-        myProjectLinks.push(newSiteLink);
-      }
-      myProjectLinks.push(newSiteLink);
-      myProjectLinks.push(newSiteLink);
-    }
-    console.log('HELLO, links initialized');
-    this.projectLinksStore = myProjectLinks;
+
   }
-  
-}
+
+
 

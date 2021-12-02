@@ -18,6 +18,7 @@ import { Router } from '@angular/router';
 import * as fromShared from '../../../shared/state';
 import * as fromAuth from '../../../auth/state';
 import { DatePipe } from '@angular/common';
+import { MakeGuid } from 'src/app/helpers/make-guid';
 
 @Component({
   selector: 'app-edit-modal-shell',
@@ -299,9 +300,14 @@ export class EditModalShellComponent implements OnInit {
     });
     this.roles$.subscribe({
       next: (value: Role[] | undefined) => {
+        console.log('roles: ', value);
+
         if (value) {
-          this.roles = value;
-          this.rolesAbstractControl?.setValue(this.roles);
+          this.roles = [];
+          value.forEach(i => {
+            this.roles?.push(i);
+          });
+          // this.rolesAbstractControl?.setValue(this.roles);
         }
       },
       error: (err) =>
@@ -388,18 +394,27 @@ addRole() {
   console.log(this.myTitleAbstractControl?.value);
   console.log(this.myRoleAbstractControl?.value);
 
-  let newRole:Role = {
-    id: 'new',
+  let newRole: Role = {
+    id: new MakeGuid().id.toString(),
+    experienceID: this.currentExp?.id as string,
     myRole: this.myRoleAbstractControl?.value,
-    myTitle: this.myTitleAbstractControl?.value,
-    experienceID: this.experienceID,
-    editState: editState.ADD,
-    stateHistory: [editState.ADD]
-  }
-  let newRoles: Role[] = JSON.parse(JSON.stringify(this.roles));
-  newRoles.push(newRole);
-  console.log(newRoles);
-  this.experienceDataStore.dispatch(new experienceShellActions.SetCurrentExperienceRoles(newRoles));
+    myTitle: this.myTitleAbstractControl?.value
+
+  };
+  this.experienceDataStore.dispatch(new experienceShellActions.SaveRoleToDB(newRole));
+  // this.experienceDataStore.dispatch(new experienceShellActions.SaveExperienceToDB)
+  // let newRole:Role = {
+  //   id: 'new',
+  //   myRole: this.myRoleAbstractControl?.value,
+  //   myTitle: this.myTitleAbstractControl?.value,
+  //   experienceID: this.experienceID,
+  //   editState: editState.ADD,
+  //   stateHistory: [editState.ADD]
+  // }
+  // let newRoles: Role[] = JSON.parse(JSON.stringify(this.roles));
+  // newRoles.push(newRole);
+  // console.log(newRoles);
+  // this.experienceDataStore.dispatch(new experienceShellActions.SetCurrentExperienceRoles(newRoles));
   this.myRoleAbstractControl?.setValue('');
   this.myTitleAbstractControl?.setValue('');
 }
@@ -408,30 +423,32 @@ addRole() {
 
 // TOGGLE A ROLE FOR REMOVAL
 toggleRemoveRole(a: Role) {
+
 // DO A DEEP COPY OF the Role because it is readonly because of NGRX
 let b = JSON.parse(JSON.stringify(a));
+this.experienceDataStore.dispatch(new experienceShellActions.DeleteRoleToDB(b.id));
+// if (b.stateHistory[0] === editState.OK) {
+//   // TOGGLE STATE BETWEEN REMOVE AND OK
+//   // OK IS A ROLE FROM THE bACKEND, NOT CREATED THIS SESSION.
+//   b.editState = a.editState === editState.OK? editState.REMOVE: editState.OK;
+// }
+// else {
+//   // TOGGLE STATE BETWEEN REMOVE AND ADD
+//   // ADD STATE IS A ROLE THAT WAS CREATED IN THIS SESSION.
+//   b.editState = a.editState ===editState.ADD? editState.REMOVE: editState.ADD;
 
-if (b.stateHistory[0] === editState.OK) {
-  // TOGGLE STATE BETWEEN REMOVE AND OK
-  // OK IS A ROLE FROM THE bACKEND, NOT CREATED THIS SESSION.
-  b.editState = a.editState === editState.OK? editState.REMOVE: editState.OK;
-}
-else {
-  // TOGGLE STATE BETWEEN REMOVE AND ADD
-  // ADD STATE IS A ROLE THAT WAS CREATED IN THIS SESSION.
-  b.editState = a.editState ===editState.ADD? editState.REMOVE: editState.ADD;
+// }
+// // ADD to STATE History
+// b.stateHistory?.push(b.editState);
+// console.log('pre roles: ', this.roles);
+// console.log('new roles: ', b);
+// // DROP AND REPlACE EDITED ROLE FROM THE STORE WITH UPDATED ROLE
+// this.roles = this.roles?.filter(i => i.id != b.id);
+// this.roles?.push(b);
+// console.log('updated roles: ', this.roles );
 
-}
-// ADD to STATE History
-b.stateHistory?.push(b.editState);
-console.log('pre roles: ', this.roles);
-console.log('new roles: ', b);
-// DROP AND REPlACE EDITED ROLE FROM THE STORE WITH UPDATED ROLE
-this.roles = this.roles?.filter(i => i.id != b.id);
-this.roles?.push(b);
-console.log('updated roles: ', this.roles );
+// this.updateRolesStore();
 
-this.updateRolesStore();
 }
 
 // UPDATE THE CURRENT ROLE STORE
@@ -475,6 +492,8 @@ saveToDB() {
 
   if ((this.userBeingViewedId == this.authenticatedUserId) && this.auth) {
 
+    // UPDATE ROLES
+
     // UPDATE DB IF UPDATING
     this.experienceDataStore.dispatch(new experienceShellActions.UpdateExperienceToDB());
   // CLOSE DIALOG
@@ -495,7 +514,7 @@ saveToDB() {
 
 deleteFromDB() {
   if ((this.userBeingViewedId == this.authenticatedUserId) && this.auth) {
-    this.experienceDataStore.dispatch(new experienceShellActions.DeleteExperienceToDB());
+    this.experienceDataStore.dispatch(new experienceShellActions.DeleteExperienceToDB(this.currentExp as Experience));
   }
     // CLOSE DIALOG
    this.closeDialog();
@@ -558,7 +577,10 @@ deleteFromDB() {
       distinctUntilChanged()
     ).subscribe({
       next: value => {
+        console.log('date started value: ', value);
+        this.experienceDataStore.dispatch(new experienceShellActions.ClearCurrentExperienceStarted());
         this.experienceDataStore.dispatch(new experienceShellActions.SetCurrentExperienceStarted(value));
+        this.startedAbstractControl?.setValue(value);
       },
       error: err => console.log(),
       complete: () => console.log()
@@ -568,6 +590,8 @@ deleteFromDB() {
       distinctUntilChanged()
     ).subscribe({
       next: value => {
+        console.log("date completed value: ", value);
+        this.experienceDataStore.dispatch(new experienceShellActions.ClearCurrentExperienceCompleted());
         this.experienceDataStore.dispatch(new experienceShellActions.SetCurrentExperienceCompleted(value));
       },
       error: err => console.log(),

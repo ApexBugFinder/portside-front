@@ -12,6 +12,9 @@ import * as fromAuth from '../auth/state';
 import * as authActions from '../auth/state/auth.actions';
 import * as fromUser from '../user/state';
 import * as UserActions from '../user/state/user.actions';
+import * as fromShared from '../shared/state';
+import * as sharedActions from '../shared/state/shared-actions';
+import { timeout } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -22,6 +25,7 @@ export class AuthGuardService {
   constructor(private authService: AuthService,
     private authStore: Store<fromAuth.State>,
     private userStateStore: Store<fromUser.UserState>,
+    private sharedStore: Store<fromShared.SharedState>,
 
     private router: Router,
     ) { }
@@ -48,11 +52,14 @@ export class AuthGuardService {
   authenticated(user: User) {
     console.log('authenticated: ', user);
 
-    this.authStore.dispatch(new authActions.SetAuthenticated());
-    this.authStore.dispatch(new authActions.SetAuthorizedUserId(user.id));
+    // SET AUTHENTICATION STATE
+    this.setAuthentication(user.id).then(id => {
+      // THEN LOAD STATE FOR USER
+      this.userStateStore.dispatch(new UserActions.LoadUserState());
+    }).catch(err => {
+        console.log('ERROR - while setting authentication state: ', err);
+    });
 
-    // LOAD STATE
-    this.userStateStore.dispatch(new UserActions.LoadUserState());
 
     return true;
   }
@@ -66,4 +73,20 @@ export class AuthGuardService {
     this.authService.logout();
   }
 
+  setAuthentication(id: string): Promise<string> {
+    const authenticationPromise = new Promise<string>((resolve, reject) => {
+          try {
+            setTimeout(() => {
+              this.sharedStore.dispatch(new sharedActions.SetUserId(id));
+            this.authStore.dispatch(new authActions.SetAuthenticated());
+            this.authStore.dispatch(new authActions.SetAuthorizedUserId(id));
+            }, 200);
+            resolve(id);
+          } catch (err) {
+            reject(err)
+          }
+    });
+
+    return authenticationPromise;
+  }
 }

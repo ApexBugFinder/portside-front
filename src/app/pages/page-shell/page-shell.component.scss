@@ -2,12 +2,18 @@
 .pageShell {
   height:100vh;
   width: 100vw;
+
   background-image: url('../../../assets/images/mainBackground.webp');
   background-size: cover;
+
   .container {
     display: flex;
+    height: 100%;
+
     flex-direction: row;
+    z-index: 2;
     width: 100%;
+
   .profile {
     margin: 30px 10% 30px 10%;
     width: 200px;
@@ -18,13 +24,24 @@
       margin: 100px 10% 30px 10%;
       width: 200px;
       position: fixed;
+      z-index: 5;
+    }
+    .routerCont {
+        justify-self: flex-end;
+    align-self: flex-end;
+    width: 100%;
+    margin: 20px auto;
+    position: absolute;
+    top:60px;
     }
   }
   .routerCont {
     justify-self: flex-end;
     align-self: flex-end;
     width: 100%;
-    margin: auto;
+    margin: 20px auto;
+    position: absolute;
+    top:0px;
   }
 }
 }

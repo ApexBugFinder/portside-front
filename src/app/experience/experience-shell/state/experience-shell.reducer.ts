@@ -306,11 +306,21 @@ export function experienceReducer(state = initialState, action: ExperienceAction
                 roles: action.payload.roles,
             };
         case ExperienceActionTypes.DELETE_EXPERIENCE_TO_DB_FAIL:
+        case ExperienceActionTypes.UPDATE_ROLE_TO_DB_FAIL :
+        case ExperienceActionTypes.DELETE_ROLE_TO_DB_FAIL :
+        case ExperienceActionTypes.SAVE_ROLE_TO_DB_FAIL :
             return {
                 ...state,
                 error: action.payload
             };
 
+        case ExperienceActionTypes.SAVE_ROLE_TO_DB_SUCCESS:
+        case ExperienceActionTypes.UPDATE_ROLE_TO_DB_SUCCESS:
+        case ExperienceActionTypes.DELETE_ROLE_TO_DB_SUCCESS:
+        return {
+            ...state,
+            roles: action.payload
+        }
 
         default:
             return state;

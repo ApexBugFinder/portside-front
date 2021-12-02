@@ -126,8 +126,11 @@
         align-content: flex-start;
         margin-top: 0;
         width: 100%;
+      .mat-focused .mat-form-field-label {
+        color: var(--accent1Color) !important;
+      }
         app-image-getter {
-            width: 40%;
+            width:50%;
         }
         .info {
           align-self: flex-start;
@@ -144,7 +147,12 @@
   display: flex;
   flex-direction: row;
   column-gap: 20px;
-
+mat-form-field {
+  width: 60%;
+  .mat-form-field-prefix, .mat-form-field-suffix {
+    margin-left: -30px;
+  }
+}
 }
           }
 

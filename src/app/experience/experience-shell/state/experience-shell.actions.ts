@@ -1,63 +1,69 @@
 import { Action } from '@ngrx/store';
+import { DeleteCertificationToDB } from 'src/app/education/certificatn-shell/state/certification-shell.actions';
 import { Experience } from '../../Models/experience';
 import { Role } from '../../Models/role';
 
 export enum ExperienceActionTypes {
+  LOAD_EXPERIENCES_FROM_DB = "[EXPERIENCE PAGE] LOAD EXPERIENCES FROM DB",
+  LOAD_EXPERIENCES_FROM_DB_SUCCESS = "[EXPERIENCE PAGE] LOAD EXPERIENCES FROM DB SUCCESSFULL",
+  LOAD_EXPERIENCES_FROM_DB_FAIL = "[EXPERIENCE PAGE] LOAD EXPERIENCES FROM DB FAILED",
 
-    LOAD_EXPERIENCES_FROM_DB = '[EXPERIENCE PAGE] LOAD EXPERIENCES FROM DB',
-    LOAD_EXPERIENCES_FROM_DB_SUCCESS = '[EXPERIENCE PAGE] LOAD EXPERIENCES FROM DB SUCCESSFULL',
-    LOAD_EXPERIENCES_FROM_DB_FAIL = '[EXPERIENCE PAGE] LOAD EXPERIENCES FROM DB FAILED',
+  SAVE_EXPERIENCE_TO_DB = "[EXPERIENCE] SAVE EDIT EXPERIENCE TO DB",
+  SAVE_EXPERIENCE_TO_DB_SUCCESS = "[EXPERIENCE] SAVE EDIT EXPERIENCE TO DB WAS SUCCESSFULL",
+  SAVE_EXPERIENCE_TO_DB_FAIL = "[EXPERIENCE] SAVE EDIT EXPERIENCE TO DB FAILED",
 
-    SAVE_EXPERIENCE_TO_DB = '[EXPERIENCE] SAVE EDIT EXPERIENCE TO DB',
-    SAVE_EXPERIENCE_TO_DB_SUCCESS = '[EXPERIENCE] SAVE EDIT EXPERIENCE TO DB WAS SUCCESSFULL',
-    SAVE_EXPERIENCE_TO_DB_FAIL = '[EXPERIENCE] SAVE EDIT EXPERIENCE TO DB FAILED',
+  UPDATE_EXPERIENCE_TO_DB = "[EXPERIENCE] UPDATE EDIT EXPERIENCE TO DB",
+  UPDATE_EXPERIENCE_TO_DB_SUCCESS = "[EXPERIENCE] UPDATE EDIT EXPERIENCE TO DB WAS SUCCESSFULL",
+  UPDATE_EXPERIENCE_TO_DB_FAIL = "[EXPERIENCE] UPDATE EDIT EXPERIENCE TO DB FAILED",
 
-    UPDATE_EXPERIENCE_TO_DB = '[EXPERIENCE] UPDATE EDIT EXPERIENCE TO DB',
-    UPDATE_EXPERIENCE_TO_DB_SUCCESS = '[EXPERIENCE] UPDATE EDIT EXPERIENCE TO DB WAS SUCCESSFULL',
-    UPDATE_EXPERIENCE_TO_DB_FAIL = '[EXPERIENCE] UPDATE EDIT EXPERIENCE TO DB FAILED',
+  DELETE_EXPERIENCE_TO_DB = "[EXPERIENCE] DELETE EDIT EXPERIENCE TO DB",
+  DELETE_EXPERIENCE_TO_DB_SUCCESS = "[EXPERIENCE] DELETE EDIT EXPERIENCE TO DB WAS SUCCESSFULL",
+  DELETE_EXPERIENCE_TO_DB_FAIL = "[EXPERIENCE] DELETE EDIT EXPERIENCE TO DB FAILED",
 
+  SAVE_ROLE_TO_DB = "[ROLE] SAVE EDIT ROLE TO DB",
+  SAVE_ROLE_TO_DB_SUCCESS = "[ROLE] SAVE EDIT ROLE TO DB WAS SUCCESSFULL",
+  SAVE_ROLE_TO_DB_FAIL = "[ROLE] SAVE EDIT ROLE TO DB FAILED",
 
-    DELETE_EXPERIENCE_TO_DB = '[EXPERIENCE] DELETE EDIT EXPERIENCE TO DB',
-    DELETE_EXPERIENCE_TO_DB_SUCCESS = '[EXPERIENCE] DELETE EDIT EXPERIENCE TO DB WAS SUCCESSFULL',
-    DELETE_EXPERIENCE_TO_DB_FAIL = '[EXPERIENCE] DELETE EDIT EXPERIENCE TO DB FAILED',
+  UPDATE_ROLE_TO_DB = "[ROLE] UPDATE EDIT ROLE TO DB",
+  UPDATE_ROLE_TO_DB_SUCCESS = "[ROLE] UPDATE EDIT ROLE TO DB WAS SUCCESSFULL",
+  UPDATE_ROLE_TO_DB_FAIL = "[ROLE] UPDATE EDIT ROLE TO DB FAILED",
 
+  DELETE_ROLE_TO_DB = "[ROLE] DELETE EDIT ROLE TO DB",
+  DELETE_ROLE_TO_DB_SUCCESS = "[ROLE] DELETE EDIT ROLE TO DB WAS SUCCESSFULL",
+  DELETE_ROLE_TO_DB_FAIL = "[ROLE] DELETE EDIT ROLE TO DB FAILED",
 
-    SET_ORIGINALPROJECT = '[EXPERIENCE] SET ORIGINAL EXPERIENCES',
-    SET_CURRENT_EXPERIENCE = '[EXPERIENCE] SET CURRENT EXPERIENCES',
-    
-    SET_CURRENT_EXPERIENCE_ID = '[CURRENT EXPERIENCE] SET EXPERIENCE ID',
-    SET_CURRENT_EXPERIENCE_PROJECTCREATOR_ID = '[CURRENT EXPERIENCE] SET EXPERIENCE PROJECT CREATOR ID',
-    SET_CURRENT_EXPERIENCE_COMPANY = '[CURRENT EXPERIENCE] SET EXPERIENCE COMPANY',
-    SET_CURRENT_EXPERIENCE_TITLE = '[CURRENT EXPERIENCE] SET EXPERIENCE TITLE',
-    SET_CURRENT_EXPERIENCE_LOGO_URL = '[CURRENT EXPERIENCE] SET EXPERIENCE LOGO_URL',
-    SET_CURRENT_EXPERIENCE_STARTED = '[CURRENT EXPERIENCE] SET EXPERIENCE START DATE',
-    SET_CURRENT_EXPERIENCE_COMPLETED = '[CURRENT EXPERIENCE] SET EXPERIENCE COMPLETE DATE',
-    SET_CURRENT_EXPERIENCE_CITY = '[CURRENT EXPERIENCE] SET EXPERIENCE CITY',
-    SET_CURRENT_EXPERIENCE_STATE = '[CURRENT EXPERIENCE] SET EXPERIENCE STATE',
-    SET_CURRENT_EXPERIENCE_ROLES = '[CURRENT EXPERIENCE] SET EXPERIENCE ROLES',
+  SET_ORIGINALPROJECT = "[EXPERIENCE] SET ORIGINAL EXPERIENCES",
+  SET_CURRENT_EXPERIENCE = "[EXPERIENCE] SET CURRENT EXPERIENCES",
 
+  SET_CURRENT_EXPERIENCE_ID = "[CURRENT EXPERIENCE] SET EXPERIENCE ID",
+  SET_CURRENT_EXPERIENCE_PROJECTCREATOR_ID = "[CURRENT EXPERIENCE] SET EXPERIENCE PROJECT CREATOR ID",
+  SET_CURRENT_EXPERIENCE_COMPANY = "[CURRENT EXPERIENCE] SET EXPERIENCE COMPANY",
+  SET_CURRENT_EXPERIENCE_TITLE = "[CURRENT EXPERIENCE] SET EXPERIENCE TITLE",
+  SET_CURRENT_EXPERIENCE_LOGO_URL = "[CURRENT EXPERIENCE] SET EXPERIENCE LOGO_URL",
+  SET_CURRENT_EXPERIENCE_STARTED = "[CURRENT EXPERIENCE] SET EXPERIENCE START DATE",
+  SET_CURRENT_EXPERIENCE_COMPLETED = "[CURRENT EXPERIENCE] SET EXPERIENCE COMPLETE DATE",
+  SET_CURRENT_EXPERIENCE_CITY = "[CURRENT EXPERIENCE] SET EXPERIENCE CITY",
+  SET_CURRENT_EXPERIENCE_STATE = "[CURRENT EXPERIENCE] SET EXPERIENCE STATE",
+  SET_CURRENT_EXPERIENCE_ROLES = "[CURRENT EXPERIENCE] SET EXPERIENCE ROLES",
 
-    // CLEAR
-    CLEAR_ORIGINALPROJECT = '[EXPERIENCE] LEAR ORIGINAL EXPERIENCES',
-    CLEAR_CURRENT_EXPERIENCE = '[EXPERIENCE] CLEAR CURRENT EXPERIENCES',
-    
-    CLEAR_CURRENT_EXPERIENCE_ID = '[CURRENT EXPERIENCE] CLEAR EXPERIENCE ID',
-    CLEAR_CURRENT_EXPERIENCE_PROJECTCREATOR_ID = '[CURRENT EXPERIENCE] CLEAR EXPERIENCE PROJECT CREATOR ID',
-    CLEAR_CURRENT_EXPERIENCE_COMPANY = '[CURRENT EXPERIENCE] CLEAR EXPERIENCE COMPANY',
-    CLEAR_CURRENT_EXPERIENCE_TITLE = '[CURRENT EXPERIENCE] CLEAR EXPERIENCE TITLE',
-    CLEAR_CURRENT_EXPERIENCE_LOGO_URL = '[CURRENT EXPERIENCE] CLEAR  EXPERIENCE LOGO_URL',
-    CLEAR_CURRENT_EXPERIENCE_STARTED = '[CURRENT EXPERIENCE] CLEAR EXPERIENCE START DATE',
-    CLEAR_CURRENT_EXPERIENCE_COMPLETED = '[CURRENT EXPERIENCE] CLEAR EXPERIENCE COMPLETE DATE',
-    CLEAR_CURRENT_EXPERIENCE_CITY = '[CURRENT EXPERIENCE] CLEAR EXPERIENCE CITY',
-    CLEAR_CURRENT_EXPERIENCE_STATE = '[CURRENT EXPERIENCE] CLEAR EXPERIENCE STATE',
-    CLEAR_CURRENT_EXPERIENCE_ROLES = '[CURRENT EXPERIENCE] CLEAR EXPERIENCE ROLES',
-    
+  // CLEAR
+  CLEAR_ORIGINALPROJECT = "[EXPERIENCE] LEAR ORIGINAL EXPERIENCES",
+  CLEAR_CURRENT_EXPERIENCE = "[EXPERIENCE] CLEAR CURRENT EXPERIENCES",
 
+  CLEAR_CURRENT_EXPERIENCE_ID = "[CURRENT EXPERIENCE] CLEAR EXPERIENCE ID",
+  CLEAR_CURRENT_EXPERIENCE_PROJECTCREATOR_ID = "[CURRENT EXPERIENCE] CLEAR EXPERIENCE PROJECT CREATOR ID",
+  CLEAR_CURRENT_EXPERIENCE_COMPANY = "[CURRENT EXPERIENCE] CLEAR EXPERIENCE COMPANY",
+  CLEAR_CURRENT_EXPERIENCE_TITLE = "[CURRENT EXPERIENCE] CLEAR EXPERIENCE TITLE",
+  CLEAR_CURRENT_EXPERIENCE_LOGO_URL = "[CURRENT EXPERIENCE] CLEAR  EXPERIENCE LOGO_URL",
+  CLEAR_CURRENT_EXPERIENCE_STARTED = "[CURRENT EXPERIENCE] CLEAR EXPERIENCE START DATE",
+  CLEAR_CURRENT_EXPERIENCE_COMPLETED = "[CURRENT EXPERIENCE] CLEAR EXPERIENCE COMPLETE DATE",
+  CLEAR_CURRENT_EXPERIENCE_CITY = "[CURRENT EXPERIENCE] CLEAR EXPERIENCE CITY",
+  CLEAR_CURRENT_EXPERIENCE_STATE = "[CURRENT EXPERIENCE] CLEAR EXPERIENCE STATE",
+  CLEAR_CURRENT_EXPERIENCE_ROLES = "[CURRENT EXPERIENCE] CLEAR EXPERIENCE ROLES",
 
-    // UPDATE
-  
-    
-    RESET_CURRENT_EXPERIENCE = '[CURRENT EXPERIENCE] RESETS CURRENT EXPERIENCE BACK TO ORIGINAL PROJECT'
+  // UPDATE
+
+  RESET_CURRENT_EXPERIENCE = "[CURRENT EXPERIENCE] RESETS CURRENT EXPERIENCE BACK TO ORIGINAL PROJECT",
 }
 
 
@@ -127,61 +133,61 @@ export class SetCurrentExperienceRoles implements Action {
 
 export class ClearOriginalExperience implements Action {
     readonly type = ExperienceActionTypes.CLEAR_ORIGINALPROJECT;
-    
+
 }
 
 export class ClearCurrentExperience implements Action {
     readonly type = ExperienceActionTypes.CLEAR_CURRENT_EXPERIENCE;
-    
+
 }
 
 export class ClearCurrentExperienceId implements Action {
     readonly type = ExperienceActionTypes.CLEAR_CURRENT_EXPERIENCE_ID;
-    
+
 }
 
 export class ClearCurrentExperienceProjectCreatorID implements Action {
     readonly type = ExperienceActionTypes.CLEAR_CURRENT_EXPERIENCE_PROJECTCREATOR_ID;
-    
+
 }
 
 export class ClearCurrentExperienceCompany implements Action {
     readonly type = ExperienceActionTypes.CLEAR_CURRENT_EXPERIENCE_COMPANY;
-    
+
 }
 
 export class ClearCurrentExperienceTitle implements Action {
     readonly type = ExperienceActionTypes.CLEAR_CURRENT_EXPERIENCE_TITLE;
-    
+
 }
 
 export class ClearCurrentExperienceLogoUrl implements Action {
     readonly type = ExperienceActionTypes.CLEAR_CURRENT_EXPERIENCE_LOGO_URL;
-    
+
 }
 
 export class ClearCurrentExperienceStarted implements Action {
     readonly type = ExperienceActionTypes.CLEAR_CURRENT_EXPERIENCE_STARTED;
-    
+
 }
 
 export class ClearCurrentExperienceCompleted implements Action {
     readonly type = ExperienceActionTypes.CLEAR_CURRENT_EXPERIENCE_COMPLETED;
-    
+
 }
 
 export class ClearCurrentExperienceCity implements Action {
     readonly type = ExperienceActionTypes.CLEAR_CURRENT_EXPERIENCE_CITY;
-    
+
 }
 
 export class ClearCurrentExperienceState implements Action {
     readonly type = ExperienceActionTypes.CLEAR_CURRENT_EXPERIENCE_STATE;
-    
+
 }
 export class ClearCurrentExperienceRoles implements Action {
     readonly type = ExperienceActionTypes.CLEAR_CURRENT_EXPERIENCE_ROLES;
-    
+
 }
 
 
@@ -203,6 +209,56 @@ export class LoadExperiencesByProjectCreatorIDFromDBFail implements Action {
 }
 
 // SAVE
+
+
+export class SaveRoleToDB implements Action {
+  readonly type = ExperienceActionTypes.SAVE_ROLE_TO_DB;
+  constructor(public payload: Role) {}
+}
+export class SaveRoleToDBSuccess implements Action {
+  readonly type = ExperienceActionTypes.SAVE_ROLE_TO_DB_SUCCESS;
+  constructor(public payload: Role[]) {}
+}
+export class SaveRoleToDBFail implements Action {
+  readonly type = ExperienceActionTypes.SAVE_ROLE_TO_DB_FAIL;
+  constructor(public payload: string) {}
+}
+
+export class UpdateRoleToDB implements Action {
+  readonly type = ExperienceActionTypes.UPDATE_ROLE_TO_DB;
+  constructor(public payload: Role) {}
+}
+export class UpdateRoleToDBSuccess implements Action {
+  readonly type = ExperienceActionTypes.UPDATE_ROLE_TO_DB_SUCCESS;
+  constructor(public payload: Role[]) {}
+}
+export class UpdateRoleToDBFail implements Action {
+  readonly type = ExperienceActionTypes.UPDATE_ROLE_TO_DB_FAIL;
+  constructor(public payload: string) {}
+}
+
+
+export class DeleteRoleToDB implements Action {
+  readonly type = ExperienceActionTypes.DELETE_ROLE_TO_DB;
+  constructor(public payload: string) {}
+}
+export class DeleteRoleToDBSuccess implements Action {
+  readonly type = ExperienceActionTypes.DELETE_ROLE_TO_DB_SUCCESS;
+  constructor(public payload: Role[]) {}
+}
+export class DeleteRoleToDBFail implements Action {
+  readonly type = ExperienceActionTypes.DELETE_ROLE_TO_DB_FAIL;
+  constructor(public payload: string) {}
+}
+
+
+
+
+
+
+
+
+
 export class SaveExperienceToDB implements Action {
     readonly type = ExperienceActionTypes.SAVE_EXPERIENCE_TO_DB;
 }
@@ -235,6 +291,7 @@ export class UpdateExperienceToDBFail implements Action {
 // DELETE
 export class DeleteExperienceToDB implements Action {
     readonly type = ExperienceActionTypes.DELETE_EXPERIENCE_TO_DB;
+    constructor(public payload: Experience) {}
 }
 
 export class DeleteExperienceToDBSuccess implements Action {
@@ -283,10 +340,22 @@ export type ExperienceActions = SetOriginalExperience
                             |   ResetCurrentExperienceToOriginal
 
                             // TO DB
+                            |   SaveRoleToDB
+                            |   SaveRoleToDBSuccess
+                            |   SaveRoleToDBFail
+
+                            |   UpdateRoleToDB
+                            |   UpdateRoleToDBSuccess
+                            |   UpdateRoleToDBFail
+
+                            |   DeleteRoleToDB
+                            |   DeleteRoleToDBSuccess
+                            |   DeleteRoleToDBFail
+
                             |   SaveExperienceToDB
                             |   SaveExperienceToDBSuccess
                             |   SaveExperienceToDBFail
-                               
+
                             |   UpdateExperienceToDB
                             |   UpdateExperienceToDBSuccess
                             |   UpdateExperienceToDBFail
@@ -299,5 +368,5 @@ export type ExperienceActions = SetOriginalExperience
                             |   LoadExperiencesByProjectCreatorIDFromDBSuccess
                             |   LoadExperiencesByProjectCreatorIDFromDBFail
 
-                            
+
                             ;

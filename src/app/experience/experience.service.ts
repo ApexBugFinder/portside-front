@@ -5,7 +5,7 @@ import { Observable, of, pipe} from 'rxjs';
 import { map, timeout } from 'rxjs/operators';
 import { Constants } from '../helpers/Constants';
 import { Experience } from './Models/experience';
-
+import { printServiceInfo } from '../helpers/helperFunctions';
 import { Store, select } from '@ngrx/store';
 import * as fromShared from '../shared/state';
 
@@ -48,13 +48,13 @@ export class ExperienceService {
           .set('Access-Control-Allow-Methods', ['PUT','POST',])
           .set('content-type', 'application/json');
 
-        this.printServiceInfo(address, item, this.hdrs);
+        printServiceInfo(address, item, this.hdrs);
         return this.http.post<Experience>(
         address,
           item,
          {headers: hdrs}
         ).pipe(
-          timeout(2000),
+          timeout(10000),
           map((newExperience: Experience) => {
           console.log('New Experience added to DB: ', newExperience);
           return newExperience;
@@ -74,13 +74,12 @@ public readAll(): Observable<Experience[]> {
       .set('Access-Control-Allow-Methods', 'GET')
       .set('content-type', 'application/json');
 
-
-      this.printServiceInfo(urlAddress, this.userID, this.hdrs);
+      printServiceInfo(urlAddress, this.userID, this.hdrs);
       return this.http.get<Experience[]>(
         urlAddress,
         { headers: this.hdrs })
         .pipe(
-          // timeout(3000),
+          timeout(10000),
           map((usersExperiences: Experience[]) => {
           console.log('User\'s Experiences Found:  ' + usersExperiences );
           usersExperiences.forEach(exp => {
@@ -109,12 +108,12 @@ public readItem(id: string): Observable<Experience> {
     .set('Access-Control-Allow-Headers', 'Content-Type')
     .set('content-type', 'application/json');
 
-    this.printServiceInfo(urlAddress, id, this.hdrs);
+    printServiceInfo(urlAddress, id, this.hdrs);
       return this.http.get<Experience>(
         urlAddress,
         {headers: this.hdrs}
       ).pipe(
-        timeout(2000),
+        timeout(6000),
         map((item: Experience) => {
         console.log('Item Found: ' + item);
         return item;
@@ -135,14 +134,14 @@ public updateItem(item: Experience | undefined) : Observable<Experience> {
   .set('Access-Control-Allow-Headers', 'Content-Type')
   .set('content-type', 'application/json');
 
-  this.printServiceInfo(urlAddress, item, this.hdrs);
+  printServiceInfo(urlAddress, item, this.hdrs);
 
     return this.http.put<Experience>(
       urlAddress,
       item,
       { headers: this.hdrs }
     ).pipe(
-      timeout(2000),
+      timeout(8000),
       map((updatedItem: Experience) => {
       console.log('Updated Item: ', updatedItem);
       return updatedItem;
@@ -158,28 +157,22 @@ public deleteItem(id: string | undefined): Observable<Experience> {
     this.hdrs = new HttpHeaders();
 
     this.hdrs.set('Access-Control-Allow-Origin', [this.apiRt, this.apiAddress, this.clientRt])
-              .set('Access-Control-Allow-Methods', 'DELETE')
+              .set('Access-Control-Allow-Methods', ['DELETE', 'GET', 'PUT'])
               .set('Access-Control-Allow-Headers', 'Content-Type');
 
-    this.printServiceInfo(urlAddress, id, this.hdrs);
+    printServiceInfo(urlAddress, id, this.hdrs);
 
 
     return this.http.delete<Experience>(
       urlAddress,
       {headers: this.hdrs}
     ).pipe(
-      timeout(2000),
+      timeout(6000),
       map((itemDeleted:Experience)=> {
       console.log('Item Deleted: ', itemDeleted);
       return itemDeleted;
     }));
   }
 
-  public printServiceInfo(address: string, payload: any, httpHrd: HttpHeaders){
 
-    console.log('urlAddress: ', address);
-    console.log('HEADERS:', httpHrd);
-    console.log('payload: ', payload);
-
-  }
 }

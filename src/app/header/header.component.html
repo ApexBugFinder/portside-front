@@ -1,12 +1,12 @@
 <div class="headerContainer">
-  <div class="headerTitle">
-    <div class="siteLogo" routerLink="pages/home">
-       <img  class="sL" src="../../assets/images/svg/SVG/PorfolioLogo2.svg" alt="">
+  <div class="headerTitle"(click)="toggleMenu()" >
+    <div class="siteLogo" >
+       <img  class="sL" src="../../assets/images/svg/SVG/PorfolioLogo2.svg" alt="" >
     </div>
 
-    <h1 class="title" routerLink="pages/home">
+    <h1 class="title">
 
-       <span class="spTitle">P</span>ortfolio
+       <span class="spTitle" >P</span>ort<span class="spTitle">S</span>ide
 
     </h1>
   </div>
@@ -56,18 +56,22 @@ Education
         </h3>
       </mat-list-item>
 
-      <mat-list-item class="header-nav-list-item">
+      <mat-list-item class="header-nav-list-item" *ngIf="!(isAuth$|async)">
         <h3 class="auth">
               <fa-icon [icon]="fakey"
               class="headerIcon"
               *ngIf="!(isAuth$|async)"
               routerLink="pages/editMode"></fa-icon>
-              <fa-icon [icon]="faDoor"
+              <!-- <fa-icon [icon]="faDoor"
               class="headerIcon"
               *ngIf="(isAuth$|async)"
               (click)="logout()"
-              ></fa-icon>
+              ></fa-icon> -->
         </h3>
+      </mat-list-item>
+
+      <mat-list-item class="header-nav-list-item">
+         <app-header-menu *ngIf="(isAuth$|async)"></app-header-menu>
       </mat-list-item>
     </mat-list>
   </div>

@@ -14,6 +14,7 @@ import { ImgSrcDirective } from './img-src.directive';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ShowNoShowDirective } from './show-no-show.directive';
 import { ProfilePicDirective } from './profile-pic.directive';
+import { ProjectPicDirective } from './project-pic.directive';
 
 
 
@@ -23,7 +24,8 @@ import { ProfilePicDirective } from './profile-pic.directive';
     ImageGetterComponent,
     ImgSrcDirective,
     ShowNoShowDirective,
-    ProfilePicDirective
+    ProfilePicDirective,
+    ProjectPicDirective
   ],
   imports: [
     CommonModule,
@@ -33,15 +35,16 @@ import { ProfilePicDirective } from './profile-pic.directive';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireStorageModule,
-    
+
 
   ],
   exports: [
     ImageGetterComponent,
     ImgSrcDirective,
-    ProfilePicDirective
+    ProfilePicDirective,
+    ProjectPicDirective
   ]
 
-  
+
 })
 export class ImageModule { }

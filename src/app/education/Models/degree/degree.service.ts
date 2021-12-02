@@ -47,7 +47,7 @@ export class DegreeService {
           item,
          {headers: this.hdrs}
         ).pipe(
-          timeout(2000),
+          timeout(15000),
           map((newDegree: Degree) => {
           console.log('New Degree added to DB: ', newDegree);
           return newDegree;
@@ -73,7 +73,7 @@ public readAllByUser(): Observable<Degree[]> {
         urlAddress,
         { headers: this.hdrs })
         .pipe(
-          timeout(2000),
+          timeout(15000),
           map((usersDegrees: Degree[]) => {
           console.log('User\'s Degrees Found:  ' + usersDegrees );
 
@@ -102,7 +102,7 @@ public readItem(id: string): Observable<Degree> {
         urlAddress,
         {headers: this.hdrs}
       ).pipe(
-        timeout(2000),
+        timeout(15000),
         map((item: Degree) => {
         console.log('Item Found: ' + item);
         return item;
@@ -114,8 +114,8 @@ public readItem(id: string): Observable<Degree> {
 public updateItem(item: Degree) : Observable<Degree> {
 
 
-  const urlAddress = this.apiAddress + item.id;
-  item.projectCreatorID = this.userID;
+  const urlAddress = this.apiAddress + 'update/' + item.id;
+
 
   this.hdrs = new HttpHeaders()
   .set('Access-Control-Allow-Origin',  [this.apiRt, this.apiAddress, this.clientRt])
@@ -130,7 +130,7 @@ public updateItem(item: Degree) : Observable<Degree> {
       item,
       { headers: this.hdrs }
     ).pipe(
-      timeout(2000),
+      timeout(15000),
       map((updatedItem: Degree) => {
       console.log('Updated Item: ', updatedItem);
       return updatedItem;
@@ -156,7 +156,7 @@ public deleteItem(id: string): Observable<Degree> {
       urlAddress,
       {headers: this.hdrs}
     ).pipe(
-      timeout(2000),
+      timeout(15000),
       map((itemDeleted:Degree)=> {
       console.log('Item Deleted: ', itemDeleted);
       return itemDeleted;

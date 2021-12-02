@@ -39,6 +39,7 @@ export class EditDegreeShellComponent implements OnInit {
 
   //  NGRX Observables
   myDegree$: Observable<Degree>;
+  currentDegree: Degree;
   institLogoOrig$: Observable<string|undefined>;
   institLogoRecorded: boolean = false;
   institLogo: string;
@@ -97,6 +98,7 @@ export class EditDegreeShellComponent implements OnInit {
     if (value && !this.institLogoRecorded)
       this.institLogo =JSON.parse(JSON.stringify(value));
     });
+    this.myDegree$.subscribe(value => this.currentDegree = value);
     this.monitorControls();
   }
 
@@ -115,7 +117,9 @@ export class EditDegreeShellComponent implements OnInit {
       .pipe(debounceTime(500), distinctUntilChanged())
       .subscribe({
         next: (value: string | null) => {
+             console.log("new value: ", value);
           if (value) {
+
             this.degreeShellStore.dispatch(
               new degreeActions.SetCurrentDegreeDegreeTypeFromDegreeShellEditCpt(
                 value
@@ -294,14 +298,20 @@ export class EditDegreeShellComponent implements OnInit {
   }
 
   saveToDB(value: string) {
-    if (
-      value == 'Save Current' &&
-      this.userBeingViewedId == this.authenticatedUserId &&
-      this.auth
-    ) {
+    
+
+    // console.log('userbeingViewd: ', this.userBeingViewedId);
+    // console.log('authenticated User ID: ', this. authenticatedUserId);
+    // console.log('authorized: ', this.auth);
+    // if (
+    //   value == 'Save Current' &&
+    //   (this.userBeingViewedId == this.authenticatedUserId) &&
+    //   this.auth
+    // ) {
+      // this.degreeShellStore.dispatch(new degreeActions.UpdateDegreeToDB(this.currentDegree));
       this.degreeShellStore.dispatch(new degreeActions.UpdateDegreeToDB());
       this.dialogRef.close();
-    }
+    // }
   }
 
   resetChanges(value: string) {

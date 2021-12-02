@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { User } from '../Models/user';
+import { User, UserState } from '../Models/user';
 
 export enum UserActionTypes {
     LOAD_USER_STATE = '[AUTHGUARD] LOAD USER STATE from AUTH GUARD SERVICE',
@@ -28,16 +28,22 @@ export enum UserActionTypes {
   UPDATE_USER = '[USER PROFILE] UPDATE USER PROFILE INFO',
   UPDATE_USER_SUCCESS = '[USER PROFILE] UPDATE USER PROFILE INFO SUCCESS',
   UPDATE_USER_FAIL = '[USER PROFILE] UPDATE USER PROFILE INFO *******FAILED'
+
+
+
 }
 
 //
+
+
+
 export class LoadUserState implements Action {
     readonly type = UserActionTypes.LOAD_USER_STATE;
 
 }
 export class LoadUserStateSuccess implements Action {
     readonly type = UserActionTypes.LOAD_USER_STATE_SUCCESS;
-
+    constructor(public payload: UserState) {}
 
 }
 export class LoadUserStateFail implements Action {
@@ -110,7 +116,8 @@ export class ClearUserProfileUrl implements Action {
   readonly type = UserActionTypes.CLEAR_USERSTATE_PROFILE_URL;
 
 }
-export type UsersActions = LoadUserState
+export type UsersActions =
+                    LoadUserState
                     |   LoadUserStateSuccess
                     |   LoadUserStateFail
 

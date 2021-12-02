@@ -3,11 +3,18 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Store, select } from '@ngrx/store';
 import * as fromShared from './';
 import * as sharedActions from './shared-actions';
-
+import * as fromExperienceShell from '../../experience/experience-shell/state';
+import * as experienceShellActions from '../../experience/experience-shell/state/experience-shell.actions';
+import * as fromUser from "../../user/state";
+import * as UserActions from "../../user/state/user.actions";
 import * as fromExperienceData from '../../experience/state';
 import * as experienceDataActions from '../../experience/state/experience.actions';
+
 import * as fromProjectData from '../../project/state'
 import * as projectDataActions from '../../project/state/project.actions';
+
+import * as fromDegree from  '../../education/degree-shell/state';
+import * as degreeActions from '../../education/degree-shell/state/degree-shell.actions';
 import * as fromDegreeData from '../../education/Models/degree/state';
 import * as degreeDataActions from '../../education/Models/degree/state/degree.actions';
 import * as fromCertData from '../../education/Models/certification/state';
@@ -19,7 +26,7 @@ import * as sharedDataActions from '../userData/state/userData.actions';
 import { Observable, of } from "rxjs";
 import { catchError, map, mergeMap, share, tap } from "rxjs/operators";
 import { UserService } from "src/app/user/Models/user.service";
-import { UserState } from "src/app/user/Models/user";
+import { User, UserState } from "src/app/user/Models/user";
 
 @Injectable()
 export class SharedEffects {
@@ -31,9 +38,12 @@ export class SharedEffects {
     private shareStore: Store<fromShared.SharedState>,
     private projectStore: Store<fromProjectData.ProjectModuleState>,
     private experienceStore: Store<fromExperienceData.ExperienceDataState>,
+    private experienceShellStore: Store<fromExperienceShell.ExperienceShellState>,
+    private degreeShellStore: Store<fromDegree.DegreeShellState>,
     private certDataStore: Store<fromCertData.CertificationDataState>,
     private degreeDataStore: Store<fromDegreeData.DegreeDataState>,
     private sharedDataStore: Store<fromSharedData.SharedUserDataState>,
+    private userStore: Store<fromUser.UserState>,
     private userService: UserService) {
       this.shareStore.pipe(select(fromShared.getUsername))
            .subscribe((value: string) => this.userName = value);
@@ -59,8 +69,15 @@ if (userState.id != null) {
      this.sharedDataStore.dispatch(
        sharedDataActions.upsertUsers({ Users: myUsers })
      );
+     let user: User = {
+      id: userState.id,
+      username: userState.username,
+      email: userState.email,
+      userPicUrl: userState.userPicUrl
+     };
         this.shareStore.dispatch(new sharedActions.SetUserId(userState.id));
         this.shareStore.dispatch(new sharedActions.SetUsername(userState.username));
+        this.userStore.dispatch(new UserActions.SetCurrentUser(user));
         this.projectStore.dispatch(projectDataActions.clearProjects());
         this.projectStore.dispatch(projectDataActions.addProjects({projects: userState.projects}));
         this.degreeDataStore.dispatch(degreeDataActions.clearDegrees());
@@ -103,16 +120,31 @@ if (userState.id != null) {
         this.shareStore.dispatch(new sharedActions.SetUserId(userState.id));
         this.shareStore.dispatch(new sharedActions.SetUsername(userState.username));
         this.shareStore.dispatch(new sharedActions.SetUserProfilePic(userState.userPicUrl));
+
         this.projectStore.dispatch(projectDataActions.clearProjects());
-        this.projectStore.dispatch(projectDataActions.addProjects({projects: userState.projects}));
+        this.projectStore.dispatch(
+          projectDataActions.addProjects({ projects: userState.projects })
+        );
         this.degreeDataStore.dispatch(degreeDataActions.clearDegrees());
-       this.degreeDataStore.dispatch(degreeDataActions.addDegrees({Degrees: userState.degrees}));
-       this.certDataStore.dispatch(certDataActions.clearCertifications());
-        this.certDataStore.dispatch(certDataActions.addCertifications({Certifications: userState.certifications}));
+        this.degreeDataStore.dispatch(
+          degreeDataActions.addDegrees({ Degrees: userState.degrees })
+        );
+        this.certDataStore.dispatch(certDataActions.clearCertifications());
+        this.certDataStore.dispatch(
+          certDataActions.addCertifications({
+            Certifications: userState.certifications,
+          })
+        );
         this.experienceStore.dispatch(experienceDataActions.clearExperiences());
-        this.experienceStore.dispatch(experienceDataActions.addExperiences({experiences: userState.experiences}));
+        this.experienceStore.dispatch(
+          experienceDataActions.addExperiences({
+            experiences: userState.experiences,
+          })
+        );
+
+
       }
-        return new sharedActions.LoadUserStateByIdSuccess(userState.id);
+        return new sharedActions.LoadUserStateByIdSuccess(userState);
       },
       catchError(err => of (new sharedActions.LoadUserStateByIdFail(err)))
     ))

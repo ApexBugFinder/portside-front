@@ -5,7 +5,7 @@ export interface Degree {
     projectCreatorID: string;
     degreeName: string;
     degreeType?: string;
-    minor?: string;
+    minors?: string;
     institutionLogo?: string;
     institution?: string;
     city?: string;

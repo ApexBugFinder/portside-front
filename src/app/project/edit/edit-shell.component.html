@@ -13,13 +13,14 @@
                     <!-- ICONS OUTPUT: gitLink & siteLink -->
                     <app-icons-section
                     (closeDialog)="closeDialog($event)"
+                    (openMenu)="onIconClick($event)"
                     [editMode]="editMode"
 
 
                     ></app-icons-section>
 
                     <!-- IMAGE UPLOAD SECTIONS -->
-                    <div class="imgUploadSection">
+                    <div class="imgUploadSection" *ngIf="!iconMenuOpen">
                         <div class="imgUploadContainer">
                           <!-- <app-image-getter [Title]="'Small Banner'"
                             [docID]="projectID$ | async"

@@ -1,11 +1,11 @@
 import {editState} from '../../shared/models/shared';
 
 export interface ProjectRequirement {
-    id: string | undefined;
-    projectID: string | undefined;
-    requirement: string  | undefined;
-    editState: string  | undefined;
-    stateHistory: [string]  | undefined;
+    id: string;
+    projectID: string ;
+    requirement: string ;
+    editState?: string ;
+    stateHistory?: [string] ;
   }
   export const defaultProjectRequirement: ProjectRequirement = {
     id: 'defaultProjectReq1',

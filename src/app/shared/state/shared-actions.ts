@@ -4,17 +4,19 @@ import { UserState } from 'src/app/user/Models/user';
 
 
  export enum SharedActionTypes {
-   SET_USER_ID = '[SHARED EFFECTS] SET USER ID FROM SHARE EFFECTS',
-   SET_USERNAME = '[USER COMPONENT] SET USERNAME FROM USER COMPONENT',
-   SET_PROFILEPIC = '[SHARED EFFECTS] SET PROFILE PIC',
-   LOAD_USERSTATE = '[SHARED EFFECTS] LOAD USER STATE FROM USER COMPONENT By Username',
-   LOAD_USERSTATE_SUCCESS = '[SHARED EFFECTS] LOAD USER STATE FROM USER COMPONENT  By Username====> SUCCESS',
-   LOAD_USERSTATE_FAIL = '[SHARED EFFECTS] LOAD USER STATE FROM USER COMPONENT By Username====> FAIL',
+   SET_USER_ID = "[SHARED EFFECTS] SET USER ID FROM SHARE EFFECTS",
+   SET_USERNAME = "[USER COMPONENT] SET USERNAME FROM USER COMPONENT",
+   SET_PROFILEPIC = "[SHARED EFFECTS] SET PROFILE PIC",
+   LOAD_USERSTATE = "[SHARED EFFECTS] LOAD USER STATE FROM USER COMPONENT By Username",
+   LOAD_USERSTATE_SUCCESS = "[SHARED EFFECTS] LOAD USER STATE FROM USER COMPONENT  By Username====> SUCCESS",
+   LOAD_USERSTATE_FAIL = "[SHARED EFFECTS] LOAD USER STATE FROM USER COMPONENT By Username====> FAIL",
 
-   LOAD_USERSTATE_ByID = '[SHARED EFFECTS] LOAD USER STATE FROM USER COMPONENT By UserID',
-   LOAD_USERSTATE_ByID_SUCCESS = '[SHARED EFFECTS] LOAD USER STATE FROM USER COMPONENT  By UserID====> SUCCESS',
-   LOAD_USERSTATE_ByID_FAIL = '[SHARED EFFECTS] LOAD USER STATE FROM USER COMPONENT By UserID====> FAIL',
-   CLEAR_USER_ID = '[AUTH MODULE] CLEAR USER ID FROM AUTH MODULE',
+   LOAD_USERSTATE_ByID = "[SHARED EFFECTS] LOAD USER STATE FROM USER COMPONENT By UserID",
+   LOAD_USERSTATE_ByID_SUCCESS = "[SHARED EFFECTS] LOAD USER STATE FROM USER COMPONENT  By UserID====> SUCCESS",
+   LOAD_USERSTATE_ByID_FAIL = "[SHARED EFFECTS] LOAD USER STATE FROM USER COMPONENT By UserID====> FAIL",
+   CLEAR_USER_ID = "[AUTH MODULE] CLEAR USER ID FROM AUTH MODULE",
+   SHOW_SIDE_MENU = "[HEADER] SHOW LOGGED-IN MENU",
+   HIDE_SIDE_MENU = "[HEADER] HIDE LOGGED-IN MENU",
  }
 
 // USER COMPONENT
@@ -55,14 +57,23 @@ import { UserState } from 'src/app/user/Models/user';
 }
 export class LoadUserStateByIdSuccess implements Action {
   readonly type = SharedActionTypes.LOAD_USERSTATE_ByID_SUCCESS;
-  constructor(public payload: string) {}
+  constructor(public payload: UserState) {}
 }
 
 export class LoadUserStateByIdFail implements Action {
   readonly type = SharedActionTypes.LOAD_USERSTATE_ByID_FAIL;
   constructor(public payload: string) {}
 }
+export class ShowSideMenu implements Action {
 
+  readonly type = SharedActionTypes.SHOW_SIDE_MENU;
+
+}
+
+export class HideSideMenu implements Action {
+  readonly type = SharedActionTypes.HIDE_SIDE_MENU;
+
+}
 
 export type SharedActions = SetUserId
                                             | SetUsername
@@ -73,4 +84,6 @@ export type SharedActions = SetUserId
                                             | LoadUserStateById
                                             | LoadUserStateByIdSuccess
                                             | LoadUserStateByIdFail
+                                            | ShowSideMenu
+                                            | HideSideMenu
 ;

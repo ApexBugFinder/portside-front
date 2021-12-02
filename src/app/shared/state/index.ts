@@ -44,6 +44,15 @@ export const selectSharedModuleState = createFeatureSelector<fromShared.SharedSt
    state => state.username
  );
 
+ export const getDefaultProjectPic = createSelector(
+   fromSharedRoot.selectSharedState,
+   state => state.defaultProjectPic
+ );
+
+ export const  getSideMenuState = createSelector(
+   fromSharedRoot.selectSharedState,
+   state => state.showSideMenu
+ );
 
 
 

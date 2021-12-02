@@ -32,7 +32,7 @@ export class ProfilePicDirective implements DoCheck{
       this.el.nativeElement.style.visibility = 'visible';
       if(this.src == this.defaultPic) {
 
-        console.log('src is equalto defaultPic');
+        // console.log('src is equalto defaultPic');
 
       }
 

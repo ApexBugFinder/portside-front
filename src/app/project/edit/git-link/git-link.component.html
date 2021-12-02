@@ -1,5 +1,89 @@
 <form action="" [formGroup]="gitForm">
-   <div class="gitLinkContainer">
-      <span class="linkLabel">GIT: </span> <input matInput class="gitInput" type="text" name="git" formControlName="git" id=""><button class="gitSave" (click)="onSave()" mat-raised-button>save</button>
+   <div  class="gitLinkContainer" >
+      <mat-list class="linksSaved">
+               <mat-list-item  value="option1" *ngFor="let link of projectLinks$|async">
+               <!-- Title -->
+                  <div class="gitLink" *ngIf="link.service == 'git' && (link.service !== undefined)">
+                         <mat-form-field class="formfieldInput title">
+                        <mat-label>{{link.title}}</mat-label>
+                        <input matInput class="gitInput" type="text" placeholder="API Title" value="{{link.title}}">
+                     </mat-form-field>
+
+
+
+
+
+               <!-- Link -->
+               <mat-form-field class="formfieldInput link">
+                     <mat-label>{{link.link}}</mat-label>
+                     <input matInput class="gitInput" type="text" placeholder="Link to API" value="{{link.link}}">
+
+               </mat-form-field>
+
+               <!-- Description -->
+               <mat-form-field class="formfieldInput link">
+                     <mat-label>{{link.description}}</mat-label>
+                     <input matInput class="gitInput" type="text" placeholder="Description of API" value="{{link.description}}">
+
+               </mat-form-field>
+               <!-- update icon -->
+                        <div class="formfieldInput">
+                           <fa-icon class="gitSave" [icon]="faUpdate"(click)="onUpdate(link)"></fa-icon>
+
+                        </div>
+               <!-- delete -->
+
+                        <div class="formfieldInput">
+                           <fa-icon class="gitSave" [icon]="faDelete"(click)="onDelete(link)"></fa-icon>
+
+                        </div>
+                  </div>
+
+            </mat-list-item>
+
+            <mat-list-item  class="gitLink" value="option1" >
+               <!-- Title -->
+                  <mat-form-field class="formfieldInput title">
+                     <mat-label>Title</mat-label>
+                     <input matInput class="gitInput" type="text" formControlName="title">
+                  </mat-form-field>
+
+
+
+
+
+               <!-- Link -->
+                  <mat-form-field class="formfieldInput link">
+                           <mat-label>Link</mat-label>
+                           <input matInput class="gitInput" type="text" formControlName="link">
+                  </mat-form-field>
+
+                  <!-- Description -->
+                  <mat-form-field class="formfieldInput link">
+                     <mat-label>Description</mat-label>
+                     <input matInput class="gitInput" type="text"  formControlName="description">
+
+               </mat-form-field>
+
+
+               <!-- save icon -->
+                  <div>
+                     <fa-icon [icon]="faAdd" (click)="onSave()" class="gitSave"></fa-icon>
+
+                  </div>
+
+
+
+            </mat-list-item>
+
+      </mat-list>
+
+
+
+
+
+
+
+
    </div>
 </form>

@@ -10,11 +10,14 @@ WORKDIR /usr/local/app
 COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
 
 # Install all the dependencies
-RUN npm install --production --silent && mv node_modules ../
+RUN npm install --production --silent  && mv node_modules ../
+
 COPY . .
 
 RUN chown -R node /usr/local/app
+
 USER node
+
 CMD ["npm", "start"]
 
 # Stage 2: Serve app with nginx server

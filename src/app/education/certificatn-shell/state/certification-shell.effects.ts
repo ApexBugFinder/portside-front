@@ -118,7 +118,7 @@ export class CertificationShellEffects {
           .SAVE_CERTIFICATION_TO_DB_from_CertShellEdit
       ),
       mergeMap((action: certificationShellActions.SaveCertificationToDB) =>
-        this.certificationService.createItem(this.currentCertification).pipe(
+        this.certificationService.createItem(action.payload).pipe(
 
           tap((payload: Certification) =>
                 console.log(
@@ -152,8 +152,9 @@ export class CertificationShellEffects {
       ofType(
         certificationShellActions.CertificationActionTypes
           .UPDATE_CERTIFICATION_TO_DB_from_CertShellEdit
-      ),
+      ), tap(i => console.log('current Cert in CertEffects: ', this.currentCertification)),
       mergeMap((action: certificationShellActions.UpdateCertificationToDB) =>
+
         this.certificationService.updateItem(this.currentCertification).pipe(
           tap((payload: Certification) =>
             console.log(
@@ -163,12 +164,13 @@ export class CertificationShellEffects {
           ),
           map((payload: Certification) => {
             // CHANGE ENTITY DATA STORE
+
             this.certificationEntityDataStore.dispatch(
               certificationEntityDataActions.upsertCertification({
                 Certification: payload,
               })
             );
-
+              console.log('update return payload: ', payload);
             return new certificationShellActions.UpdateCertificationToDBSuccess(
               payload
             );
@@ -218,5 +220,5 @@ export class CertificationShellEffects {
     )
   );
 
-  
+
 }

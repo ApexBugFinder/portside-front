@@ -6,7 +6,12 @@ import * as fromShared from '../../../shared/state';
 import { Store, select } from '@ngrx/store';
 import * as sharedActions from '../../../shared/state/shared-actions';
 import { Observable } from 'rxjs';
+import * as fromSharedData from '../../../shared/userData/state';
+import * as sharedDataActions from '../../../shared/userData/state/userData.actions';
 
+//  Data that is Inputted is packaged into the ViewUserMatDialogData object and
+// Sent to ViewUserComponent
+// Also sharedState UserId is Set
 
 @Component({
   selector: 'app-result',
@@ -20,7 +25,9 @@ export class ResultComponent implements OnInit {
   profilePic$: Observable<string>;
   constructor(
     public dialog:MatDialog,
-    private sharedStore: Store<fromShared.SharedState>
+    private sharedStore: Store<fromShared.SharedState>,
+    private userDataStore: Store<fromSharedData.SharedUserDataState>
+
     ) {
       this.profilePic$ = this.sharedStore.pipe(select(fromShared.getDefaultProfilePic));
     }
@@ -32,7 +39,10 @@ export class ResultComponent implements OnInit {
     console.log(this.user.username);
   }
   viewUser() {
+
     this.sharedStore.dispatch(new sharedActions.SetUserId(this.user.id));
+    this.userDataStore.dispatch(sharedDataActions.selectUser({UserId: this.user.id}));
+    
     this.sharedStore.dispatch(new sharedActions.SetUserProfilePic(this.user.userPicUrl));
     let panelSize = '600px';
     let config: MatDialogConfig;

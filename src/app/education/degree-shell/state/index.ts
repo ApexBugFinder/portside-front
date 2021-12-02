@@ -22,8 +22,9 @@ export const getCurrentDegree = createSelector(
         return {
           id: state.id as string,
           projectCreatorID: state.projectCreatorID as string,
+          degreeType: state.degreeType as string,
           degreeName: state.degreeName as string,
-          minor: state.minor,
+          minors : state.minors,
           institution: state.institution,
           institutionLogo: state.institutionLogo,
           city: state.city,
@@ -56,7 +57,7 @@ export const getCurrentDegreeDegreeType = createSelector(
 
 export const getCurrentDegreeMinor = createSelector(
     selectDegreeShellState,
-    state => state.minor
+    state => state.minors
 );
 
 export const getCurrentDegreeInstitution = createSelector(

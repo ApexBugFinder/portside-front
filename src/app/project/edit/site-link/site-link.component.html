@@ -1,5 +1,100 @@
 <form action="" [formGroup]="siteForm">
-<div class="siteLinkContainer">
-  <span class="siteLabel">SITE: </span> <input matInput class="siteInput" type="text" name="site" formControlName="site" id="site"><button class="siteSave" (click)="onSave()" mat-raised-button>save</button>
-</div>
+   <div  class="siteLinkContainer" >
+      <mat-list class="linksSaved">
+               <mat-list-item  *ngFor="let link of projectLinks$|async">
+               <!-- Title -->
+                  <div class="siteLink" *ngIf="link.service == 'site' && (link.service !== undefined)">
+                         <mat-form-field class="formfieldInput title">
+                        <mat-label>{{link.title}}</mat-label>
+                        <input matInput class="siteInput" type="text" placeholder="API Title" value="{{link.title}}">
+                     </mat-form-field>
+
+
+
+
+
+               <!-- Link -->
+               <mat-form-field class="formfieldInput link">
+                     <mat-label>{{link.link}}</mat-label>
+                     <input matInput class="siteInput" type="text" placeholder="Link to API" value="{{link.link}}">
+
+               </mat-form-field>
+
+                <!-- Description -->
+               <mat-form-field class="formfieldInput link">
+                     <mat-label>{{link.description}}</mat-label>
+                     <input matInput class="siteInput" type="text" placeholder="Link to API" value="{{link.description}}">
+
+               </mat-form-field>
+
+               <!-- update icon -->
+                        <div class="formfieldInput">
+                           <fa-icon class="siteActionIcon" [icon]="faUpdate"(click)="onUpdate(link)"></fa-icon>
+
+                        </div>
+               <!-- delete -->
+
+                        <div class="formfieldInput">
+                           <fa-icon class="siteActionIcon" [icon]="faDelete"(click)="onDelete(link)"></fa-icon>
+
+                        </div>
+                  </div>
+
+            </mat-list-item>
+
+
+
+
+
+
+
+
+
+
+
+            <mat-list-item  class="siteLink" value="option1" >
+               <!-- Title -->
+                  <mat-form-field class="formfieldInput title">
+                     <mat-label>Title</mat-label>
+                     <input matInput class="siteInput" type="text" formControlName="title">
+                  </mat-form-field>
+
+
+
+
+
+               <!-- Link -->
+                  <mat-form-field class="formfieldInput link">
+                           <mat-label>Link</mat-label>
+                           <input matInput class="siteInput" type="text" formControlName="link">
+                  </mat-form-field>
+
+
+                <mat-form-field class="formfieldInput link">
+                     <mat-label>Description</mat-label>
+                     <input matInput class="siteInput" type="text"  formControlName="description">
+
+               </mat-form-field>
+
+
+               <!-- save icon -->
+                  <div>
+                     <fa-icon [icon]="faAdd" (click)="onSave()" class="siteSave"></fa-icon>
+
+                  </div>
+
+
+
+            </mat-list-item>
+
+      </mat-list>
+
+
+
+
+
+
+
+
+   </div>
 </form>

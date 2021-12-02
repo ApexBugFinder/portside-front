@@ -19,25 +19,26 @@ export class DisplayRequirementsComponent implements OnInit {
 
   projectID$: Observable<string | undefined>;
   projectIDStore: string | undefined;
-  
+
   projectRequirements$: Observable<ProjectRequirement[] | undefined>;
   projectRequirementsStore: ProjectRequirement[];
 
   requirementForm: FormGroup;
   requirementAbstractControl: AbstractControl | null;
   faDelete = faTrash;
-  constructor(private fb: FormBuilder, private editProjectStore: Store<fromEditProject.EditProjectState>) {
+  constructor(private fb: FormBuilder,
+    private editProjectStore: Store<fromEditProject.EditProjectState>) {
     this.projectRequirements$ = this.editProjectStore.pipe(select(fromEditProject.getEditProjectProjectRequirements));
     this.projectID$ = this.editProjectStore.pipe(select(fromEditProject.getEditProjectId));
     this.requirementForm = this.fb.group({
       requirement: ['']
     });
-    
+
   }
 
   ngOnInit(): void {
     this.projectRequirements$.subscribe({
-      next: value => { 
+      next: value => {
         console.log(value);
         this.projectRequirementsStore = JSON.parse(JSON.stringify(value)) as ProjectRequirement[];
       },
@@ -49,10 +50,10 @@ export class DisplayRequirementsComponent implements OnInit {
       error: err => console.log('OOps sorry, error occured getting projectId from store in DisplayRequirements component: ', err),
       complete: () => console.log('Completed getting projectID from ngrx store in DisplayRequirements component')
     });
-    
+
     console.log(this.projectIDStore);
    // this.initializeProjectRequirements();
-    
+
     this.initControls();
   }
 
@@ -66,9 +67,9 @@ initializeProjectRequirements() {
       j.editState = editState.OK;
       j.stateHistory?.push(j.editState);
       console.log('pre: ', j.stateHistory);
-      
+
       console.log('post: ', j.stateHistory);
-      
+
     });
     console.log('ProjectRequirements after Augment from initializeProjectRequirements: ', this.projectRequirementsStore);
 }
@@ -81,51 +82,64 @@ initializeProjectRequirements() {
 addRequirement() {
   let newReq: ProjectRequirement = this.createRequirement();
   this.projectRequirementsStore.push(newReq);
+  this.editProjectStore.dispatch(new edipProjectActions.SaveEditProjectProjectRequirements(newReq));
   this.updatePRStore();
   this.requirementAbstractControl?.setValue('');
-  
+
 }
 
 // AUGMENT REQUIREMENTS
 
 toggleRemoveRequirement(a: ProjectRequirement) {
     console.log(a);
+        let reqToDelete: ProjectRequirement = {
+      id: a.id,
+      projectID: a.projectID,
+      editState: a.editState,
+      stateHistory: a.stateHistory,
+      requirement: a.requirement,
+    };
+    this.editProjectStore.dispatch(
+      new edipProjectActions.DeleteEditProjectProjectRequirements(
+        reqToDelete.id
+      )
+    );
 
-    // DO A DEEP COPY OF the PR because it is readonly because of NGRX
-    let b = JSON.parse(JSON.stringify(a)) ;
+  //   // DO A DEEP COPY OF the PR because it is readonly because of NGRX
+  //   let b = JSON.parse(JSON.stringify(a)) ;
+  //   console.log(b);
+  // if (b.stateHistory[0] === editState.OK || b.stateHistory[0] === null) {
+  //   console.log('HERE');
+  //   // TOGGLE STATE
+  //   b.editState = a.editState == editState.OK? editState.REMOVE: editState.OK; }
 
-  if (b.stateHistory[0] === editState.OK) {
-    console.log('HERE');
-    // TOGGLE STATE
-    b.editState = a.editState == editState.OK? editState.REMOVE: editState.OK; }
- 
-  else {
-    console.log('THERE', a);
-    // TOGGLE STATE
-    b.editState = a.editState == editState.ADD? editState.REMOVE: editState.ADD;
+  // else {
+  //   console.log('THERE', a);
+  //   // TOGGLE STATE
+    // b.editState = a.editState == editState.ADD? editState.REMOVE: editState.ADD;
 
-  }
-    // ADD TO STATE HISTORY
-    b.stateHistory?.push(b.editState);
-    console.log('pre', this.projectRequirementsStore);
-    
-    // DROP a FROM PRStore and replace it with b
-    this.projectRequirementsStore = this.projectRequirementsStore.filter(i => i.id !== a.id);
-    this.projectRequirementsStore.push(b);
-    console.log('post filter & push', this.projectRequirementsStore);
-    
-    // UPDATE STORE
-   this.updatePRStore();
-  
-  
-    console.log('the requirement ' + b.id + ' is marked for removal: ' + b.editState);
+  // }
+  //   // ADD TO STATE HISTORY
+    // b.stateHistory?.push(b.editState);
+    // console.log('pre', this.projectRequirementsStore);
+
+  //   // DROP a FROM PRStore and replace it with b
+    // this.projectRequirementsStore = this.projectRequirementsStore.filter(i => i.id !== a.id);
+    // this.projectRequirementsStore.push(b);
+  //   console.log('post filter & push', this.projectRequirementsStore);
+
+  //   // UPDATE STORE
+  //  this.updatePRStore();
+
+
+  //   console.log('the requirement ' + b.id + ' is marked for removal: ' + b.editState);
 
    }
-  
+
 
   getReqState(b: string): string {
       switch (b) {
-        case editState.ADD: 
+        case editState.ADD:
           return 'markedForAdd';
         case editState.REMOVE:
           return 'markedForRemoval'
@@ -149,7 +163,7 @@ toggleRemoveRequirement(a: ProjectRequirement) {
       projectID: this.projectIDStore as string,
       requirement: this.requirementAbstractControl?.value,
       editState: editState.ADD,
-      stateHistory: [editState.ADD] 
+      stateHistory: [editState.ADD]
     };
     return thisRequirement;
   }

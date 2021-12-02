@@ -48,7 +48,7 @@ public createItem(item: Certification) : Observable<Certification> {
         item,
        {headers: this.hdrs}
       ).pipe(
-        timeout(2000),
+        timeout(15000),
         map((newCertification: Certification) => {
         console.log('New Certification added to DB: ', newCertification);
         return newCertification;
@@ -72,7 +72,7 @@ public readAll(): Observable<Certification[]> {
     urlAddress,
     { headers: this.hdrs })
     .pipe(
-      timeout(2000),
+      timeout(15000),
       map((usersCertifications: Certification[]) => {
       console.log('User\'s Certifications Found:  ' + usersCertifications );
 
@@ -101,7 +101,7 @@ public readAll(): Observable<Certification[]> {
         urlAddress,
         {headers: this.hdrs}
       ).pipe(
-        timeout(2000),
+        timeout(15000),
         map((item: Certification) => {
         console.log('Item Found: ' + item);
         return item;
@@ -113,7 +113,7 @@ public readAll(): Observable<Certification[]> {
 public updateItem(item: Certification) : Observable<Certification> {
 
 
-  const urlAddress = this.apiAddress + item.id;
+  const urlAddress = this.apiAddress + 'update/'+ item.id;
   item.projectCreatorID = this.userID;
 
   this.hdrs = new HttpHeaders()
@@ -129,7 +129,7 @@ public updateItem(item: Certification) : Observable<Certification> {
       item,
       { headers: this.hdrs }
     ).pipe(
-      timeout(2000),
+      timeout(15000),
       map((updatedItem: Certification) => {
       console.log('Updated Item: ', updatedItem);
       return updatedItem;
@@ -155,7 +155,7 @@ public deleteItem(id: string): Observable<Certification> {
       urlAddress,
       {headers: this.hdrs}
     ).pipe(
-      timeout(2000),
+      timeout(15000),
       map((itemDeleted:Certification)=> {
       console.log('Item Deleted: ', itemDeleted);
       return itemDeleted;

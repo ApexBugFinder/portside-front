@@ -7,8 +7,8 @@
         <div class="matListItemContent">
           <div class="editAndReq">
             <div class="reqContainer">
-            
-              <p class="req" id="req" 
+
+              <p class="req" id="req"
               [ngClass]="getReqState(req.editState)">
                 {{ req.requirement }}
               </p>
@@ -17,19 +17,19 @@
 
           <fa-icon (click)="toggleRemoveRequirement(req)"
             class="reqIcon reqIconDelete"
-           
+
             [icon]="faDelete"
           ></fa-icon>
         </div>
       </mat-list-item> -->
       <mat-list-item class="displayReqListItem" *ngFor="let req of (projectRequirements$ | async)">
-      <div class="matListItemContent">
+      <div  *ngIf="req.id !== null"class="matListItemContent">
         <div class="editAndReq">
           <div class="reqContainer">
-          
-            <p class="" id="req" 
+
+            <p class="" id="req"
             [ngClass]="getReqState(req.editState)">
-          
+
               {{ req.requirement }}
             </p>
           </div>
@@ -37,7 +37,7 @@
 
         <fa-icon (click)="toggleRemoveRequirement(req)"
           class="reqIcon reqIconDelete"
-         
+
           [icon]="faDelete"
         ></fa-icon>
       </div>
@@ -54,7 +54,7 @@
               name="requirement"
               matInput
               formControlName="requirement"
-            ></textarea>    
+            ></textarea>
           </div>
           <div class="reqAddButton">
             <button mat-raised-button (click)="addRequirement()">
@@ -65,5 +65,5 @@
       </mat-list-item>
     </mat-list>
 </form>
-  
+
 </div>

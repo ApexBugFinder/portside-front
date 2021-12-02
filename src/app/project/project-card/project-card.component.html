@@ -4,12 +4,12 @@
 
 </div>
 <div class="bannerContainer" (click)="viewProject(project?.id)">
-    <img src="{{project?.banner}}" id="smallBanner" alt="Technical Documentation Banner" class="projectBanner">
+    <img [projectPic]="((project).banner)||(defaultProjectPic$|async)"id="smallBanner" alt="Project Banner" class="projectBanner">
 </div>
 <div class="titleContainer">
 
 
-<p class="title"  (click)="viewProject(project?.id)">
+<p class="title" id="titleID" (click)="viewProject(project?.id)">
   {{project.projectName}}
   </p>
   </div>

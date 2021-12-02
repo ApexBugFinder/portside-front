@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 // import { AppUser } from '../../user/models/user';
 import { AuthService } from '../auth.service';
 import { WebStorageStateStore, UserManager } from 'oidc-client';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import * as authActions from '../state/auth.actions';
 import { AuthState } from '../state/auth.reducer';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Constants } from 'src/app/helpers/Constants';
+import { switchMap} from 'rxjs/operators';
+import { Observable } from 'rxjs';
 // import * as userActions from '../../user/state/user.actions';
 // import { UserState } from '../../user/state/user.reducer';
 
@@ -19,24 +21,44 @@ import { Constants } from 'src/app/helpers/Constants';
 export class AuthCallbackComponent implements OnInit {
 
   // private appUser: AppUser;
+  id_token$: Observable<string>;
+
 
   private userWebStore: WebStorageStateStore;
   private manager: UserManager = new UserManager(Constants.getClientSettings);
 
   constructor(
     private authService: AuthService,
+    
    // private authStore: Store<AuthState>,
    // private userStore: Store<UserState>,
+   private route: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit(): void {
+      const id_token = this.route.snapshot.paramMap.get('id_token');
+      const access_token = this.route.snapshot.paramMap.get('access_token');
+
+      console.log('id-token: ', id_token);
+      console.log('access_token: ', access_token);
+    if (window.location.hash) {
+      console.log(window.location.hash);
+      console.log(this.router.url);
+      console.log(this.route.url);
+     window.location.hash = decodeURIComponent(window.location.hash);
+
+     console.log(window.location.hash);
+
+      this.authService.completeAuthentication().then(() => this.routeTo());
 
 
+    } else {
+      this.authService.startAuthentication();
+    }
 
-
-    this.authService.completeAuthentication();
+    // this.routeTo();
   //  this.userStore.dispatch(new userActions.LoadCurrentUser());
-    this.routeTo();
+
   }
 
   // completeAuthentication() {
@@ -69,7 +91,7 @@ export class AuthCallbackComponent implements OnInit {
   // }
 
   routeTo() {
-    this.router.navigate(['']);
+    this.router.navigate(['/pages/projects']);
   }
 
 }

@@ -1,5 +1,6 @@
-import { AutofillMonitor } from '@angular/cdk/text-field';
+
 import { Component, DoCheck, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -57,6 +58,8 @@ export class LoggedInProfileComponent implements OnInit, DoCheck {
   constructor(
     private authStore: Store<fromAuth.State>,
     private renderer: Renderer2,
+    private router: Router,
+
     private sharedUser: Store<fromShared.SharedState>,
     private userStore: Store<fromUser.UserState>,
     private userDataStore: Store<fromSharedData.SharedUserDataState>,
@@ -85,7 +88,7 @@ export class LoggedInProfileComponent implements OnInit, DoCheck {
     this.authUserId$.subscribe({
       next: (value) => {
         if (value) {
-          console.log('loggedin profile authenticated user id: ', value);
+          // console.log('loggedin profile authenticated user id: ', value);
 
           let b = document.getElementsByClassName('menuItem');
           let e = document.getElementById('homeId');
@@ -93,16 +96,16 @@ export class LoggedInProfileComponent implements OnInit, DoCheck {
           for (var i =0; i< b.length; i++) {
             let c = b[i] as HTMLElement;
             let p = c.offsetTop + 100;
-            console.log(c.id, p);
+            // console.log(c.id, p);
             this.renderer.setProperty(c, 'top', p);
           }
 
           this.usersData$.subscribe({
             next: (users) => {
-              console.log(
-                'loggedin profile authenticated user id users data:',
-                users
-              );
+              // console.log(
+              //   'loggedin profile authenticated user id users data:',
+              //   users
+              // );
               if (users && value) {
                 this.authUserData = users.filter((i) => i?.id == value)[0];
                 this.authUser = {
@@ -111,10 +114,10 @@ export class LoggedInProfileComponent implements OnInit, DoCheck {
                   username: this.authUserData?.username as string,
                   email: this.authUserData?.email as string
                 };
-                console.log(
-                  'authenticated User Data for profile: ',
-                  this.authUserData
-                );
+                // console.log(
+                //   'authenticated User Data for profile: ',
+                //   this.authUserData
+                // );
               }
             },
             error: (err) =>
@@ -143,11 +146,11 @@ export class LoggedInProfileComponent implements OnInit, DoCheck {
     this.userId$.subscribe({
       next: (value) => {
         if (value) {
-          console.log('loggedin profile user to view id: ', value);
+          // console.log('loggedin profile user to view id: ', value);
 
           this.usersData$.subscribe({
             next: (users) => {
-              console.log('loggedin profile usersData: ', users);
+              // console.log('loggedin profile usersData: ', users);
               if (users.length > 0 && value) {
                 this.userData = users.filter((i) => i?.id == value)[0];
 
@@ -216,5 +219,34 @@ export class LoggedInProfileComponent implements OnInit, DoCheck {
      width: 'auto',
      panelClass: 'custom-modalbox2',
    });
+  }
+
+  hideMenu() {
+    this.sharedUser.dispatch(new sharedActions.HideSideMenu);
+  }
+  tohome() {
+    this.hideMenu();
+    this.router.navigate(['pages/home']);
+  }
+  toprojects() {
+    this.hideMenu();
+    this.router.navigate(['pages/projects'])
+  }
+  toexperiences() {
+    this.hideMenu();
+    this.router.navigate(['pages/experiences']);
+
+  }
+  toeducation() {
+    this.hideMenu();
+    this.router.navigate(['pages/education']);
+  }
+  tologin() {
+    this.hideMenu();
+    this.router.navigate(['pages/editMode']);
+  }
+  toviewprofile() {
+    this.hideMenu();
+    this.viewProfile();
   }
 }

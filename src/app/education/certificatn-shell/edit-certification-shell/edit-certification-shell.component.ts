@@ -30,7 +30,7 @@ export class EditCertificationShellComponent implements OnInit {
   auth: boolean;
   origValues: boolean= true;
   certNameAbstractControl: AbstractControl | null;
-  certIdAbstractControl: AbstractControl | null;
+  certIDAbstractControl: AbstractControl | null;
   isActiveAbstractControl: AbstractControl | null;
   issuingBodyNameAbstractControl: AbstractControl | null;
   issuingBodyLogoAbstractControl: AbstractControl | null;
@@ -53,7 +53,7 @@ export class EditCertificationShellComponent implements OnInit {
     );
     this.certificationForm = this.fb.group({
       certName: [''],
-      certId: [''],
+      certID: [''],
       isActive: [false],
       issuingBodyName: [''],
       issuingBodyLogo: [''],
@@ -64,7 +64,7 @@ export class EditCertificationShellComponent implements OnInit {
   ngOnInit(): void {
     this.myCert$.subscribe({
       next: (value: Certification) => {
-        if (value) {
+        if (value.id !== '') {
           console.log(value);
           this.myCert = value;
           this.setControls(value);
@@ -146,7 +146,7 @@ export class EditCertificationShellComponent implements OnInit {
 
   initiateControls() {
     this.certNameAbstractControl = this.certificationForm.get('certName');
-    this.certIdAbstractControl = this.certificationForm.get('certId');
+    this.certIDAbstractControl = this.certificationForm.get('certID');
     this.isActiveAbstractControl = this.certificationForm.get('isActive');
     this.issuingBodyNameAbstractControl = this.certificationForm.get('issuingBodyName');
     this.issuingBodyLogoAbstractControl = this.certificationForm.get('issuingBodyLogo');
@@ -154,7 +154,7 @@ export class EditCertificationShellComponent implements OnInit {
   }
   setControls(cert: Certification) {
     this.certNameAbstractControl?.setValue(cert.certName);
-    this.certIdAbstractControl?.setValue(cert.certId);
+    this.certIDAbstractControl?.setValue(cert.certID);
     this.isActiveAbstractControl?.setValue(cert.isActive);
     this.issuingBodyNameAbstractControl?.setValue(cert.issuingBody_Name);
     this.issuingBodyLogoAbstractControl?.setValue(cert.issuingBody_Logo);
@@ -187,11 +187,11 @@ export class EditCertificationShellComponent implements OnInit {
           ),
       });
 
-    this.certIdAbstractControl?.valueChanges
+    this.certIDAbstractControl?.valueChanges
       .pipe(debounceTime(500), distinctUntilChanged())
       .subscribe({
         next: (value: string | null) => {
-          if (value) {
+          if (value != null) {
             this.certificationShellStore.dispatch(
               new CertificationActions.SetCurrentCertificationIdFromCertShellEditCpt(
                 value as string
@@ -308,7 +308,8 @@ export class EditCertificationShellComponent implements OnInit {
     return this.controllerClass;
   }
   processNewLogoUrlRt(returnUrl: string) {
-    this.issuingBodyLogoAbstractControl?.setValue(returnUrl);
+    console.log('newLogoURL: ', returnUrl);
+    // this.issuingBodyLogoAbstractControl?.setValue(returnUrl);
     this.certificationShellStore.dispatch(new CertificationActions.SetCurrentCertificationIssuingBodyLogoFromCertShellEditCpt(returnUrl));
   }
 

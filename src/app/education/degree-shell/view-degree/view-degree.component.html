@@ -1,6 +1,6 @@
 <div class="shellContainer">
   <div class="shellContent">
-    <div class="degreeType" id="degreeType">BS:</div>
+    <div class="degreeType" id="degreeType">BS</div>
     <div class="degreeName">
       <div class="degreeNameContainer">
                <button class="editButton" (click)="editDegree()">
@@ -12,11 +12,16 @@
 
 
       <div class="minorHeading">Minors:</div>
-      <div class="minorData">{{ myDegree.minor }}</div>
+      <div class="minorData">{{ myDegree.minors }}</div>
 
 
     <div class="institutionHeading">Institution:</div>
-    <div class="institutionData">{{ myDegree.institution}}</div>
+    <div class="institutionData">
+      <div class="inst-dataContainer">
+          <div class="inst-Logo"><img src="" [appImgSrc]="myDegree.institutionLogo" class="inst-logo"alt=""></div>
+          <div class="inst-Name">{{ myDegree.institution }}</div>
+      </div>
+    </div>
 
     <div class="locationHeading">Location:</div>
     <div class="locationData">{{myDegree.city}}, {{ myDegree.state }}</div>

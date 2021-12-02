@@ -253,8 +253,8 @@ export class LoadCertificationsByProjectCreatorIDFromDBFail implements Action {
 // SAVE (3)
 export class SaveCertificationToDB implements Action {
   readonly type =
-    CertificationActionTypes.SAVE_CERTIFICATION_TO_DB_from_CertShellEdit
-    ;
+    CertificationActionTypes.SAVE_CERTIFICATION_TO_DB_from_CertShellEdit;
+    constructor(public payload: Certification) {}
 }
 
 export class SaveCertificationToDBSuccess implements Action {
@@ -324,7 +324,7 @@ export type CertificationActions =
 
   // FROM EDUCATION COMPONENT
   | SetCurrentCertificationFromEducationCPT
-  
+
   // SET FROM CERTICATION EDIT SHELL (7)
   | SetCurrentCertificationIdFromCertShellEditCpt
   | SetCurrentCertificationProjectCreatorIDFromCertShellEditCpt

@@ -1,5 +1,5 @@
 <div class="searchSection">
-    <form class="searchForm" id="searchFormId" [formGroup]="searchForm" (ngSubmit)="searchWord()">
+    <form class="searchForm" id="searchFormId" [formGroup]="searchForm" >
       <div class="searchContainer">
 
           <div class="searchInput">
@@ -11,7 +11,7 @@
 
           <div class="searchButtonContainer" (click)="searchWord()">
 
-            <fa-icon [icon]="faSearch" (click)="searchWord()" class="icon"></fa-icon>
+            <fa-icon [icon]="faSearch"  class="icon"></fa-icon>
 
           </div>
 

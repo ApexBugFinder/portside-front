@@ -68,29 +68,20 @@ export class DegreeShellEffects {
             map((payload: Degree[]) => {
               // Delete all degrees
               this.degreeEntityDataStore.dispatch(
-                degreeEntityDataActions.deleteDegrees({
-                  ids: this.degreeDataIds,
-                })
+                degreeEntityDataActions.clearDegrees()
               );
 
-              // ADD ALL DEGREES FROM THE BACKEND
+              if (payload.length > 0 ) {
+                      // ADD ALL DEGREES FROM THE BACKEND
               this.degreeEntityDataStore.dispatch(
                 degreeEntityDataActions.addDegrees({
-                  Degrees: payload,
+                  Degrees: payload
                 })
               );
 
-              // SET CURRENT DEGREE
-              this.degreeShellStore.dispatch(
-                new degreeShellActions.SetOriginalDegreeFromDegreeEffects(
-                  payload[0]
-                )
-              );
-              this.degreeShellStore.dispatch(
-                new degreeShellActions.SetCurrentDegreeFromDegreeEffects(
-                  payload[0]
-                )
-              );
+
+              }
+
 
               // THROW SUCCESS ACTION
               return new degreeShellActions.LoadDegreesByProjectCreatorIDFromDBSuccess(
@@ -118,7 +109,7 @@ export class DegreeShellEffects {
           .SAVE_DEGREE_TO_DB_from_DegreeShellEdit
       ),
       mergeMap((action: degreeShellActions.SaveDegreeToDB) =>
-        this.degreeService.createItem(this.currentDegree).pipe(
+        this.degreeService.createItem(action.payload).pipe(
 
           tap((payload: Degree) =>
                 console.log(
@@ -152,7 +143,7 @@ export class DegreeShellEffects {
       ofType(
         degreeShellActions.DegreeActionTypes
           .UPDATE_DEGREE_TO_DB_from_DegreeShellEdit
-      ), tap(()=> console.log(this.currentDegree)),
+      ), tap(()=> console.log('degree-shell-effects current Degree: ', this.currentDegree)),
       mergeMap((action: degreeShellActions.UpdateDegreeToDB) =>
         this.degreeService.updateItem(this.currentDegree).pipe(
           tap((payload: Degree) =>

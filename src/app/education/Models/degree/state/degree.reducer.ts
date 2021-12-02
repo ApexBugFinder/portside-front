@@ -40,7 +40,7 @@ export function sortByName(a: Degree, b: Degree): number {
 export const adapter: EntityAdapter<Degree> =
   createEntityAdapter<Degree>({
     selectId: selectedDegreeId,
-    sortComparer: sortByName,
+    sortComparer: sortByDateStarted,
   });
 
 

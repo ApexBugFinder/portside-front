@@ -15,6 +15,9 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatMenuModule } from "@angular/material/menu";
 @NgModule({
 
   imports: [
@@ -22,10 +25,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatButtonModule,
     MatIconModule,
     MatSidenavModule,
-    MatListModule,
+     MatListModule,
     MatChipsModule,
     MatSliderModule,
     MatDividerModule,
+    MatDatepickerModule,
     MatDialogModule,
     MatInputModule,
     MatTableModule,
@@ -33,8 +37,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatRippleModule,
     MatSlideToggleModule,
     MatSelectModule,
-    MatTooltipModule
-
+    MatTooltipModule,
+    MatNativeDateModule,
+    MatMenuModule
   ],
   exports: [
     CommonModule,
@@ -44,6 +49,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatListModule,
     MatChipsModule,
     MatSliderModule,
+    MatDatepickerModule,
     MatDividerModule,
     MatDialogModule,
     MatInputModule,
@@ -52,7 +58,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatRippleModule,
     MatSlideToggleModule,
     MatSelectModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatMenuModule
+  ],
+  providers: [
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class MaterialModule { }

@@ -11,7 +11,7 @@ height: auto;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  margin: auto;
+  margin: 0 auto auto 20px;
   row-gap: 20px;
     font-family: futura-pt,
     sans-serif;
@@ -29,17 +29,18 @@ height: 240px;
 top: 0px;
 padding: 0px 0px;
 background-repeat: no-repeat;
-background-size: 600px;
+background-size: 600px 240px;
+background-position: center center;
 
 
 .bannerContent {
-  width: 540px;
+  width: 460px;
   height: 240px;
   margin: auto auto auto 20px;
   display:flex;
   flex-direction: column;
-  padding: 0% 20px;
-  align-items: center;
+  padding: 0% 0px;
+  align-items: flex-start;
 
   justify-content: space-between;
 .iconsContainer {
@@ -47,33 +48,54 @@ background-size: 600px;
   justify-self: flex-start;
   width: 20%;
   margin-top: 10px;
-  margin-right: 20px;
+  margin-right: 30px;
 
   .icons {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    column-gap: 40px;
+    justify-content: center;
+    column-gap: 20px;
     align-items: flex-start;
     font-size: 12px;
 
-    .fa-github {
-      margin: auto;
-    }
+
 
     .ng-fa-icon {
       margin: auto;
     }
 
-    p.icon {
-      margin: auto;
-    }
+
+  }
+  .icon:hover {
+    color: var(--primaryColor);
+  }
+  .mat-menu-panel  {
+    display: inline-block;
+  }
+  .gitLinkMenuItem {
+    display: grid;
+    grid-template-columns: 150px 150px;
+    grid-template-rows: 30px;
+    grid-template-areas: "a b";
+    grid-gap: 10px;
+    background-color: #fff;
+  }
+  .gitLinkTitle {
+    grid-area: a;
+
+  }
+  .gitLinkLink {
+    grid-area: b;
+    text-decoration: underline;
+    color: var(--primaryColor);
+    margin-left: 5px
   }
 }
 }
 .projectStatusContainer {
   width: 90%;
   display: flex;
+  margin-top: 120px;
   flex-direction: column;
   justify-self: flex-end;
   justify-content: space-between;
@@ -85,8 +107,9 @@ background-size: 600px;
   display: flex;
   flex-direction: row;
   column-gap: 30px;
-  width: 100%;
+  width: 500px;
   justify-self: flex-end;
+  color: var(--primaryColor);
   .spacer {
     width: auto;
     margin: auto;
@@ -100,6 +123,9 @@ background-size: 600px;
   column-gap: 30px;
   p {
     font-size: 12px;
+    .titleHeading {
+      color: var(--primaryColor);
+    }
   }
 }
 
@@ -108,19 +134,23 @@ background-size: 600px;
 
 .contentSection {
   width: 80%;
+
   // display: flex;
   // flex-direction: column;
   // row-gap: 10px;;
 }
+.contentSection.first {
+    margin-top: 10px;
+  }
  h4.title {
    font-size: 12px;
    font-family: futura-pt, sans-serif;
-  font-weight: 600;
+  font-weight: 400;
   margin: 0 0 0 0;
-  color: var(--accent1Color);
+  color: var(--primaryColor);
  }
 .data {
-      margin: 0 0 0 10px;
+      margin: auto 10px;
 }
  .titleContainer {
    display: flex;
@@ -130,11 +160,12 @@ background-size: 600px;
 .titleHeading {
   display: flex;
   flex-direction: row;
-  width: 40%;
+  width: 80%;
   align-items: center;
   justify-content: flex-start;
   .data {
-    margin-left: 20px;
+    margin: 20px;
+    width: 100%;
   }
 }
 .requirementsTitleContainer {
@@ -149,17 +180,23 @@ background-size: 600px;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
+    row-gap: 20px;
+
     width: 100%;
     margin: auto 0 auto 0;
     padding: auto;
   }
-mat-list-item {
+
+mat-list-item.mat-list-item.reqItem {
   width: auto;
+  height: auto;
   padding: auto;
+  margin: 20px 50px 20px 0;
 display: flex;
 flex-direction: row;
-margin: auto;
+margin: 10px auto;
 justify-self: flex-start;
+
 .req {
   font-family: futura-pt, sans-serif;
   margin-left: 0px;
@@ -197,7 +234,7 @@ justify-self: flex-start;
   display: flex;
   flex-direction: row;
   p.req {
-
+height: auto;
   }
 }
 .projectPublished {

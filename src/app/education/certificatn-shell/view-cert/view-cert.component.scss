@@ -6,10 +6,12 @@
   margin: auto;
   display: flex;
   flex-direction: row;
+  margin-bottom: 30px;
   // flex-direction: column-reverse;
   .shellContent {
     display: grid;
 justify-content: flex-start;
+align-items: center;
   grid-template-areas:
     "p a a a a a a a a a"  //CERTNAME
     "b b ba h h bf f f f f "  //  ISSUED & VALID
@@ -17,8 +19,8 @@ justify-content: flex-start;
     "d d da da n n n  n n n"  // ISSUING BODY
     ;
 
-    grid-template-columns: 30px 30px 50px 50px 50px 50px 50px 50px 50px 200px;
-    grid-template-rows: 40px 30px 30px 30px;
+    grid-template-columns: 10px 30px 40px 50px 40px 60px 80px 50px 50px 200px;
+    grid-template-rows: 40px 30px 40px auto;
 
 
 
@@ -32,6 +34,7 @@ justify-content: flex-start;
     p{
         color: var(--accent3Color);
         width:fit-content;
+        text-decoration: underline;
     }
 
 
@@ -51,16 +54,16 @@ color: var(--accent1Color);
 .validData {
 grid-area: f;
 }
-.certIdHeading {
+.certIDHeading {
   grid-area: ca;
   color: var(--accent1Color);
 }
-.certIdData {
+.certIDData {
   grid-area: l;
 }
 .issuingBodyHeading {
   grid-area: da;
-  align-items: center;
+  align-self: center;
   vertical-align: center;
     color: var(--accent1Color);
 }
@@ -70,15 +73,20 @@ grid-area: f;
 display: flex;
 flex-direction: row;
 column-gap: 10px;
+align-items: center;
 .isb-logo {
-  width: 30px;
+
+  max-height: 40px;
+  max-width: 60px;
   align-self: center;
   justify-self: center;
 }
 .isb-Name {
-  text-align: center;
-  align-self: center;
 
+  align-self: center;
+  overflow-wrap: anywhere;
+  width: 100px;
+  height: auto;
 }
 }
 }

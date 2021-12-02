@@ -30,7 +30,7 @@ export class ActionButtonsComponent implements OnInit {
       next: value => {
         this.finalProjectStore = (value) as Project;
       },
-      error: err => console.log('OOps, sorry there was an error retrieveing' + 
+      error: err => console.log('OOps, sorry there was an error retrieveing' +
                     'the editProject from the ngrx store in the actionsButton component'),
       complete: () => console.log('Completed: retrieving your editProject from' +
                     'the Edit Project ngrx store in the ActionButtons Component')
@@ -40,7 +40,7 @@ export class ActionButtonsComponent implements OnInit {
       next: value => {
         this.editProjectPublishedStore = value;
       },
-      error: err => console.log('OOps, sorry there was an error retrieveing' + 
+      error: err => console.log('OOps, sorry there was an error retrieveing' +
                     'the editProject IsPublished from the ngrx store in the actionsButton component'),
       complete: () => console.log('Completed: retrieving your editProject IsPublished from' +
                     'the Edit Project ngrx store in the ActionButtons Component')
@@ -49,7 +49,7 @@ export class ActionButtonsComponent implements OnInit {
  // CLEAR FORM
 
  clearChanges() {
- 
+
   this.editProjectStore.dispatch(new editProjectActions.ResetEditProject());
   this.closeEditShellDialog();
 }
@@ -71,27 +71,34 @@ publishToggleProject() {
     this.saveProject();
 
   })
- 
+
 }
 
 // UPDATE PROJECT AND SAVE
 saveProject() {
-  
+
   console.log('edit Project that will be saved to DB', this.finalProjectStore);
 
   // first Save Project to DB
   // EFFECTS
   if (this.finalProjectStore.id === '') {
-    this.editProjectStore.dispatch(new editProjectActions.SaveEditProjectToDB()); 
+    this.editProjectStore.dispatch(new editProjectActions.SaveEditProjectToDB());
   } else {
+    // Check Reqs
 
-    
     this.editProjectStore.dispatch(new editProjectActions.UpdateEditProjectToDB(this.finalProjectStore));
+
+// if (this.finalProjectStore.projectRequirements !== undefined || this.finalProjectStore.projectRequirements !== null) {
+//     // update prs
+//     this.editProjectStore.dispatch(new editProjectActions.UpdateEditProjectProjectRequirements(this.finalProjectStore?.projectRequirements));
+
+//   }
+    // update pls
   }
-  
+
   // then close Dialog
   this.closeEditShellDialog();
- 
+
 }
 
 updateIsPublished(): Promise<any> {
@@ -103,11 +110,11 @@ updateIsPublished(): Promise<any> {
     } catch(err) {
       reject(err);
     }
-   
-    
+
+
   });
   return myPublishPromise;
-} 
+}
 
 
 closeEditShellDialog() {

@@ -9,7 +9,11 @@ const routes: Routes = [
         component: AuthCallbackComponent,
 
 
-}
+    },
+    // {   path: 'auth/auth-callback/:id_token:access_token',
+    //     redirectTo: '/auth/auth-callback', pathMatch: 'full',
+    // }
+
 ];
 
 @NgModule({

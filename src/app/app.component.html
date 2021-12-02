@@ -8,7 +8,7 @@
 
 
     <router-outlet class="routerContent"></router-outlet>
-
+    <router-outlet name="sidemenu" *ngIf="showLoggedInProfile$|async"></router-outlet>
    </div>
 
   </mat-drawer-content>

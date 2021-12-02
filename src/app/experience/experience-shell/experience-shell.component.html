@@ -7,7 +7,7 @@
             <div class="infoTitle">Company:</div>
             <div class="infoData">
                 <div class="dataContainer">
-                    <div class="companyContainer">
+                    <div class="companyContainer" (click)="editExperience()">
                         <div class="logoContainer" *ngIf="((currentExperience$|async).logoUrl)"><img [appImgSrc]="(currentExperience$|async).logoUrl" alt="" class="logo"></div>
                         <div class="name">{{ (currentExperience$|async).company }}</div>
                     </div>
@@ -52,8 +52,11 @@
             <div class="infoData">
                 <div class="dataContainer">
                     <div *ngFor="let role of (currentExperience$|async).roles" class="role">
-                        <p>
-                        {{ role.myTitle }} - {{ role.myRole}}
+                        <h4 class="roleHeading">
+                       {{ role.myTitle }}
+                        </h4>
+                        <p name="" id="" class="myRoleTextArea" >
+                            {{role.myRole }}
                         </p>
                     </div>
 
@@ -61,14 +64,14 @@
             </div>
         </div>
     </div>
-    <div class="infoContainer edit">
+    <!-- <div class="infoContainer edit">
         <div class="infoContent">
             <div class="infoTitle"></div>
             <div class="infoData">
                 <div class="editContainer">
-                    <button mat-raised-button class="editButton" (click)="editExperience()">
+                    <button mat-raised-button class="editButton" >
                         <!-- <fa-icon class="addClassIcon"  [icon]="editIcon" ></fa-icon> -->
-                        Edit Experience
+                        <!-- Edit Experience
                     </button>
 
                 </div>
@@ -76,6 +79,6 @@
             </div>
 
         </div>
-    </div>
+    </div> -->
   </div>
 </div>

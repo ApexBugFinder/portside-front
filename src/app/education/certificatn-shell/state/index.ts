@@ -22,6 +22,7 @@ export const getCurrentCertification = createSelector(
         return {
             id: state.id,
             projectCreatorID: state.projectCreatorID,
+            certID: state.certID,
             certName: state.certName,
             isActive: state.isActive,
             issuingBody_Name: state.issuingBody_Name,
@@ -34,6 +35,11 @@ export const getCurrentCertification = createSelector(
 export const getCurrentCertificationId = createSelector(
     selectCertificationShellState,
     state => state.id
+);
+
+export const getCurrentCertificationCertId = createSelector(
+  selectCertificationShellState,
+  (state) => state.certID
 );
 
 export const getCurrentCertificationProjectCreator = createSelector(

@@ -149,7 +149,16 @@
                 <div class="label-wrapper">
                   <mat-label>Graduation Year</mat-label>
                 </div>
-                <mat-form-field class="custom-style">
+                <mat-form-field class="statusData">
+
+                                                <mat-label class="infoLabel">GraduationYear
+                                                    <span class="origDate">{{(myDegree$ | async).graduationYear | date: 'YYYY'}}</span>
+                                                </mat-label>
+                                                <input matInput [matDatepicker]="graduationYear" formControlName="graduationYear">
+                                                <mat-datepicker-toggle matSuffix [for]="graduationYear"></mat-datepicker-toggle>
+                                                <mat-datepicker #graduationYear startView="multi-year"></mat-datepicker>
+                                            </mat-form-field>
+                <!-- <mat-form-field class="custom-style">
                   <input
                     type="text"
                     matInput
@@ -160,7 +169,7 @@
                     }}"
                     name="graduationYearInputName"
                     id="graduationYearInputId"
-                /></mat-form-field>
+                /></mat-form-field> -->
               </div>
 
               <div class="graduated">

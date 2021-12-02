@@ -28,27 +28,36 @@
     justify-content: flex-start;
     top: 0px;
     padding: 0px 0px;
-    background-size: 600px;
+    background-size: 600px 240px;
+    background-position: center center;
     background-repeat: no-repeat;
 
   }
   .bannerContent {
-    width: 560px;
+    width: 600px;
     height: 240px;
-    margin: auto auto auto 30px;
+    margin: 10px auto -10px 30px;
     display: flex;
     flex-direction: column;
-    padding: 0 0px;
+    padding: 0 10px;
     align-items: flex-start;
     justify-content: space-between;
     app-icons-section {
       width: 100%;
       align-self: flex-end;
       justify-self: flex-start;
-
+      margin-bottom: 30px;
       font-size: 12px;
+
     }
 
+  app-project-status-section {
+    margin-top: -0px;
+    margin-bottom: -10px;
+    width: 600px;
+  }
+  .imgUploadSection {
+    margin-top: -160px;
 
   .imgUploadContainer {
     display: flex;
@@ -79,6 +88,7 @@
 
 
   }
+    }
   }
   .contentSection {
     width: 80%;

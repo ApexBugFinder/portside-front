@@ -14,8 +14,8 @@
     margin-top: 150px;
     padding: 10px;
     position: fixed;
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
 
     align-items: center;
     //  border: black 1px solid;
@@ -31,9 +31,9 @@
         color: var(--accent1Color);
       }
       .menuItem:hover {
-        color: #d4a32f;
+        // color: #d4a32f;
         .loginIcon, .educationIcon,  .experienceIcon, .projectIcon, .homeIcon{
-          color: var(--accent1Color);
+          color: var(--primaryColor);
         }
        .loginText, .projectText, .experienceText, .educationText {
         // visibility: visible;
@@ -45,12 +45,15 @@
         left: 45px;
         position: relative;
         transform: rotate(0deg);
+        filter:drop-shadow(2px 4px 6px black);
       }
-
+      .home:hover {
+        filter: brightness(0.3);
+      }
       .login {
-       top: 20px;
+       top: 23px;
        position: relative;
-       left: -335px;
+       left: -342px;
         transform: rotate(33deg);
         .loginText {
              @include fade-out();
@@ -60,17 +63,18 @@
       .projects {
         position: relative;
         top: 23px;
-        left: 124px;
+        left: 106px;
         transform: rotate(-33deg);
 
         .projectText {
+
           @include fade-out();
         }
       }
       .experiences {
         position: relative;
         top: 110px;
-        left: 40px;
+        left: 20px;
         transform: rotate(33deg);
         .experienceText {
           @include fade-out();
@@ -79,9 +83,9 @@
 
       .education {
        position: relative;
-       top: 155px;
+       top: 135px;
        transform: rotate(45deg);
-       left: -135px;
+       left: -145px;
         .educationIcon {
           position: relative;
           top: 0px;
@@ -99,7 +103,7 @@
       margin-top: auto;
       position: fixed;
       overflow: hidden;
-      width: 120px;
+      width: 100px;
       .picContainer {
         position: fixed;
         display: flex;
@@ -107,8 +111,8 @@
         justify-content: center;
         align-items: center;
         overflow: hidden;
-        width: 120px;
-        height: 120px;
+        width: 100px;
+        height: 100px;
         .pic {
           margin: auto auto;
           width: 100px;
@@ -195,7 +199,12 @@
 
 .icon {
   color: #d4a32f;
+
+ filter:drop-shadow(2px 4px 6px black);
   margin: 0 5px;
+}
+.icon:hover {
+filter: brightness(0.3);
 }
 .loggedInHome {
       top: 145px !important;

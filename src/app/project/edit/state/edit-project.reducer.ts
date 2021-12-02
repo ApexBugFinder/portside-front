@@ -4,6 +4,7 @@ import { EditProjectActions, EditProjectActionTypes } from './edit-project.actio
 
 import { ProjectLink,  defaultProjectLink } from '../../models/projectLink';
 import { ProjectRequirement, defaultProjectRequirement } from '../../models/projectRequirement';
+import { getEditProjectBigBanner } from '.';
 
 
 export interface EditProjectState {
@@ -24,23 +25,20 @@ export interface EditProjectState {
 }
 
 const initialState: EditProjectState = {
-    originalProject: defaultProject,
-    id: '1234',
-    projectCreatorID: '1234',
-    projectName: '1234',
-    started: new Date(2021, 0o1, 0o1),
-    completed: new Date(2021, 0o1, 0o1),
-    description: '1234',
-    banner: '1234',
+  originalProject: defaultProject,
+  id: "1234",
+  projectCreatorID: "1234",
+  projectName: "1234",
+  started: new Date(2021, 0o1, 0o1),
+  completed: new Date(2021, 0o1, 0o1),
+  description: "1234",
+  banner: 'https://firebasestorage.googleapis.com/v0/b/portfolio-a7105.appspot.com/o/defaults%2Fsite%2FAsset%203.svg?alt=media&token=489a99e5-166c-454b-8702-fd19b14f3336',
 
-    published: false,
-    projectRequirements: [defaultProjectRequirement],
-    projectLinks: [defaultProjectLink],
-    error: ''
-
-
-
-}
+  published: false,
+  projectRequirements: [defaultProjectRequirement],
+  projectLinks: [defaultProjectLink],
+  error: "",
+};
 
 export function editProjectReducer(state = initialState, action: EditProjectActions): EditProjectState {
     switch (action.type) {
@@ -170,27 +168,39 @@ export function editProjectReducer(state = initialState, action: EditProjectActi
                 ...state,
                 banner: action.payload
             };
-        // case EditProjectActionTypes.UPDATE_EDITPROJECT_SMALL_BANNER:
-        //     return {
-        //         ...state,
-        //         smallBanner: action.payload
-        //     };
+
         case EditProjectActionTypes.UPDATE_EDITPROJECT_PUBLISHED:
             return {
                 ...state,
                 published: action.payload
             };
-        case EditProjectActionTypes.UPDATE_EDITPROJECT_PROJECT_REQUIREMENTS:
+        case EditProjectActionTypes.UPDATE_EDITPROJECT_PROJECT_REQUIREMENTS_SUCCESS:
+        case EditProjectActionTypes.LOAD_PROJECT_REQS_FROM_DB_SUCCESS:
+        case EditProjectActionTypes.SAVE_EDITPROJECT_PROJECT_REQUIREMENTS_SUCCESS:
+        case EditProjectActionTypes.DELETE_EDITPROJECT_PROJECT_REQUIREMENTS_SUCCESS:
             return {
                 ...state,
-                projectRequirements: action.payload
+                projectRequirements: action.payload as ProjectRequirement []
             };
-        case EditProjectActionTypes.UPDATE_EDITPROJECT_PROJECT_LINKS:
+
+        case EditProjectActionTypes.UPDATE_EDITPROJECT_PROJECT_REQUIREMENTS_FAIL:
+        case EditProjectActionTypes.SAVE_EDITPROJECT_PROJECT_REQUIREMENTS_FAIL:
+        case EditProjectActionTypes.LOAD_PROJECT_REQS_FROM_DB_FAIL:
+        case EditProjectActionTypes.DELETE_EDITPROJECT_PROJECT_REQUIREMENTS_FAIL:
+        case EditProjectActionTypes.UPDATE_EDITPROJECT_PROJECT_LinkS_FAIL:
+        case EditProjectActionTypes.SAVE_EDITPROJECT_PROJECT_LinkS_FAIL:
+        case EditProjectActionTypes.DELETE_EDITPROJECT_PROJECT_LinkS_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            }
+        case EditProjectActionTypes.UPDATE_EDITPROJECT_PROJECT_Links_SUCCESS ||
+                EditProjectActionTypes.SAVE_EDITPROJECT_PROJECT_Links_SUCCESS ||
+                EditProjectActionTypes.DELETE_EDITPROJECT_PROJECT_Links_SUCCESS:
             return {
                 ...state,
                 projectLinks: action.payload
             };
-
 
 
 

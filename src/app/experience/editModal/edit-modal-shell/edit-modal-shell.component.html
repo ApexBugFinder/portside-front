@@ -80,25 +80,28 @@
                             <div class="duration">
 
 
-                                <mat-form-field >
-                                    <div class="label-wrapper">
-                                        <mat-label class="infoLabel">Started
-                                          <span class="origDate">{{ origStart }}</span>
-                                        </mat-label>
+                                            <mat-form-field class="statusData">
 
-                                    </div>
+                                                        <mat-label class="infoLabel">Started
+                                                            <span class="origDate">{{ origStart }}</span>
+                                                        </mat-label>
+                                                        <input matInput [matDatepicker]="started" formControlName="started">
 
-                                    <div class="infoData">
-                                        <div class="dataContainer">
 
-                                             <input type="date" matInput placeholder="" value="{{origStart}}" name="started" id="staredId"
-                                                formControlName="started">
+                                                <mat-datepicker-toggle matSuffix [for]="started"></mat-datepicker-toggle>
+                                                <mat-datepicker #started></mat-datepicker>
+                                            </mat-form-field>
 
-                                        </div>
+                                            <mat-form-field class="statusData">
 
-                                    </div>
-                                </mat-form-field>
-                                <mat-form-field >
+                                                <mat-label class="infoLabel">Completed
+                                                    <span class="origDate">{{origComplete}}</span>
+                                                </mat-label>
+                                                <input matInput [matDatepicker]="completed" formControlName="completed">
+                                                <mat-datepicker-toggle matSuffix [for]="completed"></mat-datepicker-toggle>
+                                                <mat-datepicker #completed></mat-datepicker>
+                                            </mat-form-field>
+                                <!-- <mat-form-field >
                                     <div class="label-wrapper">
                                         <mat-label class="infoLabel">Completed
                                           <span class="origDate">{{origComplete}}</span>
@@ -115,7 +118,7 @@
                                         </div>
 
                                     </div>
-                                </mat-form-field>
+                                </mat-form-field> -->
                             </div>
                         </div>
                     </div>

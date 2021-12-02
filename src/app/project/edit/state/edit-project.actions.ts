@@ -5,72 +5,90 @@ import { ProjectRequirement  } from '../../models/projectRequirement';
 
 
 export enum EditProjectActionTypes {
-    LOAD_PROJECTS_FROM_DB = '[PROJECT PAGE] LOAD PROJECTS FROM DB',
-    LOAD_PROJECTS_FROM_DB_SUCCESS = '[PROJECT PAGE] LOAD PROJECTS FROM DB SUCCESSFULL',
-    LOAD_PROJECTS_FROM_DB_FAIL = '[PROJECT PAGE] LOAD PROJECTS FROM DB FAILED',
+  LOAD_PROJECTS_FROM_DB = "[PROJECT PAGE] LOAD PROJECTS FROM DB",
+  LOAD_PROJECTS_FROM_DB_SUCCESS = "[PROJECT PAGE] LOAD PROJECTS FROM DB SUCCESSFULL",
+  LOAD_PROJECTS_FROM_DB_FAIL = "[PROJECT PAGE] LOAD PROJECTS FROM DB FAILED",
 
-    SAVE_EDITPROJECT_TO_DB = '[EDIT PROJECT] SAVE EDIT PROJECT TO DB',
-    SAVE_EDITPROJECT_TO_DB_SUCCESS = '[EDIT PROJECT] SAVE EDIT PROJECT TO DB WAS SUCCESSFULL',
-    SAVE_EDITPROJECT_TO_DB_FAIL = '[EDIT PROJECT] SAVE EDIT PROJECT TO DB FAILED',
+  LOAD_PROJECT_REQS_FROM_DB = "[EDIT PROJECT] LOAD PROJECT REQUIREMENTS FROM DB",
+  LOAD_PROJECT_REQS_FROM_DB_SUCCESS = "[EDIT PROJECT] LOAD PROJECT REQUIREMENTS FROM DB --- SUCCESS",
+  LOAD_PROJECT_REQS_FROM_DB_FAIL = "[EDIT PROJECT] LOAD PROJECT REQUIREMENTS FROM DB --- FAIL",
 
-    UPDATE_EDITPROJECT_TO_DB = '[EDIT PROJECT] UPDATE EDIT PROJECT TO DB',
-    UPDATE_EDITPROJECT_TO_DB_SUCCESS = '[EDIT PROJECT] UPDATE EDIT PROJECT TO DB WAS SUCCESSFULL',
-    UPDATE_EDITPROJECT_TO_DB_FAIL = '[EDIT PROJECT] UPDATE EDIT PROJECT TO DB FAILED',
+  SAVE_EDITPROJECT_TO_DB = "[EDIT PROJECT] SAVE EDIT PROJECT TO DB",
+  SAVE_EDITPROJECT_TO_DB_SUCCESS = "[EDIT PROJECT] SAVE EDIT PROJECT TO DB WAS SUCCESSFULL",
+  SAVE_EDITPROJECT_TO_DB_FAIL = "[EDIT PROJECT] SAVE EDIT PROJECT TO DB FAILED",
 
+  UPDATE_EDITPROJECT_TO_DB = "[EDIT PROJECT] UPDATE EDIT PROJECT TO DB",
+  UPDATE_EDITPROJECT_TO_DB_SUCCESS = "[EDIT PROJECT] UPDATE EDIT PROJECT TO DB WAS SUCCESSFULL",
+  UPDATE_EDITPROJECT_TO_DB_FAIL = "[EDIT PROJECT] UPDATE EDIT PROJECT TO DB FAILED",
 
-    DELETE_EDITPROJECT_TO_DB = '[EDIT PROJECT] DELETE EDIT PROJECT TO DB',
-    DELETE_EDITPROJECT_TO_DB_SUCCESS = '[EDIT PROJECT] DELETE EDIT PROJECT TO DB WAS SUCCESSFULL',
-    DELETE_EDITPROJECT_TO_DB_FAIL = '[EDIT PROJECT] DELETE EDIT PROJECT TO DB FAILED',
+  DELETE_EDITPROJECT_TO_DB = "[EDIT PROJECT] DELETE EDIT PROJECT TO DB",
+  DELETE_EDITPROJECT_TO_DB_SUCCESS = "[EDIT PROJECT] DELETE EDIT PROJECT TO DB WAS SUCCESSFULL",
+  DELETE_EDITPROJECT_TO_DB_FAIL = "[EDIT PROJECT] DELETE EDIT PROJECT TO DB FAILED",
 
+  SET_ORIGINALPROJECT = "[EDIT PROJECT] SET ORIGINAL PROJECT",
+  SET_EDITPROJECT = "[EDIT PROJECT] SET EDIT PROJECT",
+  SET_EDITPROJECT_ID = "[EDIT PROJECT] SET EDIT PROJECT ID",
+  SET_EDITPROJECT_PROJECTCREATOR_ID = "[EDIT PROJECT] SET EDIT PROJECT PROJECT CREATOR ID",
+  SET_EDITPROJECT_PROJECTNAME = "[EDIT PROJECT] SET EDIT PROJECT PROJECT_NAME",
+  SET_EDITPROJECT_STARTED = "[EDIT PROJECT] SET EDIT PROJECT START DATE",
+  SET_EDITPROJECT_COMPLETED = "[EDIT PROJECT] SET EDIT PROJECT COMPLETE DATE",
+  SET_EDITPROJECT_DESCRIPTION = "[EDIT PROJECT] SET EDIT PROJECT DESCRIPTION",
+  SET_EDITPROJECT_BANNER = "[EDIT PROJECT] SET EDIT PROJECT BIG BANNER",
+  // SET_EDITPROJECT_SMALL_BANNER = '[EDIT PROJECT] SET EDIT PROJECT SMALL BANNER',
+  SET_EDITPROJECT_PUBLISHED = "[EDIT PROJECT] SET EDIT PROJECT IS_PUBLISHED",
+  SET_EDITPROJECT_PROJECT_REQUIREMENTS = "[EDIT PROJECT] SET EDIT PROJECT PROJECT REQUIREMENTS",
+  SET_EDITPROJECT_PROJECT_LINKS = "[EDIT PROJECT] SET EDIT PROJECT PROJECT LINKS",
 
-    SET_ORIGINALPROJECT = '[EDIT PROJECT] SET ORIGINAL PROJECT',
-    SET_EDITPROJECT = '[EDIT PROJECT] SET EDIT PROJECT',
-    SET_EDITPROJECT_ID = '[EDIT PROJECT] SET EDIT PROJECT ID',
-    SET_EDITPROJECT_PROJECTCREATOR_ID = '[EDIT PROJECT] SET EDIT PROJECT PROJECT CREATOR ID',
-    SET_EDITPROJECT_PROJECTNAME = '[EDIT PROJECT] SET EDIT PROJECT PROJECT_NAME',
-    SET_EDITPROJECT_STARTED = '[EDIT PROJECT] SET EDIT PROJECT START DATE',
-    SET_EDITPROJECT_COMPLETED = '[EDIT PROJECT] SET EDIT PROJECT COMPLETE DATE',
-    SET_EDITPROJECT_DESCRIPTION = '[EDIT PROJECT] SET EDIT PROJECT DESCRIPTION',
-    SET_EDITPROJECT_BANNER = '[EDIT PROJECT] SET EDIT PROJECT BIG BANNER',
-    // SET_EDITPROJECT_SMALL_BANNER = '[EDIT PROJECT] SET EDIT PROJECT SMALL BANNER',
-    SET_EDITPROJECT_PUBLISHED= '[EDIT PROJECT] SET EDIT PROJECT IS_PUBLISHED',
-    SET_EDITPROJECT_PROJECT_REQUIREMENTS = '[EDIT PROJECT] SET EDIT PROJECT PROJECT REQUIREMENTS',
-    SET_EDITPROJECT_PROJECT_LINKS = '[EDIT PROJECT] SET EDIT PROJECT PROJECT LINKS',
+  CLEAR_ORIGINALPROJECT = "[EDIT PROJECT] CLEAR ORIGINAL PROJECT",
+  CLEAR_EDITPROJECT = "[EDIT PROJECT] CLEAR EDIT PROJECT",
+  CLEAR_EDITPROJECT_ID = "[EDIT PROJECT] CLEAR EDIT PROJECT ID",
+  CLEAR_EDITPROJECT_PROJECTCREATOR_ID = "[EDIT PROJECT] CLEAR EDIT PROJECT PROJECT CREATOR ID",
+  CLEAR_EDITPROJECT_PROJECTNAME = "[EDIT PROJECT] CLEAR EDIT PROJECT PROJECT_NAME",
+  CLEAR_EDITPROJECT_STARTED = "[EDIT PROJECT] CLEAR EDIT PROJECT START DATE",
+  CLEAR_EDITPROJECT_COMPLETED = "[EDIT PROJECT] CLEAR EDIT PROJECT COMPLETE DATE",
+  CLEAR_EDITPROJECT_DESCRIPTION = "[EDIT PROJECT] CLEAR EDIT PROJECT DESCRIPTION",
+  CLEAR_EDITPROJECT_BANNER = "[EDIT PROJECT] CLEAR EDIT PROJECT BIG BANNER",
+  // CLEAR_EDITPROJECT_SMALL_BANNER = '[EDIT PROJECT] CLEAR EDIT PROJECT SMALL BANNER',
+  CLEAR_EDITPROJECT_PUBLISHED = "[EDIT PROJECT] CLEAR EDIT PROJECT IS_PUBLISHED",
+  CLEAR_EDITPROJECT_PROJECT_REQUIREMENTS = "[EDIT PROJECT] CLEAR EDIT PROJECT PROJECT REQUIREMENTS",
+  CLEAR_EDITPROJECT_PROJECT_LINKS = "[EDIT PROJECT] CLEAR EDIT PROJECT PROJECT LINKS",
 
+  UPDATE_EDITPROJECT = "[EDIT PROJECT] UPDATE EDIT PROJECT",
+  UPDATE_EDITPROJECT_ID = "[EDIT PROJECT] UPDATE EDIT PROJECT ID",
+  UPDATE_EDITPROJECT_PROJECTCREATOR_ID = "[EDIT PROJECT] UPDATE EDIT PROJECT PROJECT CREATOR ID",
 
+  UPDATE_EDITPROJECT_PROJECT_REQUIREMENTS = "[EDIT PROJECT] UPDATE DATE EDIT PROJECT PROJECT REQIREMENTS FROM ACTION-BUTTON CPT ",
+  UPDATE_EDITPROJECT_PROJECT_REQUIREMENTS_SUCCESS = "[EDIT PROJECT] UPDATE DATE EDIT PROJECT PROJECT REQIREMENTS FROM ACTION-BUTTON CPT  --- SUCCESS",
+  UPDATE_EDITPROJECT_PROJECT_REQUIREMENTS_FAIL = "[EDIT PROJECT] UPDATE DATE EDIT PROJECT PROJECT REQIREMENTS FROM ACTION-BUTTON CPT  ----- FAIL",
 
-    CLEAR_ORIGINALPROJECT = '[EDIT PROJECT] CLEAR ORIGINAL PROJECT',
-    CLEAR_EDITPROJECT = '[EDIT PROJECT] CLEAR EDIT PROJECT',
-    CLEAR_EDITPROJECT_ID = '[EDIT PROJECT] CLEAR EDIT PROJECT ID',
-    CLEAR_EDITPROJECT_PROJECTCREATOR_ID = '[EDIT PROJECT] CLEAR EDIT PROJECT PROJECT CREATOR ID',
-    CLEAR_EDITPROJECT_PROJECTNAME = '[EDIT PROJECT] CLEAR EDIT PROJECT PROJECT_NAME',
-    CLEAR_EDITPROJECT_STARTED = '[EDIT PROJECT] CLEAR EDIT PROJECT START DATE',
-    CLEAR_EDITPROJECT_COMPLETED = '[EDIT PROJECT] CLEAR EDIT PROJECT COMPLETE DATE',
-    CLEAR_EDITPROJECT_DESCRIPTION = '[EDIT PROJECT] CLEAR EDIT PROJECT DESCRIPTION',
-    CLEAR_EDITPROJECT_BANNER = '[EDIT PROJECT] CLEAR EDIT PROJECT BIG BANNER',
-    // CLEAR_EDITPROJECT_SMALL_BANNER = '[EDIT PROJECT] CLEAR EDIT PROJECT SMALL BANNER',
-    CLEAR_EDITPROJECT_PUBLISHED= '[EDIT PROJECT] CLEAR EDIT PROJECT IS_PUBLISHED',
-    CLEAR_EDITPROJECT_PROJECT_REQUIREMENTS = '[EDIT PROJECT] CLEAR EDIT PROJECT PROJECT REQUIREMENTS',
-    CLEAR_EDITPROJECT_PROJECT_LINKS = '[EDIT PROJECT] CLEAR EDIT PROJECT PROJECT LINKS',
+  SAVE_EDITPROJECT_PROJECT_REQUIREMENTS = "[EDIT PROJECT] SAVE EDIT PROJECT PROJECT REQIREMENTS FROM ACTION-BUTTON CPT ",
+  SAVE_EDITPROJECT_PROJECT_REQUIREMENTS_SUCCESS = "[EDIT PROJECT] SAVE DATE EDIT PROJECT PROJECT REQIREMENTS FROM ACTION-BUTTON CPT  --- SUCCESS",
+  SAVE_EDITPROJECT_PROJECT_REQUIREMENTS_FAIL = "[EDIT PROJECT] SAVE  EDIT PROJECT PROJECT REQIREMENTS FROM ACTION-BUTTON CPT  ----- FAIL",
 
+  DELETE_EDITPROJECT_PROJECT_REQUIREMENTS = "[EDIT PROJECT] DELETE  EDIT PROJECT PROJECT REQIREMENTS FROM ACTION-BUTTON CPT ",
+  DELETE_EDITPROJECT_PROJECT_REQUIREMENTS_SUCCESS = "[EDIT PROJECT] DELETE EDIT PROJECT PROJECT REQIREMENTS FROM ACTION-BUTTON CPT  --- SUCCESS",
+  DELETE_EDITPROJECT_PROJECT_REQUIREMENTS_FAIL = "[EDIT PROJECT] DELETE EDIT PROJECT PROJECT REQIREMENTS FROM ACTION-BUTTON CPT  ----- FAIL",
 
-    UPDATE_EDITPROJECT = '[EDIT PROJECT] UPDATE EDIT PROJECT',
-    UPDATE_EDITPROJECT_ID = '[EDIT PROJECT] UPDATE EDIT PROJECT ID',
-    UPDATE_EDITPROJECT_PROJECTCREATOR_ID = '[EDIT PROJECT] UPDATE EDIT PROJECT PROJECT CREATOR ID',
+  UPDATE_EDITPROJECT_PROJECT_Links = "[EDIT PROJECT] UPDATE EDIT PROJECT PROJECT Links FROM ACTION-BUTTON CPT ",
+  UPDATE_EDITPROJECT_PROJECT_Links_SUCCESS = "[EDIT PROJECT] UPDATE EDIT PROJECT PROJECT Links FROM ACTION-BUTTON CPT  --- SUCCESS",
+  UPDATE_EDITPROJECT_PROJECT_LinkS_FAIL = "[EDIT PROJECT] UPDATE EDIT PROJECT PROJECT LinkS FROM ACTION-BUTTON CPT  ----- FAIL",
 
-    UPDATE_EDITPROJECT_STARTED = '[EDIT PROJECT] UPDATE EDIT PROJECT START DATE',
-    UPDATE_EDITPROJECT_COMPLETED = '[EDIT PROJECT] UPDATE EDIT PROJECT COMPLETE DATE',
-    UPDATE_EDITPROJECT_DESCRIPTION = '[EDIT PROJECT] UPDATE EDIT PROJECT DESCRIPTION',
-    UPDATE_EDITPROJECT_BANNER = '[EDIT PROJECT] UPDATE EDIT PROJECT BIG BANNER',
-    // UPDATE_EDITPROJECT_SMALL_BANNER = '[EDIT PROJECT] UPDATE EDIT PROJECT SMALL BANNER',
-    UPDATE_EDITPROJECT_PUBLISHED= '[EDIT PROJECT] UPDATE EDIT PROJECT IS_PUBLISHED',
-    UPDATE_EDITPROJECT_PROJECT_REQUIREMENTS = '[EDIT PROJECT] UPDATE EDIT PROJECT PROJECT REQUIREMENTS',
-    UPDATE_EDITPROJECT_PROJECT_LINKS = '[EDIT PROJECT] UPDATE EDIT PROJECT PROJECT LINKS',
+  SAVE_EDITPROJECT_PROJECT_Links = "[EDIT PROJECT] SAVE EDIT PROJECT PROJECT Links FROM ACTION-BUTTON CPT ",
+  SAVE_EDITPROJECT_PROJECT_Links_SUCCESS = "[EDIT PROJECT] SAVE EDIT PROJECT PROJECT Links FROM ACTION-BUTTON CPT  --- SUCCESS",
+  SAVE_EDITPROJECT_PROJECT_LinkS_FAIL = "[EDIT PROJECT] SAVE EDIT PROJECT PROJECT LinkS FROM ACTION-BUTTON CPT  ----- FAIL",
 
-    RESET_EDIT_PROJECT = '[EDIT PROJECT] RESETS EDIT PROJECT BACK TO ORIGINAL PROJECT'
+  DELETE_EDITPROJECT_PROJECT_Links = "[EDIT PROJECT] DELETE EDIT PROJECT PROJECT Links FROM ACTION-BUTTON CPT ",
+  DELETE_EDITPROJECT_PROJECT_Links_SUCCESS = "[EDIT PROJECT] DELETE EDIT PROJECT PROJECT Links FROM ACTION-BUTTON CPT  --- SUCCESS",
+  DELETE_EDITPROJECT_PROJECT_LinkS_FAIL = "[EDIT PROJECT] DELETE EDIT PROJECT PROJECT LinkS FROM ACTION-BUTTON CPT  ----- FAIL",
 
+  UPDATE_EDITPROJECT_STARTED = "[EDIT PROJECT] UPDATE EDIT PROJECT START DATE",
+  UPDATE_EDITPROJECT_COMPLETED = "[EDIT PROJECT] UPDATE EDIT PROJECT COMPLETE DATE",
+  UPDATE_EDITPROJECT_DESCRIPTION = "[EDIT PROJECT] UPDATE EDIT PROJECT DESCRIPTION",
+  UPDATE_EDITPROJECT_BANNER = "[EDIT PROJECT] UPDATE EDIT PROJECT BIG BANNER",
+  // UPDATE_EDITPROJECT_SMALL_BANNER = '[EDIT PROJECT] UPDATE EDIT PROJECT SMALL BANNER',
+  UPDATE_EDITPROJECT_PUBLISHED = "[EDIT PROJECT] UPDATE EDIT PROJECT IS_PUBLISHED",
 
-
+  RESET_EDIT_PROJECT = "[EDIT PROJECT] RESETS EDIT PROJECT BACK TO ORIGINAL PROJECT",
 }
 
 // SET ACTIONS
@@ -183,6 +201,7 @@ export class ClearEditProjectProjectLinks implements Action {
 
 // UPDATE ACTIONS
 
+
 export class UpdateEditProjectId implements Action {
     readonly type = EditProjectActionTypes.UPDATE_EDITPROJECT_ID;
     constructor(public payload: string) {}
@@ -215,15 +234,9 @@ export class UpdateEditProjectIsPublished implements Action {
     readonly type = EditProjectActionTypes.UPDATE_EDITPROJECT_PUBLISHED;
     constructor(public payload: boolean) {}
 }
-export class UpdateEditProjectProjectRequirements implements Action {
-    readonly type = EditProjectActionTypes.UPDATE_EDITPROJECT_PROJECT_REQUIREMENTS;
-    constructor(public payload: ProjectRequirement[]) {}
-}
 
-export class UpdateEditProjectProjectLinks implements Action {
-    readonly type = EditProjectActionTypes.UPDATE_EDITPROJECT_PROJECT_LINKS;
-    constructor(public payload: ProjectLink[]) {}
-}
+
+
 
 export class ResetEditProject implements Action {
     readonly type = EditProjectActionTypes.RESET_EDIT_PROJECT;
@@ -232,6 +245,44 @@ export class ResetEditProject implements Action {
 
 
 // EFFECT ACTIONS
+export class UpdateEditProjectProjectLinks implements Action {
+  readonly type = EditProjectActionTypes.UPDATE_EDITPROJECT_PROJECT_Links;
+  constructor(public payload: ProjectLink) {}
+}
+export class UpdateEditProjectProjectLinksSucess implements Action {
+  readonly type = EditProjectActionTypes.UPDATE_EDITPROJECT_PROJECT_Links_SUCCESS;
+  constructor(public payload: ProjectLink[]) {}
+}
+export class UpdateEditProjectProjectLinksFail implements Action {
+  readonly type = EditProjectActionTypes.UPDATE_EDITPROJECT_PROJECT_LinkS_FAIL;
+  constructor(public payload: string) {}
+}
+
+export class SaveEditProjectProjectLinks implements Action {
+  readonly type = EditProjectActionTypes.SAVE_EDITPROJECT_PROJECT_Links;
+  constructor(public payload: ProjectLink) {}
+}
+export class SaveEditProjectProjectLinksSucess implements Action {
+  readonly type = EditProjectActionTypes.SAVE_EDITPROJECT_PROJECT_Links_SUCCESS;
+  constructor(public payload: ProjectLink[]) {}
+}
+export class SaveEditProjectProjectLinksFail implements Action {
+  readonly type = EditProjectActionTypes.SAVE_EDITPROJECT_PROJECT_LinkS_FAIL;
+  constructor(public payload: string) {}
+}
+
+export class DeleteEditProjectProjectLinks implements Action {
+  readonly type = EditProjectActionTypes.DELETE_EDITPROJECT_PROJECT_Links;
+  constructor(public payload: ProjectLink) {}
+}
+export class DeleteEditProjectProjectLinksSucess implements Action {
+  readonly type = EditProjectActionTypes.DELETE_EDITPROJECT_PROJECT_Links_SUCCESS;
+  constructor(public payload: ProjectLink[]) {}
+}
+export class DeleteEditProjectProjectLinksFail implements Action {
+  readonly type = EditProjectActionTypes.DELETE_EDITPROJECT_PROJECT_LinkS_FAIL;
+  constructor(public payload: string) {}
+}
 export class SaveEditProjectToDB implements Action {
     readonly type = EditProjectActionTypes.SAVE_EDITPROJECT_TO_DB;
 }
@@ -292,60 +343,149 @@ export class LoadProjectsByProjectCreatorIDFromDBFail implements Action {
     readonly type = EditProjectActionTypes.LOAD_PROJECTS_FROM_DB_FAIL;
     constructor(public payload: string) {}
 }
-export type EditProjectActions = SetOriginalProject
-                            // SET EDIT_PROJECT
-                            |   SetEditProject
-                            |   SetEditProjectId
-                            |   SetEditProjectProjectCreatorID
-                            |   SetEditProjectProjectName
-                            |   SetEditProjectStartDate
-                            |   SetEditProjectCompleteDate
-                            |   SetEditProjectDescription
-                            |   SetEditProjectBigBanner
-                            // |   SetEditProjectSmallBanner
-                            |   SetEditProjectIsPublished
-                            |   SetEditProjectProjectRequirements
-                            |   SetEditProjectProjectLinks
-                            // CLEAR EDIT_PROJECT
-                            |   ClearEditProjectId
-                            |   ClearEditProjectProjectCreatorID
-                            |   ClearEditProjectProjectName
-                            |   ClearEditProjectStartDate
-                            |   ClearEditProjectCompleteDate
-                            |   ClearEditProjectDescription
-                            |   ClearEditProjectBigBanner
-                            // |   ClearEditProjectSmallBanner
-                            |   ClearEditProjectIsPublished
-                            |   ClearEditProjectProjectRequirements
-                            |   ClearEditProjectProjectLinks
 
-                            // UPDATE EDIT_PROJECT TO DB
-                            |   UpdateEditProjectId
-                            |   UpdateEditProjectProjectCreatorID
-                            |   UpdateEditProjectStartDate
-                            |   UpdateEditProjectCompleteDate
-                            |   UpdateEditProjectDescription
-                            |   UpdateEditProjectBigBanner
-                            // |   UpdateEditProjectSmallBanner
-                            |   UpdateEditProjectIsPublished
-                            |   UpdateEditProjectProjectRequirements
-                            |   UpdateEditProjectProjectLinks
-                            |   ResetEditProject
+export class UpdateEditProjectProjectRequirements implements Action {
+  readonly type =
+    EditProjectActionTypes.UPDATE_EDITPROJECT_PROJECT_REQUIREMENTS;
+  constructor(public payload: ProjectRequirement[] | undefined) {}
+}
 
-                            // EFFECTS
-                            |   SaveEditProjectToDB
-                            |   SaveEditProjectToDBSuccess
-                            |   SaveEditProjectToDBFail
+export class UpdateEditProjectProjectRequirementsSuccess implements Action {
+  readonly type =
+    EditProjectActionTypes.UPDATE_EDITPROJECT_PROJECT_REQUIREMENTS_SUCCESS;
+    constructor(public payload: ProjectRequirement[] | undefined) {}
+}
 
-                            |   UpdateEditProjectToDB
-                            |   UpdateEditProjectToDBSuccess
-                            |   UpdateEditProjectToDBFail
+export class UpdateEditProjectProjectRequirementsFail implements Action {
+  readonly type =
+    EditProjectActionTypes.UPDATE_EDITPROJECT_PROJECT_REQUIREMENTS_FAIL;
+    constructor(public payload: string) {}
+}
 
-                            |   DeleteEditProjectToDB
-                            |   DeleteEditProjectToDBSuccess
-                            |   DeleteEditProjectToDBFail
+export class SaveEditProjectProjectRequirements implements Action {
+  readonly type =
+    EditProjectActionTypes.SAVE_EDITPROJECT_PROJECT_REQUIREMENTS;
+  constructor(public payload: ProjectRequirement | undefined) {}
+}
 
-                            |   LoadProjectsByProjectCreatorIDFromDB
-                            |   LoadProjectsByProjectCreatorIDFromDBSuccess
-                            |   LoadProjectsByProjectCreatorIDFromDBFail
-                            ;
+export class SaveEditProjectProjectRequirementsSuccess implements Action {
+  readonly type =
+    EditProjectActionTypes.SAVE_EDITPROJECT_PROJECT_REQUIREMENTS_SUCCESS;
+  constructor(public payload: ProjectRequirement[] | undefined) {}
+}
+
+export class SaveEditProjectProjectRequirementsFail implements Action {
+  readonly type =
+    EditProjectActionTypes.SAVE_EDITPROJECT_PROJECT_REQUIREMENTS_FAIL;
+  constructor(public payload: string) {}
+}
+
+export class DeleteEditProjectProjectRequirements implements Action {
+  readonly type = EditProjectActionTypes.DELETE_EDITPROJECT_PROJECT_REQUIREMENTS;
+  constructor(public payload: string | undefined) {}
+}
+
+export class DeleteEditProjectProjectRequirementsSuccess implements Action {
+  readonly type =
+    EditProjectActionTypes.DELETE_EDITPROJECT_PROJECT_REQUIREMENTS_SUCCESS;
+  constructor(public payload: ProjectRequirement[] | undefined) {}
+}
+
+export class DeleteEditProjectProjectRequirementsFail implements Action {
+  readonly type =
+    EditProjectActionTypes.DELETE_EDITPROJECT_PROJECT_REQUIREMENTS_FAIL;
+  constructor(public payload: string) {}
+}
+
+export class LoadEditProjectProjectRequirements implements Action {
+  readonly type =
+    EditProjectActionTypes.LOAD_PROJECT_REQS_FROM_DB;
+    constructor(public payload: string) {}
+}
+
+export class LoadEditProjectProjectRequirementsSuccess implements Action {
+  readonly type = EditProjectActionTypes.LOAD_PROJECT_REQS_FROM_DB_SUCCESS;
+  constructor(public payload: ProjectRequirement[]) {}
+}
+
+export class LoadEditProjectProjectRequirementsFail implements Action {
+  readonly type = EditProjectActionTypes.LOAD_PROJECT_REQS_FROM_DB_FAIL;
+  constructor(public payload: string) {}
+}
+export type EditProjectActions =
+  | SetOriginalProject
+  // SET EDIT_PROJECT
+  | SetEditProject
+  | SetEditProjectId
+  | SetEditProjectProjectCreatorID
+  | SetEditProjectProjectName
+  | SetEditProjectStartDate
+  | SetEditProjectCompleteDate
+  | SetEditProjectDescription
+  | SetEditProjectBigBanner
+  // |   SetEditProjectSmallBanner
+  | SetEditProjectIsPublished
+  | SetEditProjectProjectRequirements
+  | SetEditProjectProjectLinks
+  // CLEAR EDIT_PROJECT
+  | ClearEditProjectId
+  | ClearEditProjectProjectCreatorID
+  | ClearEditProjectProjectName
+  | ClearEditProjectStartDate
+  | ClearEditProjectCompleteDate
+  | ClearEditProjectDescription
+  | ClearEditProjectBigBanner
+  // |   ClearEditProjectSmallBanner
+  | ClearEditProjectIsPublished
+  | ClearEditProjectProjectRequirements
+  | ClearEditProjectProjectLinks
+
+  // UPDATE EDIT_PROJECT TO DB
+  | UpdateEditProjectId
+  | UpdateEditProjectProjectCreatorID
+  | UpdateEditProjectStartDate
+  | UpdateEditProjectCompleteDate
+  | UpdateEditProjectDescription
+  | UpdateEditProjectBigBanner
+    | UpdateEditProjectIsPublished
+  | ResetEditProject
+
+  // EFFECTS
+  | SaveEditProjectToDB
+  | SaveEditProjectToDBSuccess
+  | SaveEditProjectToDBFail
+  | UpdateEditProjectToDB
+  | UpdateEditProjectToDBSuccess
+  | UpdateEditProjectToDBFail
+  | DeleteEditProjectToDB
+  | DeleteEditProjectToDBSuccess
+  | DeleteEditProjectToDBFail
+  | LoadProjectsByProjectCreatorIDFromDB
+  | LoadProjectsByProjectCreatorIDFromDBSuccess
+  | LoadProjectsByProjectCreatorIDFromDBFail
+
+  | LoadEditProjectProjectRequirements
+  | LoadEditProjectProjectRequirementsSuccess
+  | LoadEditProjectProjectRequirementsFail
+
+  | UpdateEditProjectProjectRequirements
+  | UpdateEditProjectProjectRequirementsSuccess
+  | UpdateEditProjectProjectRequirementsFail
+  | SaveEditProjectProjectRequirements
+  | SaveEditProjectProjectRequirementsSuccess
+  | SaveEditProjectProjectRequirementsFail
+  | DeleteEditProjectProjectRequirements
+  | DeleteEditProjectProjectRequirementsSuccess
+  | DeleteEditProjectProjectRequirementsFail
+
+  | UpdateEditProjectProjectLinks
+  | UpdateEditProjectProjectLinksSucess
+  | UpdateEditProjectProjectLinksFail
+
+  | SaveEditProjectProjectLinks
+  | SaveEditProjectProjectLinksSucess
+  | SaveEditProjectProjectLinksFail
+
+  | DeleteEditProjectProjectLinks
+  | DeleteEditProjectProjectLinksSucess
+  | DeleteEditProjectProjectLinksFail;
