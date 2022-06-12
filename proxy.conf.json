@@ -1,13 +1,13 @@
 {
 
   "/api/*": {
-    "target": "https://webapi.portside.sbs/api/",
+    "target": "https://webapi.portside.cyou/api/",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"
   },
   "/.well-known": {
-    "target": "https://identity.portside.sbs/.well-known",
+    "target": "https://identity.portside.cyou/.well-known",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"

@@ -194,9 +194,9 @@ export function editProjectReducer(state = initialState, action: EditProjectActi
                 ...state,
                 error: action.payload
             }
-        case EditProjectActionTypes.UPDATE_EDITPROJECT_PROJECT_Links_SUCCESS ||
-                EditProjectActionTypes.SAVE_EDITPROJECT_PROJECT_Links_SUCCESS ||
-                EditProjectActionTypes.DELETE_EDITPROJECT_PROJECT_Links_SUCCESS:
+        case EditProjectActionTypes.UPDATE_EDITPROJECT_PROJECT_Links_SUCCESS:
+        case EditProjectActionTypes.SAVE_EDITPROJECT_PROJECT_Links_SUCCESS:
+        case EditProjectActionTypes.DELETE_EDITPROJECT_PROJECT_Links_SUCCESS:
             return {
                 ...state,
                 projectLinks: action.payload

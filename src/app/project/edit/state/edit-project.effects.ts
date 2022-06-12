@@ -19,6 +19,7 @@ import * as fromShared from '../../../shared/state';
 import { ProjectReqService } from '../../services/projectreq.service';
 import { ProjectRequirement } from '../../models/projectRequirement';
 import { ProjectLinkService } from '../../services/projLink.service';
+import { ProjectLink } from '../../models/projectLink';
 
 
 @Injectable()
@@ -308,19 +309,15 @@ export class EditProjectEffects {
               payload
             )
           ),
-          map((savedProjectLinks) => {
+          map((savedProjectLinks: ProjectLink[]) => {
             let proj: Project = JSON.parse(JSON.stringify(this.editProject));
-
+            
             proj.projectLinks = savedProjectLinks;
             console.log(proj);
             this.projectStore.dispatch(
               projectActions.upsertProject({ project: proj })
             );
-            this.editProjectStore.dispatch(
-              new editProjectActions.SetEditProjectProjectLinks(
-                savedProjectLinks
-              )
-            );
+
 
             return new editProjectActions.SaveEditProjectProjectLinksSucess(
               savedProjectLinks

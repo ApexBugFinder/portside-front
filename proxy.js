@@ -2,14 +2,14 @@ var HttpsProxyAgent = require("https-proxy-agent");
 var proxyConfig = [
   {
     context: "/api/*",
-    target: "https://webapi.portside.sbs/api",
+    target: "https://webapi.portside.cyou/api",
     secure: false,
     changeOrigin: true,
     logLevel: "debug"
   },
   {
   context: '/.well-known',
-  target: 'https://identity.portside.sbs/.well-known',
+  target: 'https://identity.portside.cyou/.well-known',
   secure: false,
   changeOrigin: true,
   logLevel: 'debug'

@@ -157,15 +157,24 @@ z-index: 10;
         flex-direction: column;
         z-index: 1;
         top: 10px;
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
         background-image: url('../../assets/images/svg/SVG/SaveButton.svg');
-        background-size: 60px;
+        background-size: 56px;
         background-position: center center;
 
 
         background-repeat: no-repeat;
-
+        .h1.title {
+          margin-top: auto;
+          margin-bottom: auto;
+          margin-left: -19px;
+          margin-right: 0px;
+          font-family: suburban, sans-serif;
+          font-weight: 300;
+          font-size: 38px;
+          z-index: 50;
+        }
         .sL {
           margin: auto auto;
           height: 50px;

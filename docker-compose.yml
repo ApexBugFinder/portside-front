@@ -6,7 +6,7 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - /home/apexbugfinder/.aspnet/https/nginx:/etc/nginx/conf.d/:ro
+      - /home/apexbugfinder/.aspnet/https/nginx:/etc/nginx/conf.d/:rw
     build:
       context: .
       dockerfile: ./Dockerfile

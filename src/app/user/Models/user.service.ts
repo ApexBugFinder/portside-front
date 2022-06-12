@@ -32,14 +32,14 @@ export class UserService {
 
   public getUserInfo(userName: string): Observable<UserState> {
     this.hdrs = new HttpHeaders()
-      .set('Access-Control-Allow-Origin', [
+      .append('Access-Control-Allow-Origin', [
         this.apiRt,
         this.apiAddress,
         this.clientRt,
       ])
-      .set('Accept', 'application/json')
-      .set('Access-Control-Allow-Methods', ['GET'])
-      .set('content-type', 'application/json;charset=utf-8');
+      .append('Accept', 'application/json')
+      .append('Access-Control-Allow-Methods', ['GET'])
+      .append('content-type', 'application/json');
     const address = this.apiAddress + 'username/' + userName;
   console.log('HELLO', this.clientRt);
     printServiceInfo(address, userName, this.hdrs);
@@ -81,11 +81,14 @@ const address = this.apiAddress + 'userID/' + userId;
     let keywordObject = {
       keyword: keyword,
     };
+    const address = this.apiAddress + 'search/';
+
     this.hdrs = new HttpHeaders()
-      .set('Access-Control-Allow-Origin', [
+      .set('access-control-allow-origin', [
         this.apiRt,
         this.apiAddress,
         this.clientRt,
+        address
       ])
       .set('Accept', 'application/json')
       .set('Access-Control-Allow-Methods', ['PUT', 'GET', 'POST'])
@@ -93,7 +96,6 @@ const address = this.apiAddress + 'userID/' + userId;
     // Address needs to be updated, and the backend endpoint needs to be
     // created
     console.log('HELLO', this.clientRt);
-    const address = this.apiAddress + 'search/';
 
     printServiceInfo(address, keyword, this.hdrs);
 

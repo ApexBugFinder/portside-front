@@ -78,7 +78,7 @@ export class ViewUserComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.data);
-    
+
     this.user = JSON.parse(JSON.stringify(this.data.user));
 
     this.userStore.dispatch(new UserActions.SetCurrentUser(this.user));
@@ -114,9 +114,9 @@ export class ViewUserComponent implements OnInit {
   }
 
   toBack(key: string) {
-    if (key === this.eventKey) {
+    // if (key === this.eventKey) {
       this.dialogRef.close();
-    }
+    // }
   }
   loadProfile() {
 
@@ -147,25 +147,25 @@ export class ViewUserComponent implements OnInit {
 }
   toProjects(key: string) {
     console.log('HELLO');
-   if (key === this.eventKey) {
+  //  if (key === this.eventKey) {
       this.loadProfile();
       this.router.navigate(['pages/projects']);
       this.dialogRef.close();
-    }
+    // }
   }
   toExperiences(key: string) {
-     if (key === this.eventKey) {
+    //  if (key === this.eventKey) {
        this.loadProfile();
        this.router.navigate(['pages/experiences']);
        this.dialogRef.close();
-     }
+    //  }
   }
   toEducation(key: string) {
-    if (key === this.eventKey) {
+    // if (key === this.eventKey) {
       this.loadProfile();
       this.router.navigate(['pages/education']);
       this.dialogRef.close();
-    }
+    // }
   }
   getClass() {
     return 'User';

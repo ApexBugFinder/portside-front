@@ -1,11 +1,11 @@
 import { UserManagerSettings, WebStorageStateStore } from "oidc-client";
 
 export class Constants {
-  public static authority = "https://identity.portside.sbs";
+  public static authority = "https://identity.portside.cyou";
 
-  public static clientRoot = "https://portside.sbs";
+  public static clientRoot = "https://portside.cyou";
 
-  public static apiRoot = "https://webapi.portside.sbs/api/";
+  public static apiRoot = "https://webapi.portside.cyou/api/";
 
   public static getClientSettings: UserManagerSettings = {
     authority: Constants.authority,
