@@ -3,19 +3,19 @@ import { defaultProject, Project }     from '../models/project';
 import { Action, createReducer, createSelector, on } from '@ngrx/store';
 import * as ProjectActions from '../state/project.actions';
 import { selectAllProjects, selectCurrentProjectId } from '.';
-import { ɵCompiler_compileModuleAndAllComponentsSync__POST_R3__ } from '@angular/core';
+
 
 
 export interface State extends EntityState<Project> {
-  
+
    ids: string[];
    entities: {[key: string]:Project | undefined};
   // additional state property
   selectedProjectId: string | '';
 
-  
+
 }
- 
+
 export function selectProjectId(a:Project): string {
     return a.id as string;
 }
@@ -44,10 +44,10 @@ export const initialState: State = adapter.getInitialState({
     selectedProjectId: '',
     ids: [],
     entities: {  },
-  
+
 
   });
-   
+
   const projectReducer = createReducer(
     initialState,
     on(ProjectActions.addProject, (state, { project }) => {
@@ -86,46 +86,46 @@ export const initialState: State = adapter.getInitialState({
     on(ProjectActions.deleteProjectsByPredicate, (state, { predicate }) => {
       return adapter.removeMany(predicate, state);
     }),
-  
+
     on(ProjectActions.loadProjects, (state, { projects }) => {
-      
+
       return adapter.setAll(projects,state);
     }),
-    
+
     on(ProjectActions.clearProjects, state => {
       return adapter.removeAll({ ...state, selectedProjectId: '' });
     }),
- 
-    
+
+
   );
-   
-   
+
+
   export function reducer(state: State | undefined, action: Action) {
     return projectReducer(state, action);
   }
 
 
-  
+
 
 
 // get the selectors
 // const {
-  
+
 //   selectIds,
 //   selectEntities,
 //   selectAll,
 //   selectTotal,
 // } = adapter.getSelectors();
- 
+
 // select the array of project ids
 // export const selectProjectIds = selectIds;
- 
+
 // // select the dictionary of project entities
 // export const selectProjectEntities = selectEntities;
- 
+
 // // select the array of projects
 // export const selectAllProjects = selectAll;
- 
+
 // // select the total project count
 // export const selectProjectTotal = selectTotal;
 

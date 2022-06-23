@@ -13,7 +13,7 @@ import * as fromEditProject from '../../edit/state';
 import * as edipProjectActions from '../../edit/state/edit-project.actions';
 import { Observable } from 'rxjs';
 import { ProjectCardComponent } from '../../project-card/project-card.component';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
 
 @Component({
   selector: 'app-icons-section',

@@ -1,4 +1,4 @@
-import { AngularFireStorageReference } from "@angular/fire/storage";
+import { AngularFireStorageReference } from "@angular/fire/compat/storage";
 import { Observable } from "rxjs";
 
 export interface MediaFile {
@@ -14,9 +14,9 @@ export const defaultMediaFile: MediaFile = {
     type: '',
     mediaLocation: '',
     dloadUrl: ''
-    
+
 }
 export interface KeyValuePair {
     Key: string;
-    Value: string;    
+    Value: string;
 }

@@ -1,4 +1,3 @@
-import { ɵangular_packages_platform_browser_dynamic_platform_browser_dynamic_a } from '@angular/platform-browser-dynamic';
 import { User } from 'oidc-client';
 import { UserActionTypes, UsersActions } from './user.actions';
 
@@ -22,7 +21,7 @@ const initialState: UserState = {
 
 export function userReducer(state = initialState, action: UsersActions): UserState {
     switch (action.type) {
-  
+
         // LOAD EFFECTS
         case UserActionTypes.LOAD_USER_STATE_FAIL:
             return {
