@@ -1,4 +1,3 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -298,7 +297,7 @@ export class EditDegreeShellComponent implements OnInit {
   }
 
   saveToDB(value: string) {
-    
+
 
     // console.log('userbeingViewd: ', this.userBeingViewedId);
     // console.log('authenticated User ID: ', this. authenticatedUserId);
